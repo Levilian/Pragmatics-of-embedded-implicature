@@ -1,0 +1,473 @@
+\documentclass{article}
+
+\input{preamble}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Embedded implicatures, compositional uncertainty, and pragmatic reasoning}
+\author{The pragmateurs}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Overview}\label{sec:introduction}
+
+\begin{examples}
+\item \citet{Grice75} defined conversational implicatures as social,
+  cognitively complex meanings that discourse participants create
+  jointly in interaction. Call accounts like these
+  \tech{interactional}.
+
+\item Recent approaches are framed in opposition to this conception,
+  especially for scalar implicatures (SIs).  For example,
+  \citet{ChierchiaFoxSpector08} write, ``the facts suggest that SIs
+  are not pragmatic in nature but arise, instead, as a consequence of
+  semantic or syntactic mechanisms''. Call these \tech{grammar-driven}
+  accounts.
+
+\item It is widely assumed that the existence of semantically embedded
+  implicatures would undermine interactional accounts and support
+  grammar-driven ones. The reasoning seems to be that interactional
+  accounts are necessarily `post-semantic' and therefore unable to
+  model pragmatic effects that need to contribute in some sense to the
+  core semantic content.
+
+\item Many instances of apparently embedded implicatures have been
+  shown to have straightforward Gricean/interactional accounts
+  \citep{Russell06,Geurts09,Chemla:Spector:2011}. However, occurrences
+  of scalar terms in the scope of non-monotone quantifiers remain
+  recalcitrant on this view because they do not involve the entailment
+  relations needed for standard Gricean pragmatic enrichment to
+  deliver the right results. \citet{Chemla:Spector:2011} present
+  evidence that pragmatic enrichment occurs in these contexts.
+  
+\item We reproduce, to a large extent, the results of
+  \citet{Chemla:Spector:2011} concerning the interpretations of scalar
+  terms in the scope of monotone and non-monotone quantifiers.
+  However, our experiments involve more items with less irrelevant
+  information. We need not invoke auxiliary assumptions about how
+  `number of readings' relates to perceived salience. We also explore
+  how these results relate to explicit exhaustification of the scalar
+  term and to prosodic focus.
+
+\item However, we reject the notion that these facts point to the
+  irrelevance of interactional accounts and towards the supremacy of
+  grammar-driven ones. When communicating, people are interacting with
+  grammar. So one would assume a priori that interaction and grammar
+  are both relevant. 
+
+\item In addition, the `post-semantic' qualities of Gricean accounts
+  are simply not aligned with one of the major findings of
+  psycholinguistics: people are greedy online interpreters, venturing
+  and revising hypotheses incrementally, drawing not only only subtle
+  linguistics facts but also broader social and contextual ones.
+
+\item It is arguably the case that \CFS\ agree with us despite their
+  more oppositional position.  \CFS\ model the contextual variability
+  of implicatures as ambiguities in the mapping from surface to
+  logical form: certain arrangements of covert exhaustification
+  operators lead to implicature-rich interpretations, and others do
+  not. We still have to ask under which circumstances speakers will
+  intend to use these operators and under which circumstances
+  listeners will perceive them. These are questions of social
+  cognition.
+
+\item \CFS\ concede that ``aspects of the Gricean picture are sound
+  and effective''. And, in summarizing their account, they make
+  explicit the role that Gricean pragmatics must play in helping
+  discourse participants to coordinate on the right logical forms:
+  ``one can capture the correlation with various contextual
+  considerations, under the standard assumption (discussed in the very
+  beginning of this paper) that such considerations enter into the
+  choice between competing representations (those that contain the
+  operator and those that do not).''
+
+\item We propose a model that embraces the compositional insights of
+  \CFS. However, rather than leaving the task of disambiguation
+  (logical form selection) outside of the model, we bring it in and
+  make predictions about it, seeking to retain the best aspects of
+  interactional accounts. This shows that grammar-driven and
+  interactional accounts are not really in opposition, but rather
+  offer complementary insights.  Grammar-driven accounts have helped
+  to reveal that linguistic conventions (including intricate semantic
+  operations) play a role in implicature calculation, and
+  interactional accounts have made progress in explaining how those
+  conventions work in context to yield conversational implicatures.
+  Our model does both of these things.
+
+\end{examples}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Background  conversational implicature}\label{sec:ci}
+
+\begin{examples}
+\item Meta-note: I'm not sure how much we actually want to say here.
+  It might be best to just introduce the facts for scalar
+  implicatures. The reason is that the model we propose does not reify
+  `conversational implicature' as a specific category. It doesn't try
+  to reconstruct the maxims, it doesn't try to align with the Gricean
+  characterization/definition, and it doesn't allow us to cleanly
+  separate implicature inferences from others coming from priors,
+  costs, and other contextual facts. I regard all these things as
+  major strengths of the model. But they do compel us to shift the
+  emphasis away from Grice and towards the empirical phenomena.
+\end{examples}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{\CFS's grammar-driven model}\label{sec:grammar}
+
+\begin{examples}
+\item This section briefly reviews the grammar-driven model of \CFS.
+
+\item There are two central pieces to \CFS's account: a generally
+  available function $\ALT$ that maps denotations to their
+  alternatives, and a covert exhaustification operator $O$.
+
+\item For $\ALT$, the relevant notion of alternative is familiar from
+  theories of questions and focus
+  \citep{Groenendijk84,Rooth85,Rooth92}: we can assume, as a default,
+  that the alternatives for a meaning $t$ are some subset of the items
+  in the same type-theoretic denotation domain as $t$.  One can also
+  imagine variants of this proposal in which $\ALT$ operates over
+  lexical items, rather than denotations, but the denotational view
+  will suffice here.
+
+\item The function $\ALT$ is part of context-dependent semantics: the
+  discourse participants need to coordinate on it just as they need to
+  coordinate on the meanings of deictic or discourse-bound pronouns,
+  ellipsis sites, evaluation standards, and the like.
+
+\item The basic exhaustification operator is given in \defref{def:O}
+  \citep{Spector:2007,Fox:2007,Fox:2009,Magri:2009,ChierchiaFoxSpector08}. (This
+  is not the operator that those authors ultimately favor, since it
+  requires some implicit restrictions on allowable $\ALT$ functions in
+  order to get the right inferences.  The final version has the same
+  form as \defref{def:O} but further restricts $\ALT$ to alternatives
+  that are \tech{innocently excludable}.)
+
+\item\label{def:O}
+  $O_{\ALT}(p) = p \wedge \forall q \in \ALT : (p \not\entails q) \entails \neg q$
+
+\item The $O$ operator maps a meaning $p$ to one that entails $p$ but
+  excludes all of the expressions that $p$ does not entail. When
+  dealing with truth-functional expressions, we can regard $\entails$
+  as entailment, but the definition should be thought of as broad
+  enough to include any kind of partial ordering, which
+  \seccitet{Hirschberg85}{4} shows to be needed to capture the full
+  range of `scalar' implicatures.
+
+\item Part of the case for a grammar-driven view is that it uses
+  pieces of semantic theory that are independently useful. In
+  particular, exhaustification is at the heart of
+  \posscitet{Groenendijk84} theory of questions and their answers (see
+  also \citealt{JohnMcCarthy80}). The above operator is a common
+  proposal for the meaning of \word{only} (for discussion:
+  \citealt{Rooth96,Buring01,BeaverClark08}).  \citet{SchulzVanRooij06}
+  use exhaustification for implicature calculation (see also
+  \citealt{deJagerVanRooij07}). The approach of \CFS\ is directly
+  inspired by those of \citet{Sauerland01}, \citet{Spector:2007}, and
+  \citet{Fox:2007,Fox:2009}.  (For critical discussion, see
+  \citealt{Alonso-Ovalle:2008} and \citealt{Gajewski:2012}.)
+
+\item The proposal can then be summarized easily: $O$ operators can
+  appear anywhere in the logical form of a sentence, perhaps subject
+  to additional restrictions and general preferences (see \CFS:
+  $\S$4.6).
+
+\item\label{or} The following is a simple illustration involving
+  truth-functional expressions. The summary is that if we assume the
+  alternative set for \word{or} ($\vee$) contains just \word{and}
+  ($\wedge$), then exhaustification of \word{or} yields an exclusive
+  disjunction ($\evee$).
+
+  \begin{examples}
+  \item\label{or-table}
+    $\setlength{\arraycolsep}{6pt}
+    \begin{array}[t]{ r  *{5}{c } c }
+      \toprule
+      &  p      & q      & p \wedge q & p \vee q & p \evee q \\
+      \midrule
+      w_{1} &  \True  & \True  & \True      & \True    & \False   \\
+      w_{2} &  \True  & \False & \False     & \True   & \True    \\
+      w_{3} &  \False & \True  & \False     & \True   & \True    \\
+      w_{4} &  \False & \False & \False     & \False   & \False   \\\midrule
+      &  \{w_{1},w_{2}\} &  \{w_{1},w_{3}\} &  \{w_{1}\} & \{w_{1},w_{2},w_{3}\} & \{w_{2},w_{3}\} \\
+      \bottomrule
+    \end{array}$
+  \item\label{or-alt} $\ALT\left(\set{w_{1},w_{2},w_{3}}\right) = \set{\set{w_{1}}}$
+  \item\label{or-final} 
+    \renewcommand{\arraystretch}{1.1}
+    $\mspace{-12mu}\begin{array}[t]{r@{ \ = \ } l} 
+      O_{\ALT}\left(\set{w_{1},w_{2},w_{3}}\right)
+      & \set{w_{1},w_{2},w_{3}} \cap \left(W-\set{w_{1}}\right) \\
+      & \set{w_{1},w_{2},w_{3}} \cap \set{w_{2},w_{3},w_{4}} \\
+      & \set{w_{2},w_{3}}
+    \end{array}$
+  \end{examples}
+  
+\item With the above, we can have syntactic constituents like
+  \eg{embed-or}, which encodes a pragmatically enriched disjunction
+  like \subeg{or}{or-final}.  This constituent is predicted to have
+  the basic morphosemantic distribution of any other disjunction.
+  Thus, embedded implicatures are predicted to be
+  possible. 
+
+\item\label{embed-or}
+  \Tree[.{}
+     {$\sem{\text{XP}}$}
+     [.{$O_{\ALT}(\sem{\word{or}})$}
+        {$O_{\ALT}$}
+        {$\sem{\word{or}}$}
+     ]  
+     {$\sem{\text{YP}}$} ]
+
+\item The approach is implicitly interactional in the following ways:
+
+  \begin{examples}
+  \item The authors' specific examples are generally placed in
+    contexts that support the target implicatures by ensuring that
+    they are relevant, informative, and truthful.
+
+  \item $\ALT$ makes all the meanings context dependent --- not only
+    where it occurs but what values it returns. Discourse participants
+    must model each other in order to coordinate on these matters.
+    How this happens has not been a focus of grammar-driven accounts,
+    but it could be. (One of our contributions is doing just this!)
+  \end{examples}
+
+\item From this perspective, implicature calculation amounts to
+  reasoning about which logical form was intended. To decide among
+  these options, the listener will go through pragmatic reasoning that
+  we can characterize.
+\end{examples}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Compositional uncertainty model}\label{sec:model}
+
+\begin{examples}
+\item From \citet{Bergen:Goodman:Levy:2012} and
+  \citet{Bergen:Levy:Goodman:2014}. Extensions to various kinds of
+  joint inference: \citet{Smith:Goodman:Frank:2013} and
+  \citet{Kao-etal:2014}.
+
+\item\label{modobjects} Basic ingredients:
+  \begin{examples}
+  \item $\States$ is a set of states (worlds, referents, propositions, etc.).
+  \item $\Messages$ is a set of messages with designated null message $\nullmsg$.
+  \item $\Lex: \Messages \mapsto \wp(\States)$ is a semantic interpretation function. $\Lex'(\nullmsg) = \States$
+  \item\label{lexset}% 
+    $\LexSet = \set{\Lex' : \Lex'(\nullmsg) = \States \text{ and } \forall \msg \in \Messages{-}\set{\nullmsg}, \Lex'(\msg) \neq \emptyset \text{ and } \Lex'(\msg) \subseteq \Lex(\msg)}$
+  \item $\StatePrior : \States \mapsto [0,1]$ is a prior probability distribution over states.    
+  \item $\LexPrior : \LexSet \mapsto [0,1]$ is a prior probability distribution over lexica.    
+  \item $\Costs : \Messages \mapsto \Reals$ is a cost function on messages.
+  \end{examples}
+
+\item Agents (with additional parameters $\lambda$ and $\gamma$):
+  \begin{examples}
+  \item\label{l0}%
+    $\listenerZero(\state \given \msg, \Lex) \propto
+    \frac{\mathbb{I}(\state \in \Lex(\msg))}{|\Lex(\msg)|}
+    \StatePrior(\state)$
+
+  \item\label{s1}% 
+    $\speakerOne(\msg \given \state, \Lex) \propto
+    \exp
+    \left(
+      \lambda
+      \left(
+        \log\left(\listenerZero(\state \given \msg, \Lex) \right)
+        - 
+        \gamma\,\Costs(\msg)
+      \right)
+    \right)$
+    
+  \item\label{l1}% 
+    $\listenerOne(\state \given \msg, \Lex) \propto 
+    \speakerOne(\msg \given \state, \Lex)
+    \StatePrior(\state)$
+
+  \item\label{L} 
+    $\UncertaintyListener(\state \given \msg) 
+    \propto 
+    \StatePrior(\state)
+    \sum_{\Lex \in \LexSet}
+    \LexPrior(\Lex)
+    \speakerOne(\msg \given \state, \Lex)$
+  \end{examples}
+
+\item We can generalize the above by allowing further iteration beyond
+  $\UncertaintyListener$, but it would be nice if we could get away
+  with just this form. We could also remove $\gamma$ by assuming it
+  is implicitly built into $\Costs$.
+
+\item Crucial step (still perhaps in need of fleshing out): the set of
+  messages is derived by the grammar, and then lexical uncertainty
+  generates more refined lexica from those messages in accordance with
+  the constraint in \subeg{modobjects}{lexset}. And our hypothesis is
+  that this suffices to generate the attested range of embedded
+  implicatures under non-monotone quantifiers.
+
+\item Example involving disjunction:
+
+  \marginpar{This uses a bit of a lazy implementation. We should
+    perhaps have `disjoined' and `conjoined' states, as in
+    \citet{Bergen:Levy:Goodman:2014}. It takes a while to get used to
+    that meaning space, but it can give more intuitive results for $p$
+    and $q$ if the space of forms is expanded.}
+
+  \begin{examples}
+  \item $\States = \set{w_{1}, w_{2}, w_{3}, w_{4}}$
+  \item Atomic messages: $\set{p, q}$
+  \item Additional step: close $\Messages$ under disjunction and conjunction: $\Messages = \set{p, q, p \vee q, p \wedge q}$
+  \item $\lambda = 1$; $\gamma = 1$
+  \item $\Costs(a \vee b) = \Costs(a)+\Costs(b) + 1.0$. Same for conjunction.       
+  \item $\LexSet$ based on the truth table in \subeg{or}{or-table}.
+
+    \newcommand{\disjlex}[4]{
+      \renewcommand{\arraystretch}{1}
+      \left[
+        \begin{array}[c]{r@{ \ \mapsto \ }l}
+          p & \set{#1} \\
+          q & \set{#2}               
+        \end{array}
+      \right]
+    }    
+    
+    \renewcommand{\arraystretch}{2.5}
+    $\begin{array}[c]{l l l}
+      \disjlex{w_{1}, w_{2}}{w_{1}, w_{3}}{w_{1},w_{2},w_{3}}{w_{1}}
+      &
+      \disjlex{w_{1}, w_{2}}{w_{1}}{w_{1},w_{2}}{w_{1}}
+      &
+      \disjlex{w_{1}, w_{2}}{w_{3}}{w_{1},w_{2},w_{3}}{}
+      \\
+      \disjlex{w_{1}}{w_{1}, w_{3}}{w_{1}, w_{3}}{w_{1}}
+      &
+      \disjlex{w_{1}}{w_{1}}{w_{1}}{w_{1}}
+      &
+      \disjlex{w_{1}}{w_{3}}{w_{1}, w_{3}}{}
+      \\
+      \disjlex{w_{2}}{w_{1}, w_{3}}{w_{1},w_{2},w_{3}}{}
+      &
+      \disjlex{w_{2}}{w_{1}}{w_{1}, w_{2}}{}
+      &
+      \disjlex{w_{2}}{w_{3}}{w_{2}, w_{3}}{}    
+    \end{array}$         
+    
+  \item Additional step: $\LexSet$ respects the logic of $\wedge$ and $\vee$:
+
+    \renewcommand{\disjlex}[4]{
+      \renewcommand{\arraystretch}{1}
+      \left[
+        \begin{array}[c]{r@{ \ \mapsto \ }l}
+          p & \set{#1} \\
+          q & \set{#2} \\
+          p \vee q & \set{#3} \\
+          p \wedge q & \set{#4}          
+        \end{array}
+      \right]
+    }
+
+    \renewcommand{\arraystretch}{4}
+    $\begin{array}[c]{l l l}
+      \disjlex{w_{1}, w_{2}}{w_{1}, w_{3}}{w_{1},w_{2},w_{3}}{w_{1}}
+      &
+      \disjlex{w_{1}, w_{2}}{w_{1}}{w_{1},w_{2}}{w_{1}}
+      &
+      %\disjlex{w_{1}, w_{2}}{w_{3}}{w_{1},w_{2},w_{3}}{}
+      \\
+      \disjlex{w_{1}}{w_{1}, w_{3}}{w_{1}, w_{3}}{w_{1}}
+      &
+      \disjlex{w_{1}}{w_{1}}{w_{1}}{w_{1}}
+      &
+      %\disjlex{w_{1}}{w_{3}}{w_{1}, w_{3}}{}
+      \\
+      %\disjlex{w_{2}}{w_{1}, w_{3}}{w_{1},w_{2},w_{3}}{}
+      &
+      %\disjlex{w_{2}}{w_{1}}{w_{1}, w_{2}}{}
+      &
+      %\disjlex{w_{2}}{w_{3}}{w_{2}, w_{3}}{}    
+    \end{array}$
+
+    \marginpar{The plotted values come from a slightly different
+      model that delivers essentially results.}
+
+    \vspace{-30pt}
+
+  \item $\UncertaintyListener$ inferences \hfill Speaker behavior
+
+    $\mspace{-120mu}$
+    \includegraphics[height=6cm]{fig/disj-listener}
+    \includegraphics[height=6cm]{fig/disj-speaker}
+
+  \end{examples}
+\end{examples}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Experimental evaluation of our model}\label{sec:experiments}
+
+%=====================================================================
+
+\subsection{Experiment 1: scalars under quantifiers}\label{sec:exp1}
+
+\begin{examples}
+\item Rationale: improve upon \citet{Chemla:Spector:2011} by using
+  better items, more normal response patterns, and more standard
+  assumptions about what the responses mean. Also perhaps make it
+  easier to open things up to additional manipulations (e.g., QUDs).
+\end{examples}
+
+%=====================================================================
+
+\subsection{Experiment 2: explicit exhaustification}\label{sec:exp2}
+
+\begin{examples}
+\item Rationale: \CFS\ use an operator that shares many
+  characteristics with \word{only}. (This is part of the theoretical
+  appeal, in that the operator seems to be needed anyway.)  Adding an
+  explicit \word{only} gives us a sense for the pattern with explicit
+  signaling --- a kind of upperbound on the effects we would expect.
+
+\item Relevance for our model: adding \word{only} constrains the space
+  of alternatives in ways that boost the strength of the embedding and
+  basically/fully remove the need for pragmatic reasoning.  
+\end{examples}
+
+%=====================================================================
+
+\subsection{Experiment 3: prosodic focus}\label{sec:exp3}
+
+\begin{examples}
+\item Rationale: \CFS's operator is also closely related to what one
+  expects on accounts of topic and focus intonation that are based in
+  alternatives. The \ALT\ operator embodies one of many things that
+  one might do pragmatically with alternatives (negate them; in other
+  contexts, they could be affirmed, highlighted because of speaker
+  ignorance, etc.). Thus, we might expect prosodic focus to boost the
+  signal.
+
+\item Relevance for our model: harder to say. We could assume that
+  focus alternatives are somehow part of the messages. We could also
+  see what happens when focal forms are simply made more costly (in
+  terms of the cost function $\Costs$) than their unfocussed
+  counterparts.
+\end{examples}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{apalike}
+\bibliography{embedded-scalars-bib}
+
+
+\end{document}
+
