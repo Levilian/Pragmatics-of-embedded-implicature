@@ -41,8 +41,13 @@ def relational_made(x, shotcounts):
 # for intuitive logical forms like made(some(shots)).
 def generic_quantified_made(Q, shotcounts):
     return (lambda y : Q(lambda x : relational_made(x, shotcounts)(y)))
-            
-# Quantifiers as type <et,<et,t>>
+
+# GQ proper names, type <et,t>
+a_gq = (lambda f : f(a))
+b_gq = (lambda f : f(b))
+c_gq = (lambda f : f(c))
+
+# Quantificational determiners as type <et,<et,t>>
 def some(f):
     def scope(g):
         for d in domain:
@@ -72,7 +77,9 @@ def exactly_one(f):
 ######################################################################
 # Base lexicon with associated states:
 
-def generate_states():
+def generate_states(full_state_cross_product=False):
+    if full_state_cross_product:
+        return list(itertools.product(range(2), range(2)))
     n = len(entities)
     states = []
     if n == 2:
@@ -87,15 +94,28 @@ def generate_states():
                     states.append((i, j, k))
     return states
 
+def double_quantifier_message_iterator(subj_dets, obj_dets):
+    for (det1, det2) in itertools.product(subj_dets, obj_dets):
+        msg = '%s(player)(made(%s(shot)))' % (det1, det2)
+        yield msg
+
+def mixed_message_iterator(subj_dets, obj_dets):
+    for (det1, det2) in itertools.product(subj_dets, obj_dets):
+        if '_gq' in det1:
+            msg = '%s(made(%s(shot)))' % (det1, det2)
+        else:
+            msg = '%s(player)(made(%s(shot)))' % (det1, det2)
+        yield msg
+
 def define_baselexicon(states,
                        subj_dets=('every', 'some', 'no', 'exactly_one'),
-                       obj_dets=('every', 'some', 'no', 'exactly_one')):
+                       obj_dets=('every', 'some', 'no', 'exactly_one'),
+                       message_iterator=double_quantifier_message_iterator):
     # In the above context, this (0,1,2) means a made no shots, b made
     # some but not all shots, and c made all shots:
     baselexicon = defaultdict(list)
     messages = []    
-    for (det1, det2) in itertools.product(subj_dets, obj_dets):
-        msg = '%s(player)(made(%s(shot)))' % (det1, det2)
+    for msg in message_iterator(subj_dets, obj_dets):
         for state in states:            
             made = (lambda Q : generic_quantified_made(Q, state))                               
             semval = eval(msg)
@@ -213,9 +233,11 @@ def uncertainty_run_stream(sampsize=0, # If positive, then sampsize lexica will 
                            n=0,  # Depth of iteration beyond L1.                         
                            subj_dets=('every', 'some', 'no', 'exactly_one'),
                            obj_dets=('every', 'some', 'no'),
-                           display=True):
-    states = generate_states()
-    baselexicon = define_baselexicon(states, subj_dets=subj_dets, obj_dets=obj_dets)       
+                           display=True,
+                           message_iterator=double_quantifier_message_iterator,
+                           full_state_cross_product=False):
+    states = generate_states(full_state_cross_product=full_state_cross_product)
+    baselexicon = define_baselexicon(states, subj_dets=subj_dets, obj_dets=obj_dets, message_iterator=message_iterator)
     states = sorted(set([s for vals in baselexicon.values() for s in vals]))
     msgs = sorted(baselexicon.keys())    
     costs = np.zeros(len(msgs)+1)
@@ -301,7 +323,17 @@ if __name__ == '__main__':
     # final_listener, best_inferences = basic_model_run()        
     # final_listener, best_inferences = uncertainty_run()   
    
-    final_listener, best_inferences = uncertainty_run_stream(sampsize=1000, # If positive, then sampsize lexica will be used.
-                                                             n=0,           # Depth of iteration beyond L1.
-                                                             subj_dets=('every', 'some', 'no', 'exactly_one'),
-                                                             obj_dets=('every', 'some', 'no'))
+    #final_listener, best_inferences = uncertainty_run_stream(sampsize=1000, # If positive, then sampsize lexica will be used.
+    #                                                         n=0,           # Depth of iteration beyond L1.
+    #                                                         subj_dets=('every', 'some', 'no', 'exactly_one'),
+    #                                                         obj_dets=('every', 'some', 'no'))
+
+    print "======================================================================"
+
+    final_listener, best_inferences = uncertainty_run_stream(sampsize=10**5, # If positive, then sampsize lexica will be used.
+                                                             n=10,           # Depth of iteration beyond L1.
+                                                             subj_dets=('every', 'some', 'no', 'a_gq', 'b_gq'),
+                                                             obj_dets=('some',),
+                                                             message_iterator=mixed_message_iterator,
+                                                             full_state_cross_product=True)
+    
