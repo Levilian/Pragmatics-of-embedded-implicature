@@ -413,6 +413,37 @@
     \includegraphics[height=6cm]{fig/disj-speaker}
 
   \end{examples}
+
+\item Example involving exhaustification of proper names:
+
+ \begin{examples}
+  \item $\States = \set{00, 01, 10, 11}$ (intuitively, 01 means player $A$ did not score and player $B$ did)
+  \item $\Messages = \set{Q(\text{scored}) : Q \in \set{\text{A}, \text{B}, \text{every}, \text{no}, \text{some}}}$
+  \item $\lambda = 1$; $\gamma = 1$
+  \item $\Costs(\msg) = 0$ for all $\msg \in \Messages$  
+
+  \item Intuition: in this context, a proper name in subject position
+    should be construed as exhaustified, in virtue of the salience of
+    \word{every}.
+  \item Intuition: \word{some} should be interpreted as non-specific
+    in virtue of the salience of the two proper names.
+  \item Result:
+
+    \renewcommand{\arraystretch}{1.2}
+    \setlength{\tabcolsep}{8pt}
+    \begin{tabular}[c]{ r *{4}{r} }
+      \toprule
+                            & 00 & 01 & 10 & 11 \\
+      \midrule
+      A(scored)             & 0.0 & 0.0 & \graycell{0.70} & 0.30 \\
+      B(scored)             & 0.0 & \graycell{0.68} & 0.0 & 0.32 \\
+      every(player)(scored) & 0.0 & 0.0 & 0.0 & \graycell{1.0} \\
+      no(player)(scored)    & \graycell{1.0} & 0.0 & 0.0 & 0.0 \\
+      some(player)(scored)  & 0.0 & \graycell{0.44} & \graycell{0.43} & 0.13 \\
+      $\nullmsg$            & 0.01 & 0.45 & 0.54 & 0.0 \\
+      \bottomrule
+    \end{tabular}
+  \end{examples}
 \end{examples}
 
 
