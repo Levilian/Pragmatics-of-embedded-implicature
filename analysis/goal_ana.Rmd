@@ -1,0 +1,224 @@
+---
+title: "Goal manipulations and their effect on embedded implicature"
+author: "Mike Frank, Dan Lassiter, Chris Potts"
+date: "October 15, 2014"
+output: pdf_document
+---
+
+Preliminaries.
+
+```{r, echo=TRUE}
+rm(list=ls())
+source("~/Projects/R/Ranalysis/useful_dplyr.R")
+setwd("~/Projects/R/embed_ball")
+library(knitr)
+opts_chunk$set(cache=TRUE, echo=TRUE, message=FALSE, warning=FALSE, error=FALSE) 
+```
+
+Now read and bind data.
+
+```{r}
+d1 <- read.csv("data/basketball-goal-manip-e2.csv")
+d2 <- read.csv("data/basketball-goal-manip-e2-evening.csv")
+tt <- read.csv("data/trial_types.csv")
+d <- rbind(d2,d1)
+```
+
+Filter training trials and repeat participants. (Assumes ordering is chronological: FIXME). 
+
+```{r}
+length(d$workerid)
+length(unique(d$workerid))
+
+d <- d %>% filter(is.na(trainingCorrect)) # training
+d$condition <- factor(d$condition) # drop levels
+length(d$workerid)
+length(unique(d$workerid))
+
+d <- d %>% filter(grepl("ngl|NGL",language)) # language
+length(d$workerid)
+length(unique(d$workerid))
+
+d <- d %>% # first instance of worker 
+  group_by(workerid, trialnum) %>% 
+  filter(row_number(rt) == 1)  # doesn't matter which row
+length(d$workerid)
+length(unique(d$workerid))
+```
+
+Boring releveling. 
+
+```{r}
+d$quant1 <- NA
+d$quant1[grepl("Every",d$sentence)] <- "Every"
+d$quant1[grepl("Exactly one",d$sentence)] <- "Exactly one"
+d$quant1[grepl("No",d$sentence)] <- "No"
+d$quant1 <- factor(d$quant1,levels=c("No","Exactly one","Every"))
+
+d$quant2 <- NA
+d$quant2[grepl("none",d$sentence)] <- "None"
+d$quant2[grepl("some",d$sentence)] <- "Some"
+d$quant2[grepl("all",d$sentence)] <- "All"
+d$quant2 <- factor(d$quant2,levels=c("None","Some","All"))
+
+d$condition <- revalue(d$condition,
+                       c("none-none-none"="NNN",
+                         "none-none-half"="NNS",
+                         "none-none-all"="NNA",
+                         "none-half-half"="NSS",
+                         "none-half-all"="NSA",                         
+                         "none-all-all"="NAA",
+                         "half-half-half"="SSS",
+                         "half-half-all"="SSA",
+                         "half-all-all"="SAA",
+                         "all-all-all"="AAA"))  
+d$condition <- factor(d$condition, levels=c("NNN",
+                                      "NNS",
+                                      "NNA",
+                                      "NSS",
+                                      "NSA",
+                                      "NAA",
+                                      "SSS",
+                                      "SSA",
+                                      "SAA",
+                                      "AAA"))     
+
+```
+
+Now merge in the truth value judgments.
+
+```{r}
+dtt <- left_join(d,tt)
+dtt <- tbl_df(dtt)
+dtt$truth <- dtt$truth.chris==1 & dtt$truth.dan==1
+```
+
+And filter by RT and correctness. 30s is like M + 3SD or so. 
+
+```{r}
+mean(dtt$advancesCorrectFirstTime == "yes")
+mean(dtt$rt)
+sd(dtt$rt)
+mean(dtt$rt > 30000)
+
+dtt <- dtt %>% filter(advancesCorrectFirstTime == "yes", 
+                      rt < 30000)
+```
+
+And aggregate. 
+
+```{r}
+ms <- dtt %>% 
+  filter(trial.type=="target") %>%
+  group_by(tournamentCondition, condition, quant1, quant2, 
+           sentence, workerid) %>%
+  summarise(response = mean(response)) %>%
+  ungroup() %>%
+  group_by(tournamentCondition, condition, 
+           quant1, quant2, sentence) %>%
+  summarise(cih = ci.high(response),
+            cil = ci.low(response), 
+            response = mean(response),
+            n = length(response)) 
+```
+
+Now plot:
+
+```{r, fig.width=10}
+ggplot(ms,
+       aes(x=condition, y=response, fill=tournamentCondition,
+           ymin=response-cil, ymax=response+cih)) + 
+  geom_bar(stat="identity", position=position_dodge(width=.9)) + 
+  geom_linerange(position=position_dodge(width=.9)) +
+  ylim(c(0,7)) +
+  facet_grid(quant1~quant2) + 
+  geom_text(aes(x=5.5,y=7,label=sentence),hjust=.5,cex=3) +
+  theme(axis.text.x = element_text(angle = 90,vjust=0.5))
+```
+
+Some cursory t-tests for comparisons of interest. 
+
+```{r}
+t.test(subset(dtt,tournamentCondition=="any advances" & 
+                quant1=="Every" & quant2=="Some" & condition=="AAA")$response,
+       subset(dtt,tournamentCondition=="all advances" & 
+                quant1=="Every" & quant2=="Some" & condition=="AAA")$response)
+
+
+t.test(subset(dtt,tournamentCondition=="any advances" & 
+                quant1=="Exactly one" & quant2=="Some" & condition=="NNA")$response,
+       subset(dtt,tournamentCondition=="all advances" & 
+                quant1=="Exactly one" & quant2=="Some" & condition=="NNA")$response)
+
+t.test(subset(dtt,tournamentCondition=="any advances" & 
+                quant1=="No" & quant2=="Some" & condition=="NAA")$response,
+       subset(dtt,tournamentCondition=="all advances" & 
+                quant1=="No" & quant2=="Some" & condition=="NAA")$response)
+```
+
+Non-parametrics:
+
+```{r}
+wilcox.test(subset(dtt,tournamentCondition=="any advances" & 
+                quant1=="Every" & quant2=="Some" & condition=="AAA")$response,
+       subset(dtt,tournamentCondition=="all advances" & 
+                quant1=="Every" & quant2=="Some" & condition=="AAA")$response)
+
+wilcox.test(subset(dtt,tournamentCondition=="any advances" & 
+                quant1=="Exactly one" & quant2=="Some" & condition=="NNA")$response,
+       subset(dtt,tournamentCondition=="all advances" & 
+                quant1=="Exactly one" & quant2=="Some" & condition=="NNA")$response)
+
+wilcox.test(subset(dtt,tournamentCondition=="any advances" & 
+                quant1=="Exactly one" & quant2=="Some" & condition=="SAA")$response,
+       subset(dtt,tournamentCondition=="all advances" & 
+                quant1=="Exactly one" & quant2=="Some" & condition=="SAA")$response)
+```
+
+Graph distributional differences. First, Every... some. AAA
+
+```{r}
+ss <- dtt %>% 
+  filter(quant1=="Every" & quant2=="Some" & condition=="AAA")
+
+qplot(response, fill=tournamentCondition, 
+      position="dodge", binwidth=1,
+      data=ss) + 
+  scale_x_continuous(lim=c(1,8),breaks=c(1,3,5,7))
+```
+
+Now, Exactly one... some. NNA
+
+```{r}
+ss <- dtt %>% 
+  filter(quant1=="Exactly one" & quant2=="Some" & condition=="NNA")
+
+qplot(response, fill=tournamentCondition, 
+      position="dodge", binwidth=1,
+      data=ss) + 
+  scale_x_continuous(lim=c(1,8),breaks=c(1,3,5,7))
+```
+
+Now, Exactly one... some. SAA
+
+```{r}
+ss <- dtt %>% 
+  filter(quant1=="Exactly one" & quant2=="Some" & condition=="SAA")
+
+qplot(response, fill=tournamentCondition, 
+      position="dodge", binwidth=1,
+      data=ss) + 
+  scale_x_continuous(lim=c(1,8),breaks=c(1,3,5,7))
+```
+
+Now, Exactly one... some. NSA
+
+```{r}
+ss <- dtt %>% 
+  filter(quant1=="Exactly one" & quant2=="Some" & condition=="NSA")
+
+qplot(response, fill=tournamentCondition, 
+      position="dodge", binwidth=1,
+      data=ss) + 
+  scale_x_continuous(lim=c(1,8),breaks=c(1,3,5,7))
+```

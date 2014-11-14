@@ -1,0 +1,135 @@
+---
+title: "Embedded Implicature"
+author: "Mike Frank, Dan Lassiter, Chris Potts"
+date: "August 21, 2014"
+output: html_document
+---
+
+Preliminaries.
+
+```{r}
+rm(list=ls())
+setwd("~/Projects/R/embed_ball")
+source("~/Projects/R/Ranalysis/useful.R")
+```
+
+Read in data.
+
+```{r}
+d <- read.csv("data/basketball-pilot-2-11-14-results-parsed.csv")
+tt <- read.csv("data/trial_types.csv")
+```
+
+Filter out the training trials.
+
+```{r}
+d <- subset(d,is.na(trainingCorrect))
+d$condition <- factor(d$condition)
+```
+
+Annoying releveling of factors so that everything looks nice on plots.
+
+```{r}
+d$quant1 <- NA
+d$quant1[grepl("Every",d$sentence)] <- "Every"
+d$quant1[grepl("Exactly one",d$sentence)] <- "Exactly one"
+d$quant1[grepl("No",d$sentence)] <- "No"
+d$quant1 <- factor(d$quant1,levels=c("No","Exactly one","Every"))
+
+d$quant2 <- NA
+d$quant2[grepl("none",d$sentence)] <- "None"
+d$quant2[grepl("some",d$sentence)] <- "Some"
+d$quant2[grepl("all",d$sentence)] <- "All"
+d$quant2 <- factor(d$quant2,levels=c("None","Some","All"))
+
+d$condition <- revalue(d$condition,
+                       c("none-none-none"="NNN",
+                         "none-none-half"="NNS",
+                         "none-none-all"="NNA",
+                         "none-half-half"="NSS",
+                         "none-half-all"="NSA",                         
+                         "none-all-all"="NAA",
+                         "half-half-half"="SSS",
+                         "half-half-all"="SSA",
+                         "half-all-all"="SAA",
+                         "all-all-all"="AAA"))  
+d$condition <- factor(d$condition, levels=c("NNN",
+                                      "NNS",
+                                      "NNA",
+                                      "NSS",
+                                      "NSA",
+                                      "NAA",
+                                      "SSS",
+                                      "SSA",
+                                      "SAA",
+                                      "AAA"))          
+```
+
+Merge in independent truth value judgments on each sentence (from Chris and Dan).  Not a necessary step, but useful for coloring graph. 
+
+```{r}
+dtt <- merge(d,tt)
+dtt$truth <- dtt$truth.chris==1 & dtt$truth.dan==1
+```
+
+Analysis
+----
+
+Aggregate data, first within and then across participants.
+
+```{r}
+mss <- aggregate(response ~ condition + sentence + trial.type + quant1 + quant2 + truth + workerid, 
+                 data=dtt, mean)
+ms <- aggregate(response ~ condition + sentence + trial.type + quant1 + quant2 + truth, 
+                data=mss, mean)
+ms$cih <- aggregate(response ~ condition + sentence + trial.type + quant1 + quant2 + truth, data=mss, ci.high)$response
+ms$cil <- aggregate(response ~ condition + sentence + trial.type + quant1 + quant2 + truth, data=mss, ci.low)$response
+ms$n <- aggregate(workerid ~ condition + sentence + trial.type + quant1 + quant2 + truth, data=mss, n.unique)$workerid
+```
+
+Now plot
+
+```{r}
+ggplot(subset(ms,trial.type=="target"),
+       aes(x=condition, y=response, fill=truth, ymin=response-cil,
+           ymax=response+cih)) + 
+  geom_bar(stat="identity") + 
+  geom_linerange() +
+  scale_y_continuous(breaks=c(1,3,5,7)) + 
+  facet_grid(quant1~quant2) + 
+  geom_text(aes(x=5.5,y=7,label=sentence),hjust=.5,cex=3) +
+  theme(axis.text.x = element_text(angle = 90,vjust=0.5))
+```
+
+Histogram of likert scale usage for key condition, C&S Experiment 2. "Exactly one player hit some of his shots."
+
+```{r}
+qplot(response,facets=.~condition, binwidth=1,
+      data=subset(mss,trial.type=="target" &
+                  sentence=="Exactly one player hit some of his shots")) + 
+  scale_x_continuous(breaks=c(1,3,5,7))
+```
+
+And for "no ... none":
+
+```{r}
+qplot(response,facets=.~condition,binwidth=1,
+      data=subset(mss,trial.type=="target" &
+                    sentence=="No player hit none of his shots"))
+```
+
+And for "Every  ... some" (C&S Experiment 1):
+
+```{r}
+qplot(response,facets=.~condition,binwidth=1,
+      data=subset(mss,trial.type=="target" &
+                    sentence=="Every player hit some of his shots"))
+```
+
+Now for the key "some" column of the larger plot. 
+
+```{r}
+qplot(response,facets=quant1~condition,binwidth=1,
+      data=subset(mss,trial.type=="target" &
+                    quant2=="Some"))
+```
