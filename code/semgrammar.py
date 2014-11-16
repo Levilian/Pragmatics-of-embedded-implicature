@@ -179,6 +179,7 @@ def basic_model_run(display=False):
 
 def get_best_inferences(final_listener, msgs, states):    
     best_inferences = {}
+    final_listener = np.round(final_listener, 10)
     for i, msg in enumerate(msgs):
         maxval = max(final_listener[i])
         best_states = [(state, str(np.round(maxval, 4))) for j, state in enumerate(states) if final_listener[i,j] == maxval]
