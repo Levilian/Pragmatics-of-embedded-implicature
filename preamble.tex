@@ -81,6 +81,7 @@
 \newcommand{\False}{\texttt{F}}
 \newcommand{\entails}{\sqsubseteq}
 \newcommand{\evee}{\mathbin{\overline{\vee}}}
+\newcommand{\tuple}[1]{\langle #1 \rangle}
 
 \newcommand{\Reals}{\mathbb{R}}
 \newcommand{\given}{\mid}
@@ -88,10 +89,12 @@
 
 \newcommand{\sem}[1]{\ensuremath{\llbracket#1\rrbracket}}
 \newcommand{\States}{T}
+\newcommand{\Worlds}{W}
 \newcommand{\state}{t}
 \newcommand{\Lex}{\mathcal{L}}
 \newcommand{\LexSet}{\mathbf{L}}
 \newcommand{\Messages}{M}
+\newcommand{\Refinable}{\textit{Refinable}}
 \newcommand{\msg}{m}
 \newcommand{\Costs}{C}
 \newcommand{\StatePrior}{P}
@@ -106,8 +109,22 @@
 
 \newcommand{\ALT}{\emph{ALT}}
 
+\newcommand{\Grammar}{\mathcal{G}}
+\newcommand{\Refine}{\mathcal{R}}
+
 %=====================================================================
 %============================ annotations ============================
 
 \let\oldmarginpar\marginpar
 \renewcommand{\marginpar}[1]{\oldmarginpar[\color{red}\raggedright\scriptsize #1]{\color{red}\raggedright\scriptsize #1}}
+
+%=====================================================================
+%============================= examples ==============================
+
+\newcommand{\playera}{\texttt{a}}     
+\newcommand{\playerb}{\texttt{b}}     
+\newcommand{\playerc}{\texttt{c}}
+\newcommand{\semw}[2][w]{\sem{\text{#2}}^{#1}}
+\newcommand{\Vt}{V$_{\text{T}}$}
+\newcommand{\Vi}{V$_{\text{I}}$}
+ 
