@@ -3,6 +3,7 @@
 import itertools
 from collections import defaultdict
 import numpy as np
+import random
 from fragment import *
 from pragmods import display_matrix, Pragmod
 from semgrammar import get_best_inferences
@@ -18,7 +19,8 @@ class UncertaintyLexicon:
                  subj_dets=('every', 'some', 'exactly_one', 'no'),
                  obj_dets=('every', 'some', 'no'),
                  enrichable_dets=('some','PlayerA', 'PlayerB', 'PlayerC'),
-                 proper_names=('PlayerA', 'PlayerB', 'PlayerC')):
+                 proper_names=('PlayerA', 'PlayerB', 'PlayerC'),
+                 null_msg=True):
         self.entities = entities
         self.shot_entities = shot_entities
         self.domain = self.entities + self.shot_entities
@@ -35,21 +37,22 @@ class UncertaintyLexicon:
         self.messages = []
         self.matrices = []
         self.langs = []
+        self.null_msg = null_msg
 
-    def double_quantifier_language(self):
+    def double_quantifier_language(self, noisy=False):
         self.get_worlds()
         self.define_baselexicon()
         self.get_lexica()
         langs = self.get_double_quantifier_language()
-        self.langs2mats(langs)
+        self.langs2mats(langs, noisy=noisy)
 
-    def subject_scoring_language(self):
+    def subject_scoring_language(self, noisy=False):
         self.get_worlds(increasing=False)
         self.define_baselexicon()
         self.get_lexica()
         langs = self.get_subject_scoring_language()
-        self.langs2mats(langs)
-                                     
+        self.langs2mats(langs, noisy=noisy)
+
     def define_baselexicon(self):
         player = self.entities
         shot = self.shot_entities    
@@ -96,7 +99,8 @@ class UncertaintyLexicon:
                         lang[msg].append(world)            
             langs.append(lang)
         self.messages = sorted(set(self.messages))
-        self.messages.append(NULL)                               
+        if self.null_msg:
+            self.messages.append(NULL)                               
         return langs
 
     def get_subject_scoring_language(self):
@@ -118,7 +122,8 @@ class UncertaintyLexicon:
                         lang[msg].append(world)
             langs.append(lang)
         self.messages = sorted(set(self.messages))
-        self.messages.append(NULL)                               
+        if self.null_msg:
+            self.messages.append(NULL)                               
         return langs
 
     def get_worlds(self, increasing=True):
@@ -133,17 +138,24 @@ class UncertaintyLexicon:
                     return False
         return True        
     
-    def langs2mats(self, langs):
+    def langs2mats(self, langs, noisy=True):
         world_count = len(self.worlds)
         msg_count = len(self.messages)
         for lang in langs:
-            mat = np.zeros((msg_count, world_count))
+            mat = self.initial_matrix(msg_count, world_count, noisy=noisy)
             for i, msg in enumerate(self.messages):
                 for j, world in enumerate(self.worlds):
                     if world in lang[msg]:
                         mat[i, j] += 1.0            
             if 0.0 not in np.sum(mat, axis=1):
                 self.matrices.append(mat)
+
+    def initial_matrix(self, m, n, noisy=False, lower=0.0, upper=0.1):
+        if noisy:
+            vals = np.array([random.uniform(lower, upper) for i in range(m*n)])
+            return vals.reshape(m, n)
+        else:
+            return np.zeros((m, n))
 
     def uncertainty_run(self,
                         display=True,
@@ -157,7 +169,8 @@ class UncertaintyLexicon:
         if lexprior == None:
             lexprior = np.repeat(1.0/len(self.matrices), len(self.matrices))
         costs = np.zeros(len(self.messages))
-        costs[-1] = null_cost                                                      
+        if self.null_msg:
+            costs[-1] = null_cost                                                      
         mod = Pragmod(lexica=self.matrices,
                       messages=self.messages,
                       meanings=self.worlds,
@@ -302,11 +315,11 @@ if __name__ == '__main__':
                             (0, 2), (0, 0), (0, 1)]
                             #(3, 2), (3, 0), (3, 1)] # if some is included put it first in subj_dets and use this line
                         
-        pilot.uncertainty_run(temperature=1.0, n=1)
+        pilot.uncertainty_run(temperature=3.0, n=1)
         pilot.report()
         print pilot.final_listener2latex(digits=2)
-        pilot.final_listener2plot(output_filename="../fig/example-pilot.pdf", include_null=False, indices=mcfrank_ordering)
-       
+        #pilot.final_listener2plot(output_filename="../fig/example-pilot.pdf", include_null=False, indices=mcfrank_ordering)
+        pilot.final_listener2plot(output_filename="../fig/temp.pdf", include_null=False, indices=mcfrank_ordering)
 
     ##################################################
     # Put it all together:
@@ -326,6 +339,6 @@ if __name__ == '__main__':
         experiment.final_listener2plot(output_filename="../fig/example-full.pdf", include_null=False)
         
 
-    simple_example()
-    #pilot()
+    #simple_example()
+    pilot()
     #full()
