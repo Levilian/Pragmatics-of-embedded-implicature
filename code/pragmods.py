@@ -60,9 +60,9 @@ class Pragmod:
         """Basic model with a specified messages x meanings matrix of truth values lex"""
         return self.run(n=n, display=display, initial_listener=self.l0(lex), start_level=0)
     
-    def run_uncertainty_model(self, n=2, display=True):
+    def run_uncertainty_model(self, n=2, display=True, normalize=True):
         """The lexical uncertainty model of Bergen et al. 2012, 2014"""
-        return self.run(n=n, display=display, initial_listener=self.UncertaintyListener(), start_level=1)    
+        return self.run(n=n, display=display, initial_listener=self.UncertaintyListener(normalize=normalize), start_level=1)    
 
     def run_anxiety_model(self, n=2, display=True):
         """One-shot version of the social anxiety model of Smith et al. 2013"""        
@@ -113,10 +113,13 @@ class Pragmod:
         """Convenience function for L(S(l0(lex)))"""
         return self.L(self.s1(lex))        
     
-    def UncertaintyListener(self): 
+    def UncertaintyListener(self, normalize=True): 
         """The lexical uncertainty listener reasons over the marginal of S(L0(lex)) for all lexicons lex."""
         result = [self.lexprior[i] * self.prior * self.s1(lex).T for i, lex in enumerate(self.lexica)]
-        return rownorm(np.sum(result, axis=0))
+        result = np.sum(result, axis=0)
+        if normalize:
+            result = rownorm(result)
+        return result
 
     def UncertaintyAnxietyListener(self, marginalize=False):
         """Social anxiety listener of Smith et al. 2013."""
