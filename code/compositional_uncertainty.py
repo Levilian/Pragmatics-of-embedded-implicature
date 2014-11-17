@@ -4,10 +4,12 @@ import itertools
 from collections import defaultdict
 import numpy as np
 import random
+import cPickle as pickle
 from fragment import *
 from pragmods import display_matrix, Pragmod
 from semgrammar import get_best_inferences
 import matplotlib.pyplot as plt
+from scipy.stats import pearsonr
 
 NULL = 'NULL'
 
@@ -234,8 +236,8 @@ class UncertaintyLexicon:
         s += "\\end{tabular}"
         return s
    
-    def final_listener2plot(self, output_filename=None, nrows=None, ncols=None, include_null=True, indices=None):
-        mat = self.langs[-1]
+    def final_listener2plot(self, output_filename=None, nrows=None, ncols=None, include_null=True, indices=None, likertize=False):
+        mat = self.langs[-1]        
         rnames = self.messages
         cnames = self.get_worldnames()
         if not nrows:       
@@ -255,26 +257,90 @@ class UncertaintyLexicon:
             rowinitial = False
             if axind[1] == 0:
                 rowinitial = True        
-            self.dist2plot(axarray[axind], row, title=rnames[i], cnames=cnames, rowinitial=rowinitial)
+            self.dist2plot(axarray[axind], row, title=rnames[i], cnames=cnames, rowinitial=rowinitial, likertize=likertize)
         if output_filename:
             plt.savefig(output_filename, bbox_inches='tight')
         else:
             plt.show()
-
-    def dist2plot(self, ax, row, title="", cnames=None, rowinitial=True):
+            
+    def dist2plot(self, ax, row, title="", cnames=None, rowinitial=True, likertize=False):
+        ylim = [0,1]
+        ylabel = r"$L(w \mid m)$"
+        if likertize:
+            row = 1.0 + (6.0 * row)
+            ylim = [0,7]
+            ylabel = "Likert(%s)" % ylabel                     
         width = 1.0
         pos = np.arange(0, len(row), width)
         ax.bar(pos, row, width)
         ax.set_xlim([0.0, len(row)])
         ax.set_xticks(pos+(width/2.0))
         ax.set_xticklabels(cnames, fontsize=14,  rotation='vertical', color='black')
-        ax.set_ylim([0.0, 1.0])
-        ylabel = r"$L(w \mid m)$"        
+        ax.set_ylim(ylim)                
         if not rowinitial:
             ylabel = ""
             ax.set_yticklabels("")   
         ax.set_ylabel(ylabel, fontsize=14)         
-        ax.set_title(title)        
+        ax.set_title(title)  
+
+    def final_listener2plot_compare(self, comparison_filename=None, output_filename=None, nrows=None, ncols=None, include_null=True, indices=None, likertize=False):
+        results = pickle.load(file(comparison_filename))
+        mat = self.langs[-1]        
+        rnames = self.messages
+        cnames = self.get_worldnames()
+        if not nrows:       
+            nrows = len(self.subj_dets + self.proper_names)
+            ncols = len(self.obj_dets)
+        plt.style.use('ggplot')
+        fig, axarray = plt.subplots(nrows=nrows, ncols=ncols)
+        fig.set_figheight(3*nrows)
+        fig.set_figwidth(7*ncols)
+        fig.subplots_adjust(bottom=-0.5)
+        if indices == None:
+            indices = list(itertools.product(range(nrows), range(ncols)))        
+        if not include_null:
+            mat = mat[:-1]
+        for i, row in enumerate(mat):
+            axind = indices[i]
+            rowinitial = False
+            if axind[1] == 0:
+                rowinitial = True
+            empirical_row = [results[rnames[i]][wname] for wname in cnames]
+            self.dist2plot_compare(axarray[axind], row, empirical_row, title=rnames[i], cnames=cnames, rowinitial=rowinitial, likertize=likertize)
+        if output_filename:
+            plt.savefig(output_filename, bbox_inches='tight')
+        else:
+            plt.show()
+
+    def dist2plot_compare(self, ax, row, empirical_row, title="", cnames=None, rowinitial=True, likertize=False):
+        empirical_means, empirical_cis = zip(*empirical_row)                    
+        if not likertize:
+            empirical_means = empirical_means/np.sum(empirical_means)
+        coef, p = pearsonr(np.array(empirical_means), row)
+        pstr = r"$p = %s$" % np.round(p, 3) if p >= 0.001 else "p < 0.001"
+        ylim = [0,1]
+        ylabel = r"$L(w \mid m)$"
+        if likertize:
+            row = 1.0 + (6.0 * row)
+            ylim = [0,7]
+            ylabel = "Likert(%s)" % ylabel                     
+        width = 0.5
+        gap = 0.2
+        barsetwidth = (width*2)+gap
+        pos = np.arange(0, len(row)+barsetwidth, barsetwidth)
+        ax.bar(pos, row, width, label="Model")
+        ax.bar(pos+width, empirical_means, width, color="#A60628", label="Experiment")
+        ax.text(pos[0], ylim[1], r"Pearson $\rho$: %s; %s" % (np.round(coef, 2), pstr), color="black", verticalalignment='top', fontsize=14)
+        ax.set_xlim([0.0, len(row)+((len(row)-1)*gap)])
+        ax.set_xticks(pos+(barsetwidth/2.0))
+        ax.set_xticklabels(cnames, fontsize=14,  rotation='vertical', color='black')
+        ax.set_ylim(ylim)
+        ax.legend()
+        if not rowinitial:
+            ylabel = ""
+            ax.set_yticklabels("")   
+        ax.set_ylabel(ylabel, fontsize=14)         
+        ax.set_title(title)              
             
 ######################################################################
 
@@ -315,11 +381,21 @@ if __name__ == '__main__':
                             (0, 2), (0, 0), (0, 1)]
                             #(3, 2), (3, 0), (3, 1)] # if some is included put it first in subj_dets and use this line
                         
-        pilot.uncertainty_run(temperature=3.0, n=1)
+        pilot.uncertainty_run(temperature=1.0, n=1)
         pilot.report()
         print pilot.final_listener2latex(digits=2)
-        #pilot.final_listener2plot(output_filename="../fig/example-pilot.pdf", include_null=False, indices=mcfrank_ordering)
-        pilot.final_listener2plot(output_filename="../fig/temp.pdf", include_null=False, indices=mcfrank_ordering)
+        #pilot.final_listener2plot(output_filename="../fig/example-pilot-likertize.pdf", include_null=False, indices=mcfrank_ordering, likertize=True)
+        #pilot.final_listener2plot(output_filename="../fig/example-pilot-L10.pdf", include_null=False, indices=mcfrank_ordering)        
+        pilot.final_listener2plot_compare(output_filename="../fig/example-pilot-experimentcmp-likertize.pdf",
+                                          comparison_filename="../data/basketball-pilot-2-11-14-results-parsed.pickle",
+                                          indices=mcfrank_ordering,
+                                          include_null=False,
+                                          likertize=True)
+        pilot.final_listener2plot_compare(output_filename="../fig/example-pilot-experimentcmp-responsenorm.pdf",
+                                          comparison_filename="../data/basketball-pilot-2-11-14-results-parsed.pickle",
+                                          indices=mcfrank_ordering,
+                                          include_null=False,
+                                          likertize=False)
 
     ##################################################
     # Put it all together:
