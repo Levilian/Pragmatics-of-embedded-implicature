@@ -330,6 +330,9 @@ class UncertaintyLexicon:
         pos = np.arange(0, len(row)+barsetwidth, barsetwidth)
         ax.bar(pos, row, width, label="Model")
         ax.bar(pos+width, empirical_means, width, color="#A60628", label="Experiment")
+        for i, ci in enumerate(empirical_cis):
+            xpos = pos[i]+(width*1.5)
+            ax.plot([xpos,xpos], ci, linewidth=2, color='black')            
         ax.text(pos[0], ylim[1], r"Pearson $\rho$: %s; %s" % (np.round(coef, 2), pstr), color="black", verticalalignment='top', fontsize=14)
         ax.set_xlim([0.0, len(row)+((len(row)-1)*gap)])
         ax.set_xticks(pos+(barsetwidth/2.0))
@@ -390,12 +393,7 @@ if __name__ == '__main__':
                                           comparison_filename="../data/basketball-pilot-2-11-14-results-parsed.pickle",
                                           indices=mcfrank_ordering,
                                           include_null=False,
-                                          likertize=True)
-        pilot.final_listener2plot_compare(output_filename="../fig/example-pilot-experimentcmp-responsenorm.pdf",
-                                          comparison_filename="../data/basketball-pilot-2-11-14-results-parsed.pickle",
-                                          indices=mcfrank_ordering,
-                                          include_null=False,
-                                          likertize=False)
+                                          likertize=True)       
 
     ##################################################
     # Put it all together:
