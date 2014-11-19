@@ -54,11 +54,12 @@ intensional_missed = (lambda p,s,c : [x for x in p if x not in intensional_made(
 ######################################################################
 
 class World:
-    def __init__(self, p=None, s=None, c=None):
+    def __init__(self, p=None, s=None, c=None, lexicon=None):
         self.params = (p, s, c)
+        self.lexicon = lexicon
         self.name = "".join(['NSA'[i] for i in c])
-
-    def interpret(self, exp, withlex=None):                                    
+        
+    def interpret(self, exp):                                    
         # Extensions for all the intensionalized predicates:
         player = intensional_player(*self.params)
         shot = intensional_shot(*self.params)
@@ -66,26 +67,28 @@ class World:
         made = intensional_made(*self.params)
         scored = intensional_scored(*self.params)
         missed = intensional_missed(*self.params)
-        if withlex:
-            for key, val in withlex.items():
+        # Now import the lexicon into this space:
+        if self.lexicon:
+            for key, val in self.lexicon.items():
                 setattr(sys.modules[__name__], key, val)
         # Return the value in this world:
         return eval(exp)
 
 class WorldSet:
-    def __init__(self, basic_states=(0,1,2), p=None, s=None, increasing=True):
+    def __init__(self, basic_states=(0,1,2), p=None, s=None, increasing=True, lexicon=None):
         self.basic_states = basic_states
         self.p = p
         self.s = s
         self.increasing = increasing
+        self.lexicon = lexicon
         shotcounts = list(itertools.product(self.basic_states, repeat=len(self.p)))
         if increasing:
             shotcounts = [sc for sc in shotcounts if self._check_increasing(sc)]
-        self.worlds = [World(p=self.p, s=self.s, c=c) for c in shotcounts]
+        self.worlds = [World(p=self.p, s=self.s, c=c, lexicon=lexicon) for c in shotcounts]
         self.names = [w.name for w in self.worlds]
 
-    def interpret(self, exp, vectorize=False, withlex=None):
-        p = [(w, w.interpret(exp, withlex=withlex)) for w in self.worlds]
+    def interpret(self, exp, vectorize=False):
+        p = [(w, w.interpret(exp)) for w in self.worlds]
         if vectorize:            
             p = np.array([self.indicator(val) for w, val in p])
         return p
@@ -116,7 +119,7 @@ if __name__ == '__main__':
 
     # world = World(p=[a,b], s=shots, c=(0,1,2))
     
-    worldset = WorldSet(basic_states=(0,1,2), p=people, s=shots, increasing=True)
+    worldset = WorldSet(basic_states=(0,1,2), p=people, s=shots, increasing=True, lexicon={'some': exactly_one})
         
     examples = [        
         "scored",
@@ -134,5 +137,5 @@ if __name__ == '__main__':
 
     for ex in examples:
         print "======================================================================"
-        print ex, [(x[0].name, x[1]) for x in worldset.interpret(ex, withlex={'some': exactly_one})]
+        print ex, [(x[0].name, x[1]) for x in worldset.interpret(ex)]
         #print ex, worldset.interpret(ex, vectorize=False, withlex={'some': every})
