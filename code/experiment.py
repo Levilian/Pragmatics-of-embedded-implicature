@@ -1,7 +1,5 @@
 import csv
 from collections import defaultdict
-import cPickle as pickle
-from scipy import stats
 import numpy as np
 from plots import message_state_barplot
 
@@ -107,10 +105,9 @@ class Experiment:
                               nrows=3,
                               ncols=3,
                               output_filename=output_filename,
-                              indices=[],
-                              xlim=None,
+                              indices=[],                              
                               ylim=[0,8],
-                              yaxis=range(0,8),                              
+                              yticks=range(0,8),
                               ylabel="Subject responses")
         
     def target_values2matrix(self, rnames, cnames, value_dict):        

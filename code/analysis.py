@@ -1,11 +1,9 @@
-from experiment import *
-from plots import correlation_plot
 import numpy as np
-from scipy.stats import spearmanr, linregress
+from scipy.stats import spearmanr
 from compositional_uncertainty import *
+from experiment import *
 from plots import *
-from pragmods import rownorm, colnorm
-
+from pragmod import rownorm, colnorm
 
 class Analysis:
     def __init__(self,
@@ -36,20 +34,15 @@ class Analysis:
         if self.likertize_model:
             self.modmat = self.likertize(self.modmat)             
             
-    def listener_correlation_plot(self, output_filename=None):        
-        xaxis = np.arange(0.0, 1.1, 0.1)
-        yaxis = np.arange(0.0, 8.0, 1.0)
-        if self.likertize_model:
-            xaxis = np.arange(0.0, 8.0, 1.0)
-        if self.listenernorm_experiment or self.speakernorm_experiment:
-            yaxis = np.arange(0.0, 1.1, 0.1)
+    def listener_correlation_plot(self, output_filename=None):                
         # Correlation analysis:
         coef, p = self.correlation_test(self.expmat.flatten(), self.modmat.flatten())
         correlation_text = r"$\rho = %s$; %s" % (np.round(coef, 2), self.printable_pval(p))
+        # Plot:
         correlation_plot(xmat=self.modmat,
                          ymat=self.expmat,
-                         xaxis=xaxis,
-                         yaxis=yaxis,
+                         xticks=xticks,
+                         yticks=yticks,
                          xlabel="Model predictions",
                          ylabel="Subject responses",
                          correlation_text=correlation_text,
@@ -61,12 +54,12 @@ class Analysis:
         correlation_texts = [(np.round(x[0], 2), self.printable_pval(x[1])) for x in correlation_stats]
         correlation_texts = [r"$\rho = %s$; %s" % x for x in correlation_texts]
         # Limits:
-        ylim = [0,8]
-        yaxis = np.arange(0.0, 8.0, 1.0)
+        ylim = LIKERT_LIMS
+        yticks = LIKERT_AXIS_TICKS
         confidence_intervals = self.experiment.target_cis2matrix(self.messages, self.worlds)
         if self.speakernorm_experiment or self.listenernorm_experiment:
-            ylim = [0,1.1]
-            yaxis = np.arange(0.0, 1.1, 0.1)
+            ylim = PROB_LIMS
+            yaxis = PROB_AXIS_TICKS
             confidence_intervals = None
         comparison_plot(modmat=self.modmat,
                         expmat=self.expmat,
@@ -79,7 +72,7 @@ class Analysis:
                         output_filename=output_filename,
                         indices=indices,
                         ylim=ylim,
-                        yaxis=yaxis,
+                        yticks=yticks,
                         ylabel="")
 
     def likertize(self, mat):
@@ -114,11 +107,11 @@ if __name__ == '__main__':
 
     experiment = Experiment(src_filename="../data/basketball-pilot-2-11-14-results-parsed.csv")
 
-    analysis = Analysis(experiment=experiment, model=model, listenernorm_experiment=False, speakernorm_experiment=False, likertize_model=True)
-    analysis.listener_comparison_plot(output_filename="../fig/experiment-barplots.pdf", indices=mcfrank_ordering)
+    #analysis = Analysis(experiment=experiment, model=model, listenernorm_experiment=False, speakernorm_experiment=False, likertize_model=True)
+    #analysis.listener_comparison_plot(output_filename="../fig/experiment-barplots.pdf", indices=mcfrank_ordering)
 
-    #analysis = Analysis(experiment=experiment, model=model, listenernorm_experiment=True, speakernorm_experiment=False)
-    #analysis.listener_correlation_plot(output_filename="../fig/experiment-scatterplot-explistenernorm.pdf")
+    analysis = Analysis(experiment=experiment, model=model, listenernorm_experiment=True, speakernorm_experiment=False)
+    analysis.listener_correlation_plot(output_filename="../fig/experiment-scatterplot-explistenernorm.pdf")
 
     #analysis = Analysis(experiment=experiment, model=model, listenernorm_experiment=False, speakernorm_experiment=True)
     #analysis.listener_correlation_plot(output_filename="../fig/experiment-scatterplot-expspeakernorm.pdf")

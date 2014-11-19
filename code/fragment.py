@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
+import sys
 import itertools
+import numpy as np
 
 ######################################################################
 # In this grammar, nouns and VPs denote sets of entities, and
@@ -17,19 +19,6 @@ import itertools
 ######################################################################
 # Model
 
-# Defined for flexibility and to avoid having to type quotation marks:
-a = 'a'; b = 'b'; c = 'c'
-s1 = 's1' ; s2 = 's2'
-
-# Domain and subdomains:
-entities = [a, b, c]
-shot_entities = [s1, s2]
-domain = entities + shot_entities
-
-# Nouns (denoting lists of entities, type x)
-player = entities
-shot = shot_entities
-
 # Quantificational determiners: <x, <x,t>>
 some =        (lambda X : (lambda Y : len(set(X) & set(Y)) > 0))
 exactly_one = (lambda X : (lambda Y : len(set(X) & set(Y)) == 1))
@@ -41,73 +30,97 @@ PlayerA = (lambda X : a in X)
 PlayerB = (lambda X : b in X)
 PlayerC = (lambda X : c in X)
 
+# Nouns (denoting lists of entities, type <w,x>)
+intensional_player = (lambda p,s,c : p)
+intensional_shot = (lambda p,s,c : s)
+
 # Transitive verb in <w, eet> (the idea is that a world is defined by
 # sequences like (0,1,2), which mean that player A made 0 shots,
 # player A made some but not all, and player C made all):
-def intensional_relational_made(entities, shot_entities, shotcounts):
-    return (lambda x : (lambda y : x in shot_entities[: shotcounts[entities.index(y)]]))
+def intensional_relational_made(p, s, c):
+    return (lambda x : (lambda y : x in s[: c[p.index(y)]]))
 
 # Transitive verb <w, <xt,x>>:
-def intensional_made(entities, shot_entities, shotcounts):
+def intensional_made(p, s, c):
     def located_made(Q):        
-        func = (lambda y : Q([x for x in shot_entities if intensional_relational_made(entities, shot_entities, shotcounts)(x)(y)]))
-        return [y for y in entities if func(y)]
+        func = (lambda y : Q([x for x in s if intensional_relational_made(p, s, c)(x)(y)]))
+        return [y for y in p if func(y)]
     return located_made
 
 # Intransitive verbs denoting in <w,x> (with meanings derived from made):
-intensional_scored = (lambda params : [x for x in domain if x in intensional_made(*params)(some(shot))])
-intensional_missed = (lambda params : [x for x in domain if x not in intensional_made(*params)(every(shot))])
+intensional_scored = (lambda p,s,c : [x for x in p if x in intensional_made(p,s,c)(some(intensional_shot(p,s,c)))])
+intensional_missed = (lambda p,s,c : [x for x in p if x not in intensional_made(p,s,c)(every(intensional_shot(p,s,c)))])
 
 ######################################################################
-# This makes setting the "world" more intuitive. The conceit is that
-# player, shot, etc., have the same denotations in all worlds. Only
-# the denotation of made changes from world to world. Hence a world is
-# defined by its sequence of shotcounts, and World.interpret just
-# needs to refine relational_made to reflect that. Having this class
-# would make it is easy to allow worlds to vary by other properties:
-# one would just given World.__init__ more parameters and in turn
-# redefine more predicates before using eval in World.interpet.
 
 class World:
-    def __init__(self, entities=entities, shot_entities=shot_entities, shotcounts=range(len(entities))):
-        self.entities = entities
-        self.shot_entities = shot_entities
-        self.shotcounts = shotcounts
-        self.params = (self.entities, self.shot_entities, shotcounts)
+    def __init__(self, p=None, s=None, c=None):
+        self.params = (p, s, c)
+        self.name = "".join(['NSA'[i] for i in c])
 
-    def interpret(self, exp):
+    def interpret(self, exp, withlex=None):                                    
         # Extensions for all the intensionalized predicates:
+        player = intensional_player(*self.params)
+        shot = intensional_shot(*self.params)
         relational_made = intensional_relational_made(*self.params)
         made = intensional_made(*self.params)
-        scored = intensional_scored(self.params)
-        missed = intensional_missed(self.params)
+        scored = intensional_scored(*self.params)
+        missed = intensional_missed(*self.params)
+        if withlex:
+            for key, val in withlex.items():
+                setattr(sys.modules[__name__], key, val)
         # Return the value in this world:
         return eval(exp)
 
-######################################################################
-# Utilities
+class WorldSet:
+    def __init__(self, basic_states=(0,1,2), p=None, s=None, increasing=True):
+        self.basic_states = basic_states
+        self.p = p
+        self.s = s
+        self.increasing = increasing
+        shotcounts = list(itertools.product(self.basic_states, repeat=len(self.p)))
+        if increasing:
+            shotcounts = [sc for sc in shotcounts if self._check_increasing(sc)]
+        self.worlds = [World(p=self.p, s=self.s, c=c) for c in shotcounts]
+        self.names = [w.name for w in self.worlds]
 
-def powerset(x, minsize=0, maxsize=None):
-    result = []
-    if maxsize == None: maxsize = len(x)
-    for i in range(minsize, maxsize+1):
-        for val in itertools.combinations(x, i):
-            result.append(list(val))
-    return result
+    def interpret(self, exp, vectorize=False, withlex=None):
+        p = [(w, w.interpret(exp, withlex=withlex)) for w in self.worlds]
+        if vectorize:            
+            p = np.array([self.indicator(val) for w, val in p])
+        return p
 
-def characteristic_set(func, dom, minsize=0):
-    return [X for X in powerset(dom, minsize=minsize) if func(X)]
+    def _check_increasing(self, w):
+        for j in range(len(w)-1):
+            for k in range((j+1), len(w)):
+                if w[j] > w[k]:
+                    return False
+        return True
+    
+    def indicator(self, x):
+        return 1.0 if x else 0.0
+    
+    def __str__(self):
+        return " ".join(self.names)
 
 ######################################################################
 
 if __name__ == '__main__':
 
-    world = World(entities=[a,b], shotcounts=(0,2))
+    a = 'a'; b = 'b'; c = 'c'
+    s1 = 's1' ; s2 = 's2'
+
+    # Entity domains:
+    people = [a, b, c]
+    shots = [s1, s2]
+
+    # world = World(p=[a,b], s=shots, c=(0,1,2))
     
-    examples = [
-        "characteristic_set(some(player), entities)",
-        "characteristic_set(no(player), entities)",
-        "relational_made(s2)(a)",
+    worldset = WorldSet(basic_states=(0,1,2), p=people, s=shots, increasing=True)
+        
+    examples = [        
+        "scored",
+        "a in scored",
         "PlayerA(made(no(shot)))",
         "PlayerB(made(some(shot)))",
         "PlayerC(made(every(shot)))",
@@ -120,5 +133,6 @@ if __name__ == '__main__':
         "no(player)(made(exactly_one(shot)))"]
 
     for ex in examples:
-        print ex, world.interpret(ex)
-        
+        print "======================================================================"
+        print ex, [(x[0].name, x[1]) for x in worldset.interpret(ex, withlex={'some': exactly_one})]
+        #print ex, worldset.interpret(ex, vectorize=False, withlex={'some': every})
