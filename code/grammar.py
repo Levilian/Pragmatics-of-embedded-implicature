@@ -1,56 +1,64 @@
 #!/usr/bin/env python
 
 import itertools
-from collections import defaultdict
+from copy import copy
 import numpy as np
 from fragment import *
+from utils import display_matrix, NULL, powerset
 
-NULL = 'NULL'
-
-def powerset(x, minsize=0, maxsize=None):
-    result = []
-    if maxsize == None: maxsize = len(x)
-    for i in range(minsize, maxsize+1):
-        for val in itertools.combinations(x, i):
-            result.append(list(val))
-    return result
+######################################################################
 
 class UncertaintyGrammars:
     def __init__(self,
-                 baselexicon=('player', 'shot', 'some', 'exactly_one', 'every', 'no', 'PlayerA', 'PlayerB', 'PlayerC', 'made', 'scored', 'missed'),
+                 baselexicon=BASELEXICON,
                  messages=[],
-                 worlds=None,                                
-                 refinable=('some', 'PlayerA', 'PlayerB', 'PlayerC'),
-                 nullmsg=True,
-                 nullcost=5.0):
+                 worlds=[],
+                 refinable={},
+                 nullmsg=True):
+        
         self.baselexicon = baselexicon
         self.messages = messages
         self.worlds = worlds
         self.refinable = refinable
-        self.nonrefinable = [x for x in self.baselexicon if x not in self.refinable]
-        self.nullmsg = nullmsg
-        self.nullcost = nullcost
+        self.nullmsg = NULL
+        if self.nullmsg:
+            self.messages.append(NULL)
 
     def lexicon_iterator(self):
-        enrichments = None
+        words_with_types, refinements = zip(*self.get_all_refinements().items())
+        print [len(x) for x in refinements]
         m = len(self.messages)
-        if self.nullmsg:
-            m += 1
         n = len(self.worlds)        
-        for meaning_vector in itertools.product(*enrichments):
-            lex = dict(zip(self.baselexicon, meaning_vector))
-            # +1 on the rows of the NULL message
+        for meaning_vector in itertools.product(*refinements):
+            lex = dict(zip(words_with_types, meaning_vector))
             mat = np.zeros((m, n))   
             for i, msg in enumerate(self.messages):
                 mat[i] = self.worlds.interpret(msg, vectorize=True, withlex=lex)
             # Final row for universally true NULL message:
-            mat[-1] = np.ones(n)
-            yield mat  
-                                        
+            if self.nullmsg:
+                mat[-1] = np.ones(n)
+            if 0.0 not in np.sum(mat, axis=1):
+                yield mat 
+ 
+    def get_all_refinements(self):
+        ref = {}
+        for word_and_typ, den in self.baselexicon.items():
+            word, typ = word_and_typ
+            val = []
+            if word in self.refinable:
+                if is_intensional_type(typ):
+                    val = [den]
+                else:
+                    val = self.refinements(den, self.refinable[word])
+            else:
+                val = [den]
+            ref[(word, typ)] = val
+        return ref
+                                            
     def characteristic_set(self, func, dom, minsize=0):
         return [X for X in powerset(dom, minsize=minsize) if func(X)]
 
-    def refinements(self, semval, dom):
+    def refinements(self, semval, dom=None):
         if isinstance(semval, list):
             return powerset(func, minsize=1)
         else:
@@ -63,5 +71,21 @@ class UncertaintyGrammars:
 
 if __name__ == '__main__':
 
-    pass
+    players = [a,b]
+    shots = [s1,s2]
+    basic_states = (0,1)
+        
+    lex = copy(BASELEXICON)
+    lex[("some_player", TYPE_NP)] =  (lambda Y : len(set(players) & set(Y)) > 0)
+    lex[("every_player", TYPE_NP)] = (lambda Y : set(players) <= set(Y))
+    lex[("no_player", TYPE_NP)] =    (lambda Y : len(set(players) & set(Y)) == 0)        
 
+    ug = UncertaintyGrammars(
+        baselexicon=lex,
+        messages=["PlayerA(scored)", "PlayerB(scored)", "every_player(scored)", "no_player(scored)", "some_player(scored)"],
+        worlds=WorldSet(basic_states=basic_states, p=players, s=shots, increasing=False),
+        refinable={'some_player': [a,b], 'intensional_scored': [a,b]},
+        nullmsg=True)
+
+    for lex in ug.lexicon_iterator():
+        display_matrix(lex, rnames=ug.messages, cnames=ug.worlds.names)

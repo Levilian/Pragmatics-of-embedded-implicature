@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import numpy as np
 
-plt.style.use('ggplot')
+##plt.style.use('ggplot')
 COLORS = matplotlib.colors.cnames.values()
 
 PROB_LIMS = [0, 1.1]
@@ -65,7 +65,7 @@ def message_state_barplot(mat=None,
         ax.set_yticklabels(yticks)
         # Confidence intervals:
         if confidence_intervals:
-            add_confidence_intervals(ax=ax, pos=pos, cis=confidence_intervals[i], width=width)
+            add_confidence_intervals(ax=ax, pos=pos+(width/2.0), cis=confidence_intervals[i])
     # Output:
     if output_filename:
         plt.savefig(output_filename, bbox_inches='tight')

@@ -1,6 +1,7 @@
 import csv
 from collections import defaultdict
 import numpy as np
+from scipy import stats
 from plots import message_state_barplot
 
 SENTENCES = {
@@ -122,6 +123,8 @@ class Experiment:
 ######################################################################
     
 if __name__ == '__main__':
+
+
 
     exp = Experiment()
     exp.plot_targets(output_filename="../fig/basketball-pilot-2-11-14-results-parsed.pdf")
