@@ -56,8 +56,8 @@ class LexicalUncertaintyModel:
             lexprior_func = (lambda lexindex : self.lexprior[lexindex])
         # Iterate through the lexica:
         for lexindex, lex in enumerate(self.lexicon_iterator()):
-            if display_progress and lexindex and lexindex % 10**4 == 0:
-                sys.stderr.write('\r'); sys.stderr.write('lexicon %s' % (lexindex+1)) ; sys.stderr.flush()
+            if display_progress and lexindex and lexindex % 10**3 == 0:
+                sys.stderr.write('\r'); sys.stderr.write('lexicon %s' % lexindex) ; sys.stderr.flush()
             self.final_listener += lexprior_func(lexindex) * self.S(self.l0(lex)).T
         # Update or fill in the lexcount based on the iteration:
         self.lexcount = lexindex + 1
@@ -84,9 +84,9 @@ class LexicalUncertaintyModel:
         print "======================================================================"
         print 'Lexica:', self.lexcount
         print 'Final listener'
-        display_matrix(self.final_listener, rnames=self.messages, cnames=self.states, digits=2)
+        display_matrix(self.final_listener, rnames=self.messages, cnames=self.states, digits=digits)
         print '\nBest inferences:'
-        best_inferences = self.get_best_inferences(digits=4)  
+        best_inferences = self.get_best_inferences(digits=digits)  
         for msg, val in sorted(best_inferences.items()):
             print "\t", msg, val
         print "\nLaTeX table:\n"
