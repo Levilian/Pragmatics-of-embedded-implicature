@@ -1,15 +1,14 @@
+#!/usr/bin/env python
+
 import itertools
 import matplotlib.pyplot as plt
 import matplotlib
 import numpy as np
+from utils import COLORS
 
-##plt.style.use('ggplot')
-COLORS = matplotlib.colors.cnames.values()
+######################################################################
 
-PROB_LIMS = [0, 1.1]
-LIKERT_LIMS = [0, 8]
-PROB_AXIS_TICKS = np.arange(0.0, 1.1, 0.1)
-LIKERT_AXIS_TICKS = np.arange(0.0, 8.0, 1.0)
+plt.style.use('ggplot')
 
 ######################################################################
 
@@ -146,15 +145,15 @@ def correlation_plot(xmat=None,
                      correlation_text=None,
                      confidence_intervals=None,
                      output_filename=None):
-    # Axis set-up:
-    xlim = axis_buffer(xmat)
-    ylim = axis_buffer(ymat)
-    ax.set_xlim(xlim)
-    ax.set_ylim(ylim)
     # Figure set-up:
     fig, ax = plt.subplots(nrows=1, ncols=1)
     fig.set_figheight(5)
     fig.set_figwidth(10)
+    # Axis set-up:
+    xlim = axis_buffer(xmat)
+    ylim = axis_buffer(ymat)
+    ax.set_xlim(xlim)
+    ax.set_ylim(ylim)    
     # Plots:
     for i, row in enumerate(xmat):
         ax.plot(row, ymat[i], alpha=alpha, color=COLORS[i], markersize=6, marker='o', linestyle='')
