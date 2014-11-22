@@ -1,124 +1,113 @@
 #!/usr/bin/env python
 
 import sys
-import itertools
-import numpy as np
-from utils import NULL
+from itertools import product
+from utils import powerset
 
 ######################################################################
 
 a = 'a'; b = 'b'; c = 'c'
 s1 = 's1' ; s2 = 's2'
 
-TYPE_WX = "wx"
-TYPE_WEET = "weet"
-TYPE_WTV = "wxtx"
-TYPE_DET = "xxt"
-TYPE_NP = "xt"
+def define_lexicon(player=[], shot=[], worlds=[]):
+    D_et = powerset(player+shot)
+    relational_made =  [[w, x, y] for w, x, y in product(worlds, player, shot) if y in shot[: w[player.index(x)]]]
+    lex = {
+        # Concessions to tractability -- these are defined extensionally (invariant across worlds):
+        "some":        [[X, Y] for X, Y in product(D_et, repeat=2) if len(set(X) & set(Y)) > 0],
+        "exactly_one": [[X, Y] for X, Y in product(D_et, repeat=2) if len(set(X) & set(Y)) == 1],
+        "every":       [[X, Y] for X, Y in product(D_et, repeat=2) if set(X) <= set(Y)],
+        "no":          [[X, Y] for X, Y in product(D_et, repeat=2) if len(set(X) & set(Y)) == 0],
+        "PlayerA":     [X for X in powerset(player) if a in X],
+        "PlayerB":     [X for X in powerset(player) if b in X],
+        "PlayerC":     [X for X in powerset(player) if c in X],
+        # Tempting to intensionalize these, but that means using intensional quantifiers,
+        # which are intractable on this set-theoretic formulation. Our goal is to understand
+        # refinement and lexical uncertainty, which we can study using verbs and extensional
+        # quantifiers, so this limitation seems well worth it.
+        "player":      player,
+        "shot":        shot,
+        # Intensional predicates:
+        "scored":      [[w, x] for w, x in product(worlds, player) if len(shot[: w[player.index(x)]]) > 0],
+        "doubled":     [[w, x] for w, x in product(worlds, player) if len(shot[: w[player.index(x)]]) > 1],
+        "missed":      [[w, x] for w, x in product(worlds, player) if len(shot[: w[player.index(x)]]) == 0],
+        "made" :       [[w, x, y] for w, x, y in product(worlds, player, shot) if y in shot[: w[player.index(x)]]],
+        # More concessions to tractability -- we'll refine these rather than the determiners;
+        # this should have no effect because of the limited class of predicates -- no predicate
+        # is true of both players and shots, and player and shot have the same extensions in all
+        # worlds.
+        "some_player":        [Y for Y in powerset(player) if len(set(player) & set(Y)) > 0],
+        "some_shot":          [Y for Y in powerset(shot)   if len(set(shot) & set(Y)) > 0],
+        "exactly_one_player": [Y for Y in D_et if len(set(player) & set(Y)) == 1],
+        "exactly_one_shot":   [Y for Y in D_et if len(set(shot) & set(Y)) == 1],
+        "every_player":       [Y for Y in D_et if set(player) <= set(Y)],
+        "every_shot":         [Y for Y in D_et if set(shot) <= set(Y)],
+        "no_player":          [Y for Y in D_et if len(set(player) & set(Y)) == 0],
+        "no_shot":            [Y for Y in D_et if len(set(shot) & set(Y)) == 0]
+        }
+    return lex
 
-def is_intensional_type(typ):
-    return typ.startswith("w")
+def fa(A, b):
+    """Muskens-like function application -- in a list [(x,y), ...], we get
+    back the second projection limited to the pairs where the first is b."""    
+    return [y for x, y in A if x == b]
+                    
+def iv(Q, X):
+    """Returns a proposition as function true of a world w iff the set of
+    entities X-at-w is a member of the quantifier (set of sets) Q."""
+    return (lambda w : fa(X, w) in Q)
 
-PLAYERS = [a,b]
+def tv(V, Q, worlds, subjects):
+    """Funcion composition taking the intensional relation on entities V
+    and combining it with the set of sets Q to return an intensional
+    property. The dependence on worlds and subjects is unfortunate but
+    I don't see how to avoid it."""    
+    return [[w,x] for w, x in product(worlds, subjects) if [y for w_prime, x_prime, y in V if w_prime == w and x_prime == x] in Q]
 
-BASELEXICON = {
-    ("some", TYPE_DET):        (lambda X : (lambda Y : len(set(X) & set(Y)) > 0)),
-    ("exactly_one", TYPE_DET): (lambda X : (lambda Y : len(set(X) & set(Y)) == 1)),
-    ("every", TYPE_DET):       (lambda X : (lambda Y : set(X) <= set(Y))),
-    ("no", TYPE_DET):          (lambda X : (lambda Y : len(set(X) & set(Y)) == 0)),
-    ("PlayerA", TYPE_NP):      (lambda Y : a in Y),
-    ("PlayerB", TYPE_NP):      (lambda Y : b in Y),
-    ("PlayerC", TYPE_NP):      (lambda Y : c in Y),
-    ("intensional_player", TYPE_WX): (lambda p,s,c : p),
-    ("intensional_shot", TYPE_WX):   (lambda p,s,c : s),
-    ("intensional_relational_made", TYPE_WEET): (lambda p,s,c : (lambda x : (lambda y : x in s[: c[p.index(y)]]))),
-    ("intensional_made", TYPE_WTV): (lambda p,s,c : (lambda Q : [y for y in p if Q([x for x in s if intensional_relational_made(p, s, c)(x)(y)])])),
-    ("intensional_scored", TYPE_WX): (lambda p,s,c : [x for x in p if x in intensional_made(p,s,c)(some(intensional_shot(p,s,c)))]),
-    ("intensional_missed", TYPE_WX): (lambda p,s,c : [x for x in p if x not in intensional_made(p,s,c)(every(intensional_shot(p,s,c)))]),
-}
-
+    
 ######################################################################
 
-class World:
-    def __init__(self, p=None, s=None, c=None):
-        self.params = (p, s, c)
-        self.name = "".join(['NSA'[i] for i in c])
-        
-    def interpret(self, exp, withlex={}):
-        # Import the lexicon into this space:
-        for word_with_typ, sem in withlex.items():
-            setattr(sys.modules[__name__], word_with_typ[0], sem)                            
-        # Extensions for all the intensionalized predicates:
-        player = intensional_player(*self.params)
-        shot = intensional_shot(*self.params)
-        relational_made = intensional_relational_made(*self.params)
-        made = intensional_made(*self.params)
-        scored = intensional_scored(*self.params)
-        missed = intensional_missed(*self.params)       
-        # Return the value in this world:
-        return eval(exp)
+def get_worlds(basic_states=(0,1,2), length=3, increasing=False):
+    worlds = list(product(basic_states, repeat=length))        
+    if increasing:
+        worlds = [w for w in worlds if check_increasing(w)]
+    return worlds
 
-class WorldSet:
-    def __init__(self, basic_states=(0,1,2), p=None, s=None, increasing=True):
-        self.basic_states = basic_states
-        self.p = p
-        self.s = s
-        self.increasing = increasing
-        shotcounts = list(itertools.product(self.basic_states, repeat=len(self.p)))
-        if increasing:
-            shotcounts = [sc for sc in shotcounts if self._check_increasing(sc)]
-        self.worlds = [World(p=self.p, s=self.s, c=c) for c in shotcounts]
-        self.names = [w.name for w in self.worlds]
+def check_increasing(w):
+    for j in range(len(w)-1):
+        for k in range((j+1), len(w)):
+            if w[j] > w[k]:
+                return False
+    return True
 
-    def interpret(self, exp, vectorize=False, withlex={}):
-        p = [(w, w.interpret(exp, withlex=withlex)) for w in self.worlds]
-        if vectorize:            
-            p = np.array([self.indicator(val) for w, val in p])
-        return p
-
-    def _check_increasing(self, w):
-        for j in range(len(w)-1):
-            for k in range((j+1), len(w)):
-                if w[j] > w[k]:
-                    return False
-        return True
-    
-    def indicator(self, x):
-        return 1.0 if x else 0.0
-    
-    def __str__(self):
-        return " ".join(self.names)
-
-    def __len__(self):
-        return len(self.worlds)
+def worldname(w):
+    return "".join(["NSA"[i] for i in w])
 
 ######################################################################
 
 if __name__ == '__main__':
 
-    # Entity domains:
-    people = [a, b, c]
-    shots = [s1, s2]
+    # Domain set up:
+    player = [a, b, c]
+    shot = [s1, s2]
+    worlds = get_worlds((0,1,2), length=len(player), increasing=True)    
+    lex = define_lexicon(player=player, shot=shot, worlds=worlds)
 
-    # world = World(p=[a,b], s=shots, c=(0,1,2))
+    # Import the lexicon into this namespace:
+    for word, sem in lex.items():
+        setattr(sys.modules[__name__], word, sem)
+
+    # Examples:
+    for d1, d2 in product(("some", "exactly_one", "every", "no"), repeat=2):
+        msg = "%s(player)(made(%s(shot)))" % (d1, d2)
+        formula = "iv(fa(%s, player), tv(made, fa(%s, shot), worlds, player))" % (d1,  d2)       
+        print msg, [worldname(w) for w in worlds if eval(formula)(w)]
+
+    # Examples:
+    for pn, pred in product(('PlayerA', 'PlayerB', 'PlayerC'), ("missed", "scored", "doubled")):
+        msg = "%s(%s)" % (pn, pred)
+        formula = "iv(%s, %s)" % (pn, pred)
+        print msg, [worldname(w) for w in worlds if eval(formula)(w)]
     
-    worldset = WorldSet(basic_states=(0,1,2), p=people, s=shots, increasing=True)
-        
-    examples = [        
-        "scored",
-        "a in scored",
-        "PlayerA(made(no(shot)))",
-        "PlayerB(made(some(shot)))",
-        "PlayerC(made(every(shot)))",
-        "PlayerC(scored)",
-        "PlayerC(missed)",
-        "PlayerB(missed)",
-        "some_player(scored)",
-        "some(player)(made(every(shot)))",
-        "every(player)(made(some(shot)))",
-        "some(player)(made(exactly_one(shot)))",
-        "no(player)(made(exactly_one(shot)))"]
-
-    for ex in examples:
-        print "======================================================================"
-        print ex, [(x[0].name, x[1]) for x in worldset.interpret(ex, withlex=BASELEXICON)]
+    
+    
