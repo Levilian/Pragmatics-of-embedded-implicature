@@ -1,7 +1,19 @@
+#!/usr/bin/env python
+
 import itertools
 import numpy as np
+import matplotlib
+
+######################################################################
 
 NULL = 'NULL'
+
+COLORS = matplotlib.colors.cnames.values()
+
+PROB_LIMS = [0, 1.1]
+LIKERT_LIMS = [0, 8]
+PROB_AXIS_TICKS = np.arange(0.0, 1.1, 0.1)
+LIKERT_AXIS_TICKS = np.arange(0.0, 8.0, 1.0)
 
 def rownorm(mat):
     """Row normalization of a matrix"""
