@@ -424,7 +424,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 
-\section{Warm-up example}
+\section{Warm-up examples}
+
+\subsection{Subject refinement}
 
 \newcommand{\sNN}{\texttt{NN}}
 \newcommand{\sNS}{\texttt{NS}}
@@ -451,21 +453,20 @@
     not connected with baskets made have the same extensions in all
     worlds.
     
-  \item $\Refinable = \set{\text{some player}, \text{some shot}, \text{PlayerA}, \text{PlayerB}}$
+  \item $\Refinable = \set{\text{some}, \text{PlayerA}, \text{PlayerB}}$
   \item $\Messages = \set{Q(\text{scored}) : Q \in \set{\text{PlayerA}, \text{PlayerB}, \text{every}, \text{no}, \text{some}}}$
-  \item $\lambda = 1$
-  \item $\Costs(\nullmsg) = 5$; $\Costs(\msg) = 0$ for all $\msg \in \Messages-\set{\nullmsg}$  
-  \item $\StatePrior(w) = \StatePrior(w')$ for all $w, w' \in \Worlds$
-  \item $\LexPrior(\Lex) = \LexPrior(\Lex')$ for all $\Lex, \Lex' \in \LexSet$
+  \item $\lambda = 1$. $\Costs(\nullmsg) = 5$; $\Costs(\msg) = 0$ for all $\msg \in \Messages-\set{\nullmsg}$. Flat lexicon and state priors
+  %\item $\StatePrior(w) = \StatePrior(w')$ for all $w, w' \in \Worlds$
+  %\item $\LexPrior(\Lex) = \LexPrior(\Lex')$ for all $\Lex, \Lex' \in \LexSet$
   \end{examples}
 
-\item Intuitions: (i) a proper name in subject position should be
-  construed as exhaustified, in virtue of the salience of
-  \word{every}; (ii) \word{some} should be interpreted as non-specific
-  in virtue of the salience of the two proper names; (iii) we should
-  see the standard scalar implicature between \word{some} and
-  \word{every}, in that \word{some} should be biased towards states in
-  which only one player scored.
+\item Intuitions: (i) a name in subject position should be construed
+  as exhaustified, in virtue of the salience of \word{every}; (ii)
+  \word{some} should be interpreted as non-specific in virtue of the
+  salience of the two names; (iii) we should see the standard scalar
+  implicature between \word{some} and \word{every}, in that
+  \word{some} should be biased towards states in which only one player
+  scored.
 
 \item Results with the listener's best inferences based on each state
   highlighted:
@@ -485,14 +486,94 @@
     \bottomrule
   \end{tabular}
 
-\item Plot of the above using roughly Mike's style for experiments:
+%\item Plot of the above using roughly Mike's style for experiments:
 
-  \includegraphics[width=0.9\textwidth]{fig/example-simple}
+  %\includegraphics[width=0.8\textwidth]{fig/example-simple}
 \end{examples}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%=====================================================================
 
-\section{Pilot example}
+%\newpage
+
+\subsection{Subject refinement with added predicate refinement}
+
+\begin{examples}
+\item As above except we also allow the predicate \word{scored} to be
+  refined as well.
+
+\item
+
+  \setlength{\tabcolsep}{8pt}
+  \begin{tabular}[c]{r *{4}{r} }
+    \toprule
+    & NN & NS & SN & SS\\
+    \midrule
+    PlayerA(scored) & 0.0 & 0.0 & \graycell{0.58} & 0.42\\
+    PlayerB(scored) & 0.0 & \graycell{0.58} & 0.0 & 0.42\\
+    every(player)(scored) & 0.0 & 0.0 & 0.0 & \graycell{1.0}\\
+    no(player)(scored) & \graycell{0.59} & 0.2 & 0.2 & 0.0\\
+    some(player)(scored) & 0.0 & \graycell{0.38} & \graycell{0.38} & 0.23\\
+    NULL & 0.02 & \graycell{0.49} & \graycell{0.49} & 0.0\\
+    \bottomrule
+  \end{tabular}
+
+\item The overall picture is the same except the results for \word{no}
+  are unintuitive. Here's why: if $\sem{\text{scored}}$ can be refined
+  to just $\set{\playera}$, then \texttt{no(player)(scored)} comes out
+  true in world \texttt{SN}. And similarly for refinement to just
+  player $\set{\playerb}$. This results in a more even distribution
+  than we would like (compare the comparable line in the previous
+  example).
+\end{examples}
+
+%=====================================================================
+
+\subsection{Predicate scalar implicatures}
+
+\begin{examples}
+\item
+
+ \begin{examples}
+  \item $\Worlds = \set{\texttt{NN}, \texttt{NS}, \texttt{NA}, \texttt{SN}, \texttt{SS}, \texttt{SA}, \texttt{AN}, \texttt{AS}, \texttt{AA}}$        
+  \item $\Refinable = \set{\text{scored}, \text{doubled}}$
+  \item $\Messages = \set{Q(P) : Q \in \set{\text{PlayerA}, \text{PlayerB}}, P \in \set{\text{scored}, \text{doubled}}}$
+  \item $\lambda = 1$
+  \item $\Costs(\nullmsg) = 5$; $\Costs(\msg) = 0$ for all $\msg \in \Messages-\set{\nullmsg}$  
+  \item Flat state prior
+  \item Flat lexicon prior
+  \end{examples}
+
+\item The predicate \word{doubled} is stronger than (entails)
+  \word{scored}.
+
+\item Our expectation is that \word{scored} will be enriched to
+  exclude \word{doubled} --- a standard scalar implicture.
+
+\item This results in 194,481 viable lexica. Of course, we can obtain
+  this result without lexical uncertainty, but it's still nice to see
+  that the result holds even after we churn through all those lexica:
+
+  $\mspace{-120mu}$
+  \setlength{\tabcolsep}{8pt}
+  \begin{tabular}[c]{r *{9}{r} }
+    \toprule
+    & NN & NS & NA & SN & SS & SA & AN & AS & AA\\
+    \midrule
+    PlayerA(scored) & 0.0 & 0.0 & 0.0 & \graycell{0.27} & 0.2 & 0.13 & 0.17 & 0.13 & 0.1\\
+    PlayerB(scored) & 0.0 & \graycell{0.27} & 0.17 & 0.0 & 0.2 & 0.13 & 0.0 & 0.13 & 0.1\\
+    PlayerA(doubled) & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{0.4} & 0.34 & 0.26\\
+    PlayerB(doubled) & 0.0 & 0.0 & \graycell{0.4} & 0.0 & 0.0 & 0.34 & 0.0 & 0.0 & 0.26\\
+    NULL & \graycell{0.34} & 0.17 & 0.07 & 0.17 & 0.08 & 0.04 & 0.07 & 0.04 & 0.02\\
+    \bottomrule
+  \end{tabular}
+  
+\end{examples}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+\section{Experiment analysis}
 
 \begin{examples}
 \item
@@ -548,21 +629,42 @@
   
 \newpage
 
-\item Plot of the above:
+\item Plot of the above with the experimental results:
 
-\vspace{-4pt}
+  $\mspace{-120mu}$
+  \includegraphics[width=1.2\textwidth]{fig/experiment-barplots}
 
-  \includegraphics[width=1\textwidth]{fig/example-pilot}
 
-\vspace{-10pt}
+\newpage
 
-\item Mike's summary of the pilot (\texttt{embed\_ball\_pilot.pdf}):
+\item With the human judgments normalized as listener judgments:
 
-\vspace{-4pt}
+  $\mspace{-120mu}$
+  \includegraphics[width=1.2\textwidth]{fig/experiment-barplots-listenernorm}
 
-  \includegraphics[width=1\textwidth]{fig/embed_ball_pilot}
+\newpage
 
+\item With the human judgments normalized as speaker judgments:
+
+  $\mspace{-120mu}$
+  \includegraphics[width=1.2\textwidth]{fig/experiment-barplots-speakernorm}
+
+\newpage
+
+\item Correlation plot with the human data normalized as though it
+  were a \textbf{listener} distribution (a simple rescaling of the
+  raw data):
+
+  \includegraphics[width=1\textwidth]{fig/experiment-scatterplot-listenernorm.pdf}
+
+
+\item Correlation plot with the human data normalized as though it
+  were a \textbf{speaker} distribution:
+
+  \includegraphics[width=1\textwidth]{fig/experiment-scatterplot-speakernorm.pdf}
 \end{examples}
+
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
