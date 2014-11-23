@@ -13,7 +13,13 @@ SENTENCES = {
     "Exactly one player hit some of his shots": "exactly_one(player)(made(some(shot)))",
     "No player hit all of his shots": "no(player)(made(every(shot)))",
     "No player hit none of his shots": "no(player)(made(no(shot)))",
-    "No player hit some of his shots": "no(player)(made(some(shot)))" }
+    "No player hit some of his shots": "no(player)(made(some(shot)))",
+    "Every player hit only some of his shots": "every(player)(made(exactly_one(shot)))",
+    "Exactly one player hit only some of his shots": "exactly_one(player)(made(exactly_one(shot)))",
+    "No player hit only some of his shots": "no(player)(made(exactly_one(shot)))"
+}
+
+
 
 CONDITION_MAP = {
     "none-none-none": "NNN",
@@ -61,9 +67,15 @@ class Item:
         return str(self.d)
 
 class Experiment:
-    def __init__(self, src_filename="../data/basketball-pilot-2-11-14-results-parsed.csv"):
+    def __init__(self,
+                 src_filename="../data/basketball-pilot-2-11-14-results-parsed.csv",
+                 subjectCondition=None):
+        
         self.src_filename = src_filename
+        self.subjectCondition = subjectCondition
         self.data = [Item(d) for d in csv.DictReader(file(src_filename))]
+        if self.subjectCondition:
+            self.data = [x for x in self.data if x.subjectCondition == self.subjectCondition]
         self.targets = defaultdict(lambda : defaultdict(list))
         self.get_target_responses()
 
@@ -97,12 +109,12 @@ class Experiment:
         return mu
 
     def plot_targets(self, output_filename=None):
-        rnames = sorted(SENTENCES.values())
+        rnames = sorted(self.targets.keys())
         cnames = CONDITIONS
         message_state_barplot(mat=self.target_means2matrix(rnames, cnames),
                               confidence_intervals=self.target_cis2matrix(rnames, cnames),
-                              rnames=sorted(SENTENCES.values()),
-                              cnames=CONDITIONS,
+                              rnames=rnames,
+                              cnames=cnames,
                               nrows=3,
                               ncols=3,
                               output_filename=output_filename,
@@ -124,8 +136,10 @@ class Experiment:
     
 if __name__ == '__main__':
 
-
-
-    exp = Experiment()
+    exp = Experiment(src_filename='../data/basketball-pilot-2-11-14-results-parsed.csv')
     exp.plot_targets(output_filename="../fig/basketball-pilot-2-11-14-results-parsed.pdf")
+
+
+    exp = Experiment(src_filename='../data/basketball-focus-only-manip-3-17-14-results-parsed.csv',  subjectCondition="only")
+    exp.plot_targets(output_filename="../fig/basketball-focus-only-manip-3-17-14-results-parsed.pdf")
     
