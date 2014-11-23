@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os
 from pragmod import LexicalUncertaintyModel
 from grammar import UncertaintyGrammars
 from experiment import Experiment
@@ -65,17 +66,21 @@ def illustration_pred():
     mod.run()
     mod.listener_report(digits=5)
 
-def experiment():
+def experimental_assessment(
+        analysis=True,
+        subjs=('every_player', 'exactly_one_player', 'no_player'),
+        objs=('every_shot', 'no_shot', 'some_shot'),
+        refinable=('some_player', 'some_shot'),
+        file_prefix = "experiment",
+        experiment=Experiment(src_filename="../data/basketball-pilot-2-11-14-results-parsed.csv")):
     players = [a,b,c]
     shots = [s1,s2]
     basic_states = (0,1,2)
     worlds = get_worlds(basic_states=(0,1,2), length=3, increasing=True)
     baselexicon = define_lexicon(player=players, shot=shots, worlds=worlds)
 
-    messages = []
-    subj_dets=('every_player', 'exactly_one_player', 'no_player')
-    obj_dets=('every_shot', 'no_shot', 'some_shot')
-    for d1, d2 in product(subj_dets, obj_dets):
+    messages = []        
+    for d1, d2 in product(subjs, objs):
         subj = d1.replace("_player", "(player)")
         obj = d2.replace("_shot", "(shot)")
         msg = "%s(made(%s))" % (subj, obj)
@@ -86,7 +91,7 @@ def experiment():
         baselexicon=baselexicon,
         messages=messages,
         worlds=worlds,
-        refinable=('some_player', 'some_shot'),
+        refinable=refinable,
         nullmsg=True)
 
     mod = LexicalUncertaintyModel(
@@ -100,48 +105,49 @@ def experiment():
     mod.run(n=0)
     mod.listener_report(digits=2)
 
-    experiment = Experiment(src_filename="../data/basketball-pilot-2-11-14-results-parsed.csv")
-
-    Analysis(
-        experiment=experiment,
-        model=mod,
-        listenernorm_experiment=False,
-        speakernorm_experiment=False,
-        likertize_model=True).listener_comparison_plot(output_filename="../fig/experiment-barplots.pdf", nrows=3, ncols=3)    
-
-    Analysis(
-        experiment=experiment,
-        model=mod,
-        listenernorm_experiment=True,
-        speakernorm_experiment=False,
-        likertize_model=False).listener_comparison_plot(output_filename="../fig/experiment-barplots-listenernorm.pdf", nrows=3, ncols=3)
-
-    Analysis(
-        experiment=experiment,
-        model=mod,
-        listenernorm_experiment=False,
-        speakernorm_experiment=True,
-        likertize_model=False).listener_comparison_plot(output_filename="../fig/experiment-barplots-speakernorm.pdf", nrows=3, ncols=3)
-
-    Analysis(
-        experiment=experiment,
-        model=mod,
-        listenernorm_experiment=False,
-        speakernorm_experiment=False).listener_correlation_plot(output_filename="../fig/experiment-scatterplot.pdf")
-
-    Analysis(
-        experiment=experiment,
-        model=mod,
-        listenernorm_experiment=True,
-        speakernorm_experiment=False).listener_correlation_plot(output_filename="../fig/experiment-scatterplot-listenernorm.pdf")
+    if analysis:
     
-    Analysis(
-        experiment=experiment,
-        model=mod,
-        listenernorm_experiment=False,
-        speakernorm_experiment=True).listener_correlation_plot(output_filename="../fig/experiment-scatterplot-speakernorm.pdf")
-
+        filename_root = os.path.join('..', 'fig', '%s-' % file_prefix)
     
+        Analysis(
+            experiment=experiment,
+            model=mod,
+            listenernorm_experiment=False,
+            speakernorm_experiment=False,
+            likertize_model=True).listener_comparison_plot(output_filename=filename_root+"barplots.pdf", nrows=3, ncols=3)    
+
+        Analysis(
+            experiment=experiment,
+            model=mod,
+            listenernorm_experiment=True,
+            speakernorm_experiment=False,
+            likertize_model=False).listener_comparison_plot(output_filename=filename_root+"barplots-listenernorm.pdf", nrows=3, ncols=3)
+
+        Analysis(
+            experiment=experiment,
+            model=mod,
+            listenernorm_experiment=False,
+            speakernorm_experiment=True,
+            likertize_model=False).listener_comparison_plot(output_filename=filename_root+"barplots-speakernorm.pdf", nrows=3, ncols=3)
+
+        Analysis(
+            experiment=experiment,
+            model=mod,
+            listenernorm_experiment=False,
+            speakernorm_experiment=False).listener_correlation_plot(output_filename=filename_root+"scatterplot.pdf")
+    
+        Analysis(
+            experiment=experiment,
+            model=mod,
+            listenernorm_experiment=True,
+            speakernorm_experiment=False).listener_correlation_plot(output_filename=filename_root+"scatterplot-listenernorm.pdf")
+        
+        Analysis(
+            experiment=experiment,
+            model=mod,
+            listenernorm_experiment=False,
+            speakernorm_experiment=True).listener_correlation_plot(output_filename=filename_root+"scatterplot-speakernorm.pdf")
+            
 ######################################################################
 
 if __name__ == '__main__':
@@ -149,6 +155,35 @@ if __name__ == '__main__':
     #illustration_subj()
     #illustration_pred()
     
+    # experimental_assessment(
+    #     analysis=True,
+    #     subjs=('every_player', 'exactly_one_player', 'no_player'),
+    #     objs=('every_shot', 'no_shot', 'some_shot'),
+    #     refinable=('some_player', 'some_shot'),
+    #     file_prefix = "experiment",
+    #     experiment=Experiment(src_filename="../data/basketball-pilot-2-11-14-results-parsed.csv"))
 
-    experiment()
+    # Adding 'exactly one', like 'only', to the set of object quantifiers
+    # means that we don't get the embedded scalar implicature under
+    # 'exactly one' -- that reading loses out to the literal encoding.
+    # The every/some case is also weakened but not totally lost.
+    # experimental_assessment(
+    #     analysis=False,
+    #     subjs=('every_player', 'exactly_one_player', 'no_player'),
+    #     objs=('every_shot', 'no_shot', 'some_shot', 'exactly_one_shot'),
+    #     refinable=('some_player', 'some_shot'),
+    #     file_prefix=None,
+    #     experiment=None)
+
+    
+    # Modeling the 'only' experiment ('exactly one' is synonymous
+    # with 'only some' in our model of the scenario):
+    experimental_assessment(
+        analysis=True,
+        subjs=('every_player', 'exactly_one_player', 'no_player'),
+        objs=('every_shot', 'no_shot', 'exactly_one_shot'),
+        refinable=('some_player',),
+        file_prefix="only",
+        experiment=Experiment(src_filename='../data/basketball-focus-only-manip-3-17-14-results-parsed.csv',  subjectCondition="only"))
+
     
