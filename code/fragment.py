@@ -68,17 +68,13 @@ def tv(V, Q, worlds, subjects):
 ######################################################################
 
 def get_worlds(basic_states=(0,1,2), length=3, increasing=False):
-    worlds = list(product(basic_states, repeat=length))        
+    worlds = list(product(basic_states, repeat=length))
+    # Remove sequences in which the elements dom't appear in
+    # increasing order. We don't care about order, so this just one
+    # way of removing conceptual duplicates.
     if increasing:
-        worlds = [w for w in worlds if check_increasing(w)]
+        worlds = [w for w in worlds if tuple(sorted(w)) == w]
     return worlds
-
-def check_increasing(w):
-    for j in range(len(w)-1):
-        for k in range((j+1), len(w)):
-            if w[j] > w[k]:
-                return False
-    return True
 
 def worldname(w):
     return "".join(["NSA"[i] for i in w])
