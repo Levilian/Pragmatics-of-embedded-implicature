@@ -102,19 +102,157 @@ context.
 
 \section{Background  conversational implicature}\label{sec:ci}
 
-\begin{examples}
-\item Meta-note: I'm not sure how much we actually want to say here.
-  It might be best to just introduce the facts for scalar
-  implicatures. The reason is that the model we propose does not reify
-  `conversational implicature' as a specific category. It doesn't try
-  to reconstruct the maxims, it doesn't try to align with the Gricean
-  characterization/definition, and it doesn't allow us to cleanly
-  separate implicature inferences from others coming from priors,
-  costs, and other contextual facts. I regard all these things as
-  major strengths of the model. But they do compel us to shift the
-  emphasis away from Grice and towards the empirical phenomena.
-\end{examples}
+\posscitet{Grice75} original definition of conversational implicature
+describes what is essentially an act of social cognition. The original
+definition is somewhat underspecified, and fleshing it out into a
+precise formulation is challenging \citep{Hirschberg85}, but the
+guiding idea seems clear.  The listener assumes that that the speaker
+is cooperative, in the Gricean sense of rational interaction. However,
+the listeer is confronted with an utterance $U$ with content $p$ that
+falls short of this assumption. However, if the listener posits that
+the speaker actually intended different (often stronger, but
+potentially different or even conflicting) proposition $q$, then $U$
+is reconciled with the assumption of cooperativity. What researchers
+call the implicature is $q - p$, the content attributable to pragmatic
+inference rather than to the literal semantics.
 
+The model that we develop does not depend on an independently
+formulated definition of implicature, but rather seeks to derive such
+meanings from more basic considerations about how speakers and
+listeners reason about each other whenever they interact. The \CFS\
+model is similar in this regard: `implicature' could be seen as an
+informal label for a certain class of logical forms on that view,
+rather than a conceptual primitive. Thus, we will not try to make the
+above definition more rigorous. Rather, we just use it to further
+articulate the central empirical focus of this paper --- embedded
+scalar terms --- and the challlenges they pose for Gricean accounts.
+
+Scalar implicatures arise when the imperative `Be as informative as is
+required' (a subclause of the maxim of quantity) is in tension with
+another pragmatic pressure. The opposing force can take many forms,
+for example, relating to considerations of politeness, discretion,
+secrecy, but it is usually attribited to the maxim of quality, which
+enjoins speakers to say only what they have strong positive evidence
+for. For example, imagine a sportscaster who has observed the outcome
+of a tournament round and is reporting on the outcome to a group that
+didn't see the outcome. If the sportscaster says \eg{some}, then she
+will likely implicate that Player A did not make all of his shots.
+%
+\begin{examples}
+\item\label{some} Player A made some of his shots.
+\end{examples}
+%
+This follows from a straightforward application of the above ideas. We
+assume the sportscaster is knowledgeable and forthcoming about the
+events. Why, then, did she opt for a weak statement like \word{Player
+  A made some of his shots} when a stronger statement \word{Player A
+  made all of his shots} would have been more informative. Given our
+other assumptions, it must be that the speaker was prevented from
+using this stronger form because she does not know it to be
+true. Together with our assumption that she observed the full outcome,
+she can only lack knowledge of this fact because it is false. In this
+way, the speaker's message is enriched and her cooperativity remains
+unimpeached. There are many proposals in the literature to formalize
+this directly, often by reasoning about context-specific clsses of
+alternative utterances $U'$ to the original utterance $U'$, relying on
+their comparative informativity, markedness, and salience to compute
+the target implicature from broadly Gricean premises
+\citep{Horn72,Gazdar79b,Gazdar79a,SchulzVanRooij06}. The common theme
+running through all of these accounts is that the implicature is
+accessible because it is a refinement that strictly entails the
+original literal content.
+
+The above informal reasoning extends to examples like \eg{everysome},
+in which \word{some} is in the scope of a universal quantifier.
+%
+\begin{examples}
+\item\label{everysome} Every player made some of his shots.
+\end{examples}
+%
+With the same contextual assumptions in place as before, this can be
+enriched in context to convey that every player made some but not all
+of his shots. Call this proposition $q$. It unilaterally entails the
+proposition $p$ expressed by \eg{everysome}, so a listener might
+wonder why it was not expressed and thereby be led to the conclusion
+that it is false. Making this reasoning explicit in terms of Gricean
+comparisons with alternative utterances is challenging, but the same
+fundamental logic holds in both \eg{some} and \eg{everysome}:
+implicature reasoning allows us to refine the general literal content
+$p$ into a meaning $q$ that strictly entails $p$.
+
+\citet{Chemla:Spector:2011} home in on this common theme in scalar
+implicature calculation and use it to probe the limits of the Gricean
+framework. Examples like \eg{exactlyonesome} drive their account.
+This is a minimal variant of \eg{everysome} with subject universal
+determiner \word{every} replaced by \word{exactly one}.
+%
+\begin{examples}
+\item\label{exactlyonesome} Exactly one player made some of his shots.
+\end{examples}
+%
+Many people have the intuition that \eg{exactlyonesome} can be used to
+describe a situation in which there is exactly one player who scored
+some but not all of his shots, which is consistent with some players
+having scored all of their shots. The reading is easy to characterize
+intuitively: one imagines that \word{some of his shots} has been
+locally enriched to \word{some but not all of his shots}, and that
+this enriched meaning is the semantic argument to the subject
+quantifier. What makes this reading notably different from, e.g.,
+\eg{everysome} is that it does not entail the literal reading. This
+point is sufficiently important for the paper that it is worth
+spelling it out in some detail. Suppose that we have two players, A
+and B, and that we care (for present purposes) only about whether each
+of them made none, some but not all, or all of his shots. We can
+identify these worlds with labels like \texttt{NA}, which means that
+player A made none of his shots and player B made all of his shots,
+and \texttt{SS}, which means that both players made some but not all
+of their shots. There are $2^{3} = 8$ such worlds. The literal
+sematics of \eg{exactlyonesome} in this logical space would be the
+proposition in \subeg{exactlyonesome-sem}{lit}, whereas the
+proposition expressed by the enrichment \word{\ldots some but not all
+  of his shots} would be \subeg{exactlyonesome-sem}{local}.
+%
+\begin{examples}
+\item\label{exactlyonesome-sem}
+  \begin{examples}
+  \item\label{lit}   $\set{\texttt{NS}, \texttt{SN}, \texttt{NA}, \texttt{AN}}$
+  \item\label{local} $\set{\texttt{NS}, \texttt{SN}, \texttt{NA}, \texttt{AN}, \texttt{SA}, \texttt{AS}}$
+  \end{examples}  
+\end{examples}
+%
+The local reading is a strict weakening of the literal reading, not an
+enrichment of the sort that we saw before. This means that any theory
+based on broadly Gricean notions of enrichment will fail to arrive at
+\subeg{exactlyonesome-sem}{local}. Such theories tend to head
+inexorably towards a refinement of \subeg{exactlyonesome-sem}{lit}
+that excludes \texttt{NA} and \texttt{AN}, but they are incapable of
+attenuating the meaning to include \texttt{SA} and \texttt{AS} (the
+`global' reading in \citeauthor{Chemla:Spector:2011}'s terms).
+Modifying an earlier design by \citet{Geurts:Pouscoulous:2009},
+\citeauthor{Chemla:Spector:2011} use displays involving geometric
+designs to see whether interpreters can access local-enrichment
+readings of sentences like these. Their findings suggest that such
+readings are robustly available. 
+
+Skeptics of local enrichment have found grounds for challenging these
+findings based on the methods used. For example, participants clearly
+struggled with the complex visual displays, often giving low ratings
+to true readings and sometimes giving high ratings to false ones. In
+addition, \citeauthor{Chemla:Spector:2011} rely on additional
+theoretical assumptions in order to link their theory to the response
+patterns --- roughly, they must invoke an auxiliary hypothesis that
+the more true construals are available for an ambiguous or
+underspecified sentence, the more confident people will be in their
+judgment that a sentence is true. Whether or not this assumption is
+reasonable (we're inclined to think it is a reasoable response in the
+face of uncertainty), the need to invoke it opens up further room for
+criticism. To address these concerns, we report on a new version of
+the experiment in \secref{sec:experiments} that uses simpler designs
+and a more straightforward hypothesis linking responses to theoretical
+interpretations. This experiment reproduces the core findings of
+\citeauthor{Chemla:Spector:2011} studies, suggesting that these
+sentence do in fact pose a serious problem for Gricean reasoning as
+usual.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
