@@ -258,102 +258,104 @@ usual.
 
 \section{\CFS's grammar-driven model}\label{sec:grammar}
 
-\begin{examples}
-\item This section briefly reviews the grammar-driven model of \CFS.
+This section briefly reviews the grammar-driven model of \CFS\
+\citep{ChierchiaFoxSpector08}.  The approach is directly inspired by
+those of \citet{Chierchia01}, \citet{Sauerland01},
+\citet{Spector:2007}, and \citet{Fox:2007,Fox:2009}. There are two
+central pieces to the account: a generally available function $\ALT$
+that maps denotations to their alternatives, and a covert
+exhaustification operator $O$.
 
-\item There are two central pieces to \CFS's account: a generally
-  available function $\ALT$ that maps denotations to their
-  alternatives, and a covert exhaustification operator $O$.
+For $\ALT$, the relevant notion of alternative is familiar from
+theories of questions and focus \citep{Groenendijk84,Rooth85,Rooth92}:
+we can assume, as a default, that the alternatives for a meaning $t$
+are some subset of the items in the same type-theoretic denotation
+domain as $t$.  One can also imagine variants of this proposal in
+which $\ALT$ operates over lexical items, rather than denotations, but
+the denotational view will suffice here.  The function $\ALT$ is part
+of context-dependent semantics: the discourse participants need to
+coordinate on it just as they need to coordinate on the meanings of
+deictic or discourse-bound pronouns, ellipsis sites, evaluation
+standards, and the like.
 
-\item For $\ALT$, the relevant notion of alternative is familiar from
-  theories of questions and focus
-  \citep{Groenendijk84,Rooth85,Rooth92}: we can assume, as a default,
-  that the alternatives for a meaning $t$ are some subset of the items
-  in the same type-theoretic denotation domain as $t$.  One can also
-  imagine variants of this proposal in which $\ALT$ operates over
-  lexical items, rather than denotations, but the denotational view
-  will suffice here.
-
-\item The function $\ALT$ is part of context-dependent semantics: the
-  discourse participants need to coordinate on it just as they need to
-  coordinate on the meanings of deictic or discourse-bound pronouns,
-  ellipsis sites, evaluation standards, and the like.
-
-\item The basic exhaustification operator is given in \defref{def:O}
-  \citep{Spector:2007,Fox:2007,Fox:2009,Magri:2009,ChierchiaFoxSpector08}. (This
+The basic exhaustification operator is given in \eg{def:O}
+\citep{Spector:2007,Fox:2007,Fox:2009,Magri:2009,ChierchiaFoxSpector08}.\footnote{This
   is not the operator that those authors ultimately favor, since it
   requires some implicit restrictions on allowable $\ALT$ functions in
   order to get the right inferences.  The final version has the same
-  form as \defref{def:O} but further restricts $\ALT$ to alternatives
-  that are \tech{innocently excludable}.)
-
+  form as \eg{def:O} but further restricts $\ALT$ to alternatives that
+  are \tech{innocently excludable}.}
+%
+\begin{examples}
 \item\label{def:O}
   $O_{\ALT}(p) = p \wedge \forall q \in \ALT : (p \not\entails q) \entails \neg q$
+\end{examples}
+%
+The $O$ operator maps a meaning $p$ to one that entails $p$ but
+excludes all of the expressions that $p$ does not entail. When dealing
+with truth-functional expressions, we can regard $\entails$ as
+entailment, but the definition should be thought of as broad enough to
+include any kind of partial ordering, which \seccitet{Hirschberg85}{4}
+shows to be needed to capture the full range of `scalar' implicatures.
 
-\item The $O$ operator maps a meaning $p$ to one that entails $p$ but
-  excludes all of the expressions that $p$ does not entail. When
-  dealing with truth-functional expressions, we can regard $\entails$
-  as entailment, but the definition should be thought of as broad
-  enough to include any kind of partial ordering, which
-  \seccitet{Hirschberg85}{4} shows to be needed to capture the full
-  range of `scalar' implicatures.
+Part of the case for a grammar-driven view is that it uses pieces of
+semantic theory that are independently useful. In particular,
+exhaustification is at the heart of \posscitet{Groenendijk84} theory
+of questions and their answers (see also
+\citealt{JohnMcCarthy80}). The above operator is a common proposal for
+the meaning of \word{only} (for discussion:
+\citealt{Rooth96,Buring01,BeaverClark08}).  \citet{SchulzVanRooij06}
+use exhaustification for implicature calculation (see also
+\citealt{deJagerVanRooij07}).  (For critical discussion, see
+\citealt{Alonso-Ovalle:2008} and \citealt{Gajewski:2012}.)
 
-\item Part of the case for a grammar-driven view is that it uses
-  pieces of semantic theory that are independently useful. In
-  particular, exhaustification is at the heart of
-  \posscitet{Groenendijk84} theory of questions and their answers (see
-  also \citealt{JohnMcCarthy80}). The above operator is a common
-  proposal for the meaning of \word{only} (for discussion:
-  \citealt{Rooth96,Buring01,BeaverClark08}).  \citet{SchulzVanRooij06}
-  use exhaustification for implicature calculation (see also
-  \citealt{deJagerVanRooij07}). The approach of \CFS\ is directly
-  inspired by those of \citet{Sauerland01}, \citet{Spector:2007}, and
-  \citet{Fox:2007,Fox:2009}.  (For critical discussion, see
-  \citealt{Alonso-Ovalle:2008} and \citealt{Gajewski:2012}.)
-
-\item The proposal can then be summarized easily: $O$ operators can
-  appear anywhere in the logical form of a sentence, perhaps subject
-  to additional restrictions and general preferences (see \CFS:
-  $\S$4.6).
-
-\item\label{or} The following is a simple illustration involving
-  truth-functional expressions. The summary is that if we assume the
-  alternative set for \word{or} ($\vee$) contains just \word{and}
-  ($\wedge$), then exhaustification of \word{or} yields an exclusive
-  disjunction ($\evee$).
-
+Those are the technical pieces. The proposal can then be summarized
+easily: $O$ operators can appear anywhere in the logical form of a
+sentence, perhaps subject to additional restrictions and general
+preferences (see \CFS: $\S$4.6). The following is a simple illustration involving truth-functional
+expressions. The summary is that if we assume the alternative set for
+\word{or} ($\vee$) contains just \word{and} ($\wedge$), then
+exhaustification of \word{or} yields an exclusive disjunction
+($\evee$).
+%
+\begin{examples}
+\item\label{or}
   \begin{examples}
-  \item\label{or-table}
-    $\setlength{\arraycolsep}{6pt}
-    \begin{array}[t]{ r  *{5}{c } c }
-      \toprule
-      &  p      & q      & p \wedge q & p \vee q & p \evee q \\
-      \midrule
-      w_{1} &  \True  & \True  & \True      & \True    & \False   \\
-      w_{2} &  \True  & \False & \False     & \True   & \True    \\
-      w_{3} &  \False & \True  & \False     & \True   & \True    \\
-      w_{4} &  \False & \False & \False     & \False   & \False   \\\midrule
-      &  \{w_{1},w_{2}\} &  \{w_{1},w_{3}\} &  \{w_{1}\} & \{w_{1},w_{2},w_{3}\} & \{w_{2},w_{3}\} \\
-      \bottomrule
-    \end{array}$
-  \item\label{or-alt} $\ALT\left(\set{w_{1},w_{2},w_{3}}\right) = \set{\set{w_{1}}}$
-  \item\label{or-final} 
-    \renewcommand{\arraystretch}{1.1}
-    $\mspace{-12mu}\begin{array}[t]{r@{ \ = \ } l} 
-      O_{\ALT}\left(\set{w_{1},w_{2},w_{3}}\right)
-      & \set{w_{1},w_{2},w_{3}} \cap \left(W-\set{w_{1}}\right) \\
-      & \set{w_{1},w_{2},w_{3}} \cap \set{w_{2},w_{3},w_{4}} \\
-      & \set{w_{2},w_{3}}
-    \end{array}$
+    \item\label{or-table}
+      $\setlength{\arraycolsep}{6pt}
+      \begin{array}[t]{ r  *{5}{c } c }
+        \toprule
+        &  p      & q      & p \wedge q & p \vee q & p \evee q \\
+        \midrule
+        w_{1} &  \True  & \True  & \True      & \True    & \False   \\
+        w_{2} &  \True  & \False & \False     & \True   & \True    \\
+        w_{3} &  \False & \True  & \False     & \True   & \True    \\
+        w_{4} &  \False & \False & \False     & \False   & \False   \\\midrule
+        &  \{w_{1},w_{2}\} &  \{w_{1},w_{3}\} &  \{w_{1}\} & \{w_{1},w_{2},w_{3}\} & \{w_{2},w_{3}\} \\
+        \bottomrule
+      \end{array}$
+    \item\label{or-alt} $\ALT\left(\set{w_{1},w_{2},w_{3}}\right) =
+      \set{\set{w_{1}}}$
+    \item\label{or-final} 
+      \renewcommand{\arraystretch}{1.1}
+      $\mspace{-12mu}\begin{array}[t]{r@{ \ = \ } l} 
+        O_{\ALT}\left(\set{w_{1},w_{2},w_{3}}\right)
+        & \set{w_{1},w_{2},w_{3}} \cap \left(W-\set{w_{1}}\right) \\
+        & \set{w_{1},w_{2},w_{3}} \cap \set{w_{2},w_{3},w_{4}} \\
+        & \set{w_{2},w_{3}}
+      \end{array}$
   \end{examples}
-  
-\item With the above, we can have syntactic constituents like
-  \eg{embed-or}, which encodes a pragmatically enriched disjunction
-  like \subeg{or}{or-final}.  This constituent is predicted to have
-  the basic morphosemantic distribution of any other disjunction.
-  Thus, embedded implicatures are predicted to be
-  possible. 
-
+\end{examples}
+%
+With the above, we can have syntactic constituents like \eg{embed-or},
+which encodes a pragmatically enriched disjunction like
+\subeg{or}{or-final}.  This constituent is predicted to have the basic
+morphosemantic distribution of any other disjunction.  Thus, embedded
+implicatures are predicted to be possible. \Secref{sec:embedded}
+contains additional examples of how these meanings interact with the
+compositional semantics.
+%
+\begin{examples}
 \item\label{embed-or}
   \Tree[.{}
      {$\sem{\text{XP}}$}
@@ -362,50 +364,77 @@ usual.
         {$\sem{\word{or}}$}
      ]  
      {$\sem{\text{YP}}$} ]
+\end{examples}
 
-\item The approach is implicitly interactional in the following ways:
+As we noted in the introduction, \CFS\ draw a firm rhetorical
+distinction between their proposal and the Gricean approach to
+pragmatics. They state, ``the goal of this paper is to challenge the
+neo-Gricean approach to SIs'', and later they write that ``the facts
+suggest that SIs are not pragmatic in nature but arise, instead, as a
+consequence of semantic or syntactic mechanisms''. The sense in which
+their account reflects this position is clear: to characterize
+implicatures, we need not consider the interactional setting or try to
+model the speaker and hearer. Rather, we can just describe a specific
+class of logical forms.
 
-  \begin{examples}
-  \item The authors' specific examples are generally placed in
-    contexts that support the target implicatures by ensuring that
-    they are relevant, informative, and truthful.
-
-  \item $\ALT$ makes all the meanings context dependent --- not only
-    where it occurs but what values it returns. Discourse participants
-    must model each other in order to coordinate on these matters.
-    How this happens has not been a focus of grammar-driven accounts,
-    but it could be. (One of our contributions is doing just this!)
-  \end{examples}
-
-\item From this perspective, implicature calculation amounts to
-  reasoning about which logical form was intended. To decide among
-  these options, the listener will go through pragmatic reasoning that
-  we can characterize.
-
-\item It is arguably the case that \CFS\ agree with us despite their more
-oppositional position.  \CFS\ model the contextual variability of
-implicatures as ambiguities in the mapping from surface to logical
-form: certain arrangements of covert exhaustification operators lead
-to implicature-rich interpretations, and others do not. We still have
-to ask under which circumstances speakers will intend to use these
-operators and under which circumstances listeners will perceive
-them. These are questions of social cognition.
-
-\item \CFS\ concede that ``aspects of the Gricean picture are sound
-  and effective''. And, in summarizing their account, they make
-  explicit the role that Gricean pragmatics must play in helping
-  discourse participants to coordinate on the right logical forms:
-  ``one can capture the correlation with various contextual
+However, this position tempered by \CFS's pervasive appeals to Gricean
+reasoning.  The authors' specific examples are generally placed in
+contexts that support the target implicatures by ensuring that they
+are relevant, informative, and truthful.  They concede that ``aspects
+of the Gricean picture are sound and effective''. And, in summarizing
+their account, they make explicit the role that Gricean pragmatics
+must play in helping discourse participants to coordinate on the right
+logical forms:
+%
+\begin{quote}
+  one can capture the correlation with various contextual
   considerations, under the standard assumption (discussed in the very
   beginning of this paper) that such considerations enter into the
   choice between competing representations (those that contain the
-  operator and those that do not).''
-\end{examples}
+  operator and those that do not).
+\end{quote}
+
+The fundamental coordination problem remains, then, though its precise
+form is different. In the context of \CFS's thery, the discourse
+participants must coordinate on the nature of the function $\ALT$.
+Similarly, because the language permits silent, embedded $O$ operators
+in many positions, the speaker's signal always underdetermines her
+intended message; a given surface form $U$ might be consistent with
+logical forms that convey implicatures and those that don't. The
+speaker must therefore rely on the listener to select the right one.
+From this perspective, implicature calculation amounts to reasoning
+about which logical form was intended. How this coodination happens
+has not been a focus of grammar-driven accounts, but the above
+quotation suggests that communicative pressures like those
+\citet{Grice75} identified guide the process.
+
+Summarizing so far, we have evidence from
+\posscitet{Chemla:Spector:2011} experiments that some implicatures
+require, in some sense, local enrichment of embedded content via
+enhanced logical forms.  \CFS\ define a model in which local
+calculation is easily achieved, but it does not venture (as Grice did)
+an account of how discourse participants coordinate on the right
+logical forms. Each side clearly has something to contribute.  This
+suggests a synthesis between the two approaches. We now turn to the
+task of developing such a synthesis: a model that formally implements
+pragmatic reasoning over complex, compositionally defined logical
+forms and that is able to achieve the readings that seem to demand
+local enrichment. The technical details of the compositional model
+are different from \CFS's, and the technical details of the 
+pragmatic account are different from \citeauthor{Grice75}, but we hope
+that it combines the best aspects of both approaches.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
 
-\section{Grammar fragment}
+\section{The compositional lexical uncertainty model}\label{sec:model}
+
+From \citet{Bergen:Goodman:Levy:2012} and
+\citet{Bergen:Levy:Goodman:2014}. Extensions to various kinds of joint
+inference: \citet{Smith:Goodman:Frank:2013} and \citet{Kao-etal:2014}.
+
+%=====================================================================
+
+\subsection{Grammar fragment}
 
 \begin{examples}
 \item $D$ a set of entities, $W$ a set of worlds, $\semw{$X$}$ the meaning of $X$ at $w \in W$
@@ -438,7 +467,7 @@ them. These are questions of social cognition.
 
 \end{examples}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%=====================================================================
 
 \section{Refinement}
 
@@ -477,16 +506,11 @@ them. These are questions of social cognition.
   \end{minipage}  
 \end{examples}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%=====================================================================
 
 \section{The lexical uncertainty model}\label{sec:model}
 
 \begin{examples}
-% \item From \citet{Bergen:Goodman:Levy:2012} and
-%   \citet{Bergen:Levy:Goodman:2014}. Extensions to various kinds of
-%   joint inference: \citet{Smith:Goodman:Frank:2013} and
-%   \citet{Kao-etal:2014}.
-
 \item\label{modobjects} Basic ingredients:
   \begin{examples}
   \item $\Grammar$ is an interpreted grammar as in \eg{grammar}. Let
@@ -561,27 +585,9 @@ them. These are questions of social cognition.
 
 \end{examples}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%=====================================================================
 
-% \section{Closure under semantic composition}
-
-% \begin{examples}
-
-% \item Crucial step: the set of messages is derived by the grammar, and
-%   then lexical uncertainty generates more refined lexica from those
-%   messages in accordance with the constraint in
-%   \subeg{modobjects}{lexset}. And our hypothesis is that this suffices
-%   to generate the attested range of embedded implicatures under
-%   non-monotone quantifiers.
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-
-\section{Warm-up examples}
-
-\subsection{Subject refinement}
+\subsection{Illustrations}
 
 \newcommand{\sNN}{\texttt{NN}}
 \newcommand{\sNS}{\texttt{NS}}
