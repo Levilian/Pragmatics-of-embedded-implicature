@@ -100,7 +100,7 @@ context.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Background  conversational implicature}\label{sec:implicature}
+\section{Conversational implicature and pragmatic enrichment }\label{sec:implicature}
 
 \posscitet{Grice75} original definition of conversational implicature
 describes what is essentially an act of social cognition. The original
@@ -456,26 +456,27 @@ inference: \citet{Smith:Goodman:Frank:2013} and \citet{Kao-etal:2014}.
 \item To avoid clutter, assume lowercase variables are members of $D$ and 
   uppercase variables are subsets of $D$.
 \item\label{grammar}
+  \newcommand{\gsem}[1]{\sem{\text{#1}}}
   \renewcommand{\arraystretch}{1.2}
-  \begin{tabular}[c]{r@{ $\rightarrow$ }l r@{ $=$ }l}
+  \begin{tabular}[c]{r@{ $\rightarrow$ }l l}
     \toprule
-    \multicolumn{2}{c}{Syntax}     & \multicolumn{2}{c}{Denotation} \\
+    \multicolumn{2}{c}{Syntax}     & \multicolumn{1}{c}{Denotation of the left side (mother node)} \\
     \midrule
-    N & person      & $\semw{N}$  & $\set{x : x \text{ is a person in } w}$ \\
-    N & shot        & $\semw{N}$  & $\set{x : x \text{ is a shot in } w}$ \\
-    \Vt & made      & $\semw{N}$  & $\set{\tuple{x,y} : x \text{ made } y \text{ in } w}$ \\
-    \Vi & scored    & $\semw{N}$  & $\set{x : \exists y \ x \text{ made } y \text{ in } w}$ \\
-    D & some        & $\semw{D}$  & $\set{\tuple{X,Y} : X \cap Y \neq \emptyset}$ \\
-    D & every       & $\semw{D}$  & $\set{\tuple{X,Y} : X \subseteq Y}$ \\
-    D & no          & $\semw{D}$  & $\set{\tuple{X,Y} : X \cap Y = \emptyset}$ \\    
-    D & exactlyone  & $\semw{D}$  & $\set{\tuple{X,Y} : |X \cap Y| = 1}$ \\
-    NP & PlayerA    & $\semw{NP}$ & $\set{X : \playera \in X}$ \\
-    NP & PlayerB    & $\semw{NP}$ & $\set{X : \playerb \in X}$ \\
-    NP & PlayerC    & $\semw{NP}$ & $\set{X : \playerc \in X}$ \\
-    NP & D N        & $\semw{NP}$ & $\set{Y : \tuple{\semw{N}, Y} \in \semw{D}}$ \\
-    VP & \Vt\ NP    & $\semw{VP}$ & $\set{x :  \set{y :  \tuple{x,y} \in \semw{\Vt}} \in \semw{NP}}$ \\
-    VP & \Vi        & $\semw{VP}$ & $\semw{\Vi}$ \\
-    S  & NP VP      & $\semw{S}$  & $\set{w' : \semw[w']{VP} \in \semw[w']{NP}}$ \\
+    N & person      & $\set{\tuple{w,x} : x \text{ is a person in } w}$ \\
+    N & shot        & $\set{\tuple{w,x} : x \text{ is a shot in } w}$ \\
+    \Vt & made      & $\set{\tuple{w, x,y} : x \text{ made } y \text{ in } w}$ \\
+    \Vi & scored    & $\set{\tuple{w, x} : \exists y \ x \text{ made } y \text{ in } w}$ \\
+    D & some        & $\set{\tuple{w, X, Y} : \set{x : \tuple{w,x} \in X}  \cap \set{y : \tuple{w,y} \in Y} \neq \emptyset}$ \\
+    D & every       & $\set{\tuple{w, X, Y} : \set{x : \tuple{w,x} \in X}  \subseteq \set{y : \tuple{w,y} \in Y}}$ \\
+    D & no          & $\set{\tuple{w, X, Y} : \set{x : \tuple{w,x} \in X}  \cap \set{y : \tuple{w,y} \in Y} = \emptyset}$ \\    
+    D & exactlyone  & $\set{\tuple{w, X, Y} : |\set{x : \tuple{w,x} \in X}  \cap \set{y : \tuple{w,y} \in Y}| = 1}$ \\[1ex]
+    NP & PlayerA    & $\set{\tuple{w, Y} : \playera \in \set{x : \tuple{w,x} \in Y}}$ \\
+    NP & PlayerB    & $\set{\tuple{w, Y} : \playerb \in \set{x : \tuple{w,x} \in Y}}$  \\
+    NP & PlayerC    & $\set{\tuple{w, Y} : \playerc \in \set{x : \tuple{w,x} \in Y}}$  \\
+    NP & D N        & $\set{\tuple{w, Y} : \tuple{w, \gsem{N}, Y} \in \gsem{D}}$ \\
+    VP & \Vt\ NP    & $\set{\tuple{w, x} :  \set{\tuple{w, y} :  \tuple{w, x, y} \in \gsem{\Vt}} \in \gsem{NP}}$ \\
+    VP & \Vi        & $\gsem{\Vi}$ \\
+    S  & NP VP      & $\set{w : \tuple{w, \gsem{VP}} \in \gsem{NP}}$ \\
     \bottomrule
   \end{tabular}
 
@@ -522,7 +523,7 @@ inference: \citet{Smith:Goodman:Frank:2013} and \citet{Kao-etal:2014}.
 
 %=====================================================================
 
-\subsection{The lexical uncertainty model}\label{sec:model}
+\subsection{Pragmatic reasoning}\label{sec:model}
 
 \begin{examples}
 \item\label{modobjects} Basic ingredients:
@@ -748,7 +749,24 @@ inference: \citet{Smith:Goodman:Frank:2013} and \citet{Kao-etal:2014}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 
-\section{Experiment analysis}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Experiment 1: scalars under quantifiers}\label{sec:exp1}
+
+Rationale: improve upon \citet{Chemla:Spector:2011} by using better
+items, more normal response patterns, and more standard assumptions
+about what the responses mean. Also perhaps make it easier to open
+things up to additional manipulations (e.g., QUDs).
+
+%=====================================================================
+
+\subsection{Materials, methods, and participants}
+
+%=====================================================================
+
+\subsection{Analysis}
 
 \begin{examples}
 \item
@@ -839,97 +857,9 @@ inference: \citet{Smith:Goodman:Frank:2013} and \citet{Kao-etal:2014}.
   \includegraphics[width=1\textwidth]{fig/experiment-scatterplot-speakernorm.pdf}
 \end{examples}
 
-\newpage
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Big example (just out of curiosity)}
-
-\begin{examples}
-\item
-
- \begin{examples}
-  \item $\Worlds = \set{\texttt{NNN}, \texttt{NNS}, \texttt{NNA}, \texttt{NSS}, \texttt{NSA}, \texttt{NAA}, \texttt{SSS}, \texttt{SSA}, \texttt{SAA}, \texttt{AAA}}$    
-  \item $\Refinable = \set{\text{some player}, \text{some shot}, \text{PlayerA}, \text{PlayerB}}$
-  
-    (No PlayerC because I was having issues holding the lexica in
-    memory.)
-
-  \item $\Messages = \set{A(\text{made}(B)) : A \in\textit{Subject}, B \in  \textit{Object}}$
-    \begin{examples}
-    \item $\textit{Subject} = \set{Q(\text{player}) : Q \in \set{\text{every}, \text{some}, \text{no}, \text{exactlyone}}} \cup \set{\text{PlayerA}, \text{PlayerB}, \text{PlayerC}}$
-    \item $\textit{Object} = \set{Q(\text{shot}) : Q \in \set{\text{every}, \text{some}, \text{no}, \text{exactlyone}}}$
-    \end{examples}
-  \item $\lambda = 1$
-  \item $\Costs(\nullmsg) = 5$; $\Costs(\msg) = 0$ for all $\msg \in \Messages-\set{\nullmsg}$  
-  \item $\StatePrior(w) = \StatePrior(w')$ for all $w, w' \in \Worlds$
-  \item $\LexPrior(\Lex) = \LexPrior(\Lex')$ for all $\Lex, \Lex' \in \LexSet$
-  \end{examples}
-
-\item Results with the listener's best inferences based on each state
-  highlighted: 
-
-  $\mspace{-120mu}$ 
-  \setlength{\tabcolsep}{4pt}
-  \renewcommand{\arraystretch}{0.9}
-  \begin{tabular}[c]{r *{10}{r} }
-    \toprule
-    & NNN & NNS & NNA & NSS & NSA & NAA & SSS & SSA & SAA & AAA\\
-    \midrule
-    PlayerA(made(every(shot))) & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{1.0}\\
-    PlayerA(made(exactlyone(shot))) & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{0.45} & 0.27 & 0.27 & 0.0\\
-    PlayerA(made(no(shot))) & \graycell{0.27} & 0.15 & 0.17 & 0.14 & 0.12 & 0.16 & 0.0 & 0.0 & 0.0 & 0.0\\
-    PlayerA(made(some(shot))) & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.22 & 0.25 & 0.24 & \graycell{0.28}\\[1ex]
-    PlayerB(made(every(shot))) & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{0.37} & 0.0 & 0.0 & 0.3 & 0.33\\
-    PlayerB(made(exactlyone(shot))) & 0.0 & 0.0 & 0.0 & \graycell{0.29} & 0.19 & 0.0 & 0.25 & 0.27 & 0.0 & 0.0\\
-    PlayerB(made(no(shot))) & \graycell{0.36} & 0.3 & 0.34 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0\\
-    PlayerB(made(some(shot))) & 0.0 & 0.0 & 0.0 & 0.15 & 0.12 & \graycell{0.17} & 0.11 & \graycell{0.17} & \graycell{0.17} & 0.11\\[1ex]
-    PlayerC(made(every(shot))) & 0.0 & 0.0 & 0.19 & 0.0 & 0.16 & \graycell{0.22} & 0.0 & 0.18 & 0.17 & 0.08\\
-    PlayerC(made(exactlyone(shot))) & 0.0 & 0.38 & 0.0 & \graycell{0.42} & 0.0 & 0.0 & 0.2 & 0.0 & 0.0 & 0.0\\
-    PlayerC(made(no(shot))) & \graycell{1.0} & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0\\
-    PlayerC(made(some(shot))) & 0.0 & 0.15 & 0.11 & \graycell{0.18} & 0.1 & 0.13 & 0.07 & 0.11 & 0.11 & 0.04\\[1ex]
-    every(player)(made(every(shot))) & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{1.0}\\
-    every(player)(made(exactlyone(shot))) & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{1.0} & 0.0 & 0.0 & 0.0\\
-    every(player)(made(no(shot))) & \graycell{1.0} & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0\\
-    every(player)(made(some(shot))) & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{0.37} & 0.16 & 0.16 & 0.32\\[1ex]
-    exactlyone(player)(made(every(shot))) & 0.0 & 0.0 & \graycell{0.37} & 0.0 & 0.3 & 0.0 & 0.0 & 0.34 & 0.0 & 0.0\\
-    exactlyone(player)(made(exactlyone(shot))) & 0.0 & 0.34 & 0.0 & 0.0 & 0.31 & 0.0 & 0.0 & 0.0 & \graycell{0.35} & 0.0\\
-    exactlyone(player)(made(no(shot))) & 0.0 & 0.0 & 0.0 & 0.34 & 0.27 & \graycell{0.39} & 0.0 & 0.0 & 0.0 & 0.0\\
-    exactlyone(player)(made(some(shot))) & 0.0 & 0.26 & \graycell{0.3} & 0.0 & 0.2 & 0.0 & 0.0 & 0.12 & 0.12 & 0.0\\[1ex]
-    no(player)(made(every(shot))) & 0.16 & 0.32 & 0.0 & \graycell{0.36} & 0.0 & 0.0 & 0.17 & 0.0 & 0.0 & 0.0\\
-    no(player)(made(exactlyone(shot))) & 0.15 & 0.0 & 0.34 & 0.0 & 0.0 & \graycell{0.38} & 0.0 & 0.0 & 0.0 & 0.14\\
-    no(player)(made(no(shot))) & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.17 & \graycell{0.34} & 0.33 & 0.15\\
-    no(player)(made(some(shot))) & \graycell{0.31} & 0.13 & 0.14 & 0.13 & 0.0 & 0.15 & 0.07 & 0.0 & 0.0 & 0.06\\[1ex]
-    some(player)(made(every(shot))) & 0.0 & 0.0 & 0.16 & 0.0 & 0.14 & \graycell{0.22} & 0.0 & 0.15 & 0.18 & 0.14\\
-    some(player)(made(exactlyone(shot))) & 0.0 & 0.18 & 0.0 & \graycell{0.2} & 0.14 & 0.0 & 0.13 & 0.18 & 0.18 & 0.0\\
-    some(player)(made(no(shot))) & 0.15 & 0.18 & \graycell{0.2} & 0.16 & 0.13 & 0.18 & 0.0 & 0.0 & 0.0 & 0.0\\
-    some(player)(made(some(shot))) & 0.0 & 0.1 & 0.1 & 0.11 & 0.13 & 0.12 & 0.06 & 0.16 & \graycell{0.17} & 0.06\\
-    NULL & 0.06 & 0.11 & 0.13 & 0.13 & 0.1 & \graycell{0.14} & 0.06 & 0.11 & 0.11 & 0.05\\
-    \bottomrule
-  \end{tabular}
-\end{examples}
-
-$\mspace{-100mu}$
-\includegraphics[width=1.2\textwidth]{fig/example-full}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Experimental evaluation of our model}\label{sec:experiments}
-
-%=====================================================================
-
-\subsection{Experiment 1: scalars under quantifiers}\label{sec:exp1}
-
-\begin{examples}
-\item Rationale: improve upon \citet{Chemla:Spector:2011} by using
-  better items, more normal response patterns, and more standard
-  assumptions about what the responses mean. Also perhaps make it
-  easier to open things up to additional manipulations (e.g., QUDs).
-\end{examples}
-
-%=====================================================================
-
-\subsection{Experiment 2: explicit exhaustification}\label{sec:exp2}
+\section{Experiment 2: explicit exhaustification}\label{sec:exp2}
 
 \begin{examples}
 \item Rationale: \CFS\ use an operator that shares many
@@ -945,7 +875,15 @@ $\mspace{-100mu}$
 
 %=====================================================================
 
-\subsection{Experiment 3: prosodic focus}\label{sec:exp3}
+\subsection{Materials, methods, and participants}
+
+%=====================================================================
+
+\subsection{Analysis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Experiment 3: prosodic focus}\label{sec:exp3}
 
 \begin{examples}
 \item Rationale: \CFS's operator is also closely related to what one
@@ -962,6 +900,14 @@ $\mspace{-100mu}$
   terms of the cost function $\Costs$) than their unfocussed
   counterparts.
 \end{examples}
+
+%=====================================================================
+
+\subsection{Materials, methods, and participants}
+
+%=====================================================================
+
+\subsection{Analysis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
