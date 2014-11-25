@@ -18,12 +18,12 @@
 cognitively complex meanings that discourse participants create
 jointly in interaction. Recent grammar-driven accounts are framed in
 opposition to this conception, especially for scalar implicatures
-(SIs).  For example, \citet{ChierchiaFoxSpector08} write, ``the facts
-suggest that SIs are not pragmatic in nature but arise, instead, as a
-consequence of semantic or syntactic mechanisms''. The ensuing debates
-have stimulated new theoretical and empirical insights, pushing
-researchers to identify and evaluate previously unnoticed consequences
-of the two broad positions.
+(SIs).  For example, \citet{ChierchiaFoxSpector08}{2316} write, ``the
+facts suggest that SIs are not pragmatic in nature but arise, instead,
+as a consequence of semantic or syntactic mechanisms''. The ensuing
+debates have stimulated new theoretical and empirical insights,
+pushing researchers to identify and evaluate previously unnoticed
+consequences of the two broad positions.
 
 Our position is that grammar-driven accounts and Gricean accounts are
 not truly in opposition, but rather offer complementary insights.
@@ -100,7 +100,7 @@ context.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Background  conversational implicature}\label{sec:ci}
+\section{Background  conversational implicature}\label{sec:implicature}
 
 \posscitet{Grice75} original definition of conversational implicature
 describes what is essentially an act of social cognition. The original
@@ -288,12 +288,15 @@ The basic exhaustification operator is given in \eg{def:O}
 %
 \begin{examples}
 \item\label{def:O}
-  $O_{\ALT}(p) = p \wedge \forall q \in \ALT : (p \not\entails q) \entails \neg q$
+  $O_{\ALT}(\varphi) = 
+  \sem{\varphi} \sqcap 
+  \forall q \in \ALT : (\sem{\varphi} \not\entails q) \entails \neg q$
 \end{examples}
 %
-The $O$ operator maps a meaning $p$ to one that entails $p$ but
-excludes all of the expressions that $p$ does not entail. When dealing
-with truth-functional expressions, we can regard $\entails$ as
+The $O$ operator maps an expression $\varphi$ to one that entails $p$
+and excludes all of the meanings that are strictly stronger than
+$\sem{\varphi}$. When dealing with truth-functional expressions, we
+can regard $\sqcap$ as boolean conjunction and $\entails$ as
 entailment, but the definition should be thought of as broad enough to
 include any kind of partial ordering, which \seccitet{Hirschberg85}{4}
 shows to be needed to capture the full range of `scalar' implicatures.
@@ -307,91 +310,100 @@ the meaning of \word{only} (for discussion:
 \citealt{Rooth96,Buring01,BeaverClark08}).  \citet{SchulzVanRooij06}
 use exhaustification for implicature calculation (see also
 \citealt{deJagerVanRooij07}).  (For critical discussion, see
-\citealt{Alonso-Ovalle:2008} and \citealt{Gajewski:2012}.)
+\citealt{Alonso-Ovalle:2008} and \citealt{Gajewski:2012}.) While \CFS\
+are cautious about making direction connections between $O$ and these
+other phenomena (p.~2304), the correspondences are nonetheless
+noteworthy.
 
 Those are the technical pieces. The proposal can then be summarized
 easily: $O$ operators can appear anywhere in the logical form of a
 sentence, perhaps subject to additional restrictions and general
-preferences (see \CFS: $\S$4.6). The following is a simple illustration involving truth-functional
-expressions. The summary is that if we assume the alternative set for
-\word{or} ($\vee$) contains just \word{and} ($\wedge$), then
-exhaustification of \word{or} yields an exclusive disjunction
-($\evee$).
+preferences (see \CFS: $\S$4.6). To see the effects that this could
+have, let's return to the examples involving \word{some} that we
+reviewed in \secref{sec:implicature}. Simplifying slightly, let's
+suppose that \word{some shot} denotes the set of sets in \eg{someshot}
+--- the set of all sets that have non-empty intersect with the set of
+shots.
 %
 \begin{examples}
-\item\label{or}
+\item\label{someshot} $\sem{\word{some shot}} = \set{Y : \sem{\word{shot}} \cap Y \neq \emptyset}$
+\end{examples}
+%
+Consider a domain of three entities $\set{a,b,c}$, and assume that
+$\sem{\word{shot}} = \set{a,b}$. Then the above is equivalent to the
+set of sets in \eg{someshotex}:
+%
+\begin{examples}
+\item\label{someshotex}
+  $\set{\set{a}, \set{b}, \set{a,b}, \set{a,c}, \set{b,c}, \set{a,b,c}}$
+\end{examples}
+%
+Now suppose that $\ALT(\word{some shot})$ is defined as follows:
+%
+\begin{examples}
+\item\label{altsome} $\ALT(\word{some shot}) =  
+  \set{
+    \sem{\word{some shot}}, 
+    \sem{\word{every shot}}, 
+    \sem{\word{no shot}}
+  }$
   \begin{examples}
-    \item\label{or-table}
-      $\setlength{\arraycolsep}{6pt}
-      \begin{array}[t]{ r  *{5}{c } c }
-        \toprule
-        &  p      & q      & p \wedge q & p \vee q & p \evee q \\
-        \midrule
-        w_{1} &  \True  & \True  & \True      & \True    & \False   \\
-        w_{2} &  \True  & \False & \False     & \True   & \True    \\
-        w_{3} &  \False & \True  & \False     & \True   & \True    \\
-        w_{4} &  \False & \False & \False     & \False   & \False   \\\midrule
-        &  \{w_{1},w_{2}\} &  \{w_{1},w_{3}\} &  \{w_{1}\} & \{w_{1},w_{2},w_{3}\} & \{w_{2},w_{3}\} \\
-        \bottomrule
-      \end{array}$
-    \item\label{or-alt} $\ALT\left(\set{w_{1},w_{2},w_{3}}\right) =
-      \set{\set{w_{1}}}$
-    \item\label{or-final} 
-      \renewcommand{\arraystretch}{1.1}
-      $\mspace{-12mu}\begin{array}[t]{r@{ \ = \ } l} 
-        O_{\ALT}\left(\set{w_{1},w_{2},w_{3}}\right)
-        & \set{w_{1},w_{2},w_{3}} \cap \left(W-\set{w_{1}}\right) \\
-        & \set{w_{1},w_{2},w_{3}} \cap \set{w_{2},w_{3},w_{4}} \\
-        & \set{w_{2},w_{3}}
-      \end{array}$
+  \item $\sem{\word{some shot}}$ as in \eg{someshot}
+  \item $\sem{\word{every shot}} = \set{Y : \sem{\word{shot}} \subseteq Y} = \set{\set{a,b}, \set{a,b,c}}$
+  \item $\sem{\word{no shot}} = \set{Y : \sem{\word{shot}} \cap Y = \emptyset} = \set{\set{c}}$      
   \end{examples}
 \end{examples}
 %
-With the above, we can have syntactic constituents like \eg{embed-or},
-which encodes a pragmatically enriched disjunction like
-\subeg{or}{or-final}.  This constituent is predicted to have the basic
-morphosemantic distribution of any other disjunction.  Thus, embedded
-implicatures are predicted to be possible. \Secref{sec:embedded}
-contains additional examples of how these meanings interact with the
-compositional semantics.
+The presence of $\sem{\word{some shot}}$ has no effect because it is
+identical to the input. The presence of $\sem{\word{no shot}}$ has no
+effect because it contradicts the input. The presence of
+$\sem{\word{every shot}}$ will, though, be meaningful, as long as we
+assume that $\sem{\word{shot}} \neq \emptyset$.  In that case,
+$O_{\ALT}(\word{some shot})$ will denote the following subset of 
+\eg{someshotex} in our small domain:
 %
 \begin{examples}
-\item\label{embed-or}
-  \Tree[.{}
-     {$\sem{\text{XP}}$}
-     [.{$O_{\ALT}(\sem{\word{or}})$}
-        {$O_{\ALT}$}
-        {$\sem{\word{or}}$}
-     ]  
-     {$\sem{\text{YP}}$} ]
+\item\label{altsomeshotex}
+  $\set{\set{a}, \set{b}, \set{a,c}, \set{b,c}}$
 \end{examples}
+%
+This is equivalent to the intersection of $\sem{\word{some shot}}$ and
+the complement of $\sem{\word{every shot}}$ in the powerset of the
+domain.  In other words, it expresses \word{some, not all}, the
+intuitively implicature-rich interpretation. And because $O_{\ALT}$ is
+embeddable, syntactic constituents like $O_{\ALT}(\word{some shot})$
+can appear in the scope of quantifiers.  Implicature-rich versions of
+\eg{some}, \eg{everysome}, and \eg{exactlyonesome} are thus available
+--- potentially usable by speakers and inferrable by listeners just
+like any other semantic resolution for an underspecified form in
+context.
 
 As we noted in the introduction, \CFS\ draw a firm rhetorical
 distinction between their proposal and the Gricean approach to
 pragmatics. They state, ``the goal of this paper is to challenge the
-neo-Gricean approach to SIs'', and later they write that ``the facts
-suggest that SIs are not pragmatic in nature but arise, instead, as a
-consequence of semantic or syntactic mechanisms''. The sense in which
-their account reflects this position is clear: to characterize
-implicatures, we need not consider the interactional setting or try to
-model the speaker and hearer. Rather, we can just describe a specific
-class of logical forms.
+neo-Gricean approach to SIs'' (p.~2303), and later they write that
+``the facts suggest that SIs are not pragmatic in nature but arise,
+instead, as a consequence of semantic or syntactic mechanisms''
+(p.~2316). The sense in which their account reflects this position is
+clear: to characterize implicatures, we need not consider the
+interactional setting or try to model the speaker and hearer. Rather,
+we can just describe a specific class of logical forms.
 
 However, this position tempered by \CFS's pervasive appeals to Gricean
 reasoning.  The authors' specific examples are generally placed in
 contexts that support the target implicatures by ensuring that they
 are relevant, informative, and truthful.  They concede that ``aspects
-of the Gricean picture are sound and effective''. And, in summarizing
-their account, they make explicit the role that Gricean pragmatics
-must play in helping discourse participants to coordinate on the right
-logical forms:
+of the Gricean picture are sound and effective'' (p.~2299). And, in
+summarizing their account, they make explicit the role that Gricean
+pragmatics must play in helping discourse participants to coordinate
+on the right logical forms:
 %
 \begin{quote}
   one can capture the correlation with various contextual
   considerations, under the standard assumption (discussed in the very
   beginning of this paper) that such considerations enter into the
   choice between competing representations (those that contain the
-  operator and those that do not).
+  operator and those that do not). (p.~2317)
 \end{quote}
 
 The fundamental coordination problem remains, then, though its precise
@@ -419,10 +431,10 @@ suggests a synthesis between the two approaches. We now turn to the
 task of developing such a synthesis: a model that formally implements
 pragmatic reasoning over complex, compositionally defined logical
 forms and that is able to achieve the readings that seem to demand
-local enrichment. The technical details of the compositional model
-are different from \CFS's, and the technical details of the 
-pragmatic account are different from \citeauthor{Grice75}, but we hope
-that it combines the best aspects of both approaches.
+local enrichment. The technical details of the compositional model are
+different from \CFS's, and the technical details of the pragmatic
+account are different from \citeauthor{Grice75}, but we hope that it
+combines the best aspects of both approaches.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -469,7 +481,7 @@ inference: \citet{Smith:Goodman:Frank:2013} and \citet{Kao-etal:2014}.
 
 %=====================================================================
 
-\section{Refinement}
+\subsection{Refinement}
 
 \begin{examples}
 \item\label{refinement} Let $\Grammar$ be an interpreted grammar as in
@@ -508,7 +520,7 @@ inference: \citet{Smith:Goodman:Frank:2013} and \citet{Kao-etal:2014}.
 
 %=====================================================================
 
-\section{The lexical uncertainty model}\label{sec:model}
+\subsection{The lexical uncertainty model}\label{sec:model}
 
 \begin{examples}
 \item\label{modobjects} Basic ingredients:
@@ -656,7 +668,7 @@ inference: \citet{Smith:Goodman:Frank:2013} and \citet{Kao-etal:2014}.
 
 %\newpage
 
-\subsection{Subject refinement with added predicate refinement}
+\subsubsection{Subject refinement with added predicate refinement}
 
 \begin{examples}
 \item As above except we also allow the predicate \word{scored} to be
@@ -689,7 +701,7 @@ inference: \citet{Smith:Goodman:Frank:2013} and \citet{Kao-etal:2014}.
 
 %=====================================================================
 
-\subsection{Predicate scalar implicatures}
+\subsubsection{Predicate scalar implicatures}
 
 \begin{examples}
 \item
