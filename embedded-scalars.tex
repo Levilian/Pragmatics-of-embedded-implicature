@@ -195,7 +195,7 @@ communicated meaning.
 \begin{examples}
 \item\label{some-sem}
   \setlength{\tabcolsep}{2pt}
-  \begin{tabular}[t]{r@{. \ } l *{9}{c}@{\hspace{18pt}} l}
+  \begin{tabular}[t]{@{} r@{. \ } l *{9}{c}@{\hspace{18pt}} l}
     a& Worlds:       & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} & \world{AA} & \\
     b& Literal:      &            &            &            & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} & \world{AA} & `at least some'\\
     c& Implicature:  & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} &            &            &            & `not all' \\
@@ -235,7 +235,7 @@ this simple account, posit an auxiliary premise like (e) or (f).
 \begin{examples}
 \item\label{everysome-sem}
   \setlength{\tabcolsep}{2pt}
-  \begin{tabular}[t]{r@{. \ }l *{9}{c} @{\hspace{18pt}} l }
+  \begin{tabular}[t]{@{} r@{. \ }l *{9}{c} @{\hspace{18pt}} l }
     a & Worlds:         & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} & \world{AA} \\
     b & Literal:        &            &            &            &            & \world{SS} & \world{SA} &            & \world{AS} & \world{AA} & `every made at least some' \\ 
     c & Implicature:    & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} &            & `not every made every' \\
@@ -281,7 +281,7 @@ it.
 \begin{examples}
 \item\label{exactlyonesome-sem}
   \setlength{\tabcolsep}{2pt}
-  \begin{tabular}[t]{r@{. \ } l *{9}{c}@{\hspace{18pt}} l}
+  \begin{tabular}[t]{@{} r@{. \ } l *{9}{c}@{\hspace{18pt}} l}
     a& Worlds:       & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} & \world{AA} & \\
     b& Literal:      &            & \world{NS} & \world{NA} & \world{SN} &            &            & \world{AN} &            &            & `exactly one made at least some'\\
     c& Local:        &            & \world{NS} &            & \world{SN} &            & \world{SA} &            & \world{AS} &            & `exactly one made only some' \\
@@ -928,43 +928,42 @@ generating implicatures based on the principle that marked forms
 signal marked meanings and unmarked forms signal unmarked meanings
 \citep{McCawley78,Horn84,Blutner98,Levinson00}.
 
-\marginpar{Need to rerun this with the full state-space and  check that the description still matches.}
-
-Let's now look at a larger and more complex signaling game. We'll have
-occasion to study embedded scalar terms in the context of our
-experimental analysis, so here we concentrate on the pragmatics of
-subjects. \Figref{fig:subjects} gives the important technical details
-of this example. We now have two players. We continue our convention
-of referring to worlds using sequences like \world{NN} (`neither
-player scored'). For this example, we allow refinement of all of the
-lexical items: \word{Player A}, \word{Player B}, \word{some},
-\word{every}, \word{no}. Because of the nature of the predicate
-\word{scored} and the simple form of the example, including \word{no}
-and \word{every} in this set does not have any effect, since neither
-admits of refinements. For the others, though, refinement is
-meaningful. Intuitively, this means we explore meanings for
-\word{Player A} on which it means roughly `Only Player A', and
-similarly for \word{Player B}, while also allowing that \word{some} can
-mean \word{some but not all} and \word{scored} can take on more
-refined senses that exclude \word{aced}.
+Let's now look at a larger and more complex signaling game, one that
+starts to show th potential of this model to predict embedded
+implicatures. \Figref{fig:subjects} gives the important technical
+details of this example. We now have two players. We continue our
+convention of referring to worlds using sequences like \world{NN}
+(`neither player scored'). For this example, we allow refinement of
+all of the lexical items: \word{Player A}, \word{Player B},
+\word{some}, \word{every}, \word{no}, \word{scored}, and \word{aced}.
+Intuitively, this means we explore meanings for \word{Player A} on
+which it means roughly `Only Player A', and similarly for \word{Player
+  B}, while also allowing that \word{some} can mean \word{some but not
+  all} and \word{scored} can take on more refined senses that exclude
+\word{aced}.
 
 \Figref{fig:subjects} gives the inferences made by the uncertainty
 listener. They are well-aligned with intuitions about this context.
-The scalar inference from \word{scored} to not-aced remains in
-evidence. In addition, when a proper name \word{P} is used, it takes
-on the exhaustified sense \word{only P}, as we would expect given the
-salience of \word{every}. In turn \word{some} is interpreted as
-non-specific in virtue of the salience of the two names, and it also
-leads to a scalar implicature due to the salience of
-\word{every}. Arguably the only partly unintuitive row in the table is
-the only for \word{No player scored}.  The best inference is
-\world{NN}, which is in line with the literal semantics, but it is
-striking that the states \world{NS} and \world{SN} have some positive
-probability. This happens because of interacting lexical uncertainty:
-there are lexica in the space on which \word{scored} is refined to
-exclude one of the players.  In that case, the negative universal
-turns out to be true. Only a few lexica support this interaction,
-however, ensuring that it cannot become dominant.
+When a proper name \word{P} is used, it takes on the exhaustified
+sense \word{only P}, as we would expect given the salience of
+\word{every}. In turn \word{some} is interpreted as non-specific in
+virtue of the salience of the two names, and it also leads to a scalar
+implicature due to the salience of \word{every}. Perhaps the most
+striking finding is that the scalar inference from \word{scored} to
+not-aced remains in evidence not with the proper names but also in the
+scope of the quantified subjects: the best-guess inference for
+\word{every player scored} is \world{SS}, and the best-guess
+inferences for \word{some player aced} are \world{NA} and
+\world{AN}. This happens because of interacting lexical uncertainty
+between the subjects and predicates. Arguably the only partly
+unintuitive rows are the ones for \word{No player scored}.  The best
+inference is \world{NN}, which is in line with the literal semantics,
+but it is striking that the states \world{NS} and \world{SN} have some
+positive probability. This too arises because of interacting lexical
+uncertainty: there are lexica in the space on which \word{scored} is
+refined to exclude one of the players.  In that case, the negative
+universal turns out to be true. Only a few lexica support this
+interaction, however, ensuring that it cannot become dominant.
 
 This completes our overview of the compositional lexical uncertainty
 model. We now to turn to our human subjects experiments, where we show
@@ -974,22 +973,25 @@ sentences.
 
 \begin{figure}[t]
   \centering
-  \setlength{\tabcolsep}{8pt}
-  \begin{tabular}[c]{r *{6}{r} }
+  \setlength{\tabcolsep}{6pt}
+  %
+  % Lexica: 2,086,465
+  %
+  \begin{tabular}[c]{r *{9}{r} }
     \toprule
-    & NN & NS & NA & SS & SA & AA\\
+    & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} & \world{AA}\\
     \midrule
-    PlayerA scored & 0.0 & 0.0 & 0.0 & \graycell{0.44} & 0.39 & 0.18\\
-    PlayerA aced & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{1.0}\\
-    PlayerB scored & 0.0 & \graycell{0.28} & 0.22 & 0.22 & 0.2 & 0.08\\
-    PlayerB aced & 0.0 & 0.0 & \graycell{0.38} & 0.0 & 0.31 & 0.31\\
-    some player scored & 0.0 & 0.24 & 0.19 & \graycell{0.26} & 0.23 & 0.08\\
-    some player aced & 0.0 & 0.0 & \graycell{0.39} & 0.0 & 0.31 & 0.31\\
-    every player scored & 0.0 & 0.0 & 0.0 & \graycell{0.42} & 0.38 & 0.2\\
-    every player aced & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{1.0}\\
-    no player scored & \graycell{0.47} & 0.2 & 0.18 & 0.08 & 0.07 & 0.01\\
-    no player aced & 0.27 & \graycell{0.3} & 0.12 & 0.22 & 0.09 & 0.0\\
-    $\nullmsg$ & 0.03 & 0.03 & \graycell{0.61} & 0.02 & 0.3 & 0.0\\
+    \word{Player A scored} & 0.0 & 0.0 & 0.0 & \graycell{0.24} & 0.19 & 0.16 & 0.18 & 0.16 & 0.07\\
+    \word{Player A ace}d & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{0.36} & 0.3 & 0.34\\
+    \word{Player B scored} & 0.0 & \graycell{0.24} & 0.18 & 0.0 & 0.19 & 0.16 & 0.0 & 0.16 & 0.07\\
+    \word{Player B aced} & 0.0 & 0.0 & \graycell{0.36} & 0.0 & 0.0 & 0.3 & 0.0 & 0.0 & 0.34\\
+    \word{some player scored} & 0.0 & 0.14 & 0.11 & 0.14 & \graycell{0.17} & 0.14 & 0.11 & 0.14 & 0.05\\
+    \word{some player aced} & 0.0 & 0.0 & \graycell{0.22} & 0.0 & 0.0 & 0.19 & \graycell{0.22} & 0.19 & 0.18\\
+    \word{every player scored} & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{0.31} & 0.27 & 0.0 & 0.27 & 0.14\\
+    \word{every player aced} & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{1.0}\\
+    \word{no player scored} & \graycell{0.31} & 0.14 & 0.12 & 0.14 & 0.06 & 0.05 & 0.12 & 0.05 & 0.01\\
+    \word{no player aced} & 0.18 & \graycell{0.19} & 0.08 & \graycell{0.19} & 0.14 & 0.06 & 0.08 & 0.06 & 0.0\\
+    $\nullmsg$ & 0.01 & 0.01 & \graycell{0.32} & 0.01 & 0.01 & 0.15 & \graycell{0.32} & 0.15 & 0.0\\
     \bottomrule
   \end{tabular}
   \caption{Subject and predicate enrichment via a large space of
@@ -1021,16 +1023,16 @@ displays like the one in \figref{fig:exp1}. Each of the three players,
 A, B, and C, has taken 12 basketball shots (a number small enough for
 visual display but outside of the subitizing range and thus less
 likely to introduce competitions from cardinal determiners like
-\word{three shot}). The shots were divided into two piles, labeled
-`baskets' (green) and `misses' (red). Below that was the target
-sentence, which participants evaluated on a seven-point Likert scale
-ranging from `Bad description' to `Good description'. Our rationale
-for using this scale is that it allows enough space for participants
-to both register a truth value assessment and convey information about
-the quality of the report. In this sense, our participants acted as
-listeners who have observed the speaker's state and are assessing the
-extent to which the speaker succeeded in conveying that state with her
-utterance.
+\word{three shot}; \citealt{Degen:Tanenhaus:2014}). The shots were
+divided into two piles, labeled `baskets' (green) and `misses'
+(red). Below that was the target sentence, which participants
+evaluated on a seven-point Likert scale ranging from `Bad description'
+to `Good description'. Our rationale for using this scale is that it
+allows enough space for participants to both register a truth value
+assessment and convey information about the quality of the report. In
+this sense, our participants acted as listeners who have observed the
+speaker's state and are assessing the extent to which the speaker
+succeeded in conveying that state with her utterance.
 
 \begin{figure}[t]
   \centering
@@ -1207,14 +1209,14 @@ interpreted grammar in \figref{fig:grammar}.
   \begin{examples}
   \item $\Domain = \set{\playera, \playerb, \playerc}$
   \item $\Worlds = $ the set in \eg{conds}
-  \item $\Refinable = \set{\text{some}}$
+  \item $\Refinable = \set{\word{some}}$
   \item $\Messages =
     \setlength{\arraycolsep}{2pt}
     \set{
-      Q(\text{player})(\text{made}(S(\text{shot}))) :
+      Q(\word{player})(\word{made}(S(\word{shot}))) :
       \begin{array}{l}        
-        Q \in \set{\text{exactly\_one}, \text{every}, \text{no}}, \\
-        S \in \set{\text{every}, \text{no}, \text{some}}
+        Q \in \set{\word{exactly one}, \word{every}, \word{no}}, \\
+        S \in \set{\word{every}, \word{no}, \word{some}}
       \end{array}}$
   \item $\Costs(\nullmsg) = 5$; $\Costs(\msg) = 0$ for all $\msg \in \Messages-\set{\nullmsg}$  
   \item $\StatePrior(w) = \StatePrior(w')$ for all $w, w' \in \Worlds$

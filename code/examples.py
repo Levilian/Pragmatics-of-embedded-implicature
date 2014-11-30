@@ -103,7 +103,7 @@ def illustration_subj_large():
 
     players = [a,b]
     shots = [s1,s2]
-    worlds = get_worlds(basic_states=(0,1,2), length=2, increasing=True)
+    worlds = get_worlds(basic_states=(0,1,2), length=2, increasing=False)
     baselexicon = define_lexicon(player=players, shot=shots, worlds=worlds)
 
     messages = []
@@ -395,7 +395,7 @@ def crucial_items():
 
 if __name__ == '__main__':
 
-    #crucial_items()
+    crucial_items()
 
     #simplescalar()
 

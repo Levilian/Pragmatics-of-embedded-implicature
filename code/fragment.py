@@ -38,7 +38,7 @@ def define_lexicon(player=[], shot=[], worlds=[]):
         # worlds.
         "some_player":        [Y for Y in powerset(player) if len(set(player) & set(Y)) > 0],
         "some_shot":          [Y for Y in powerset(shot)   if len(set(shot) & set(Y)) > 0],
-        "exactly_one_player": [Y for Y in D_et if len(set(player) & set(Y)) == 1],
+        "exactly_one_player": [Y for Y in powerset(player) if len(set(player) & set(Y)) == 1],
         "exactly_one_shot":   [Y for Y in D_et if len(set(shot) & set(Y)) == 1],
         "every_player":       [Y for Y in D_et if set(player) <= set(Y)],
         "every_shot":         [Y for Y in D_et if set(shot) <= set(Y)],

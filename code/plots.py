@@ -51,6 +51,7 @@ def message_state_barplot(mat=None,
     for i, row in enumerate(mat):
         axindex = indices[i]
         ax = axarray[axindex]
+        ax.tick_params(axis='both', which='both', bottom='off', left='off', top='off', right='off', labelbottom='on')
         ax.bar(pos, row, width, color=colors[0])
         ax.set_title(rnames[i])
         # Axis label only for the leftmost plots:
@@ -97,7 +98,7 @@ def comparison_plot(modmat=None,
     if not nrows:
         nrows = 1
         ncols = len(rnames)
-    # Basic figure dimensions and design:
+    # Basic figure dimensions and design:    
     fig, axarray = plt.subplots(nrows=nrows, ncols=ncols)
     fig.set_figheight(axis_height*nrows)
     fig.set_figwidth(axis_width*ncols)
@@ -116,6 +117,7 @@ def comparison_plot(modmat=None,
     for i, row in enumerate(modmat):
         axindex = indices[i]
         ax = axarray[axindex]
+        ax.tick_params(axis='both', which='both', bottom='off', left='off', top='off', right='off', labelbottom='on')
         ax.bar(pos, row, width, color=colors[0], label=labels[0])
         ax.bar(pos+width, expmat[i], width, color=colors[1], label=labels[1])
         ax.set_title(rnames[i])
@@ -178,6 +180,7 @@ def general_comparison_plot(rows=None,
     ax.set_ylim(ylim)
     ax.set_yticks(yticks)
     ax.set_yticklabels(yticks)
+    ax.tick_params(axis='both', which='both', bottom='off', left='off', top='off', right='off', labelbottom='on')
     for i, row in enumerate(rows):
         ax.bar(pos, row, width, label=labels[i], color=colors[i])
         # Confidence intervals:
@@ -210,7 +213,8 @@ def correlation_plot(xmat=None,
     xlim = axis_buffer(xmat)
     ylim = axis_buffer(ymat)
     ax.set_xlim(xlim)
-    ax.set_ylim(ylim)    
+    ax.set_ylim(ylim)
+    ax.tick_params(axis='both', which='both', bottom='off', left='off', top='off', right='off', labelbottom='on')
     # Plots:
     for i, row in enumerate(xmat):
         ax.plot(row, ymat[i], alpha=alpha, color=COLORS[i], markersize=6, marker='o', linestyle='')
