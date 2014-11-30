@@ -2,7 +2,8 @@ import csv
 from collections import defaultdict
 import numpy as np
 from scipy import stats
-from plots import message_state_barplot
+from plots import message_state_barplot, comparison_plot, add_confidence_intervals
+import matplotlib.pyplot as plt
 
 SENTENCES = {
     "Every player hit all of his shots": "every(player)(made(every(shot)))",
@@ -19,8 +20,6 @@ SENTENCES = {
     "No player hit only some of his shots": "no(player)(made(exactly_one(shot)))"
 }
 
-
-
 CONDITION_MAP = {
     "none-none-none": "NNN",
     "none-none-half": "NNS",
@@ -33,7 +32,7 @@ CONDITION_MAP = {
     "half-all-all": "SAA",
     "all-all-all": "AAA" }
 
-CONDITIONS = ("NNN", "NNS", "NNA", "NAA", "NSA", "SSS", "SSA", "SAA", "AAA")
+CONDITIONS = ("NNN", "NNS", "NNA", "NAA", "NSS", "NSA", "SSS", "SSA", "SAA", "AAA")
 
 class Item:
     def __init__(self, data):
@@ -132,14 +131,55 @@ class Experiment:
             mat.append(row)
         return mat
 
+    def count_unique(self, attr=None):
+        x = set([])
+        for item in self.data:
+            x.add(getattr(item, attr))
+        return len(x)
+
+    def report(self):
+        print 'Participants:', self.count_unique('workerid')
+        print 'Sentences:', self.count_unique('sentence')
+        print 'Conditions:', self.count_unique('condition')
+
+
+    def analyze_clustered_item(self, sentence, world_clusters):
+        d = defaultdict(list)
+        for item in self.data:
+            if item.sentence == sentence:
+                d[world_clusters[item.condition_norm]].append(item.response)                
+        vals = []
+        cis = []
+        cnames = sorted(set(world_clusters.values()))
+        for cname in cnames:
+            vals.append(np.mean(d[cname]))
+            cis.append(self.get_ci(np.array(d[cname])))
+        return (vals, cis)        
+
+    def plot_clustered_item(self, sentence, world_clusters, output_filename=None):
+        vals, cis = self.analyze_clustered_item(sentence, world_clusters)
+        cnames = sorted(set(world_clusters.values()))
+        message_state_barplot(mat=[vals],
+                              confidence_intervals=[cis],
+                              rnames=[sentence],
+                              cnames=cnames,
+                              nrows=1,
+                              ncols=1,
+                              output_filename=output_filename,
+                              ylim=[0,8],
+                              yticks=range(0,8),
+                              ylabel="Subject responses")
+
 ######################################################################
     
 if __name__ == '__main__':
 
-    exp = Experiment(src_filename='../data/basketball-pilot-2-11-14-results-parsed.csv')
-    exp.plot_targets(output_filename="../fig/basketball-pilot-2-11-14-results-parsed.pdf")
 
+    exp1 = Experiment(src_filename='../data/basketball-pilot-2-11-14-results-parsed.csv')
+    exp1.plot_targets(output_filename="../fig/basketball-pilot-2-11-14-results-parsed.pdf")
+    exp1.report()
 
-    exp = Experiment(src_filename='../data/basketball-focus-only-manip-3-17-14-results-parsed.csv',  subjectCondition="only")
-    exp.plot_targets(output_filename="../fig/basketball-focus-only-manip-3-17-14-results-parsed.pdf")
+    #exp2a = Experiment(src_filename='../data/basketball-focus-only-manip-3-17-14-results-parsed.csv',  subjectCondition="focus")    
+    #exp2b = Experiment(src_filename='../data/basketball-focus-only-manip-3-17-14-results-parsed.csv',  subjectCondition="only")
+
     

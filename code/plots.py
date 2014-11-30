@@ -4,11 +4,11 @@ import itertools
 import matplotlib.pyplot as plt
 import matplotlib
 import numpy as np
-from utils import COLORS
+from utils import COLORS, colors
 
 ######################################################################
 
-plt.style.use('ggplot')
+#plt.style.use('ggplot')
 
 ######################################################################
 
@@ -51,7 +51,7 @@ def message_state_barplot(mat=None,
     for i, row in enumerate(mat):
         axindex = indices[i]
         ax = axarray[axindex]
-        ax.bar(pos, row, width)
+        ax.bar(pos, row, width, color=colors[0])
         ax.set_title(rnames[i])
         # Axis label only for the leftmost plots:
         if (isinstance(axindex, int) and axindex == 0) or (isinstance(axindex, tuple) and axindex[1] == 0):
@@ -76,6 +76,7 @@ def message_state_barplot(mat=None,
 def comparison_plot(modmat=None,
                     expmat=None,
                     confidence_intervals=None,
+                    mod_confidence_intervals=None,
                     correlation_texts=None,
                     rnames=None,
                     cnames=None,
@@ -89,7 +90,9 @@ def comparison_plot(modmat=None,
                     width=0.5,
                     gap=0.2,
                     axis_width=7,
-                    axis_height=3):
+                    axis_height=3,
+                    labels=("Model", "Human"),
+                    bbox_to_anchor=(-2.5, 3.7)):
     # Default to a single row of plots if no guidance was given:
     if not nrows:
         nrows = 1
@@ -102,7 +105,8 @@ def comparison_plot(modmat=None,
     # Plot dimensions:
     barsetwidth = (width*2)+gap
     pos = np.arange(0, len(cnames)+barsetwidth, barsetwidth)
-    xlim = [0.0, len(cnames)+((len(cnames)-1)*gap)]       
+    #xlim = [0.0, len(cnames)+((len(cnames)-1)*gap)]
+    xlim = [0.0, max(pos)+barsetwidth-gap]
     xticks = pos+(barsetwidth/2.0)
     # If indices doesn't specify an ordering, create an array of
     # axis coordinate pairs for the plot:
@@ -112,8 +116,8 @@ def comparison_plot(modmat=None,
     for i, row in enumerate(modmat):
         axindex = indices[i]
         ax = axarray[axindex]
-        ax.bar(pos, row, width, label="Model")
-        ax.bar(pos+width, expmat[i], width, color="#A60628", label="Human")
+        ax.bar(pos, row, width, color=colors[0], label=labels[0])
+        ax.bar(pos+width, expmat[i], width, color=colors[1], label=labels[1])
         ax.set_title(rnames[i])
         ax.set_ylabel(ylabel, fontsize=14)                 
         ax.set_xlim(xlim)
@@ -125,15 +129,68 @@ def comparison_plot(modmat=None,
         # Confidence intervals:
         if confidence_intervals:
             add_confidence_intervals(ax=ax, pos=pos+(width*1.5), cis=confidence_intervals[i])
+        # Model confidence intervals
+        if mod_confidence_intervals:
+            add_confidence_intervals(ax=ax, pos=pos+(width*0.5), cis=mod_confidence_intervals[i])
         # Correlation annotations:
         if correlation_texts:            
             ax.text(0, ylim[1], correlation_texts[i], fontsize=14, verticalalignment='top', horizontalalignment='left')
-    plt.legend(loc='upper left', bbox_to_anchor=(-2.5, 3.7), ncol=2, fontsize=16)
+    plt.legend(loc='upper left', bbox_to_anchor=bbox_to_anchor, ncol=2, fontsize=16)
     # Output:
     if output_filename:
         plt.savefig(output_filename, bbox_inches='tight')
     else:
-        plt.show()             
+        plt.show()
+
+
+######################################################################
+
+def general_comparison_plot(rows=None,
+                            confidence_intervals=None,
+                            rnames=None,
+                            cnames=None,
+                            output_filename=None,
+                            ylabel="Mean human rating",
+                            ylim=[0,8],
+                            yticks=range(0,8),
+                            width=0.5,
+                            gap=0.2,
+                            axis_width=9,
+                            axis_height=3,
+                            labels=("plain", "focus", "only"),
+                            legend=True,
+                            title="",
+                            bbox_to_anchor=(-0.1,1.4),
+                            colors=colors):    
+    # Basic figure dimensions and design:
+    fig, ax = plt.subplots(nrows=1, ncols=1)
+    fig.set_figheight(axis_height)
+    fig.set_figwidth(axis_width)
+    # Plot dimensions:
+    barsetwidth = (width*len(rows))+gap
+    pos = np.arange(0, len(cnames)*barsetwidth, barsetwidth)
+    xlim = [0.0, max(pos)+barsetwidth-gap]
+    xticks = pos+(barsetwidth/2.0)
+    ax.set_ylabel(ylabel, fontsize=14)                 
+    ax.set_xlim(xlim)
+    ax.set_xticks(xticks)
+    ax.set_xticklabels(cnames, fontsize=14,  rotation='horizontal', color='black')
+    ax.set_ylim(ylim)
+    ax.set_yticks(yticks)
+    ax.set_yticklabels(yticks)
+    for i, row in enumerate(rows):
+        ax.bar(pos, row, width, label=labels[i], color=colors[i])
+        # Confidence intervals:
+        add_confidence_intervals(ax=ax, pos=pos+(width/2.0), cis=confidence_intervals[i])
+        pos += width
+    if legend:            
+        plt.legend(loc='upper left', bbox_to_anchor=bbox_to_anchor, ncol=3, fontsize=14)
+    ax.set_title(title, fontsize=14)
+    # Output:
+    if output_filename:
+        plt.savefig(output_filename, bbox_inches='tight')
+    else:
+        plt.show()        
 
 ######################################################################
                           

@@ -10,6 +10,8 @@ NULL = 'NULL'
 
 COLORS = matplotlib.colors.cnames.values()
 
+colors = ['#1B9E77', '#D95F02', '#7570B3', '#E7298A', '#66A61E', '#E6AB02', '#A6761D', '#666666']
+
 PROB_LIMS = [0, 1.1]
 LIKERT_LIMS = [0, 8]
 PROB_AXIS_TICKS = np.arange(0.0, 1.1, 0.1)

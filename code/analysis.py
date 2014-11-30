@@ -2,7 +2,7 @@
 
 from copy import copy
 import numpy as np
-from scipy.stats import spearmanr
+from scipy.stats import spearmanr, pearsonr
 from experiment import *
 from plots import *
 from utils import *
@@ -15,11 +15,16 @@ class Analysis:
                  model=None,
                  speakernorm_experiment=False,
                  listenernorm_experiment=False,
-                 likertize_model=False):
+                 likertize_model=False,
+                 correlation_func=spearmanr):
         self.experiment = experiment
         self.model = model
         self.messages = copy(self.model.messages)
         self.worlds = self.model.states
+        self.correlation_func = correlation_func
+        self.correlation_func_name = "Pearson"
+        if "spearman" in self.correlation_func.__name__:
+            self.correlation_func_name = 'Spearman'       
         self.modmat = self.model.final_listener
         if NULL in self.messages:
             self.messages.remove(NULL)
@@ -50,7 +55,7 @@ class Analysis:
     def listener_correlation_plot(self, output_filename=None):                
         # Correlation analysis:
         coef, p = self.correlation_test(self.expmat.flatten(), self.modmat.flatten())
-        correlation_text = r"Spearman $\rho = %s$; %s" % (np.round(coef, 2), self.printable_pval(p))
+        correlation_text = r"%s $\rho = %s$; %s" % (self.correlation_func_name, np.round(coef, 2), self.printable_pval(p))
         # Plot:
         correlation_plot(xmat=self.modmat,
                          ymat=self.expmat,
@@ -63,7 +68,7 @@ class Analysis:
         # Correlations:
         correlation_stats = [(self.correlation_test(self.modmat[i], self.expmat[i])) for i in range(self.modmat.shape[0])]
         correlation_texts = [(np.round(x[0], 2), self.printable_pval(x[1])) for x in correlation_stats]
-        correlation_texts = [r"Spearman $\rho = %s$; %s" % x for x in correlation_texts]
+        correlation_texts = [r"%s $\rho = %s$; %s" % (self.correlation_func_name, coef, p) for coef, p in correlation_texts]
         # Limits:                
         comparison_plot(modmat=self.modmat,
                         expmat=self.expmat,
@@ -101,8 +106,8 @@ class Analysis:
     def printable_pval(self, p):
         return r"$p = %s$" % np.round(p, 3) if p >= 0.001 else r"$p < 0.001$"
 
-    def correlation_test(self, x, y):
-        coef, p = spearmanr(x, y)
+    def correlation_test(self, x, y):        
+        coef, p = self.correlation_func(x, y)
         return (coef, p)
 
 ######################################################################    

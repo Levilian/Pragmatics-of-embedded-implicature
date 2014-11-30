@@ -29,7 +29,7 @@ def define_lexicon(player=[], shot=[], worlds=[]):
         "shot":        shot,
         # Intensional predicates:
         "scored":      [[w, x] for w, x in product(worlds, player) if len(shot[: w[player.index(x)]]) > 0],
-        "doubled":     [[w, x] for w, x in product(worlds, player) if len(shot[: w[player.index(x)]]) > 1],
+        "aced":        [[w, x] for w, x in product(worlds, player) if len(shot[: w[player.index(x)]]) > 1],
         "missed":      [[w, x] for w, x in product(worlds, player) if len(shot[: w[player.index(x)]]) == 0],
         "made" :       [[w, x, y] for w, x, y in product(worlds, player, shot) if y in shot[: w[player.index(x)]]],
         # More concessions to tractability -- we'll refine these rather than the determiners;

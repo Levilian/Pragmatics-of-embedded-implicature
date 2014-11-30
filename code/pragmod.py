@@ -56,7 +56,7 @@ class LexicalUncertaintyModel:
             lexprior_func = (lambda lexindex : self.lexprior[lexindex])
         # Iterate through the lexica:
         for lexindex, lex in enumerate(self.lexicon_iterator()):
-            if display_progress and lexindex and lexindex % 10**3 == 0:
+            if display_progress and lexindex and lexindex % 10**2 == 0:
                 sys.stderr.write('\r'); sys.stderr.write('lexicon %s' % lexindex) ; sys.stderr.flush()
             self.final_listener += lexprior_func(lexindex) * self.S(self.l0(lex)).T
         # Update or fill in the lexcount based on the iteration:

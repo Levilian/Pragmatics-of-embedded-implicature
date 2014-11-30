@@ -9,13 +9,23 @@
 \usepackage[normalem]{ulem}
 \usepackage{examples-slim}
 \usepackage{color}
+\usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{colortbl}
 \usepackage{qtree}
-\definecolor{black}{rgb}{0,0,0}
+\usepackage{ifthen}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\definecolor{black}{HTML}{000000}
 \usepackage[colorlinks, linkcolor=black, urlcolor=black, citecolor=black]{hyperref}
+
+% Good colors for colorblind readers (apparently):
+\definecolor{cbgreen}{HTML}{1B9E77}
+\definecolor{cborange}{HTML}{D95F02}
+\definecolor{cbpurple}{HTML}{7570B3}
 
 \bibpunct[; ]{(}{)}{;}{a}{}{,}  % natbib citation style
 
@@ -85,12 +95,11 @@
 
 \newcommand{\Reals}{\mathbb{R}}
 \newcommand{\given}{\mid}
-\newcommand{\Indicator}{\mathbb{1}}
+\newcommand{\Indicator}{\mathbb{I}}
 
 \newcommand{\sem}[1]{\ensuremath{\llbracket#1\rrbracket}}
-\newcommand{\States}{T}
-\newcommand{\Worlds}{W}
-\newcommand{\state}{t}
+\newcommand{\States}{W}
+\newcommand{\state}{w}
 \newcommand{\Lex}{\mathcal{L}}
 \newcommand{\LexSet}{\mathbf{L}}
 \newcommand{\Messages}{M}
@@ -102,7 +111,7 @@
 
 \newcommand{\listenerZero}{l_{0}}
 \newcommand{\speakerOne}{s_{1}}
-\newcommand{\listenerOne}{l_{1}}
+%\newcommand{\listenerOne}{l_{1}}
 \newcommand{\UncertaintyListener}{L}
 
 \newcommand{\nullmsg}{\mathbf{0}}
@@ -113,6 +122,10 @@
 \newcommand{\Refine}{\mathcal{R}}
 
 \newcommand{\world}[1]{\texttt{#1}}
+\newcommand{\Worlds}{W}
+\newcommand{\Domain}{D}
+
+\newcommand{\Likert}{\emph{Likert}}
 
 %=====================================================================
 %============================ annotations ============================
@@ -120,13 +133,50 @@
 \let\oldmarginpar\marginpar
 \renewcommand{\marginpar}[1]{\oldmarginpar[\color{red}\raggedright\scriptsize #1]{\color{red}\raggedright\scriptsize #1}}
 
+\newcommand{\mynote}[1]{{\color{red}#1}}
+
 %=====================================================================
-%============================= examples ==============================
+%============================== grammar ==============================
 
 \newcommand{\playera}{\texttt{a}}     
 \newcommand{\playerb}{\texttt{b}}     
 \newcommand{\playerc}{\texttt{c}}
-\newcommand{\semw}[2][w]{\sem{\text{#2}}^{#1}}
 \newcommand{\Vt}{V$_{\text{T}}$}
 \newcommand{\Vi}{V$_{\text{I}}$}
- 
+
+% For writing grammar definitions:
+\newcommand{\gsem}[1]{\sem{\text{#1}}}
+
+% Attempt to simplify quantifier meaning code:
+\newcommand{\genericquantifier}[3][]{%
+  \ifthenelse{\equal{#1}{cardinality}}%
+  {$\set{\tuple{w, X, Y} : |\set{x : \tuple{w,x} \in X} #2 \set{y : \tuple{w,y} \in Y}| #3}$}
+  {$\set{\tuple{w, X, Y} :  \set{x : \tuple{w,x} \in X} #2 \set{y : \tuple{w,y} \in Y}  #3}$}}
+  
+% Attempt to simplify proper name meaning code:
+\newcommand{\genericpn}[1]{\set{\tuple{w, Y} : #1 \in \set{x : \tuple{w,x} \in Y}}}
+
+
+\newcommand{\genericscalar}[9]{
+  \setlength{\arraycolsep}{4pt}
+  \begin{array}[c]{r r r r}
+    \toprule
+    & \world{N} & \world{S} & \world{A} \\
+    \midrule
+    \word{A scored} & #1 & #2 & #3 \\
+    \word{A aced}   & #4 & #5 & #6 \\
+    \nullmsg        & #7 & #8 & #9 \\
+    \bottomrule
+  \end{array}}
+
+\newcommand{\scalarspeaker}[9]{
+  \setlength{\arraycolsep}{2pt}
+  \begin{array}[c]{r r r r}
+    \toprule
+    & \word{A scored} & \word{A aced} & \nullmsg \\
+    \midrule
+    \world{N}  & #1 & #2 & #3 \\
+    \world{S}  & #4 & #5 & #6 \\
+    \world{A}  & #7 & #8 & #9 \\
+    \bottomrule
+  \end{array}}
