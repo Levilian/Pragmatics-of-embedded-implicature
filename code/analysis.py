@@ -6,6 +6,8 @@ from scipy.stats import spearmanr, pearsonr
 from experiment import *
 from plots import *
 from utils import *
+import csv
+from correlation_analysis import r_doi_ci
 
 ######################################################################
 
@@ -16,7 +18,7 @@ class Analysis:
                  speakernorm_experiment=False,
                  listenernorm_experiment=False,
                  likertize_model=False,
-                 correlation_func=spearmanr):
+                 correlation_func=pearsonr):
         self.experiment = experiment
         self.model = model
         self.messages = copy(self.model.messages)
@@ -54,7 +56,7 @@ class Analysis:
             
     def listener_correlation_plot(self, output_filename=None):                
         # Correlation analysis:
-        coef, p = self.correlation_test(self.expmat.flatten(), self.modmat.flatten())
+        coef, p, n = self.correlation(by_message=False)
         correlation_text = r"%s $\rho = %s$; %s" % (self.correlation_func_name, np.round(coef, 2), self.printable_pval(p))
         # Plot:
         correlation_plot(xmat=self.modmat,
@@ -67,7 +69,7 @@ class Analysis:
     def listener_comparison_plot(self, output_filename=None, indices=[], nrows=1, ncols=None):
         # Correlations:
         correlation_stats = [(self.correlation_test(self.modmat[i], self.expmat[i])) for i in range(self.modmat.shape[0])]
-        correlation_texts = [(np.round(x[0], 2), self.printable_pval(x[1])) for x in correlation_stats]
+        correlation_texts = self.correlation(by_message=True)
         correlation_texts = [r"%s $\rho = %s$; %s" % (self.correlation_func_name, coef, p) for coef, p in correlation_texts]
         # Limits:                
         comparison_plot(modmat=self.modmat,
@@ -106,9 +108,56 @@ class Analysis:
     def printable_pval(self, p):
         return r"$p = %s$" % np.round(p, 3) if p >= 0.001 else r"$p < 0.001$"
 
-    def correlation_test(self, x, y):        
+    def correlation_test(self, x, y):
+        n = len(x)       
         coef, p = self.correlation_func(x, y)
-        return (coef, p)
+        return (coef, p, n)
+
+    def correlation(self, by_message=False):
+        if by_message:
+            return [(self.correlation_test(self.modmat[i], self.expmat[i]))[:2] for i in range(self.modmat.shape[0])]
+        else:
+            return self.correlation_test(self.expmat.flatten(), self.modmat.flatten())
+
+    def correlation_by_message(self, a, b):
+        return [(self.correlation_test(a[i], b[i])) for i in range(a.shape[0])]
+
+    def correlation_comparison(self, x, y, z, conf_level=0.95):
+        xy_coef, _, n = self.correlation_test(x, y)
+        xz_coef, _, n = self.correlation_test(x, z)
+        yz_coef, _, n = self.correlation_test(y, z)
+        lower, upper = r_doi_ci(xy_coef, xz_coef, yz_coef, n, conf_level=conf_level)
+        return (not (lower < 0.0 and upper > 0.0), lower, upper, xy_coef, xz_coef, yz_coef, n)
+
+    def correlation_comparison_by_message(self, a, b, c, conf_level=0.95):
+        return zip(self.model.messages, [self.correlation_comparison(a[i], b[i], c[i], conf_level=conf_level) for i in range(a.shape[0])])
+
+    def correlation_analysis(self, conf_level=0.95):
+        lit, spk, lis = self.model.rsa()
+        lit = lit[:-1]
+        lis = lis[:-1]
+        print 'Human: Lit vs. LexUnc:', self.correlation_comparison(self.expmat.flatten(), lit.flatten(), self.modmat.flatten(), conf_level=conf_level)
+        print 'Human: RSA vs. LexUnc:', self.correlation_comparison(self.expmat.flatten(), lis.flatten(), self.modmat.flatten(), conf_level=conf_level)
+        
+        print 'By message',        
+        print '\nHuman: Lit vs. LexUnc:'        
+        for m, vals in self.correlation_comparison_by_message(self.expmat, lit, self.modmat, conf_level=conf_level):
+            print m, vals
+            
+        print '\nHuman: RSA vs. LexUnc:'
+        for m, vals in self.correlation_comparison_by_message(self.expmat, lis, self.modmat, conf_level=conf_level):
+            print m, vals
+
+    def to_csv(self, output_filename):
+        writer = csv.writer(file(output_filename, 'w'))
+        writer.writerow(['Sentence','Condition','LiteralListener','RSAListener','UncertaintyListener','HumanMean','HumanLowerCI','HumanUpperCI'])
+        lit, spk, lis = self.model.rsa()
+        lit = lit[:-1]
+        lis = lis[:-1]
+        for i, msg in enumerate(self.messages):
+            for j, world in enumerate(self.worlds):
+                row = [msg, world, lit[i,j], lis[i,j], self.modmat[i,j], self.expmat[i,j], self.confidence_intervals[i][j][0], self.confidence_intervals[i][j][1]]
+                writer.writerow(row)
 
 ######################################################################    
     
