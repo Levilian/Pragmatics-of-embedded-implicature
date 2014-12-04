@@ -123,6 +123,7 @@ def illustration_subj_large():
 
     mod = LexicalUncertaintyModel(
         lexicon_iterator=ug.lexicon_iterator,
+        baselexicon=ug.baselexicon_mat,
         messages=ug.messages,
         states=[worldname(w) for w in worlds],
         temperature=1.0,
@@ -193,6 +194,7 @@ def experimental_assessment(
 
     mod = LexicalUncertaintyModel(
         lexicon_iterator=ug.lexicon_iterator,
+        baselexicon=ug.baselexicon_mat,
         messages=ug.messages,
         states=[worldname(w) for w in worlds],
         temperature=1.0,
@@ -205,45 +207,59 @@ def experimental_assessment(
     if analysis:
     
         filename_root = os.path.join('..', 'fig', '%s-' % file_prefix)
-    
+
         Analysis(
             experiment=experiment,
             model=mod,
             listenernorm_experiment=False,
             speakernorm_experiment=False,
-            likertize_model=True).listener_comparison_plot(output_filename=filename_root+"barplots.pdf", nrows=3, ncols=3)    
+            likertize_model=True).correlation_analysis()
 
         Analysis(
             experiment=experiment,
             model=mod,
-            listenernorm_experiment=True,
+            listenernorm_experiment=False,
             speakernorm_experiment=False,
-            likertize_model=False).listener_comparison_plot(output_filename=filename_root+"barplots-listenernorm.pdf", nrows=3, ncols=3)
-
-        Analysis(
-            experiment=experiment,
-            model=mod,
-            listenernorm_experiment=False,
-            speakernorm_experiment=True,
-            likertize_model=False).listener_comparison_plot(output_filename=filename_root+"barplots-speakernorm.pdf", nrows=3, ncols=3)
-
-        Analysis(
-            experiment=experiment,
-            model=mod,
-            listenernorm_experiment=False,
-            speakernorm_experiment=False).listener_correlation_plot(output_filename=filename_root+"scatterplot.pdf")
+            likertize_model=False).to_csv('embeddedscalars-exp01-analysis-2014-12-04.csv')
     
-        Analysis(
-            experiment=experiment,
-            model=mod,
-            listenernorm_experiment=True,
-            speakernorm_experiment=False).listener_correlation_plot(output_filename=filename_root+"scatterplot-listenernorm.pdf")
+        # Analysis(
+        #     experiment=experiment,
+        #     model=mod,
+        #     listenernorm_experiment=False,
+        #     speakernorm_experiment=False,
+        #     likertize_model=True).listener_comparison_plot(output_filename=filename_root+"barplots.pdf", nrows=3, ncols=3)    
+
+        # Analysis(
+        #     experiment=experiment,
+        #     model=mod,
+        #     listenernorm_experiment=True,
+        #     speakernorm_experiment=False,
+        #     likertize_model=False).listener_comparison_plot(output_filename=filename_root+"barplots-listenernorm.pdf", nrows=3, ncols=3)
+
+        # Analysis(
+        #     experiment=experiment,
+        #     model=mod,
+        #     listenernorm_experiment=False,
+        #     speakernorm_experiment=True,
+        #     likertize_model=False).listener_comparison_plot(output_filename=filename_root+"barplots-speakernorm.pdf", nrows=3, ncols=3)
+
+        # Analysis(
+        #     experiment=experiment,
+        #     model=mod,
+        #     listenernorm_experiment=False,
+        #     speakernorm_experiment=False).listener_correlation_plot(output_filename=filename_root+"scatterplot.pdf")
+    
+        # Analysis(
+        #     experiment=experiment,
+        #     model=mod,
+        #     listenernorm_experiment=True,
+        #     speakernorm_experiment=False).listener_correlation_plot(output_filename=filename_root+"scatterplot-listenernorm.pdf")
         
-        Analysis(
-            experiment=experiment,
-            model=mod,
-            listenernorm_experiment=False,
-            speakernorm_experiment=True).listener_correlation_plot(output_filename=filename_root+"scatterplot-speakernorm.pdf")
+        # Analysis(
+        #     experiment=experiment,
+        #     model=mod,
+        #     listenernorm_experiment=False,
+        #     speakernorm_experiment=True).listener_correlation_plot(output_filename=filename_root+"scatterplot-speakernorm.pdf")
 
     return mod
 
@@ -395,7 +411,7 @@ def crucial_items():
 
 if __name__ == '__main__':
 
-    crucial_items()
+    #crucial_items()
 
     #simplescalar()
 
