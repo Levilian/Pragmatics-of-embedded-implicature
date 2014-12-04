@@ -12,6 +12,7 @@ from utils import rownorm, colnorm, safelog, display_matrix
 class LexicalUncertaintyModel:
     def __init__(self,
                  lexicon_iterator=None,
+                 baselexicon=None,
                  messages=None,
                  states=None,
                  lexcount=None,
@@ -22,6 +23,7 @@ class LexicalUncertaintyModel:
                  nullmsg=True,
                  nullcost=5.0):
         self.lexicon_iterator = lexicon_iterator
+        self.baselexicon = baselexicon
         self.messages = messages
         self.states = states
         self.stateprior = stateprior
@@ -48,6 +50,12 @@ class LexicalUncertaintyModel:
         # This will get fill in if we reason beyond the lexical uncertainty listener:
         self.final_speaker = None
 
+    def rsa(self):
+        lit = self.l0(self.baselexicon)
+        spk = self.S(lit)
+        lis = self.L(spk)
+        return [lit, spk, lis]
+
     def run(self, n=0, display_progress=True):
         # If there is no lexicon prior, then this allows us to ignore it.
         lexprior_func = (lambda x : 1.0)
@@ -58,7 +66,7 @@ class LexicalUncertaintyModel:
         for lexindex, lex in enumerate(self.lexicon_iterator()):
             if display_progress and lexindex and lexindex % 10**2 == 0:
                 sys.stderr.write('\r'); sys.stderr.write('lexicon %s' % lexindex) ; sys.stderr.flush()
-            self.final_listener += lexprior_func(lexindex) * self.S(self.l0(lex)).T
+            self.final_listener += lexprior_func(lexindex) * self.S(self.l0(lex)).T            
         # Update or fill in the lexcount based on the iteration:
         self.lexcount = lexindex + 1
         # Final normalization and state prior incorporation:
