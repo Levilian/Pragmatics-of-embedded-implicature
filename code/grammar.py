@@ -24,7 +24,8 @@ class UncertaintyGrammars:
         self.messages, self.formulae = zip(*messages)
         self.messages = list(self.messages)
         self.formulae = list(self.formulae)
-        self.baselexicon = baselexicon                       
+        self.baselexicon = baselexicon
+        self.baselexicon_mat = self.interpretation_matrix(self.baselexicon)
         
     def lexicon_iterator(self):
         words, refinements = zip(*self.get_all_refinements().items())               
@@ -43,9 +44,7 @@ class UncertaintyGrammars:
         n = len(self.worlds)           
         mat = np.zeros((m, n))
         for i, phi in enumerate(self.formulae):
-            for j, w in enumerate(self.worlds):
-                if phi == "iv(fa(exactly_one, player), tv(made, fa(some, shot), self.worlds, player))":
-                    print eval(phi)((0,1,2))
+            for j, w in enumerate(self.worlds):                
                 if phi and eval(phi)(w):
                     mat[i,j] = 1.0
         if self.nullmsg:
