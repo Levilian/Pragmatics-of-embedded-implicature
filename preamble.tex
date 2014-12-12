@@ -117,6 +117,7 @@
 \newcommand{\nullmsg}{\mathbf{0}}
 
 \newcommand{\ALT}{\emph{ALT}}
+\newcommand{\OALT}{\mathop{O\negthinspace_{\ALT}}}
 
 \newcommand{\Grammar}{\mathcal{G}}
 \newcommand{\Refine}{\mathcal{R}}
@@ -156,6 +157,11 @@
 % Attempt to simplify proper name meaning code:
 \newcommand{\genericpn}[1]{\set{\tuple{w, Y} : #1 \in \set{x : \tuple{w,x} \in Y}}}
 
+\newcommand{\scalarlex}[1]{
+  \begin{array}[c]{r@{ \ = \ }l}
+    \sem{\word{scored}} & \set{#1} \\
+    \sem{\word{aced}}   & \set{\tuple{\world{A}, \playera}}
+  \end{array}}
 
 \newcommand{\genericscalar}[9]{
   \setlength{\arraycolsep}{4pt}

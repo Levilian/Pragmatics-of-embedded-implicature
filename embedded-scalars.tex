@@ -97,19 +97,19 @@ which defines production and interpretation as recursive processes in
 which speakers and listeners reason jointly about the state of the
 world and the nature of the linguistic system they are
 using. \citeauthor{Bergen:Levy:Goodman:2014} show that this model
-captures a wide range of well-studied classes of implicature.  Our
-extension simply allows for greater diversity in the semantic lexicon
-and includes more complex aspects of semantic composition.  The
-crucial feature of this model is that it explores a large space of
-potential refinements of word meanings, and those refinements feed
-into the compositional semantics to create refined meanings for
-proposition-denoting messages. Lexical uncertainty becomes
-constructional uncertainty. The discourse participants reason about
-rational ways to reduce this uncertainty, and implicature-rich
-interpretations arise as a result. Thus, implicatures are semantic
-\emph{and} pragmatic, a departure from Grice's particular conception
-of pragmatic meaning but well-aligned with his broader theory of
-meaning and intention.
+captures a wide range of well-studied classes of implicature,
+including many embedded implicatures. Our extension simply allows for
+greater diversity in the semantic lexicon and includes more complex
+aspects of semantic composition.  The crucial feature of this model is
+that it explores a large space of potential refinements of word
+meanings, and those refinements feed into the compositional semantics
+to create refined meanings for proposition-denoting messages. Lexical
+uncertainty becomes constructional uncertainty. The discourse
+participants reason about rational ways to reduce this uncertainty,
+and implicature-rich interpretations arise as a result. Thus,
+implicatures are semantic \emph{and} pragmatic, a departure from
+Grice's particular conception of pragmatic meaning but well-aligned
+with his broader theory of meaning and intention.
 
 In view of our experimental results, the chief advantage of this model
 is that it makes quantitative predictions that are easily and
@@ -349,7 +349,7 @@ The basic exhaustification operator is given in \eg{def:O}
 %
 \begin{examples}
 \item\label{def:O}
-  $O_{\ALT}(\varphi) = 
+  $\OALT(\varphi) = 
   \sem{\varphi} \sqcap 
   \forall q \in \ALT : (\sem{\varphi} \not\entails q) \entails \neg q$
 \end{examples}
@@ -412,10 +412,11 @@ $\ALT(\word{some shot})$ is defined as follows:
 
 \begin{figure}[tp]
   \centering
+  \newcommand{\labelednodeleft}[2]{\put(#1){\makebox(0,0)[l]{#2}}}
   \newcommand{\labelednode}[2]{\put(#1){\makebox(0,0){#2}}}
   \newcommand{\picline}[3]{\put(#1){\line(#2){#3}}}
-  \setlength{\unitlength}{1cm}
-  \begin{picture}(5.5,4.5)   
+  \setlength{\unitlength}{1.2cm}
+  \begin{picture}(9.5,4.5)   
     \labelednode{2.75,3}{$\set{a,b,c}$}
         
     \picline{0.75,2.2}{3,1}{1.8}
@@ -437,14 +438,23 @@ $\ALT(\word{some shot})$ is defined as follows:
     \labelednode{5,1}{$\set{c}$}
 
     \linethickness{2pt}
-    {\color{cborange}\put(4.88,1){\oval(0.85,0.75)}}
-    {\color{cbpurple}\rotatebox{20}{\put(1.5,2.2){\oval(3.8,1.1)}}}
-    {\color{cbgreen}\rotatebox{20}{\put(1.65,1.75){\oval(5.7,2.9)}}}
+    {\color{cborange}\put(4.9,1){\oval(0.65,0.65)}}
+    {\color{cbpurple}\rotatebox{20}{\put(1.6,2.1){\oval(3.5,0.85)}}}
+    {\color{cbgreen}\rotatebox{20}{\put(1.72,1.5){\oval(5.7,2.65)}}}
+    {\color{gray}\rotatebox{20}{\put(1.25,1.18){\oval(5.4,1.48)}}}
+
+
+
+    \labelednodeleft{4,4}{{\color{cbgreen}$\sem{\word{some shot\/}}$}}
+    \labelednodeleft{4,3}{{\color{cbpurple}$\sem{\word{every shot\/}}$}}
+    \labelednodeleft{4,2}{{\color{darkgray}$\sem{O_{\set{\sem{\word{every shot\/}}}}(\word{some shot\/})}$}}   
+    \labelednodeleft{4,1}{{\color{cborange}$\sem{\word{no shot\/}}$}}
+
   \end{picture}
   \caption{Given a domain $\set{a,b,c}$ with $\sem{\word{shot}} = \set{a,b}$,
     $\sem{\word{some shot}}$ is equal to the set of sets circled in green,
     $\sem{\word{every shot}}$ to the set of sets in purple, and
-    $\sem{\word{no shot}}$ to the set of sets in orange. If $O_{\ALT}(\word{some shot})$ 
+    $\sem{\word{no shot}}$ to the set of sets in orange. If $\OALT(\word{some shot})$ 
     contains  $\sem{\word{every shot}}$, then \word{some shot} is 
     refined to exclude the purple subset.}
   \label{fig:qspace}
@@ -456,7 +466,7 @@ than the input have no effect if included in the $\ALT$ set. The
 presence of $\sem{\word{no shot}}$ has no effect because it
 contradicts the input. The presence of $\sem{\word{every shot}}$ will,
 though, be meaningful, as long as we assume that $\sem{\word{shot}}
-\neq \emptyset$.  In that case, $O_{\ALT}(\word{some shot})$ will
+\neq \emptyset$.  In that case, $\OALT(\word{some shot})$ will
 denote the subset in \figref{fig:qspace} that is inside the green
 circle but outside of the purple one.  This is equivalent to the
 intersection of $\sem{\word{some shot}}$ and the complement of
@@ -464,8 +474,8 @@ $\sem{\word{every shot}}$ in the powerset of the domain.  In other
 words, it expresses \word{some, not all}, the intuitively
 implicature-rich interpretation.
 
-Because $O_{\ALT}$ is embeddable, syntactic constituents like
-$O_{\ALT}(\word{some shot})$ can appear in the scope of quantifiers.
+Because $\OALT$ is embeddable, syntactic constituents like
+$\OALT(\word{some shot})$ can appear in the scope of quantifiers.
 Implicature-rich versions of \eg{some}, \eg{everysome}, and
 \eg{exactlyonesome} are thus available --- potentially usable by
 speakers and inferable by listeners just like any other semantic
@@ -654,10 +664,53 @@ but also about the nature of the lexicon she is using.
 From this perspective, \CFS's model is also a lexical uncertainty
 model. For any given lexical item that one hears, the speaker might
 have in mind its literal content $\sem{\varphi}$ or one of the many
-enrichments available with $O_{\ALT}(\varphi)$ for different choices
+enrichments available with $\OALT(\varphi)$ for different choices
 of $\ALT$. The notion of refinement in \eg{refinement} is broader than
 this one, but the two definitions could be brought into alignment, or
-$O_{\ALT}$ could replace \eg{refinement} entirely.
+$\OALT$ could replace \eg{refinement} entirely.
+
+Here is an example of what refinement looks like, using a proper name
+and extensionalizing the semantics so that the example fits onto the
+page.  The important thing here is that we entertain lexica like the
+third-listed one in \subeg{refinement-ex}{ex-refinements} in which
+\word{Player A} means `Only Player A'.
+
+\begin{examples}
+\item\label{refinement-ex}
+  
+  \begin{examples}
+  \item $D = \set{a,b}$
+  \item $W = \set{w_{1}, w_{2}}$
+  \item  $\begin{array}[t]{@{} r@{ \ = \ }l}
+            \sem{\word{Player A}} 
+            & \set{Y \subseteq D : \playera \in Y} \\
+            & \set{ \set{a,b}, \set{a} }
+          \end{array}$  
+   \item\label{ex-refinements} 
+     $\Refine(\word{Player A}) = 
+     \set{
+       \begin{array}[c]{l}
+         \set{\set{a,b}, \set{a}}  \\
+         \set{\set{a,b}} \\
+         \set{\set{a}} \\
+       \end{array}
+     }$
+  \end{examples}
+\end{examples}
+
+Another perspective: in terms of \figref{fig:qspace}, we saw that
+\CFS's theory uses $\OALT$ to create a single refined meaning for
+\word{some shot}, represented by the set of sets in the gray circle
+(`some, not all'). Our theory of refinement would create one lexicon
+for every non-empty subset of the green circle. So, in addition, to
+considering `some, not all', we also admit lexica in which \word{some
+  player} denotes $\set{\set{a}, \set{b}}$ (`exactly one shot'),
+lexica in which it denotes $\set{\set{a,b,c}}$ (`every shot'), lexica
+in which it denotes $\set{\set{a,b,c},\set{a}}$ (no obvious
+paraphrase), and so forth for all the other subsets of the green
+circle. These are all potential results of $\OALT(\word{some shot})$
+for some choice of $\ALT$, and our theory can be regarded as one that
+reasons in terms of all of these options.
 
 %=====================================================================
 
@@ -864,13 +917,23 @@ implicature.
     \\
     & \downarrow & \downarrow & \downarrow 
     \\    
-    \Lex
+    \Messages
     &
     \genericscalar{\False}{\True}{\True}{\False}{\False}{\True}{\True}{\True}{\True}
     &
     \genericscalar{\False}{\True}{\False}{\False}{\False}{\True}{\True}{\True}{\True}
     &
     \genericscalar{\False}{\False}{\True}{\False}{\False}{\True}{\True}{\True}{\True}
+    \\
+    & \uparrow & \uparrow & \uparrow 
+    \\                               
+    \Lex
+    & 
+    \scalarlex{\tuple{\world{S},\playera}, \tuple{\world{A},\playera}}
+    & 
+    \scalarlex{\tuple{\world{S},\playera}}
+    &
+    \scalarlex{\tuple{\world{A},\playera}}   
   \end{array}
   \]
   \caption{Simple scalar inference. We assume a flat prior over states
@@ -942,6 +1005,8 @@ which it means roughly `Only Player A', and similarly for \word{Player
   all} and \word{scored} can take on more refined senses that exclude
 \word{aced}.
 
+
+
 \Figref{fig:subjects} gives the inferences made by the uncertainty
 listener. They are well-aligned with intuitions about this context.
 When a proper name \word{P} is used, it takes on the exhaustified
@@ -965,6 +1030,15 @@ refined to exclude one of the players.  In that case, the negative
 universal turns out to be true. Only a few lexica support this
 interaction, however, ensuring that it cannot become dominant.
 
+% The above inferences can be modeled with the framework of \CFS\ as
+% defined in \secref{sec:grammar}; that framework doesn't
+% automatically deliver probabilities associated with each inference,
+% but has the representational power to capture all of them. It's
+% therefore worth pointing out one class of examples that might reveal
+% a qualitative difference between the two theories: instances
+% involving predicates that overlap but do not entail each other, as
+% in \word{Russian} and \word{Asian}.
+
 This completes our overview of the compositional lexical uncertainty
 model. We now to turn to our human subjects experiments, where we show
 both that embedded implicatures seem to be real and that the above
@@ -982,7 +1056,7 @@ sentences.
     & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} & \world{AA}\\
     \midrule
     \word{Player A scored} & 0.0 & 0.0 & 0.0 & \graycell{0.24} & 0.19 & 0.16 & 0.18 & 0.16 & 0.07\\
-    \word{Player A ace}d & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{0.36} & 0.3 & 0.34\\
+    \word{Player A aced} & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{0.36} & 0.3 & 0.34\\
     \word{Player B scored} & 0.0 & \graycell{0.24} & 0.18 & 0.0 & 0.19 & 0.16 & 0.0 & 0.16 & 0.07\\
     \word{Player B aced} & 0.0 & 0.0 & \graycell{0.36} & 0.0 & 0.0 & 0.3 & 0.0 & 0.0 & 0.34\\
     \word{some player scored} & 0.0 & 0.14 & 0.11 & 0.14 & \graycell{0.17} & 0.14 & 0.11 & 0.14 & 0.05\\
@@ -1013,7 +1087,7 @@ embedded below quantifiers. The design builds on previous studies by
 
 \subsection{Materials, methods, and participants}
 
-\marginpar{This description of the experiment is based on sudy of the CSV output. It should be checked and reworked.}
+\marginpar{This description of the experiment is based on study of the CSV output. It should be checked and reworked.}
 
 In experiment~1, participants were told that their task was to aid in
 the development of an automatic sportscaster that would give accurate

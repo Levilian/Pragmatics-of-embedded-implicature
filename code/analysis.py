@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
+import sys
 from copy import copy
+from collections import defaultdict
 import numpy as np
 from scipy.stats import spearmanr, pearsonr
 from experiment import *
@@ -126,8 +128,13 @@ class Analysis:
         xy_coef, _, n = self.correlation_test(x, y)
         xz_coef, _, n = self.correlation_test(x, z)
         yz_coef, _, n = self.correlation_test(y, z)
-        lower, upper = r_doi_ci(xy_coef, xz_coef, yz_coef, n, conf_level=conf_level)
-        return (not (lower < 0.0 and upper > 0.0), lower, upper, xy_coef, xz_coef, yz_coef, n)
+        lower = None; upper = None; sig = None
+        try:
+            lower, upper = r_doi_ci(xy_coef, xz_coef, yz_coef, n, conf_level=conf_level)
+            sig = not (lower < 0.0 and upper > 0.0)
+        except ZeroDivisionError:
+            sys.stderr.write("Warning: correlation analysis failed.\n")          
+        return (sig, lower, upper, xy_coef, xz_coef, yz_coef, n)
 
     def correlation_comparison_by_message(self, a, b, c, conf_level=0.95):
         return zip(self.model.messages, [self.correlation_comparison(a[i], b[i], c[i], conf_level=conf_level) for i in range(a.shape[0])])
@@ -136,18 +143,38 @@ class Analysis:
         lit, spk, lis = self.model.rsa()
         lit = lit[:-1]
         lis = lis[:-1]
-        print 'Human: Lit vs. LexUnc:', self.correlation_comparison(self.expmat.flatten(), lit.flatten(), self.modmat.flatten(), conf_level=conf_level)
-        print 'Human: RSA vs. LexUnc:', self.correlation_comparison(self.expmat.flatten(), lis.flatten(), self.modmat.flatten(), conf_level=conf_level)
-        
+        human = copy(self.expmat)
+        lexunc = copy(self.modmat)        
+        print 'Human: Lit vs. LexUnc:', self.correlation_comparison(human.flatten(), lit.flatten(), lexunc.flatten(), conf_level=conf_level)
+        print 'Human: RSA vs. LexUnc:', self.correlation_comparison(human.flatten(), lis.flatten(), lexunc.flatten(), conf_level=conf_level)        
         print 'By message',        
         print '\nHuman: Lit vs. LexUnc:'        
-        for m, vals in self.correlation_comparison_by_message(self.expmat, lit, self.modmat, conf_level=conf_level):
-            print m, vals
-            
+        for m, vals in self.correlation_comparison_by_message(human, lit, lexunc, conf_level=conf_level):
+            print m, vals            
         print '\nHuman: RSA vs. LexUnc:'
-        for m, vals in self.correlation_comparison_by_message(self.expmat, lis, self.modmat, conf_level=conf_level):
+        for m, vals in self.correlation_comparison_by_message(human, lis, lexunc, conf_level=conf_level):
             print m, vals
 
+    def message_specific_clustered_correlation_analysis(self, msg, clustering, conf_level=0.95):
+        exp_means, exp_cis = self.experiment.analyze_clustered_item(msg, clustering)
+        mod_msg = SENTENCES[msg]
+        lit, spk, lis = self.model.rsa()
+        lit = self.clustered_vector(lit[self.messages.index(mod_msg)], clustering)
+        lis = self.clustered_vector(lis[self.messages.index(mod_msg)], clustering)
+        lexunc = self.clustered_vector(self.modmat[self.messages.index(mod_msg)], clustering)
+        print msg
+        print 'Human: Lit vs. LexUnc:', self.correlation_comparison(exp_means, lit, lexunc, conf_level=conf_level)
+        print 'Human: RSA vs. LexUnc:', self.correlation_comparison(exp_means, lis, lexunc, conf_level=conf_level)    
+
+    def clustered_vector(self, vec, clustering):
+        d = defaultdict(list)
+        for j, w in enumerate(self.worlds):
+            d[clustering[w]].append(vec[j])
+        cnames = sorted(set(clustering.values()))
+        vals = np.array([np.mean(d[cname]) for cname in cnames])
+        vals = 1.0 + (6.0 * vals)
+        return vals
+            
     def to_csv(self, output_filename):
         writer = csv.writer(file(output_filename, 'w'))
         writer.writerow(['Sentence','Condition','LiteralListener','RSAListener','UncertaintyListener','HumanMean','HumanLowerCI','HumanUpperCI'])

@@ -11,6 +11,31 @@ from fragment import *
 from plots import general_comparison_plot
 from utils import colors
 
+
+every_some_clustering = {
+    "NNN": "False",
+    "NNS": "False",
+    "NNA": "False",
+    "NAA": "False",
+    "NSA": "False",
+    "NSS": "False",
+    "SSS": "Local",
+    "SSA": "Literal-only",
+    "SAA": "Literal-only",
+    "AAA": "Literal-only"}
+
+exactlyone_some_clustering = {
+    "NNN": "False",
+    "NNS": "Literal/Local",
+    "NNA": "Literal-only",
+    "NAA": "False",
+    "NSA": "Local",
+    "NSS": "False",
+    "SSS": "False",
+    "SSA": "False",
+    "SAA": "Local",
+    "AAA": "False"}
+
 ######################################################################
 
 def simplescalar():
@@ -215,13 +240,27 @@ def experimental_assessment(
             speakernorm_experiment=False,
             likertize_model=True).correlation_analysis()
 
+        # Analysis(
+        #     experiment=experiment,
+        #     model=mod,
+        #     listenernorm_experiment=False,
+        #     speakernorm_experiment=False,
+        #     likertize_model=False).to_csv('embeddedscalars-exp01-analysis-2014-12-04.csv')
+
         Analysis(
             experiment=experiment,
             model=mod,
             listenernorm_experiment=False,
             speakernorm_experiment=False,
-            likertize_model=False).to_csv('embeddedscalars-exp01-analysis-2014-12-04.csv')
-    
+            likertize_model=True).message_specific_clustered_correlation_analysis("Exactly one player hit some of his shots", exactlyone_some_clustering)
+
+        Analysis(
+            experiment=experiment,
+            model=mod,
+            listenernorm_experiment=False,
+            speakernorm_experiment=False,
+            likertize_model=True).message_specific_clustered_correlation_analysis("Every player hit some of his shots", every_some_clustering)
+        
         # Analysis(
         #     experiment=experiment,
         #     model=mod,
@@ -294,36 +333,12 @@ def crucial_item_mod_exp_compare(mod, exp, msg, clustering, output_filename=None
         
 def crucial_items():
 
-    every_some_clustering = {
-        "NNN": "False",
-        "NNS": "False",
-        "NNA": "False",
-        "NAA": "False",
-        "NSA": "False",
-        "NSS": "False",
-        "SSS": "Local",
-        "SSA": "Literal-only",
-        "SAA": "Literal-only",
-        "AAA": "Literal-only"}
-
-    exactlyone_some_clustering = {
-        "NNN": "False",
-        "NNS": "Literal/Local",
-        "NNA": "Literal-only",
-        "NAA": "False",
-        "NSA": "Local",
-        "NSS": "False",
-        "SSS": "False",
-        "SSA": "False",
-        "SAA": "Local",
-        "AAA": "False"}
-
     exp1 = Experiment(src_filename='../data/basketball-pilot-2-11-14-results-parsed.csv')
     exp2a = Experiment(src_filename='../data/basketball-focus-only-manip-3-17-14-results-parsed.csv',  subjectCondition="focus")    
     exp2b = Experiment(src_filename='../data/basketball-focus-only-manip-3-17-14-results-parsed.csv',  subjectCondition="only")
     mod = experimental_assessment(
         analysis=False,
-        subjs=('every_player', 'exactly_one_player', 'no_player'),
+        subjs=('every_player', 'exactly_one_player', 'no_player', 'some_player'),
         objs=('every_shot', 'no_shot', 'some_shot'),
         refinable=('some_player', 'some_shot'),
         file_prefix = "experiment",
