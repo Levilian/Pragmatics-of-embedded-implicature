@@ -158,7 +158,7 @@ for example, relating to considerations of politeness, discretion, or
 secrecy, but it is usually attributed to the maxim of quality, which
 instructs speakers to say only what they have strong positive evidence
 for. For example, imagine a sportscaster who has observed the outcome
-of a tournament round and is reporting on it as news. If the
+of a single round of a basketball tournament, and is reporting on it as news. If the
 sportscaster says \eg{some}, then she will likely implicate that
 Player~A did not make all of his shots.
 %
@@ -315,7 +315,7 @@ report on a new version of the experiment in \secref{sec:exp1} that
 uses simpler displays and a more straightforward hypothesis linking
 responses to theoretical interpretations. This experiment reproduces
 the core findings of \citeauthor{Chemla:Spector:2011}'s studies,
-suggesting that these sentence do in fact pose a serious problem for
+suggesting that these sentences do in fact pose a serious problem for
 Gricean reasoning as usual.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -334,9 +334,9 @@ For $\ALT$, the relevant notion of alternative is familiar from
 theories of questions and focus \citep{Groenendijk84,Rooth85,Rooth92}:
 we can assume, as a default, that the alternatives for an expression
 $\varphi$ is some subset of the items in the same type-theoretic
-denotation domain as $\sem{\varphi}$, the meaning of $\varphi$.  The
-function $\ALT$ is part of context-dependent semantics: the discourse
-participants need to coordinate on it just as they need to coordinate
+denotation domain as $\sem{\varphi}$, the meaning of $\varphi$. Except for the restriction that $\sem{\varphi} \in\ALT(\varphi)$ for any $\varphi$, the
+precise value of the function $\ALT$ is context-dependent, and discourse
+participants need to coordinate on it for communication to be successful --- just as they need to coordinate
 on the meanings of deictic or discourse-bound pronouns, elided
 phrases, and other pragmatically controlled free variables.
 
@@ -349,9 +349,12 @@ The basic exhaustification operator is given in \eg{def:O}
 %
 \begin{examples}
 \item\label{def:O}
-  $\OALT(\varphi) = 
-  \sem{\varphi} \sqcap 
-  \forall q \in \ALT : (\sem{\varphi} \not\entails q) \entails \neg q$
+ % $\OALT(\varphi) = 
+%  \sem{\varphi} \sqcap 
+%  \forall q \in \ALT(\phi) : (\sem{\varphi} \not\entails q) \entails \neg q$
+\marginpar{DL: I can't quite make sense of the definition given before; is it really what they give? This definition tries to take the meet of an arbitrary object with a Boolean. I've inserted my attempt to fix this, but left the previous version commented out for comparison or correction.}
+ $\OALT(\varphi) = 
+\bigsqcap \{ -q | q \in \ALT(\varphi) \wedge \sem{\varphi} \not\entails q \} \sqcap \sem{\varphi}$ 
 \end{examples}
 %
 The $O$ operator maps an expression $\varphi$ to one that entails
@@ -515,9 +518,9 @@ therefore remains, though its precise form is different. In the
 context of \CFS's theory, the discourse participants must coordinate on
 the nature of the function $\ALT$.  Similarly, because the language
 permits silent, embedded $O$ operators in many positions, the
-speaker's signal always underdetermines her intended message; a given
+speaker's signal frequently underdetermines her intended message; a given
 surface form $U$ might be consistent with logical forms that encode
-implicatures and those that don't. The speaker must therefore rely on
+implicatures and those that don't.\marginpar{DL: changed ``always underdetermines'' to ``frequently'', since whether O-insertion generates ambiguity depends on details of the sister's denotation and its alternative set.} The speaker must therefore rely on
 the listener to select the right one.  From this perspective,
 implicature calculation amounts to reasoning about which logical form
 was intended. How this coordination happens has not been a focus of
@@ -585,7 +588,7 @@ refinement throughout the lexicon.
   \renewcommand{\arraystretch}{1.2}
   \begin{tabular}[c]{r@{ $\rightarrow$ }l l}
     \toprule
-    \multicolumn{2}{c}{Syntax}     & Denotation of the lefthand side \\
+    \multicolumn{2}{c}{Syntax}     & Denotation of the lefthand side\\
     \midrule
     N   & \word{person}      & $\set{\tuple{w, x} : x \text{ is a person in } w}$ \\
     N   & \word{shot}        & $\set{\tuple{w, x} : x \text{ is a shot in } w}$ \\
@@ -627,7 +630,7 @@ something about my lexical representations and perhaps adjust your own
 accordingly for the purposes of our interaction. In semantics, we like
 to imagine that word meanings are fixed across speakers and context,
 but in fact they are sometimes idiosyncratic and usually adaptable
-\citep{Clark97}.
+\citep{Clark97}. \marginpar{`lefthand side' not quite right in figure 2 column labels; `rule/item'? relatedly, do you envision rules having denotations in this grammar?}
 
 The `lexical uncertainty' aspects of our model are designed to capture
 this variability. The core notion is that of \tech{refinement} of a
@@ -655,7 +658,7 @@ expanding it to include other kinds of alteration.
 
 The guiding idea is that, in interaction, pragmatic agents reason
 about possible refinements of their lexical items, with the base
-lexical meaning serving as a kind of focal point for the interaction.
+lexical meaning serving as a kind of focal point for the interaction \citep[cf.][]{Franke09DISS}.
 Intuitively, one can imagine that part of what it means to be a
 responsible interlocutor is to make inferences based on the speaker's
 behavior not only about the world information she would like to convey
@@ -758,8 +761,8 @@ $\Grammar$ in these domains.
   \end{examples}
 \end{examples}
 
-We do not make use of the prior distribution over states $\StatePrior$
-or the prior distribution over lexica $\LexPrior$, assuming them to be
+We do not bias the prior distribution over states $\StatePrior$
+or the prior distribution over lexica $\LexPrior$ in any way, assuming them to be
 flat. Since we do not have experimental measurements for the priors,
 this seems like the safest option. (For techniques for measuring and
 manipulating state priors, see \citealt{Frank:Goodman:2012} and
@@ -869,7 +872,7 @@ one can push the marginalization up and down in the agent hierarchy
 temperature parameter $\lambda$ in the speaker agents to control how
 greedily they try to extract information from the agent they are
 reasoning about, with higher $\lambda$ values leading to more
-aggressive pragmatic strategies.
+aggressive pragmatic strategies.\marginpar{Add a citation discussing this point?} 
 
 %=====================================================================
 
@@ -940,7 +943,7 @@ implicature.
     and lexica. $\Costs(\nullmsg) = 5$, and $\Costs(\msg) = 0$ for
     the other messages. The uncertainty listener $\UncertaintyListener$
     infers that the general term \word{scored} excludes its specific counterpart
-    \word{aced}.}
+    \word{aced} in this context.}
   \label{fig:simplescalar}
 \end{figure}
 
@@ -1157,7 +1160,7 @@ crucial item, a single spoke extends from the vertex to a point on the
 diameter. There are potentially many ways this state can be
 drawn. With our displays, it was straightforward to show participants
 every relevant variant of the condition, which allowed us to
-marginalize out this kind of variation in our analyses. Our
+factor out this kind of variation in our analyses. Our
 expectation was that these changes to the original design would yield
 a clearer overall picture.
 
@@ -1192,8 +1195,8 @@ the most compelling case for local enrichment. This sentence received
 its highest ratings in the the \world{NNS} condition/world, where it
 is true under its literal and local enrichment construals. However, it
 also received high ratings in the \world{NSA} and \world{SAA} worlds,
-where it is true only with local enrichment. since two players made at
-least some of their baskets, ruling out the literal construal.  We
+where it is true only with local enrichment. This is because two players made at
+least some of their baskets in these worlds, ruling out the literal construal.  We
 note also that its more strictly truth-conditional interpretation
 seems to be salient as well, as it was rated highly on average in the
 \world{NNA} condition.
@@ -1245,7 +1248,7 @@ world as well as these quantified statements can. As we noted in
 \secref{sec:implicature}, this case does not distinguish purely
 Gricean accounts from grammar-driven ones, but it is noteworthy
 nonetheless: our sportcaster scenario was designed to encourage
-implicatures (the sportscaster should give exhaustive reports), and it
+implicatures (the sportscaster should give informative reports), and it
 seems to have done that.
 
 For the case of \word{exactly one} over \word{some}, the pattern is
@@ -1262,7 +1265,7 @@ We conclude from these response patterns that local enrichment is
 possible even in non-monotone environments, vindicating the guiding
 hypotheses of \citet{Chemla:Spector:2011}. However, our primary
 concern is not whether such readings are possible or impossible in a
-binary sense, but rather how accurately we can predict them. In this
+binary sense, but rather how accurately we can predict them on the basis of contextual and world knowledge. In this
 way, our objectives are more closely aligned with Griceans like
 \citet{Geurts09}, \citet{Geurts:Pouscoulous:2009}, and
 \citet{geurts-vantiel:2013:scalar}. We turn now to the task of
@@ -1348,7 +1351,7 @@ Overall, the correlations are extremely high. Only the negative
 sentences have comparably low values, possibly because of ambiguities
 that we did not seek to model. The sentence containing two negatives
 resulted in a somewhat chaotic-looking distribution of
-middle-of-the-scale judgments in true worlds. And the example with
+middle-of-the-scale judgments in true worlds.\marginpar{I don't think it's so chaotic - the main issue other than scope/PPI is that some people gave a negative concord intepretation to no/no, so that NNN got decent ratings.} And the example with
 \word{no} in subject position and \word{some} in object position may
 have a scope ambiguity that we did not model. In particular,
 \word{some} is often classified as a positive polarity item, resistant
