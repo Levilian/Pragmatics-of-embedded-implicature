@@ -119,3 +119,10 @@ qplot(Condition, Value, fill=Model,
       data=filter(md, Model != "HumanMean", 
                   shortSentence == "no..some")) +
   theme(axis.text.x = element_text(angle = 90,vjust=0.5))
+
+qplot(Condition, Value, fill=Model, 
+      facets = shortSentence~Model, geom="bar",
+      stat="identity",
+      position="dodge", 
+      data=md) +
+  theme(axis.text.x = element_text(angle = 90,vjust=0.5))
