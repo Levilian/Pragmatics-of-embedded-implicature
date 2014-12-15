@@ -1,7 +1,6 @@
 rm(list=ls())
 source("~/Projects/R/Ranalysis/useful.R")
 
-setwd("~/Projects/R/embed_ball")
 d <- read.csv("data/basketball-pilot-2-11-14-results-parsed.csv")
 tt <- read.csv("data/trial_types.csv")
 
@@ -59,7 +58,7 @@ ms$n <- aggregate(workerid ~ condition + sentence + trial.type + quant1 + quant2
 # quartz()
 ggplot(subset(ms,trial.type=="target"),
        aes(x=condition, y=response, fill=truth, ymin=response-cil,
-           ymax=response+cih)) + 
+           ymax=response+cih)) + o
   geom_bar(stat="identity") + 
   geom_linerange() +
   ylim(c(0,7)) +

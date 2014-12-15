@@ -1,6 +1,6 @@
 rm(list=ls())
 source("~/Projects/R/Ranalysis/useful_dplyr.R")
-d <- read.csv("~/Desktop/embeddedscalars-exp01-analysis-2014-12-04.csv")
+d <- read.csv("~/Projects/embedded_implicature/Pragmatics-of-embedded-implicature/data/embeddedscalars-exp01-analysis-2014-12-04.csv")
 
 d <- d %>% mutate(HumanMean = (HumanMean - 1) / 6) %>%
   group_by(Sentence) %>%
@@ -109,4 +109,13 @@ qplot(Condition, Value, fill=Model,
       position="dodge", 
       data=filter(md, Model != "HumanMean", 
                   shortSentence == "every..some")) +
+  theme(axis.text.x = element_text(angle = 90,vjust=0.5))
+
+quartz(height=3.5,width=10)
+qplot(Condition, Value, fill=Model, 
+      facets = shortSentence~Model, geom="bar",
+      stat="identity",
+      position="dodge", 
+      data=filter(md, Model != "HumanMean", 
+                  shortSentence == "no..some")) +
   theme(axis.text.x = element_text(angle = 90,vjust=0.5))
