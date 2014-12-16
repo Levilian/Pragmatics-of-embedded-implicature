@@ -209,11 +209,11 @@ def experimental_assessment(
         msg = "%s(made(%s))" % (subj, obj)
         formula = "iv(%s, tv(made, %s, self.worlds, player))" % (d1,  d2)       
         messages.append((msg, formula))
-    
+                
     ug = UncertaintyGrammars(
         baselexicon=baselexicon,
         messages=messages,
-        worlds=worlds,
+        worlds=worlds,        
         refinable=refinable,
         nullmsg=True)
 
@@ -245,35 +245,35 @@ def experimental_assessment(
         #     model=mod,
         #     listenernorm_experiment=False,
         #     speakernorm_experiment=False,
-        #     likertize_model=False).to_csv('embeddedscalars-exp01-analysis-2014-12-04.csv')
+        #     likertize_model=False).to_csv('embeddedscalars-exp01-analysis-2014-12-15-cfs.csv')
 
-        Analysis(
-            experiment=experiment,
-            model=mod,
-            listenernorm_experiment=False,
-            speakernorm_experiment=False,
-            likertize_model=True).message_specific_clustered_correlation_analysis("Exactly one player hit some of his shots", exactlyone_some_clustering)
+        # Analysis(
+        #     experiment=experiment,
+        #     model=mod,
+        #     listenernorm_experiment=False,
+        #     speakernorm_experiment=False,
+        #     likertize_model=True).message_specific_clustered_correlation_analysis("Exactly one player hit some of his shots", exactlyone_some_clustering)
 
-        Analysis(
-            experiment=experiment,
-            model=mod,
-            listenernorm_experiment=False,
-            speakernorm_experiment=False,
-            likertize_model=True).message_specific_clustered_correlation_analysis("Every player hit some of his shots", every_some_clustering)
+        # Analysis(
+        #     experiment=experiment,
+        #     model=mod,
+        #     listenernorm_experiment=False,
+        #     speakernorm_experiment=False,
+        #     likertize_model=True).message_specific_clustered_correlation_analysis("Every player hit some of his shots", every_some_clustering)
         
         # Analysis(
         #     experiment=experiment,
         #     model=mod,
         #     listenernorm_experiment=False,
         #     speakernorm_experiment=False,
-        #     likertize_model=True).listener_comparison_plot(output_filename=filename_root+"barplots.pdf", nrows=3, ncols=3)    
+        #     likertize_model=True).listener_comparison_plot(output_filename=filename_root+"barplots.pdf", nrows=3, ncols=3) 
 
-        # Analysis(
-        #     experiment=experiment,
-        #     model=mod,
-        #     listenernorm_experiment=True,
-        #     speakernorm_experiment=False,
-        #     likertize_model=False).listener_comparison_plot(output_filename=filename_root+"barplots-listenernorm.pdf", nrows=3, ncols=3)
+        Analysis(
+            experiment=experiment,
+            model=mod,
+            listenernorm_experiment=True,
+            speakernorm_experiment=False,
+            likertize_model=False).listener_comparison_plot(output_filename=filename_root+"barplots-listenernorm.pdf", nrows=3, ncols=3)
 
         # Analysis(
         #     experiment=experiment,
@@ -439,9 +439,24 @@ if __name__ == '__main__':
         analysis=True,
         subjs=('every_player', 'exactly_one_player', 'no_player'),
         objs=('every_shot', 'no_shot', 'some_shot'),
-        refinable=('some_player', 'some_shot'),
-        file_prefix = "experiment",
+        refinable={'some_player': ['exactly_one_player'], 'some_shot': ['exactly_one_shot']},
+        file_prefix="cfs",
         experiment=Experiment(src_filename="../data/basketball-pilot-2-11-14-results-parsed.csv"))
+
+    # experimental_assessment(
+    #     analysis=True,
+    #     subjs=('every_player', 'exactly_one_player', 'no_player'),
+    #     objs=('every_shot', 'no_shot', 'some_shot'),
+    #     refinable={'some_player': [], 'some_shot': []})
+        
+
+    # experimental_assessment(
+    #     analysis=True,
+    #     subjs=('every_player', 'exactly_one_player', 'no_player'),
+    #     objs=('every_shot', 'no_shot', 'some_shot'),
+    #     refinable={'some_player':[], 'some_shot':[]},
+    #     file_prefix = "experiment",
+    #     experiment=Experiment(src_filename="../data/basketball-pilot-2-11-14-results-parsed.csv"))
 
     # Adding 'exactly one', like 'only', to the set of object quantifiers
     # means that we don't get the embedded scalar implicature under

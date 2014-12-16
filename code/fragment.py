@@ -43,7 +43,10 @@ def define_lexicon(player=[], shot=[], worlds=[]):
         "every_player":       [Y for Y in D_et if set(player) <= set(Y)],
         "every_shot":         [Y for Y in D_et if set(shot) <= set(Y)],
         "no_player":          [Y for Y in D_et if len(set(player) & set(Y)) == 0],
-        "no_shot":            [Y for Y in D_et if len(set(shot) & set(Y)) == 0]
+        "no_shot":            [Y for Y in D_et if len(set(shot) & set(Y)) == 0],
+        # Mainly for specifying refinements:
+        "not_every_player":   [Y for Y in D_et if not(set(player) <= set(Y))],
+        "not_every_shot":     [Y for Y in D_et if not(set(shot) <= set(Y))]
         }
     return lex
 

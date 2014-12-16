@@ -15,7 +15,6 @@ class UncertaintyGrammars:
                  worlds=[],
                  refinable={},
                  nullmsg=True):
-
         self.worlds = worlds
         self.refinable = refinable
         self.nullmsg = nullmsg
@@ -52,10 +51,17 @@ class UncertaintyGrammars:
         return mat
  
     def get_all_refinements(self):
+        # Make sure we're in the baselexicon namespace:
+        for word, sem in self.baselexicon.items():
+            setattr(sys.modules[__name__], word, sem)
+        # Refiments:
         refine = {}
         for word, semval in self.baselexicon.items():
             if word in self.refinable:
-                refine[word] = self.refinements(semval)
+                if self.refinable[word]:
+                    refine[word] = [semval] + [eval(phi) for phi in self.refinable[word]]
+                else:
+                    refine[word] = self.refinements(semval)
             else:
                 refine[word] = [semval]
         return refine

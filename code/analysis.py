@@ -4,7 +4,7 @@ import sys
 from copy import copy
 from collections import defaultdict
 import numpy as np
-from scipy.stats import spearmanr, pearsonr
+from scipy.stats import spearmanr, pearsonr, linregress
 from experiment import *
 from plots import *
 from utils import *
@@ -32,21 +32,21 @@ class Analysis:
         self.modmat = self.model.final_listener
         if NULL in self.messages:
             self.messages.remove(NULL)
-            self.modmat = self.modmat[: -1]
+            self.modmat = self.modmat[: -1]            
         self.expmat = np.array(self.experiment.target_means2matrix(self.messages, self.worlds))
+        self.speakernorm_experiment = speakernorm_experiment
+        self.listenernorm_experiment = listenernorm_experiment                   
         self.confidence_intervals = self.experiment.target_cis2matrix(self.messages, self.worlds)
         # Rescaling:
-        self.likertize_model = likertize_model
-        self.speakernorm_experiment = speakernorm_experiment
-        self.listenernorm_experiment = listenernorm_experiment
+        self.likertize_model = likertize_model        
         if self.speakernorm_experiment:
-            self.likertize_model = False
-            self.rescale_confidence_intervals(byrow=False)
-            self.expmat = colnorm(self.expmat)            
+            self.likertize_model = False            
+            self.rescale_confidence_intervals(byrow=False)                        
+            self.expmat = colnorm(self.expmat)
         if self.listenernorm_experiment:
-            self.likertize_model = False
-            self.rescale_confidence_intervals(byrow=True)
-            self.expmat = rownorm(self.expmat)            
+            self.likertize_model = False            
+            self.rescale_confidence_intervals(byrow=True)            
+            self.expmat = rownorm(self.expmat)
         if self.likertize_model:
             self.modmat = self.likertize(self.modmat)
         # Y-axis design:
@@ -72,7 +72,16 @@ class Analysis:
         # Correlations:
         correlation_stats = [(self.correlation_test(self.modmat[i], self.expmat[i])) for i in range(self.modmat.shape[0])]
         correlation_texts = self.correlation(by_message=True)
-        correlation_texts = [r"%s $\rho = %s$; %s" % (self.correlation_func_name, coef, p) for coef, p in correlation_texts]
+        correlation_texts = [r"%s $\rho = %s$; %s" % (self.correlation_func_name, round(coef, 2), self.printable_pval(p)) for coef, p in correlation_texts]
+        self.correlation_func = spearmanr
+        self.correlation_func_name = 'Spearman'
+        correlation_texts2 = self.correlation(by_message=True)
+        correlation_texts2 = [r"%s $\rho = %s$; %s" % (self.correlation_func_name, round(coef, 2), self.printable_pval(p)) for coef, p in correlation_texts2]
+        correlation_texts = [x + "\n" + y for x, y in zip(correlation_texts, correlation_texts2)]
+        # MSE:
+        errs = [self.mse(self.modmat[i], self.expmat[i]) for i in range(self.modmat.shape[0])]
+        errs = ["MSE = %s" % np.round(err, 4) for err in errs]
+        correlation_texts = [x + "\n" + y for x, y in zip(errs, correlation_texts)]
         # Limits:                
         comparison_plot(modmat=self.modmat,
                         expmat=self.expmat,
@@ -103,7 +112,6 @@ class Analysis:
                     upper, lower = self.confidence_intervals[i][j]
                     self.confidence_intervals[i][j] = (upper/norms[j], lower/norms[j])
                     
-
     def likertize(self, mat):
         return np.array([1.0 + (6.0 * row) for row in mat])
 
@@ -154,6 +162,12 @@ class Analysis:
         print '\nHuman: RSA vs. LexUnc:'
         for m, vals in self.correlation_comparison_by_message(human, lis, lexunc, conf_level=conf_level):
             print m, vals
+
+    def mse(self, x, y):
+        slope, intercept, r_value, p_value, std_err = linregress(x,y)
+        predicted = intercept + (slope*x)
+        err = np.sqrt(np.sum((y-predicted)**2)/len(x))
+        return err
 
     def message_specific_clustered_correlation_analysis(self, msg, clustering, conf_level=0.95):
         exp_means, exp_cis = self.experiment.analyze_clustered_item(msg, clustering)

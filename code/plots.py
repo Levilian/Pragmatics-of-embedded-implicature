@@ -136,7 +136,7 @@ def comparison_plot(modmat=None,
             add_confidence_intervals(ax=ax, pos=pos+(width*0.5), cis=mod_confidence_intervals[i])
         # Correlation annotations:
         if correlation_texts:            
-            ax.text(0, ylim[1], correlation_texts[i], fontsize=14, verticalalignment='top', horizontalalignment='left')
+            ax.text(max(xlim)*0.02, ylim[1]*0.98, correlation_texts[i], fontsize=14, verticalalignment='top', horizontalalignment='left')
     plt.legend(loc='upper left', bbox_to_anchor=bbox_to_anchor, ncol=2, fontsize=16)
     # Output:
     if output_filename:
