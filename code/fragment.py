@@ -46,7 +46,11 @@ def define_lexicon(player=[], shot=[], worlds=[]):
         "no_shot":            [Y for Y in D_et if len(set(shot) & set(Y)) == 0],
         # Mainly for specifying refinements:
         "not_every_player":   [Y for Y in D_et if not(set(player) <= set(Y))],
-        "not_every_shot":     [Y for Y in D_et if not(set(shot) <= set(Y))]
+        "not_every_shot":     [Y for Y in D_et if not(set(shot) <= set(Y))],
+        "scored_not_aced":    [[w, x] for w, x in product(worlds, player) if len(shot[: w[player.index(x)]]) == 1],
+        "only_PlayerA":       [X for X in powerset(player) if a in X and len(X) == 1],
+        "only_PlayerB":       [X for X in powerset(player) if b in X and len(X) == 1],
+        "only_PlayerC":       [X for X in powerset(player) if c in X and len(X) == 1]                
         }
     return lex
 

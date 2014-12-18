@@ -143,7 +143,7 @@ def illustration_subj_large():
         baselexicon=baselexicon,
         messages=messages,
         worlds=worlds,
-        refinable=['some_player', 'PlayerA', 'PlayerB', 'scored', 'aced'],
+        refinable={'some_player': ['exactly_one_player'], 'PlayerA': ['only_PlayerA'], 'PlayerB': ['only_PlayerB'], 'scored': ['scored_not_aced'], 'aced': []},
         nullmsg=True)
 
     mod = LexicalUncertaintyModel(
@@ -288,11 +288,11 @@ def experimental_assessment(
         #     listenernorm_experiment=False,
         #     speakernorm_experiment=False).listener_correlation_plot(output_filename=filename_root+"scatterplot.pdf")
     
-        # Analysis(
-        #     experiment=experiment,
-        #     model=mod,
-        #     listenernorm_experiment=True,
-        #     speakernorm_experiment=False).listener_correlation_plot(output_filename=filename_root+"scatterplot-listenernorm.pdf")
+        Analysis(
+            experiment=experiment,
+            model=mod,
+            listenernorm_experiment=True,
+            speakernorm_experiment=False).listener_correlation_plot(output_filename=filename_root+"scatterplot-listenernorm.pdf")
         
         # Analysis(
         #     experiment=experiment,
@@ -430,18 +430,18 @@ if __name__ == '__main__':
 
     #simplescalar()
 
-    #illustration_subj_large()
+    illustration_subj_large()
 
     #illustration_subj()
     #illustration_pred()
     
-    experimental_assessment(
-        analysis=True,
-        subjs=('every_player', 'exactly_one_player', 'no_player'),
-        objs=('every_shot', 'no_shot', 'some_shot'),
-        refinable={'some_player': ['exactly_one_player'], 'some_shot': ['exactly_one_shot']},
-        file_prefix="cfs",
-        experiment=Experiment(src_filename="../data/basketball-pilot-2-11-14-results-parsed.csv"))
+    # experimental_assessment(
+    #     analysis=True,
+    #     subjs=('every_player', 'exactly_one_player', 'no_player'),
+    #     objs=('every_shot', 'no_shot', 'some_shot'),
+    #     refinable={'some_player': ['exactly_one_player'], 'some_shot': ['exactly_one_shot']},
+    #     file_prefix="cfs",
+    #     experiment=Experiment(src_filename="../data/basketball-pilot-2-11-14-results-parsed.csv"))
 
     # experimental_assessment(
     #     analysis=True,
