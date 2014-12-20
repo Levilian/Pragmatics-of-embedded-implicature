@@ -987,30 +987,29 @@ implicature.
   \label{fig:simplescalar}
 \end{figure}
 
-To keep the example compact, we let
-$\Refine(\word{Player A}) = \set{\sem{\word{Player A}}}$. Since
-\word{aced} already denotes a singleton set, it has no space for
-further refinement. However, \word{scored} has two further
-refinements. This gives rise to the three lexica in the bottom row of
-\figref{fig:simplescalar}. The literal listener $\listenerZero$ turns
-these lexica into conditional distributions over states given
-messages.  The prior over states is flat in this example, so this
-calculation just evenly divides the probability mass over the true
-states. The pragmatic speaker responds to this agent. Already at this
-stage, we can see Gricean behavior: where possible, the speaker avoids
-an ambiguity inherent in the original lexicon by saying \word{Player A
-  aced} in \world{A} even though \word{Player A scored} is also true
-there. The rightmost lexicon does not support this pragmatic behavior,
-but the others do. Finally, our uncertainty listener sums over these
-three speakers thereby achieving a scalar implicature: hearing
-\word{Player~A scored} leads this listener to assume that the state is
-\world{S}.
+To keep the example compact, we let $\Refine(\word{Player A}) =
+\set{\sem{\word{Player A}}}$. Since \word{aced} already denotes a
+singleton set, it has no space for further refinement. However,
+\word{scored} has two further refinements. This gives rise to the
+three lexica in the bottom row of \figref{fig:simplescalar}. The
+literal listener $\listenerZero$ turns these lexica into conditional
+distributions over states given messages.  The prior over states is
+flat in this example, so this calculation just evenly divides the
+probability mass over the true states. The pragmatic speaker responds
+to this agent. Already at this stage, we can see Gricean behavior:
+where possible, the speaker avoids an ambiguity inherent in the
+original lexicon by saying \word{Player A aced} in \world{A} even
+though \word{Player A scored} is also true there. The rightmost
+lexicon does not support this pragmatic behavior, but the others
+do. Finally, our uncertainty listener sums over these three speakers,
+achieving a scalar implicature: hearing \word{Player~A scored} leads
+this listener to assume that the state is \world{S}.
 
 Lexical uncertainty is not required to achieve this result. If we
 allow no meanings to be refined, then we deal with the singleton set
-of lexica containing only the leftmost lexicon. If we run the model in
-this small space, it is effectively equivalent to the pragmatic model
-of \citet{Frank:Goodman:2012} (with potentially small differences
+of lexica containing only the leftmost lexicon. In this small space,
+the model is effectively equivalent to the pragmatic model of
+\citet{Frank:Goodman:2012} (with potentially small differences
 relating to how the prior over states is incorporated), and it is also
 a more thoroughly probabilistic version of the iterated best response
 model \citep{Franke09DISS,Jaeger:2007,Jaeger:2011}. Nonetheless, the
@@ -1042,25 +1041,26 @@ convention of referring to worlds using sequences like \world{NN}
 and \word{aced}.  To start, we assume that, for all lexical items
 $\varphi$, $\Refine(\varphi) = \wp(\sem{\varphi}){-}\emptyset$.  This
 creates an enormous space of lexica, and allows the full range of
-possible interations between the refinements.  The resulting listener
-inferences are summarized in \figref{fig:subjects}. For the most part,
-they seem well-aligned with the general view in the literature about
-how scalar terms will interact in contexts like this. For instance, we
-predict that a proper name \word{P} will take on the exhaustified
-sense \word{only P}, as we would expect given the salience of
-\word{every}. In turn, \word{some} is interpreted as non-specific in
-virtue of the salience of the two names, and it also leads to a scalar
-implicature due to the salience of \word{every}. Perhaps the most
-striking finding is that the scalar inference from \word{scored} to
-not-aced remains in evidence not just with the proper names but also
-in the scope of the quantified subjects: the best-guess inference for
-\word{every player scored} is \world{SS}, and the best-guess
-inferences for \word{some player aced} are \world{NA} and
-\world{AN}. This happens because of interacting lexical uncertainty
-between the subjects and predicates.
+possible interactions between the refinements. 
+
+The resulting listener inferences are summarized in
+\figref{fig:subjects}. For the most part, they seem well-aligned with
+the general view in the literature about how scalar terms interact in
+contexts like this. For instance, we predict that a proper name
+\word{P} will take on the exhaustified sense \word{only P}, as we
+would expect given the salience of \word{every}. In turn, \word{some}
+is interpreted as non-specific in virtue of the salience of the two
+names, and it also leads to a scalar implicature due to the salience
+of \word{every}. Perhaps the most striking finding is that the scalar
+inference from \word{scored} to not-aced remains in evidence not just
+with the proper names but also in the scope of the quantified
+subjects: the best-guess inference for \word{every player scored} is
+\world{SS}, and the best-guess inferences for \word{some player aced}
+are \world{NA} and \world{AN}. These effects derive from interacting
+lexical uncertainty between the subjects and predicates.
 
 \Figref{fig:subjects} reveals some drawbacks to unfettered exploration
-of alternatives, however. First, we might expect hearing \word{some
+of refinements, however. First, we might expect hearing \word{some
   player scored} to lead the listener to assume that the state was
 either \world{NS} or \world{SN}, corresponding to enrichment of both
 the subject (`not all players') and the predicate (`merely
@@ -1069,21 +1069,20 @@ row for \word{no player scored} is unintuitive. The best inference is
 \world{NN}, which is in line with the literal semantics, but it is
 striking that the states \world{NS} and \world{SN} have some positive
 probability. This arises because of interacting lexical uncertainty:
-there are lexica in the space on which \word{scored} is refined to
-exclude one of the players.  In that case, the negative universal
-turns out to be true. Only a few lexica support this interaction,
-ensuring that it cannot become dominant, but it still seems worrisome.
+there are lexica in the space in which \word{scored} is refined to
+exclude one of the players. In that case, the negative universal turns
+out to be true. Only a few lexica support this interaction, ensuring
+that it cannot become dominant, but it still seems worrisome.
 
-It's a bit perverse to assume that lexical items can be enriched in
-arbitrary ways. We take it to be one of the major lessons of
-neo-Gricean approaches that alternatives are contextually and
-lexically constrained. \CFS's treatment of $\OALT$ reflects this
-approach, and our own handling of refinement and lexical uncertainty
-allows us to incorporate these insights as well. So it is worth seeing
-what happens when we assume the same basic context and set of messages
-as in \figref{fig:subjects} but further specify that the following set
-of refinements, which basically encode lexical scales that we might
-specify for these items.
+It's a bit perverse to assume, as we did in this example, that lexical
+items can be enriched in arbitrary ways. We take it to be one of the
+major lessons of neo-Gricean approaches that alternatives are
+contextually and lexically constrained. \CFS's treatment of $\OALT$
+reflects this insight, and our own handling of refinement and lexical
+uncertainty allows us to incorporate it as well. So it is worth seeing
+whether we can improve the picture in \figref{fig:subjects} by further
+specify that the following set of refinements, which basically encode
+lexical scales that we might specify for these items:
 %
 \begin{examples}
 \item\label{neo}
@@ -1097,19 +1096,20 @@ specify for these items.
   \end{examples}
 \end{examples}
 %
-The results of worthing in this more refined refinement space are
-given in \figref{fig:subjects-ALTstyle}. The results are mostly
-unchanged, except we now achieve the target enrichment for \word{some
-  player scored}, and the messiness surrounding \word{no player
-  scored} is fully addressed. The only worry one might have about
+The results of working in this more refined refinement space are given
+in \figref{fig:subjects-ALTstyle}. The picture is mostly unchanged,
+except we now also achieve the target enrichment for \word{some player
+  scored}, and the messiness surrounding \word{no player scored} is
+fully addressed. The only worry one might have about
 \figref{fig:subjects-ALTstyle} is that it predicts rather aggressive
 pragmatic enrichment of the scalar term in the scope of the negative
 quantifier. It has long been assumed that scalar items in such
 environments fail to give rise to implicatures, presumably because the
 negative environment makes weak scalar items strong and thus leaves
-them less space for enrichment. \citet{Chemla:Spector:2011} address
-this question experimentally, finding low but non-negligible rates of
-local enrichment in negative environments. We too treat this as an
+them less space for enrichment
+\citep{Levinson00}. \citet{Chemla:Spector:2011} address this question
+experimentally, finding low but non-negligible rates of local
+enrichment in negative environments. We too treat this as an
 experimental question; in \secref{sec:exp1}, we find evidence that
 local enrichment of this sort are indeed salient possibilities for
 humans.
@@ -1176,47 +1176,42 @@ sentences.
   \label{fig:subjects-ALTstyle}
 \end{figure}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Experiment: scalars under quantifiers}\label{sec:exp1}
 
-With experiment~1, we seek to obtain a clearer picture of the
+With our experiment, we sought to obtain a clearer picture of the
 availability of enriched, upper-bounding inferences for scalar terms
 embedded below quantifiers. The design builds on previous studies by
 \citet{Geurts:Pouscoulous:2009} and \citet{Chemla:Spector:2011}.
 
-
-PARAGRAPH ON HOW THIS EXPERIMENT ALLEVIATES CONCERNS ABOUT CS2011
 %=====================================================================
 
 \subsection{Materials, methods, and participants}
 
-\marginpar{This description of the experiment is based on study of the CSV output. It should be checked and reworked.}
-
-In experiment~1, participants were told that their task was to aid in
-the development of an automatic sportscaster that would give accurate
-and informative descriptions of sporting events. After reading our
-consent form and some instructions, participants were presented with
-displays like the one in \figref{fig:exp1}. Each of the three players,
-A, B, and C, has taken 12 basketball shots (a number small enough for
-visual display but outside of the subitizing range and thus less
-likely to introduce competitions from cardinal determiners like
-\word{three shots}; \citealt{Degen:Tanenhaus:2014}). The shots were
-divided into two piles, labeled `baskets' (green) and `misses'
-(red). Below that was the target sentence, which participants
-evaluated on a seven-point Likert scale ranging from `Bad description'
-to `Good description'. Our rationale for using this scale is that it
-allows enough space for participants to both register a truth value
-assessment and convey information about the quality of the report. In
-this sense, our participants acted as listeners who have observed the
-state the speaker observed and are assessing the extent to which the speaker
+Pparticipants were told that their task was to aid in the development
+of an automatic sportscaster that would give accurate and informative
+descriptions of sporting events. After reading our consent form and
+some instructions, participants were presented with displays like the
+one in \figref{fig:exp1}. Each of the three players, A, B, and C, has
+taken 12 basketball shots (a number small enough for visual display
+but outside of the subitizing range and thus less likely to introduce
+competitions from cardinal determiners like \word{three shots};
+\citealt{Degen:Tanenhaus:2014}). The shots were divided into two
+piles, labeled `baskets' (green) and `misses' (red). Below that was
+the target sentence, which participants evaluated on a seven-point
+Likert scale ranging from `Bad description' to `Good description'. Our
+rationale for using this scale is that it allows enough space for
+participants to both register a truth-value assessment and convey
+information about the quality of the report. In this sense, our
+participants acted as listeners who have observed the state the
+speaker observed and are assessing the extent to which the speaker
 succeeded in conveying that state with her utterance.
 
 \begin{figure}[t]
   \centering
   \framebox{\includegraphics[width=0.85\textwidth]{fig/experiment-display}}
-  \caption{Experiment 1 display.}
+  \caption{Experiment display.}
   \label{fig:exp1}
 \end{figure}
 
@@ -1224,8 +1219,8 @@ The experiment had 300 participants, all recruited with Amazon's
 Mechanical Turk. No participants or responses were excluded.  There
 were 32 sentences, divided into 9 target sentences and 23 fillers. For
 the target items, there were nine different conditions, corresponding
-the worlds in \eg{conds}, in the notation we've been using to identify
-possible worlds. 
+to the worlds in \eg{conds}, in the notation we've been using to
+identify possible worlds.
 %
 \begin{examples}
 \item\label{conds} $\set{\world{NNN}, \world{NNS}, \world{NNA},
@@ -1240,31 +1235,40 @@ sentences are all quantified, so we don't care about the outcome for
 any single player, meaning that we don't distinguish, e.g.,
 \world{NNS} from \world{NSN}, allowing us to work with this smaller
 set of conditions. In the experiment, the `order' of each world was
-randomized, so that, e.g., the world type \world{NSA} appear visually
-in all three of its orders.  The design was between-subjects: no
-experimental participant judged the same sentence twice. Each sentence
-received a total of 300 responses. For the target sentences, each
-sentence--condition pair received between 19 and 44 responses (mean
-30); this minor variation is the result of idiosyncrasies in the way
-participants were assigned to the experiment. All the materials and
-response data are available at the website for this paper.
+randomized, so that, e.g., the world type \world{NSA} appeared
+visually in all three of its orders.  The design was between-subjects:
+no experimental participant judged the same sentence twice. Each
+sentence received a total of 300 responses. For the target sentences,
+each sentence--condition pair received between 19 and 44 responses
+(mean 30); this minor variation is the result of idiosyncrasies in the
+way participants were assigned to the experiment. All the materials
+and response data are available at the website for this paper.
 
 As noted above, the design owes a debt to the previous work of
 \citet{Geurts:Pouscoulous:2009} and \citet{Chemla:Spector:2011}, and
 there is an obvious correspondence between their stimuli, which
-involve geometric shapes, and our tournament displays. Our intuition
-is that our displays place fewer cognitive demands on participants,
-allowing them to concentrate on how well the sentences identify the
-world. In addition, our displays introduce fewer points of variation
-that are irrelevant for the experiment. For example,
-\citet{Chemla:Spector:2011} use wheel-like displays in which, in the
-crucial item, a single spoke extends from the vertex to a point on the
-diameter. There are potentially many ways this state can be
-drawn. With our displays, it was straightforward to show participants
-every relevant variant of the condition, which allowed us to
-factor out this kind of variation in our analyses. Our
-expectation was that these changes to the original design would yield
-a clearer overall picture.
+involve geometric shapes, and our tournament displays. However, our
+experiment is not a mere reproduction of theirs. Rather, we think that
+our design improves on theirs in a number of crucial ways.  First,
+\citeauthor{Chemla:Spector:2011} displays involved complex, absract
+geometric shapes. Together with the inevitable complexity of the
+sentences involved, this seems likely to be cognitively demanding.
+Our more naturalistic displays arguably place fewer cognitive demands
+on participants, allowing them to concentrate on how well the
+sentences identify the world. Second, \citeauthor{Chemla:Spector:2011}
+use wheel-like displays in which lines extend from the vertex to the
+permiter. There are potentially many ways this state can be drawn, and
+some might be more iconic than others. With our displays, it was
+computationally straightforward to show participants every relevant
+variant of the condition, which allowed us to factor out this kind of
+variation in our analyses. Third, use a within-subjects design: the
+inividuals participants judged every sentence in every context. In
+addition, there were no true distractors. This means that subjects
+were easily able to draw comparisons across different conditions,
+which creates opportunities for them to register comparative judgments
+involving the experimental setting itself, rather than relying solely
+on their linguistic intuitions. We hypothesized that a
+between-subjects design would avoid these potential complications.
 
 %=====================================================================
 
