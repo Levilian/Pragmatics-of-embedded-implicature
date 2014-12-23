@@ -1421,23 +1421,22 @@ data.
 
 \subsection{Pragmatic model assessment}
 
-We frame our assessment in terms of a competition between three
-different related models: semantics only, arbitrary lexical
-refinements, and highly constrained neo-Gricean refinements.  Our goal
-is to see which instantiation achieves the best match with the human
-response pattern described above. Our rationale for this approach is
-that a more standard regime of assessing correlations with the
-experimental responses against the null hypothesis of statistical
-independence is not illuminating: as we have seen, our human response
-patterns are broadly in agreement with intuitions that guided the
-development of these models so we can take it for granted that these
-correlations are high. And, indeed, all the models considered here
-achieve significant correlations at $p < 0.001$, whether assessed with
-Pearson's correlation coefficient or Spearman's rank correlation.
-Intuitively, we know that the null hypotheses given to use by
-frequentist statistical tests are false, so we pursue a strategy that
-is more likely is more stringent and more likely to provide insights
-into the quality of the underlying model. 
+We frame our assessment in terms of a competition between four
+different related models that embody different approaches to
+linguistic meaning. Our goal is to see which instantiation achieves
+the best match with the human response pattern described above. Our
+rationale for this approach is that a more standard regime of
+assessing correlations with the experimental responses against the
+null hypothesis of statistical independence is not illuminating: as we
+have seen, our human response patterns are broadly in agreement with
+intuitions that guided the development of these models so we can take
+it for granted that these correlations are high. And, indeed, all the
+models considered here achieve significant correlations at $p <
+0.001$, whether assessed with Pearson's correlation coefficient or
+Spearman's rank correlation.  Intuitively, we know already that the
+null hypotheses given by frequentist statistical tests are false, so
+we pursue a strategy that is more stringent and more likely to provide
+insights into the quality of the underlying model.
 
 For all the models, we take as given the literal semantics described
 in \figref{fig:grammar}, as well as the following features of the
@@ -1463,16 +1462,15 @@ context:
 \end{examples}
 
 The domain $\Domain$ and worlds $\Worlds$ come directly from our human
-experiment. Similarly, the set of messages $\Messages$ corresponds
-directly to \eg{expmsgs}, with some adjustments to keep the logical
-grammar simple. We stipulate flat priors and even costs. As noted in
+experiment. Similarly, the set of messages $\Messages$ corresponds to
+\eg{expmsgs}, with some adjustments to keep the logical grammar
+simple. We stipulate flat priors and even costs. As noted in
 \secref{sec:model}, we do not have empirical estimates of these
 values; though better fits to the human data can achieved by adding
-assumptions about these values, this risks of overfitting to the
-particular data we have and thus overstating the true accuracy of the
-model.
+assumptions about them, this risks overfitting to the particular data
+we have and thus overstating the true accuracy of the model.
 
-The three models we consider are defined as follows:
+The models we consider are defined as follows:
 %
 \begin{examples}
 \item 
@@ -1480,10 +1478,10 @@ The three models we consider are defined as follows:
   \item \tech{Literal semantics}: the predicted values are the output of
     $\listenerZero$, as in \subeg{agents}{l0}, as run on the messages
     defined in \subeg{expmod}{expformulae}.
-  % \item Rational Speech Acts (RSA): the predicted values are the
-  %   output of \subeg{agents}{L}, but all the lexical items have only
-  %   themselves as refinements, so that the reasoning is entirely in
-  %   terms of the base lexicon in \figref{fig:grammar}.
+  \item Fixed-lexicon pragmatics: the predicted values are the output
+    of \subeg{agents}{L}, but all the lexical items have only
+    themselves as refinements, so that the reasoning is entirely in
+    terms of the base lexicon in \figref{fig:grammar}.
   \item \tech{Unconstrained refinement}: the inferences of the
     uncertainty listener \subeg{agents}{L} with $\Refine(\word{some})
     = \wp(\sem{\word{some}}){-}\emptyset$
@@ -1493,9 +1491,24 @@ The three models we consider are defined as follows:
   \end{examples}
 \end{examples}
 
+These models represent a broad range of approaches to linguistic
+meaning. The first neglects pragmatics entirely (the model includes a
+contextual prior over states, but we define it as flat). The second is
+equivalent to the Rational Speech Acts (RSA) model of
+\citet{Frank:Goodman:2012} and \citet{Goodman:Stuhlmuller:2013}
+(perhaps with minor differences concerning how priors are
+incorporated). RSA has been shown to capture a broad range of scalar
+implicatures, but it is limited in ability to derive manner
+implicatures and certain classes of embedded implicature
+\citep{Bergen:Goodman:Levy:2012,Bergen:Levy:Goodman:2014}. The final
+two models are full versions of the one we presented in
+\secref{sec:alt}; we saw in connection with \figref{fig:subjects} and
+\figref{fig:subjectsALT} that there might be substantial empirical
+value in a highly constrained space of refinements.
+
 \marginpar{Mike: perhaps rewrite with deeper thoughts on why we chose these three measures.}
 
-We adopt three methods of comparison: Pearson's correlation
+We employ three methods of comparison: Pearson's correlation
 coefficient, which measures the linear correlation between the human
 responses and the model predictions; Spearman's rank correlation
 coefficient, which assesses how closely the human responses and model
@@ -1509,10 +1522,10 @@ states given messages, and hence constrained to be in the range
 $[0,1]$ and to sum to $1$. In contrast, our human responses are Likert
 values in the range $[1,7]$ with no constraint that they sum to
 $1$. To bring these values into alignment, we rescale the human
-responses: if $X^{s}$ is the $10$-dimensional vector of mean human
+responses: if $x^{s}$ is the $10$-dimensional vector of mean human
 responses for target sentence $s$, then each $p^{s}$ is the vector of
 normalized values for that sentence, defined so that $p^{s}_{i} =
-(X^{S}_{i}-1)/\sum_{j=1}^{10}(X^{S}_{j}-1)$. This simply normalizes
+(x^{S}_{i}-1)/\sum_{j=1}^{10}(x^{S}_{j}-1)$. This simply normalizes
 the Likert responses into a probability distribution; we subtract $1$
 because the lowest Likert value is $1$. The one noteworthy thing about
 this calculation is that, because it is done on a per-sentence basis,
@@ -1522,7 +1535,7 @@ hypothesis linking our model with our experimental data.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=1\textwidth]{fig/allmodels2.pdf}
+  \includegraphics[width=1\textwidth]{fig/allmodels2}
   \caption{Experiment analysis by target sentence, 
     comparing model predictions with human responses.}
   \label{fig:exp-analysis}
@@ -1535,7 +1548,7 @@ hypothesis linking our model with our experimental data.
     & Pearson & Spearman & MSE \\
     \midrule
     Literal semantics         & 0.94 & 0.76 & 0.0079\\
-    %Rational Speech Acts      & 0.92 & 0.75 & 0.0094\\
+    Fixed-lexicon pragmatics  & 0.92 & 0.75 & 0.0094\\
     Unconstrained uncertainty & 0.93 & 0.79 & 0.0052\\
     Neo-Gricean uncertainty   & 0.95 & 0.80 & 0.0046\\
     \bottomrule   
@@ -1550,37 +1563,71 @@ results of our assessment. As noted above, all of the correlations are
 extremely high, and the MSE values are extremely low. This is
 reassuring about the general utility of all of these models for
 predicting human judgments. The comparative values are arguably of
-more interest, though. Two paterns stand out.
+more interest, though. A few patterns stand out.
 
-First, unconstrained uncertainty seems to be the least accurate of the
-three models. Although it achieves lower MSE than the literal
-semantics, its overall correlations are lower. We saw in connection
-with \figref{fig:subjects} that the unintuitive lexica that this model
-entertains can lead to implausible final patterns. We conjeture that
-this is the root cause of the model's poor performance here.
+First, `Fixed-lexicon pragmatics' performs the least well overall.
+Since it has been shown to add substantial value in other areas of
+language and cognition, we conclude that its particular approach to
+enrichment is at odds with the patterns for embedded implicatures.
+The precise causes are hard to pin-point, but the fact that our target
+implicatures are not always enrichments of the literal content is
+surely part of the problem.
 
-Second, neo-Gricean uncertainty achieves the best results across
+Second, while `Unconstrained uncertainty' is better than literal
+semantics by the Spearman and MSE metrics, it falls behind it on the
+Pearson metric, though the difference is not significant according to
+a test of the difference between the correlation coefficients for
+dependent data. We saw in connection with \figref{fig:subjects} that
+the unintuitive lexica that this model entertains can lead to
+implausible final patterns. We conjecture that this is the root cause
+of the model's poor performance here as well.
+
+Third, neo-Gricean uncertainty achieves the best results across
 all three of our models. Here again, this is consistent with our
 expectations based on the large illustrative example from
 \secref{sec:illustrations}, where we saw that this constrained,
 lexically-driven approach to choosing refinements resulted in the 
 best quantitative and qualitative pattern.
 
-The overall analysis give in \figref{fig:overall} understates the
+The overall analysis given in \figref{fig:overall} understates the
 value of both uncertainty models when it comes to the distribution of
 embedded implicatures. Our target sentences provide relatively little
 space for pragmatic enrichment; in \figref{fig:exp1-results}, the left
-and middle columns essentially allow for only literal interpretations,
+and middle columns essentially have only literal interpretations,
 leaving just the right column for our pragmatic models to shine. It's
-thus worth homing in on just those cases and assessing each in
-isolation. The results of that assessment are in
-\figref{fig:crucial-items}. The unconstrained uncertainty model is
-somewhat redeemed here, but the neo-Gricean model emerges as the best
-model for explaining the human data. COMPLETE THIS AND ADD THE TABLES.
+thus worth homing in on those cases and assessing each in
+isolation. 
+
+The results of that assessment are in \figref{fig:crucial-items}.  The
+most dramatic pattern is that the first two models, the fixed lexicon
+ones, are unable to capture the patterns for embedded implicatures in
+the non-monotone and downward monotone environments. In contrast, both
+uncertainty models capture the patterns extremely well. These tight
+fits are already evident in the raw distributions of
+\figref{fig:exp-analysis}, and it is reassuring to see them reflected
+in our assessment measures as well. 
+
+It is also striking that the literal model is competitive for
+`every/`some'. This probably traces to the experimentally inconvient
+fact that the enriched meaning entail the literal one, making a
+literal semantics a generally safe bet. It should be noted also that
+the Spearman coefficient best reflects the ability of a model to
+capture the preference ordering in the human data, so the `Neo-Gricean
+uncertainty' model might still be the favored choice for this case.
+
+Finally, it seems that neither uncertainty model is clearly superior
+to the other for these data.  This suggests to us that we have not yet
+found precisely the right approach to refinements (alternatives). It
+is tempting to try additional refinement sets to try to find a single
+model that wins decisively for all the target examples. We are wary of
+doing this becuase, as noted above, it runs the risk of overfitting to
+our experimental responses, but it is nonetheless a fruitful avenue
+for future exploration.
 
 \begin{figure}[htp]
   \centering
-  \begin{tabular}[c]{r *{3}{r}@{\hspace{14pt}}*{3}{r}@{\hspace{14pt}}*{3}{r} }
+  \setlength{\tabcolsep}{3pt}
+  \begin{tabular}[c]{r *{3}{r}@{\hspace{20pt}}*{3}{r}@{\hspace{20pt}}*{3}{r} }
     \toprule
     & 
     \multicolumn{3}{c}{`every'/`some'} & 
@@ -1592,11 +1639,12 @@ model for explaining the human data. COMPLETE THIS AND ADD THE TABLES.
     P & S & MSE \\
     \midrule  
     Literal       & \graycell{.98} &            .85 & \graycell{.00076} &            .77 &            .70 &            .01900 & \graycell{.91} &            .52 &            .03400 \\
+    Fixed-lexicon &            .93 &            .87 &            .00250 &            .79 &            .70 &            .01800 &            .91 &            .52 &            .03400 \\
     Unconstrained &            .91 &            .85 &            .00350 & \graycell{.97} & \graycell{.92} & \graycell{.00096} &            .74 &            .49 &            .00890 \\
     Neo-Gricean   &            .88 & \graycell{.89} &            .00660 &            .96 &            .89 &            .00290 &            .89 & \graycell{.88} & \graycell{.00420} \\
     \bottomrule
   \end{tabular}
-  \caption{Results on crucial items}
+  \caption{Results on crucial items. `P' = `Pearson'; `S' = `Spearman'.}
   \label{fig:crucial-items}
 \end{figure}
 
@@ -1640,16 +1688,15 @@ approaches like that of \citet{Lewis69}; our model shares formal
 properties of these approaches but makes quantitative predictions of
 the sort that can be correlated with human preferences in
 communication. There are by now many models in the same family as ours
-(see, e.g., 
-%
-\marginpar{Add your favorite references here!}
-%
+(see, e.g.,
 \citealt{CamererHo:2004,Jaeger:2011,Smith:Goodman:Frank:2013,Kao-etal:2014}),
 so further exploration is likely to yield an even more nuanced
 picture. We have made publicly available all the data and code
 associated with this paper, in an effort to encourage the development
 of more theories of pragmatic reasoning as both semantic and
 pragmatic.
+
+MORE EXPERIMENTS TO STUDY DIFFERENT APPROACHES TO REFINEMENT
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
