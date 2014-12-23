@@ -1566,10 +1566,10 @@ expectations based on the large illustrative example from
 lexically-driven approach to choosing refinements resulted in the 
 best quantitative and qualitative pattern.
 
-The overall analysis give in \figref{fig:results} understates the
+The overall analysis give in \figref{fig:overall} understates the
 value of both uncertainty models when it comes to the distribution of
 embedded implicatures. Our target sentences provide relatively little
-space for pragmatic enrichment; in \figref{fig:exp-results}, the left
+space for pragmatic enrichment; in \figref{fig:exp1-results}, the left
 and middle columns essentially allow for only literal interpretations,
 leaving just the right column for our pragmatic models to shine. It's
 thus worth homing in on just those cases and assessing each in
@@ -1577,6 +1577,28 @@ isolation. The results of that assessment are in
 \figref{fig:crucial-items}. The unconstrained uncertainty model is
 somewhat redeemed here, but the neo-Gricean model emerges as the best
 model for explaining the human data. COMPLETE THIS AND ADD THE TABLES.
+
+\begin{figure}[htp]
+  \centering
+  \begin{tabular}[c]{r *{3}{r}@{\hspace{14pt}}*{3}{r}@{\hspace{14pt}}*{3}{r} }
+    \toprule
+    & 
+    \multicolumn{3}{c}{`every'/`some'} & 
+    \multicolumn{3}{c}{`exactly one'/`some'} &
+    \multicolumn{3}{c}{`no'/`some'} \\
+    & 
+    P & S & MSE & 
+    P & S & MSE & 
+    P & S & MSE \\
+    \midrule  
+    Literal       & \graycell{.98} &            .85 & \graycell{.00076} &            .77 &            .70 &            .01900 & \graycell{.91} &            .52 &            .03400 \\
+    Unconstrained &            .91 &            .85 &            .00350 & \graycell{.97} & \graycell{.92} & \graycell{.00096} &            .74 &            .49 &            .00890 \\
+    Neo-Gricean   &            .88 & \graycell{.89} &            .00660 &            .96 &            .89 &            .00290 &            .89 & \graycell{.88} & \graycell{.00420} \\
+    \bottomrule
+  \end{tabular}
+  \caption{Results on crucial items}
+  \label{fig:crucial-items}
+\end{figure}
 
 Our model's performance is sensitive to the space of competitor
 messages, so it is worth asking how robust these findings are to
