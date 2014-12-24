@@ -10,9 +10,29 @@
 \author{The pragmateurs}
 \maketitle
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract} 
+  \citet{Chemla:Spector:2011} present experimental evidence that
+  scalar terms like \word{some} in the scope of non-monotonic
+  quantifiers can be locally enriched to impose an upper bound (`only
+  some'). Such construals are predicted not to occur on Gricean
+  accounts of conversational implicature, but they are easily within
+  reach of recent grammar-driven theories.  We propose a model that
+  both embraces the semantic insights of grammar-driven theories and
+  offers pragmatic explanations for where and how implicatures
+  arise. The model straightforwardly synthesizes
+  \posscitet{Bergen:Levy:Goodman:2014} \tech{lexical uncertainty}
+  model with a full compositional semantics. After describing the
+  model, we present new experimental evidence that people arrive at
+  locally-enriched construals, not just in non-monotonic environments
+  but also (and more controversially) in downward-entailing ones. We
+  then show not only that our model generates local enrichments, but
+  also that its predictions are highly correlated with our
+  experimental data, and that these predictions can be improved by
+  incorporating neo-Gricean hypotheses about the nature of lexical
+  alternatives.
+\end{abstract}
 
-\marginpar{NOTE: This is a very rough draft. All the figures need to be improved, and some of the prose in the experiment write-ups seems hasty to me.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Overview: interacting with grammar}\label{sec:introduction}
 
@@ -88,7 +108,7 @@ arrive at such construals. In other words, whereas
 participants coordinate on the right logical forms (implicature-rich
 or not), we bring this coordination process into our account, seeking
 to retain the insights of Gricean accounts while paying close
-attention to the subtle details of semantic composition.
+attention to the details of semantic composition.
 
 \marginpar{Clarified Leon's substantial role.}
 
@@ -103,9 +123,9 @@ including many embedded implicatures involving scalar terms. Our
 extension simply allows for greater diversity in the semantic lexicon
 and includes more complex aspects of semantic composition. Thus, in
 many ways, our central finding is that
-\citeauthor{Bergen:Levy:Goodman:2014}'s model already predicts
-embedded implicatures in non-monotone contexts when it is combined
-with a full theory of semantic composition.
+\citeauthor{Bergen:Levy:Goodman:2014}'s model predicts embedded
+implicatures in non-monotone contexts if it is combined with a full
+theory of semantic composition.
 
 \marginpar{Clarified nature and importance of lexical uncertainty.}
 
@@ -191,34 +211,33 @@ news. If the sportscaster says \eg{some}, then she will likely
 implicate that Player~A did not make all of his shots.
 %
 \begin{examples}
-\item\label{some} Player~A made some of his shots.
+\item\label{some} Player~A hit some of his shots.
 \end{examples}
 
 This follows from a straightforward application of the above ideas. We
 assume the sportscaster is cooperative in the Gricean sense, and
 knowledgeable and forthcoming about the events. Why, then, did she opt
-for a weak statement like \word{Player~A made some of his shots} when
-a stronger statement like \word{Player~A made all of his shots} would
-have been more informative? Given our assumptions, it must be that the
-speaker was prevented from using this stronger form because she does
-not know it to be true. Together with our assumption that she observed
-the full outcome, she can lack knowledge of this proposition only
-because it is false, leading to the implicated meaning that Player~A
-did not make all of his shots. In this way, a listener can enrich the
-speaker's message.
+for a weak statement like \word{Player~A hit some of his shots} when a
+stronger statement like \word{Player~A hit all of his shots} would
+have been more informative? Given our assumptions, it must be that she
+was prevented from using this stronger form because she does not know
+it to be true. Together with our assumption that she observed the full
+outcome, she can lack knowledge of this proposition only because it is
+false, leading to the implicated meaning that Player~A did not hit all
+of his shots. In this way, a listener can enrich the speaker's
+message.
 
 To make this concrete, suppose that we have two players, A and B, and
 that we care (for present purposes) only about whether each of them
-made none, some but not all, or all of his shots. We can identify
-these worlds with labels like \world{NA}, which means that Player~A
-made none of his shots and Player~B made all of his shots, and
-\world{SS}, which means that both players made some but not all of
-their shots. There are $3^{2} = 9$ such worlds. The literal semantics
-of \eg{some} in this context is the proposition given in the second
-row of \eg{some-sem}. Our hypothesized implicature is the third line,
-the proposition that Player~A did not make all of his shots.  The
-conjunction (intersection) of these two meanings delivers the final
-communicated meaning.
+hit none, some but not all, or all of his shots. We can identify these
+worlds with labels like \world{NA}, which means that Player~A hit none
+of his shots and Player~B hit all of his shots, and \world{SS}, which
+means that both players hit some but not all of their shots. There are
+$3^{2} = 9$ such worlds. The literal semantics of \eg{some} in this
+context is the proposition given in line (b) of \eg{some-sem}. Our
+hypothesized implicature is (c), the proposition that Player~A did not
+hit all of his shots.  The conjunction (intersection) of these two
+meanings delivers the communicated meaning, (d).
 %
 \begin{examples}
 \item\label{some-sem}
@@ -232,43 +251,42 @@ communicated meaning.
 \end{examples}
 
 There are many proposals for how to formalize this reasoning. The
-common theme running through all of these accounts is that the
-implicature is accessible because it is a refinement that strictly
-entails the original literal content.
+common theme running through all of them is that the implicature is
+accessible because it is a refinement that strictly entails the
+original literal content. In \citeauthor{Grice75}'s terms, a general
+claim is further restricted by the interaction of quantity and
+quality.
 
 The above informal reasoning extends to examples like \eg{everysome},
 in which \word{some} is in the scope of a universal quantifier.
 %
 \begin{examples}
-\item\label{everysome} Every player made some of his shots.
+\item\label{everysome} Every player hit some of his shots.
 \end{examples}
 %
 In the same general context as before, this can be enriched to convey
-that every player made some but not all of his shots. Making this
-reasoning precise in Gricean terms is, however, somewhat more
-challenging than it was for \eg{some}.  If we take the implicature to
-be the negation of the stronger alternative \word{Every player made
-  all of his shots}, then the reasoning proceeds as in the first four
-lines of \eg{everysome-sem}, which takes us to a meaning (d) that is
-consistent with one or the other of the players (but not both) having
-made all of his shots. To arrive at the target meaning (every player
-made some but not all of his shots), we must, on this simple account,
-posit an auxiliary premise. One example of such a premise is (e);
-there are many others that will do the job
-\citep{Spector:2007:SCALAR}.
+that every player hit some but not all of his shots. Making this
+reasoning precise is, however, somewhat more challenging than it was
+for \eg{some}.  If we take the implicature to be the negation of the
+stronger alternative \word{Every player hit all of his shots}, then
+the reasoning proceeds as in the first four lines of
+\eg{everysome-sem}, which takes us to a meaning (d) that is consistent
+with one or the other of the players (but not both) having hit all of
+his shots. To arrive at the target meaning (every player hit some but
+not all of his shots), we must, on this simple account, posit an
+auxiliary premise. One example of such a premise is (e); there are
+many others that will do the job \citep{Spector:2007:SCALAR}.
 %
 \begin{examples}
 \item\label{everysome-sem}
   \setlength{\tabcolsep}{2pt}
   \begin{tabular}[t]{@{} r@{. \ }l *{9}{c} @{\hspace{18pt}} l }
     a & Worlds:         & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} & \world{AA} \\
-    b & Literal:        &            &            &            &            & \world{SS} & \world{SA} &            & \world{AS} & \world{AA} & `every made at least some' \\ 
-    c & Implicature:    & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} &            & `not every made every' \\
-    d & Result:         &            &            &            &            & \world{SS} & \world{SA} &            & \world{AS} &            & `every made some; not every made all'\\    
+    b & Literal:        &            &            &            &            & \world{SS} & \world{SA} &            & \world{AS} & \world{AA} & `every hit at least some' \\ 
+    c & Implicature:    & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} &            & `not every hit every' \\
+    d & Result:         &            &            &            &            & \world{SS} & \world{SA} &            & \world{AS} &            & `every hit some; not every hit all'\\    
     e & Aux.~premise:   & \world{NN} &            &            &            & \world{SS} &            &            &            & \world{AA} & `uniform outcomes' \\
-    %\multicolumn{2}{c}{or} \\
-    %f & Aux.~premise 2: & \world{NN} & \world{NS} &            & \world{SN} & \world{SS} &            &            &            &            & `none made every' \\
-    f & Communicated:   &            &            &            &            & \world{SS} &            &            &            &            & `every made only some'
+    f & Communicated:   &            &            &            &            & \world{SS} &            &            &            &            & `every hit only some'
   \end{tabular}
 \end{examples}
 
@@ -285,7 +303,7 @@ account.  This is a minimal variant of \eg{everysome} with the subject
 universal determiner \word{every} replaced by \word{exactly one}.
 %
 \begin{examples}
-\item\label{exactlyonesome} Exactly one player made some of his shots.
+\item\label{exactlyonesome} Exactly one player hit some of his shots.
 \end{examples}
 
 Many people have the intuition that \eg{exactlyonesome} can be used to
@@ -305,27 +323,52 @@ it.
 \begin{examples}
 \item\label{exactlyonesome-sem}
   \setlength{\tabcolsep}{2pt}
-  \begin{tabular}[t]{@{} r@{. \ } l *{9}{c}@{\hspace{18pt}} l}
+  \begin{tabular}[t]{@{} r@{. \ } l *{9}{c}@{\hspace{8pt}} l}
     a& Worlds:       & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} & \world{AA} & \\
-    b& Literal:      &            & \world{NS} & \world{NA} & \world{SN} &            &            & \world{AN} &            &            & `exactly one made at least some'\\
-    c& Local:        &            & \world{NS} &            & \world{SN} &            & \world{SA} &            & \world{AS} &            & `exactly one made only some' \\
+    b& Literal:      &            & \world{NS} & \world{NA} & \world{SN} &            &            & \world{AN} &            &            & `exactly one hit at least some'\\
+    c& Local:        &            & \world{NS} &            & \world{SN} &            & \world{SA} &            & \world{AS} &            & `exactly one hit only some' \\
   \end{tabular}
 \end{examples}
 %
 Any theory based on broadly Gricean notions of enrichment will fail to
 arrive at (c). Such theories head inexorably towards a refinement that
-excludes \world{NA} and \world{AN}, but they are incapable of
-introducing \world{SA} and \world{AS}.
+excludes \world{NA} and \world{AN}, but they are essentially incapable
+of `introducing' \world{SA} and \world{AS}.
+
+The issue is even clearer when a scalar term is in the scope of a
+downward-monotone operator like \word{no}, as in \word{no player hit
+  some of his shots}. In such cases, the embedded enrichment creates a
+meaning that is strictly entailed by (weaker than) the literal
+meaning:
+%
+\begin{examples}
+\item\label{nosome-sem}
+  \setlength{\tabcolsep}{2pt}
+  \begin{tabular}[t]{@{} r@{. \ } l *{9}{c}@{\hspace{18pt}} l}
+    a& Worlds:       & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} & \world{AA} & \\
+    b& Literal:      & \world{NN} &            &            &            &            &            &            &            &            & `no hit some' \\
+    c& Local:        & \world{NN} &            & \world{NA} &            &            &            & \world{AN} &            & \world{AA} & `no hit only some' \\
+  \end{tabular}
+\end{examples}
+
+Gricean theories predict that the `Local' reading is unavailable here,
+either because of the way pragmatic pressures interact or because
+\word{some} is held to be the strongest member of its scale in
+negative environments, leaving no room for further
+enrichment. Grammar-driven approaches have tended to agree with the
+basic empirical assumption, arguing that local enrichment is blocked
+in environments where it would strictly weaken the literal content.
 
 Modifying an earlier design by \citet{Geurts:Pouscoulous:2009},
 \citeauthor{Chemla:Spector:2011} use displays involving geometric
 patterns to assess whether interpreters can access local-enrichment
-readings of sentences like these. Their findings suggest that local
-enrichment readings are robustly available. Skeptics of local
-enrichment have found grounds for challenging
-\citeauthor{Chemla:Spector:2011}'s findings based on the methods
-used. For example, the participants clearly struggled with the complex
-visual displays, often giving low ratings to true readings and
+readings of scalar terms in the scope of non-monotone and
+downward-monotone operators. Their findings suggest that local
+enrichment readings are available in both contexts, especially
+non-monotone ones. Skeptics of local enrichment have found grounds for
+challenging \citeauthor{Chemla:Spector:2011}'s findings based on the
+methods used. For example, the participants clearly struggled with the
+complex visual displays, often giving low ratings to true readings and
 sometimes giving high ratings to false ones. In addition,
 \citeauthor{Chemla:Spector:2011} rely on additional theoretical
 assumptions in order to link their theory to the response patterns ---
@@ -341,6 +384,8 @@ responses to theoretical interpretations. This experiment reproduces
 the core findings of \citeauthor{Chemla:Spector:2011}'s studies,
 suggesting that these sentences do in fact pose a serious problem for
 Gricean reasoning as usual.
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -594,8 +639,8 @@ from the website for this paper.
 \Figref{fig:grammar} gives the intensional fragment that we use
 throughout the remainder of this paper, both to explain how our
 pragmatic model works and to conduct our experimental analyses in
-\dashsecref{sec:exp1}{sec:exp2}. It is our base lexicon, subject to
-refinement as part of pragmatic inference.
+\secref{sec:exp1}. It is our base lexicon, subject to refinement as
+part of pragmatic inference.
 
 The formal presentation is influenced by that of \citet{Muskens95}:
 all of the denotations are sets, and the rules of semantic composition
@@ -1332,9 +1377,9 @@ value) where the sentence is true. This is reassuring about the
 ability of our subjects to make the sort of interpretive judgments we
 are hoping for.
 
-\begin{figure}[tp]
+\begin{figure}[t!]
   \centering
-  \includegraphics[width=0.8\textwidth]{fig/basketball-pilot-2-11-14-results-parsed}
+  \includegraphics[width=1\textwidth]{fig/basketball-pilot-2-11-14-results-parsed}
   \caption{Mean ratings by sentence with bootstrapped 95\% confidence intervals.}
   \label{fig:exp1-results}
 \end{figure}
@@ -1478,8 +1523,8 @@ The models we consider are defined as follows:
   \item \tech{Literal semantics}: the predicted values are the output of
     $\listenerZero$, as in \subeg{agents}{l0}, as run on the messages
     defined in \subeg{expmod}{expformulae}.
-  \item Fixed-lexicon pragmatics: the predicted values are the output
-    of \subeg{agents}{L}, but all the lexical items have only
+  \item \tech{Fixed-lexicon pragmatics}: the predicted values are the
+    output of \subeg{agents}{L}, but all the lexical items have only
     themselves as refinements, so that the reasoning is entirely in
     terms of the base lexicon in \figref{fig:grammar}.
   \item \tech{Unconstrained refinement}: the inferences of the
@@ -1502,9 +1547,9 @@ implicatures, but it is limited in ability to derive manner
 implicatures and certain classes of embedded implicature
 \citep{Bergen:Goodman:Levy:2012,Bergen:Levy:Goodman:2014}. The final
 two models are full versions of the one we presented in
-\secref{sec:alt}; we saw in connection with \figref{fig:subjects} and
-\figref{fig:subjectsALT} that there might be substantial empirical
-value in a highly constrained space of refinements.
+\secref{sec:model}; we saw in connection with \figref{fig:subjects}
+and \figref{fig:subjects-ALTstyle} that there might be substantial
+empirical value in a highly constrained space of refinements.
 
 \marginpar{Mike: perhaps rewrite with deeper thoughts on why we chose these three measures.}
 
@@ -1558,21 +1603,35 @@ hypothesis linking our model with our experimental data.
 \end{figure}
 
 \Figref{fig:exp-analysis} summarizes the models' predictions alongside
-the human responses, and \figref{fig:results} gives the overall
-results of our assessment. As noted above, all of the correlations are
-extremely high, and the MSE values are extremely low. This is
-reassuring about the general utility of all of these models for
-predicting human judgments. The comparative values are arguably of
-more interest, though. A few patterns stand out.
+the human responses. The predicted values are largely aligned for the
+examples without \word{some} in the object position. Where \word{some}
+occurs embedded, the models diverge in qualitative terms. For
+\target{every}{some}, the patterns are broadly similar, but only
+`Neo-Gricean uncertainty' is able to mirror the preference ordering of
+responses seen in the human data. For \target{exactly one}{some}, only
+the two uncertainty models are able to predict local enrichment, in
+that only they assign high probability to the crucial worlds that are
+false on the literal construal: \world{NSA} and \word{SAA}. The
+`Literal semantics' and `Fixed lexicon pragmatics' models are unable
+to predict the salience of these construals. Similarly, only the two
+uncertainty models predict \target{none}{some} to have embedded
+enrichments leading to acceptability for \word{NNA}, \world{NAA}, and
+\word{AAA}. Here, `Unconstrained uncertainty' is les aggressive in
+calculating local enrichments and so seems better matched with the
+human responses.
 
-First, `Fixed-lexicon pragmatics' performs the least well overall.
-Since it has been shown to add substantial value in other areas of
-language and cognition, we conclude that its particular approach to
-enrichment is at odds with the patterns for embedded implicatures.
-The precise causes are hard to pin-point, but the fact that our target
-implicatures are not always enrichments of the literal content is
-surely part of the problem.
-
+In \figref{fig:overall}, we summarize our overall quantitative
+assessment. As noted above, all of the correlations are extremely
+high, and the MSE values are extremely low. This is reassuring about
+the general utility of all of these models for predicting human
+judgments. The comparative values are arguably of more interest,
+though. A few patterns stand out.  First, `Fixed-lexicon pragmatics'
+performs the least well overall.  Since it has been shown to add
+substantial value in other areas of language and cognition, we
+conclude that its particular approach to enrichment is at odds with
+the patterns for embedded implicatures.  The precise causes are hard
+to pin-point, but the fact that our target implicatures are not always
+enrichments of the literal content is surely part of the problem.
 Second, while `Unconstrained uncertainty' is better than literal
 semantics by the Spearman and MSE metrics, it falls behind it on the
 Pearson metric, though the difference is not significant according to
@@ -1580,32 +1639,30 @@ a test of the difference between the correlation coefficients for
 dependent data. We saw in connection with \figref{fig:subjects} that
 the unintuitive lexica that this model entertains can lead to
 implausible final patterns. We conjecture that this is the root cause
-of the model's poor performance here as well.
-
-Third, neo-Gricean uncertainty achieves the best results across
-all three of our models. Here again, this is consistent with our
-expectations based on the large illustrative example from
-\secref{sec:illustrations}, where we saw that this constrained,
-lexically-driven approach to choosing refinements resulted in the 
-best quantitative and qualitative pattern.
+of the model's poor performance here as well.  Third, neo-Gricean
+uncertainty achieves the best results across all three of our
+models. Here again, this is consistent with our expectations based on
+the large illustrative example from \secref{sec:illustrations}, where
+we saw that this constrained, lexically-driven approach to choosing
+refinements resulted in the best quantitative and qualitative pattern.
 
 The overall analysis given in \figref{fig:overall} understates the
 value of both uncertainty models when it comes to the distribution of
 embedded implicatures. Our target sentences provide relatively little
 space for pragmatic enrichment; in \figref{fig:exp1-results}, the left
 and middle columns essentially have only literal interpretations,
-leaving just the right column for our pragmatic models to shine. It's
-thus worth homing in on those cases and assessing each in
-isolation. 
-
-The results of that assessment are in \figref{fig:crucial-items}.  The
-most dramatic pattern is that the first two models, the fixed lexicon
-ones, are unable to capture the patterns for embedded implicatures in
-the non-monotone and downward monotone environments. In contrast, both
-uncertainty models capture the patterns extremely well. These tight
-fits are already evident in the raw distributions of
-\figref{fig:exp-analysis}, and it is reassuring to see them reflected
-in our assessment measures as well. 
+leaving just the right column for our pragmatic models to
+shine. What's more, our qualitative review of
+\figref{fig:exp-analysis} suggests that the right column examples
+reveal major distinctions. It's thus worth assessing them
+quantitatively in isolation. The results of such an assessment are in
+\figref{fig:crucial-items}.  The most dramatic pattern is that the
+first two models, the fixed lexicon ones, are unable to capture the
+patterns for embedded implicatures in the non-monotone and downward
+monotone environments. In contrast, both uncertainty models capture
+the patterns extremely well. These tight fits are already evident in
+the raw distributions of \figref{fig:exp-analysis}, and it is
+reassuring to see them reflected in our assessment measures as well.
 
 It is also striking that the literal model is competitive for
 `every/`some'. This probably traces to the experimentally inconvient
@@ -1691,16 +1748,20 @@ communication. There are by now many models in the same family as ours
 (see, e.g.,
 \citealt{CamererHo:2004,Jaeger:2011,Smith:Goodman:Frank:2013,Kao-etal:2014}),
 so further exploration is likely to yield an even more nuanced
-picture. We have made publicly available all the data and code
-associated with this paper, in an effort to encourage the development
-of more theories of pragmatic reasoning as both semantic and
-pragmatic.
+picture. In addition, we saw that the space of refinements
+(alternatives) has a significant impact on the final predictions, It
+would thus be worthwhile to further explore the theoretically
+moticated options in this area, seeking better fits with our own
+experimental patterns and validating those conclusions in follow-up
+experiments. We have made publicly available all the data and code
+associated with this paper in an effort to encourage these new strands
+of theory development and quantitative assessment.
 
-MORE EXPERIMENTS TO STUDY DIFFERENT APPROACHES TO REFINEMENT
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\bibliographystyle{apalike}
+\bibliographystyle{sp}
+\setlength{\bibsep}{0pt}
 \bibliography{embedded-scalars-bib}
 
 \end{document}

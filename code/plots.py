@@ -24,8 +24,8 @@ def message_state_barplot(mat=None,
                           yticks=None,
                           ylabel="",
                           width=1.0,
-                          axis_width=7,
-                          axis_height=3):
+                          axis_width=5,
+                          axis_height=2):
     # Default to a single row of plots if no guidance was given:
     if not nrows:
         nrows = 1

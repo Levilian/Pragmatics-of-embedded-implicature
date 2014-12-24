@@ -6,19 +6,31 @@ from plots import message_state_barplot, comparison_plot, add_confidence_interva
 import matplotlib.pyplot as plt
 
 SENTENCES = {
-    "Every player hit all of his shots": "every(player)(made(every(shot)))",
-    "Every player hit none of his shots": "every(player)(made(no(shot)))",    
-    "Every player hit some of his shots": "every(player)(made(some(shot)))",    
-    "Exactly one player hit all of his shots": "exactly_one(player)(made(every(shot)))",
-    "Exactly one player hit none of his shots": "exactly_one(player)(made(no(shot)))",
-    "Exactly one player hit some of his shots": "exactly_one(player)(made(some(shot)))",
-    "No player hit all of his shots": "no(player)(made(every(shot)))",
-    "No player hit none of his shots": "no(player)(made(no(shot)))",
-    "No player hit some of his shots": "no(player)(made(some(shot)))",
-    "Every player hit only some of his shots": "every(player)(made(exactly_one(shot)))",
-    "Exactly one player hit only some of his shots": "exactly_one(player)(made(exactly_one(shot)))",
-    "No player hit only some of his shots": "no(player)(made(exactly_one(shot)))"
+    "Every player hit all of his shots": "every(player)(hit(every(shot)))",
+    "Every player hit none of his shots": "every(player)(hit(no(shot)))",    
+    "Every player hit some of his shots": "every(player)(hit(some(shot)))",    
+    "Exactly one player hit all of his shots": "exactly_one(player)(hit(every(shot)))",
+    "Exactly one player hit none of his shots": "exactly_one(player)(hit(no(shot)))",
+    "Exactly one player hit some of his shots": "exactly_one(player)(hit(some(shot)))",
+    "No player hit all of his shots": "no(player)(hit(every(shot)))",
+    "No player hit none of his shots": "no(player)(hit(no(shot)))",
+    "No player hit some of his shots": "no(player)(hit(some(shot)))",
+    "Every player hit only some of his shots": "every(player)(hit(exactly_one(shot)))",
+    "Exactly one player hit only some of his shots": "exactly_one(player)(hit(exactly_one(shot)))",
+    "No player hit only some of his shots": "no(player)(hit(exactly_one(shot)))"
 }
+
+TITLES = {
+    "every(player)(hit(every(shot)))": 'every...every',
+    "every(player)(hit(no(shot)))": 'every...no',
+    "every(player)(hit(some(shot)))": 'every...some',
+    "exactly_one(player)(hit(every(shot)))": 'exactly one...every',
+    "exactly_one(player)(hit(no(shot)))": 'exactly one ..no',
+    "exactly_one(player)(hit(some(shot)))": 'exactly one...some',
+    "no(player)(hit(every(shot)))": 'no...every',
+    "no(player)(hit(no(shot)))": 'no...no',
+    "no(player)(hit(some(shot)))": 'no...some'}
+    
 
 CONDITION_MAP = {
     "none-none-none": "NNN",
@@ -112,7 +124,7 @@ class Experiment:
         cnames = CONDITIONS
         message_state_barplot(mat=self.target_means2matrix(rnames, cnames),
                               confidence_intervals=self.target_cis2matrix(rnames, cnames),
-                              rnames=rnames,
+                              rnames=[TITLES[s] for s in rnames],
                               cnames=cnames,
                               nrows=3,
                               ncols=3,
