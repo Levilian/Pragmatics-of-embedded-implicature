@@ -13,23 +13,23 @@
 \begin{abstract} 
   \citet{Chemla:Spector:2011} present experimental evidence that
   scalar terms like \word{some} in the scope of non-monotonic
-  quantifiers can be locally enriched to impose an upper bound (`only
-  some'). Such construals are predicted not to occur on Gricean
+  quantifiers can be locally enriched to an exhaustified meaning
+  (`only some'). Such construals are predicted not to occur on Gricean
   accounts of conversational implicature, but they are easily within
-  reach of recent grammar-driven theories.  We propose a model that
-  both embraces the semantic insights of grammar-driven theories and
-  offers pragmatic explanations for where and how implicatures
-  arise. The model straightforwardly synthesizes
-  \posscitet{Bergen:Levy:Goodman:2014} \tech{lexical uncertainty}
-  model with a full compositional semantics. After describing the
-  model, we present new experimental evidence that people arrive at
-  locally-enriched construals, not just in non-monotonic environments
-  but also (and more controversially) in downward-entailing ones. We
-  then show not only that our model generates local enrichments, but
-  also that its predictions are highly correlated with our
-  experimental data, and that these predictions can be improved by
-  incorporating neo-Gricean hypotheses about the nature of lexical
-  alternatives.
+  reach of recent grammar-driven theories like that of
+  \citealt{ChierchiaFoxSpector08}.  We propose a model that both
+  embraces the semantic insights of grammar-driven theories and offers
+  pragmatic explanations for how implicatures arise. The model
+  straightforwardly synthesizes \posscitet{Bergen:Levy:Goodman:2014}
+  \tech{lexical uncertainty} model with a full compositional
+  semantics. After describing it in detail, we present new
+  experimental evidence that people arrive at locally enrichments, not
+  just in non-monotonic environments but also (and more
+  controversially) in downward-entailing ones. We then show not only
+  that our model generates local enrichments, but also that its
+  predictions are highly correlated with our experimental data, and
+  that these predictions can be improved by incorporating neo-Gricean
+  hypotheses about lexical alternatives.
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -82,7 +82,7 @@ inferences are amenable to Gricean treatments with no need for the
 pragmatics to intrude on the semantics. However, they go on to
 identify a class of examples that will not admit such a treatment:
 scalar terms in the scope of non-monotone quantifiers, as in
-\word{Exactly one player made some of his shots}. In such cases, the
+\word{Exactly one player hit some of his shots}. In such cases, the
 embedded implicature (\word{\ldots some but not all of his shots})
 does not entail the literal meaning, whereas the Gricean analysis of
 scalar terms can only strengthen literal meanings.
@@ -346,8 +346,8 @@ meaning:
   \setlength{\tabcolsep}{2pt}
   \begin{tabular}[t]{@{} r@{. \ } l *{9}{c}@{\hspace{18pt}} l}
     a& Worlds:       & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} & \world{AA} & \\
-    b& Literal:      & \world{NN} &            &            &            &            &            &            &            &            & `no hit some' \\
-    c& Local:        & \world{NN} &            & \world{NA} &            &            &            & \world{AN} &            & \world{AA} & `no hit only some' \\
+    b& Literal:      & \world{NN} &            &            &            &            &            &            &            &            & `none hit some' \\
+    c& Local:        & \world{NN} &            & \world{NA} &            &            &            & \world{AN} &            & \world{AA} & `none hit only some' \\
   \end{tabular}
 \end{examples}
 
@@ -384,8 +384,6 @@ responses to theoretical interpretations. This experiment reproduces
 the core findings of \citeauthor{Chemla:Spector:2011}'s studies,
 suggesting that these sentences do in fact pose a serious problem for
 Gricean reasoning as usual.
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -658,8 +656,8 @@ refinement throughout the lexicon.
     \midrule
     N   & \word{person}      & $\set{\tuple{w, x} : x \text{ is a person in } w}$ \\
     N   & \word{shot}        & $\set{\tuple{w, x} : x \text{ is a shot in } w}$ \\
-    \Vt & \word{made}        & $\set{\tuple{w, x, y} : x \text{ made } y \text{ in } w}$ \\
-    \Vi & \word{scored}      & $\set{\tuple{w, x} : \exists y \ x \text{ made } y \text{ in } w}$ \\
+    \Vt & \word{hit}         & $\set{\tuple{w, x, y} : x \text{ hit } y \text{ in } w}$ \\
+    \Vi & \word{scored}      & $\set{\tuple{w, x} : \exists y \ x \text{ hit } y \text{ in } w}$ \\
     D   & \word{some}        & \genericquantifier{\cap}{\neq \emptyset} \\
     D   & \word{every}       & \genericquantifier{\subseteq}{} \\
     D   & \word{no}          & \genericquantifier{\cap}{= \emptyset} \\
@@ -675,7 +673,7 @@ refinement throughout the lexicon.
     \bottomrule
   \end{tabular}
   \caption{Interpreted grammar fragment. The left column defines a context-free grammar,
-    and the right side gives its recursive interpretation in an intensional model
+    and the right column gives its recursive interpretation in an intensional model
     $\tuple{\Domain, \Worlds, \sem{\cdot}}$, where $\Domain$ is a set of entities,
     $\Worlds$ is a set of possible worlds, and $\sem{\cdot}$ is a semantic interpretation
     function. Assume $x, y \in \Domain$, $w \in \Worlds$, and $X, Y \subseteq (\Worlds \times \Domain)$.}
@@ -1270,8 +1268,8 @@ rationale for using this scale is that it allows enough space for
 participants to both register a truth-value assessment and convey
 information about the quality of the report. In this sense, our
 participants acted as listeners who got to observe the speaker's state
-and are assessing the extent to which the speaker succeeded in
-conveying that state with her utterance.
+and assess the extent to which the speaker succeeded in conveying that
+state with her utterance.
 
 \begin{figure}[t]
   \centering
@@ -1282,10 +1280,10 @@ conveying that state with her utterance.
 
 The experiment had 300 participants, all recruited with Amazon's
 Mechanical Turk. No participants or responses were excluded. There
-were 3 training items, designed to ensure that participants understood
-the cover story, displays, and sentences, and there were 32 sentences,
-divided into 9 target sentences and 23 fillers.  The target sentences
-were defined as follows:
+were three training items, designed to ensure that participants
+understood the cover story, displays, and sentences, and there were 32
+sentences, divided into nine target sentences and 23 fillers.  The
+target sentences were defined as follows:
 %
 \begin{examples}
 \item\label{expmsgs} 
@@ -1364,6 +1362,8 @@ these potential complications.
 
 \subsection{Results}\label{sec:exp1:results}
 
+\marginpar{Does this section need to do some stats testing of pairwise differences? If so, I suppose I would do Mann-Whitney U test (not all the items have the same number of responses), but I am open to alternatives. All the differences we care about are numerically large, though.}
+
 \Figref{fig:exp1-results} summarizes the responses by target sentence
 and world of evaluation using the average response with bootstrapped
 95\% confidence intervals. The overall pattern shows that participants
@@ -1372,10 +1372,10 @@ especially clear for the sentences in the first two columns, which do
 not admit of pragmatic enrichment of the sort that our experimental
 conditions can reveal. For these cases, the average ratings are not
 statistically different from 1 (the lowest value) where the sentence
-is false, and the ratings average above 6 (the second to highest
-value) where the sentence is true. This is reassuring about the
-ability of our subjects to make the sort of interpretive judgments we
-are hoping for.
+is false, and the ratings average above 6 (the second highest value)
+where the sentence is true. This is reassuring about the ability of
+our subjects to make the sort of interpretive judgments we are hoping
+for.
 
 \begin{figure}[t!]
   \centering
@@ -1390,15 +1390,15 @@ ratings in all its true conditions and relatively high ratings for
 \world{NNN}, where it is false on its literal construal. We
 hypothesize that this traces to the fact that the sentence has a
 negative concord construal on which the embedded term is interpreted
-as equivalent to \word{any of his shots}. Negative concord of this
-sort is productive in many dialects of English and understandable in
-all or nearly all of them. This likely created uncertainty about the
-intended meaning of the sentence, leading participants to disfavor it
-in general.
+as equivalent to \word{any of his shots}, creating a meaning that is
+true only in \world{NNN}. Negative concord of this sort is productive
+in many dialects of English and understandable in all or nearly all of
+them. This likely created uncertainty about the intended meaning of
+the sentence, leading participants to disfavor it in general.
 
-The response pattern for `every'/`some' (upper right) is strongly
-indicative of local enrichment. This sentence received its highest
-ratings in the \world{SSS} world. As we reviewed in
+The response pattern for \target{every}{some} (upper right) is
+strongly indicative of local enrichment. This sentence received its
+highest ratings in the \world{SSS} world. As we reviewed in
 \secref{sec:implicature}, example \eg{everysome-sem}, in order to
 count as a complete report in this world, this sentence requires
 either local enrichment or a Gricean calculation with auxiliary
@@ -1406,46 +1406,47 @@ premises. Worlds \world{SSA} and \world{SAA} received the next highest
 average ratings. Only a simple Gricean calculation is required for the
 sentence to completely describe this condition. Finally, the
 \world{AAA} world received significantly lower ratings than the
-others, which is probably reflective of the pragmatic fact that the
-salient alternative \word{every player hit all of his shots} is a more
+others, which probably reflects the pragmatic fact that the salient
+alternative \word{every player hit all of his shots} is a more
 complete description.
 
-The entailment relations between the readings for `every'/`some'
+The entailment relations between the readings for \target{every}{some}
 introduce some indeterminacy into the analysis. In particular, since
 the local enrichment entails the literal reading, we can't be sure
 whether the high ratings for \world{SSS} derive entirely from the
 availability of a local enrichment, since a literal construal also
 suffices to make the sentence true. However, as we discussed in
 \secref{sec:implicature}, \citeauthor{Chemla:Spector:2011} show that
-`every'/`some' is of limited utility in distinguishing theoretical
-proposals anyway. It is the `exactly one'/`some' sentence that allows
-us to probe most confidently for local readings. The response pattern
-for this sentence is given in the middle right of
-\figref{fig:exp1-results}. The highest ratings are in the \world{NNS}
-condition, where it is true under its literal and local enrichment
-construals. However, it also received high ratings in the \world{NSA}
-and \world{SAA} worlds, where it is true only with local enrichment
-(because two players made at least some of their baskets in these
-worlds, ruling out the literal construal).  We note also that its more
-strictly truth-conditional interpretation seems to be salient as well,
-as it was rated highly on average in the \world{NNA} condition.
+\target{every}{some} is of limited utility in distinguishing
+theoretical proposals anyway. It is the \target{exactly one}{some}
+sentence that allows us to probe most confidently for local
+readings. The response pattern for this sentence is given in the
+middle right of \figref{fig:exp1-results}. The highest ratings are in
+the \world{NNS} condition, where it is true under its literal and
+local enrichment construals. However, it also received high ratings in
+the \world{NSA} and \world{SAA} worlds, where it is true only with
+local enrichment (because two players hit at least some of their
+baskets in these worlds, ruling out the literal construal).  We note
+also that its more strictly truth-conditional interpretation seems to
+be salient as well, as it was rated highly on average in the
+\world{NNA} condition.
 
-Finally, the pattern for `no'/`some' suggests a non-trivial amount of
-local enrichment: though \world{NNN} received the highest average
-ratings, indicating a preference for a literal construal, the ratings
-for \world{NNA}, \world{NAA}, and \world{AAA} are fairly high (though
-with wide confidence intervals). These are the worlds in which no
-player hit only some of his shots, the local enrichment. This finding
-seems consistent with the low but non-negligible rates of local
-enrichment that \seccitet{Chemla:Spector:2011}{4.4.4} report for this
-quantifier pair. One qualification we should add here is that our
+Finally, the pattern for \target{no}{some} suggests a non-trivial
+amount of local enrichment: though \world{NNN} received the highest
+average ratings, indicating a preference for a literal construal, the
+ratings for \world{NNA}, \world{NAA}, and \world{AAA} are fairly high
+(though with wide confidence intervals). These are the worlds in which
+no player hit only some of his shots, the local enrichment. This
+finding seems consistent with the low but non-negligible rates of
+local enrichment that \seccitet{Chemla:Spector:2011}{4.4.4} report for
+this quantifier pair. One qualification we should add here is that our
 sentence is arguably somewhat unnatural in that it places \word{some},
 a positive polarity item \citep{Baker70,Israel96}, in the scope of a
 negative quantifier. The binding relation between the subject and the
-pronoun \word{his} in the embedded phrase should have forced a surface
-scope reading, but we can't rule out the possibility that participants
-might have found an inverse-scope construal (`some shots are such that
-no player') that took the scalar term out of the scope of the
+pronoun \word{his} in the embedded phrase should force a surface-scope
+reading, but we can't rule out the possibility that participants might
+have found an inverse-scope construal (`some shots are such that no
+player hit them') that took the scalar term out of the scope of the
 negation.
 
 We conclude from these response patterns that local enrichment is
@@ -1466,22 +1467,22 @@ data.
 
 \subsection{Pragmatic model assessment}
 
-We frame our assessment in terms of a competition between four
-different related models that embody different approaches to
-linguistic meaning. Our goal is to see which instantiation achieves
-the best match with the human response pattern described above. Our
-rationale for this approach is that a more standard regime of
-assessing correlations with the experimental responses against the
-null hypothesis of statistical independence is not illuminating: as we
-have seen, our human response patterns are broadly in agreement with
-intuitions that guided the development of these models so we can take
+We frame our assessment in terms of a competition between four related
+models that embody different characterizations of linguistic
+meaning. Our goal is to see which instantiation achieves the best
+match with the human response pattern described above. Our rationale
+for this approach is that a more standard regime of assessing
+correlations with the experimental responses against the null
+hypothesis of statistical independence is not illuminating: as we have
+seen, our human response patterns are broadly in agreement with the
+intuitions that guided the development of these models, so we can take
 it for granted that these correlations are high. And, indeed, all the
 models considered here achieve significant correlations at $p <
-0.001$, whether assessed with Pearson's correlation coefficient or
-Spearman's rank correlation.  Intuitively, we know already that the
-null hypotheses given by frequentist statistical tests are false, so
-we pursue a strategy that is more stringent and more likely to provide
-insights into the quality of the underlying model.
+0.001$, for just about any measure of correlation one chooses.
+Intuitively, we know already that the null hypotheses given by
+frequentist statistical tests are false, so we pursue a strategy that
+is more stringent and more likely to provide insights into the quality
+of the underlying model.
 
 For all the models, we take as given the literal semantics described
 in \figref{fig:grammar}, as well as the following features of the
@@ -1510,10 +1511,10 @@ The domain $\Domain$ and worlds $\Worlds$ come directly from our human
 experiment. Similarly, the set of messages $\Messages$ corresponds to
 \eg{expmsgs}, with some adjustments to keep the logical grammar
 simple. We stipulate flat priors and even costs. As noted in
-\secref{sec:model}, we do not have empirical estimates of these
-values; though better fits to the human data can achieved by adding
+\secref{sec:model}, we do not have empirical estimates for these
+values; though better fits to the human data can be achieved by adding
 assumptions about them, this risks overfitting to the particular data
-we have and thus overstating the true accuracy of the model.
+we have and thus overstating the true accuracy of the models.
 
 The models we consider are defined as follows:
 %
