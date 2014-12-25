@@ -21,7 +21,7 @@
   embraces the semantic insights of grammar-driven theories and offers
   pragmatic explanations for how implicatures arise. The model
   straightforwardly synthesizes \posscitet{Bergen:Levy:Goodman:2014}
-  \tech{lexical uncertainty} model with a full compositional
+  `lexical uncertainty' model with a full compositional
   semantics. After describing it in detail, we present new
   experimental evidence that people arrive at locally enrichments, not
   just in non-monotonic environments but also (and more
@@ -110,7 +110,7 @@ or not), we bring this coordination process into our account, seeking
 to retain the insights of Gricean accounts while paying close
 attention to the details of semantic composition.
 
-\marginpar{Clarified Leon's substantial role.}
+\marginnote{Clarified Leon's substantial role.}
 
 Our model is an extension of the lexical uncertainty model of
 \citet{Bergen:Goodman:Levy:2012} and \citet{Bergen:Levy:Goodman:2014},
@@ -127,7 +127,7 @@ many ways, our central finding is that
 implicatures in non-monotone contexts if it is combined with a full
 theory of semantic composition.
 
-\marginpar{Clarified nature and importance of lexical uncertainty.}
+\marginnote{Clarified nature and importance of lexical uncertainty.}
 
 The crucial feature of our model is its notion of \tech{lexical
   uncertainty}. The discourse participants are not presumed to share a
@@ -149,7 +149,7 @@ uncertainty guides pragmatic reasoning, and it furthermore shows that
 the uncertainty need not be fully resolved in order for robust
 pragmatic inferences to go through.
 
-\marginpar{Added point about model fits improved by lexicalized alternatives}
+\marginnote{Added point about model fits improved by lexicalized alternatives}
 
 Thus, we find that the full theory of implicature depends
 substantively on the fine details of semantic composition and broader
@@ -334,6 +334,8 @@ Any theory based on broadly Gricean notions of enrichment will fail to
 arrive at (c). Such theories head inexorably towards a refinement that
 excludes \world{NA} and \world{AN}, but they are essentially incapable
 of `introducing' \world{SA} and \world{AS}.
+
+\marginnote{New discussion of downward entailing contexts. Foreshadows experimental discussion.}
 
 The issue is even clearer when a scalar term is in the scope of a
 downward-monotone operator like \word{no}, as in \word{no player hit
@@ -575,7 +577,7 @@ participants to coordinate on the right logical forms:
   operator and those that do not). (p.~2317)
 \end{quote}
 
-%\marginpar{DL: changed ``always underdetermines'' to ``frequently'', since whether O-insertion generates ambiguity depends on details of the sister's denotation and its alternative set.}
+%\marginnote{DL: changed ``always underdetermines'' to ``frequently'', since whether O-insertion generates ambiguity depends on details of the sister's denotation and its alternative set.}
 
 The coordination problem that \citeauthor{Grice75} sought to solve
 therefore remains, though its precise form is different. In the
@@ -632,9 +634,9 @@ from the website for this paper.
 
 \subsection{Grammar fragment}\label{sec:grammar}
 
-\marginpar{The grammar is hard to work with because of its intensional aspects. I am open to rewriting it using lambdas. This will require a more convoluted definition of refinement.}
+\todo{The grammar is hard to work with because of its intensional aspects. I am open to rewriting it using lambdas. This will require a more convoluted definition of refinement.}
 
-\Figref{fig:grammar} gives the intensional fragment that we use
+\Tabref{tab:grammar} gives the intensional fragment that we use
 throughout the remainder of this paper, both to explain how our
 pragmatic model works and to conduct our experimental analyses in
 \secref{sec:exp1}. It is our base lexicon, subject to refinement as
@@ -647,7 +649,7 @@ akin to functional application. Our motivation for this less familiar
 presentation is that it makes it easy to define a uniform notion of
 refinement throughout the lexicon.
 
-\begin{figure}[t]
+\begin{table}[t]
   \centering
   \renewcommand{\arraystretch}{1.2}
   \begin{tabular}[c]{r@{ $\rightarrow$ }l l}
@@ -677,16 +679,16 @@ refinement throughout the lexicon.
     $\tuple{\Domain, \Worlds, \sem{\cdot}}$, where $\Domain$ is a set of entities,
     $\Worlds$ is a set of possible worlds, and $\sem{\cdot}$ is a semantic interpretation
     function. Assume $x, y \in \Domain$, $w \in \Worlds$, and $X, Y \subseteq (\Worlds \times \Domain)$.}
-  \label{fig:grammar}
-\end{figure}
+  \label{tab:grammar}
+\end{table}
 
 %=====================================================================
 
 \subsection{Refinement}\label{sec:refine}
 
-\marginpar{This section has been substantially revised in terms of prose and technical content.}
+\marginnote{This section has been substantially revised in terms of prose and technical content.}
 
-The grammar in \figref{fig:grammar} contains both lexical entries and
+The grammar in \tabref{tab:grammar} contains both lexical entries and
 rules of semantic combination. We assume that the rules are fixed.
 The lexical entries, on the other hand, are merely a starting point
 for linguistic communication --- a set of somewhat negotiable
@@ -700,13 +702,13 @@ but in fact they are sometimes idiosyncratic and usually adaptable
 
 % I am not sure I understand this comment. Is it just that `lefthand
 % side' was ambiguous? If so, I think I've fixed it. If not, I don't
-% see what the issue is. Maybe the comment expressses a preference for
+% see what the issue is. Maybe the comment expresses a preference for
 % giving lexical denotations and then having one rule that says a
 % non-branching mother is interpreted as identical to its daughter.
 % If so, that will take up more space and require more notation, but
 % I guess we could do it.
 %
-%\marginpar{`lefthand side' not quite right in figure 2 column labels; `rule/item'? relatedly, do you envision rules having denotations in this grammar?}
+%\marginnote{`lefthand side' not quite right in figure 2 column labels; `rule/item'? relatedly, do you envision rules having denotations in this grammar?}
 
 The `lexical uncertainty' aspects of our model are designed to capture
 this variability. The core notion is that of lexical
@@ -807,14 +809,14 @@ reasons in terms of all of these options.
 
 \subsection{Pragmatic reasoning}\label{sec:agents}
 
-\marginpar{This section has been substantially revised in response to the technical changes for refinement.}
+\marginnote{This section has been substantially revised in response to the technical changes for refinement.}
 
 Our pragmatic model combines the logical grammar of
 \secref{sec:grammar} with the lexical refinements of
 \secref{sec:refine}. The basic ingredients are given in
 \eg{modobjects}. We take as given a context $c$, an interpreted
 fragment $\tuple{\Grammar, \Domain, \Worlds, \sem{\cdot}}$ as in
-\figref{fig:grammar}, with context free grammar $\Grammar$, a domain
+\tabref{tab:grammar}, with context free grammar $\Grammar$, a domain
 of entities $\Domain$, a set of worlds $\Worlds$, an interpretation
 function $\sem{\cdot}$ interpreting expressions of $\Grammar$ in these
 domains, and a refinement function $\Refine(\varphi)$ that is defined
@@ -974,7 +976,7 @@ $\gsem{aced} = \set{\tuple{\world{A}, \playera}}$. Thus, \word{aced}
 strictly entails \word{scored}, creating the potential for a scalar
 implicature.
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
   \[
   \setlength{\arraycolsep}{2pt}
   \begin{array}{r c c c}
@@ -1075,6 +1077,8 @@ generating implicatures based on the principle that marked forms
 signal marked meanings and unmarked forms signal unmarked meanings
 \citep{McCawley78,Horn84,Blutner98,Levinson00}.
 
+\marginnote{This example reframed around the two different approaches to refinement.}
+
 Let's now look at a larger and more complex signaling game, one that
 starts to show the potential of this model to predict embedded
 implicatures. In this scenario, there are two players. We continue our
@@ -1087,7 +1091,7 @@ creates an enormous space of lexica, and allows the full range of
 possible interactions between the refinements. 
 
 The resulting listener inferences are summarized in
-\figref{fig:subjects}. For the most part, they seem well-aligned with
+\tabref{tab:subjects}. For the most part, they seem well-aligned with
 the general view in the literature about how scalar terms interact in
 contexts like this. For instance, we predict that a proper name
 \word{P} will take on the exhaustified sense \word{only P}, as we
@@ -1102,7 +1106,7 @@ subjects: the best-guess inference for \word{every player scored} is
 are \world{NA} and \world{AN}. These effects derive from interacting
 lexical uncertainty between the subjects and predicates.
 
-\Figref{fig:subjects} reveals some drawbacks to unfettered exploration
+\Tabref{tab:subjects} reveals some drawbacks to unfettered exploration
 of refinements, however. First, we might expect hearing \word{some
   player scored} to lead the listener to assume that the state was
 either \world{NS} or \world{SN}, corresponding to enrichment of both
@@ -1123,7 +1127,7 @@ major lessons of neo-Gricean approaches that alternatives are
 contextually and lexically constrained. \CFS's treatment of $\OALT$
 reflects this insight, and our own handling of refinement and lexical
 uncertainty allows us to incorporate it as well. So it is worth seeing
-whether we can improve the picture in \figref{fig:subjects} by further
+whether we can improve the picture in \tabref{tab:subjects} by further
 specify that the following set of refinements, which basically encode
 lexical scales that we might specify for these items:
 %
@@ -1140,11 +1144,11 @@ lexical scales that we might specify for these items:
 \end{examples}
 %
 The results of working in this more refined refinement space are given
-in \figref{fig:subjects-ALTstyle}. The picture is mostly unchanged,
+in \tabref{tab:subjects-ALTstyle}. The picture is mostly unchanged,
 except we now also achieve the target enrichment for \word{some player
   scored}, and the messiness surrounding \word{no player scored} is
 fully addressed. The only worry one might have about
-\figref{fig:subjects-ALTstyle} is that it predicts rather aggressive
+\tabref{tab:subjects-ALTstyle} is that it predicts rather aggressive
 pragmatic enrichment of the scalar term in the scope of the negative
 quantifier. It has long been assumed that scalar items in such
 environments fail to give rise to implicatures, presumably because the
@@ -1163,7 +1167,7 @@ both that embedded implicatures seem to be real and that the above
 model achieves excellent fits with human judgment patterns for such
 sentences.
 
-\begin{figure}[tp]
+\begin{table}[tp]
   \centering
   \setlength{\tabcolsep}{4pt}
   %
@@ -1188,10 +1192,10 @@ sentences.
   \end{tabular}
   \caption{Subject and predicate enrichment in the largest space of
     interacting refinements supported by this lexicon.}
-  \label{fig:subjects}
-\end{figure}
+  \label{tab:subjects}
+\end{table}
 
-\begin{figure}[tp]
+\begin{table}[tp]
   \centering
   \setlength{\tabcolsep}{4pt}
   %
@@ -1216,8 +1220,8 @@ sentences.
   \end{tabular}
   \caption{Subject and predicate enrichment using the lexically-driven
     (neo-Gricean) refinements sets in \eg{neo}.}
-  \label{fig:subjects-ALTstyle}
-\end{figure}
+  \label{tab:subjects-ALTstyle}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1233,6 +1237,8 @@ the website for this paper.
 %=====================================================================
 
 \subsection{Materials, methods, and participants}
+
+\marginnote{This section rewritten to more directly express our rationale for the design and the structure of the study itself.}
 
 After reading our consent form, participants were given the following
 cover story:
@@ -1312,7 +1318,7 @@ using to identify possible worlds.
     \world{SAA}, \world{AAA}}$
 \end{examples}
 
-\marginpar{Dan might check this paragraph to make sure the details align with the set-up he created.}
+\todo{Dan might check this paragraph to make sure the details align with the set-up he created.}
 
 This is a subset of the full cross-product of the three outcomes
 \world{N}, \world{S}, and \world{A} in which player $i$ always did at
@@ -1329,7 +1335,7 @@ pair received between 19 and 44 responses (mean 30); this variation is
 the result of idiosyncrasies in the way participants were assigned to
 the experiment.
 
-\marginpar{This is the paragraph justifying our experiment as more than a reproduction. We could tr to be more hard-hitting, but my heart isn't in it --- C\&S did a great job too.}
+\marginnote{This is the paragraph justifying our experiment as more than a reproduction. We could tr to be more hard-hitting, but my heart isn't in it --- C\&S did a great job too.}
 
 As noted above, the design owes a debt to the previous work of
 \citet{Geurts:Pouscoulous:2009} and \citet{Chemla:Spector:2011}, and
@@ -1362,7 +1368,7 @@ these potential complications.
 
 \subsection{Results}\label{sec:exp1:results}
 
-\marginpar{Does this section need to do some stats testing of pairwise differences? If so, I suppose I would do Mann-Whitney U test (not all the items have the same number of responses), but I am open to alternatives. All the differences we care about are numerically large, though.}
+\todo{Does this section need to do some stats testing of pairwise differences? If so, I suppose I would do Mann-Whitney U test (not all the items have the same number of responses), but I am open to alternatives. All the differences we care about are numerically large, though.}
 
 \Figref{fig:exp1-results} summarizes the responses by target sentence
 and world of evaluation using the average response with bootstrapped
@@ -1377,7 +1383,7 @@ where the sentence is true. This is reassuring about the ability of
 our subjects to make the sort of interpretive judgments we are hoping
 for.
 
-\begin{figure}[t!]
+\begin{figure}[!ht]
   \centering
   \includegraphics[width=1\textwidth]{fig/basketball-pilot-2-11-14-results-parsed}
   \caption{Mean ratings by sentence with bootstrapped 95\% confidence intervals.}
@@ -1467,25 +1473,26 @@ data.
 
 \subsection{Pragmatic model assessment}
 
+\marginnote{This section has been totally reconceived and rewritten.}
+
 We frame our assessment in terms of a competition between four related
-models that embody different characterizations of linguistic
-meaning. Our goal is to see which instantiation achieves the best
-match with the human response pattern described above. Our rationale
-for this approach is that a more standard regime of assessing
-correlations with the experimental responses against the null
-hypothesis of statistical independence is not illuminating: as we have
-seen, our human response patterns are broadly in agreement with the
-intuitions that guided the development of these models, so we can take
-it for granted that these correlations are high. And, indeed, all the
-models considered here achieve significant correlations at $p <
-0.001$, for just about any measure of correlation one chooses.
-Intuitively, we know already that the null hypotheses given by
-frequentist statistical tests are false, so we pursue a strategy that
-is more stringent and more likely to provide insights into the quality
-of the underlying model.
+models that embody different characterizations of linguistic meaning.
+Our goal is to determine which model achieves the best match with the
+human responses described above. The rationale for this approach is
+that a more standard regime of assessing correlations with the
+experimental responses against the null hypothesis of statistical
+independence is not illuminating: as we have seen, our human response
+patterns are broadly in agreement with the intuitions that guided the
+development of these models, so we can take it for granted that these
+correlations are high. And, indeed, all the models considered here
+achieve significant correlations at $p < 0.001$, for just about any
+measure of correlation one chooses.  We know already that the null
+hypotheses given by frequentist statistical tests are false, so we
+pursue a strategy that is more stringent and more likely to provide
+insights into the quality of the underlying model.
 
 For all the models, we take as given the literal semantics described
-in \figref{fig:grammar}, as well as the following features of the
+in \tabref{tab:grammar}, as well as the following features of the
 context:
 %
 \begin{examples}
@@ -1521,13 +1528,13 @@ The models we consider are defined as follows:
 \begin{examples}
 \item 
   \begin{examples}
-  \item \tech{Literal semantics}: the predicted values are the output of
-    $\listenerZero$, as in \subeg{agents}{l0}, as run on the messages
+  \item \tech{Literal semantics}: the predicted values are the output
+    of $\listenerZero$, as in \subeg{agents}{l0}, run on the messages
     defined in \subeg{expmod}{expformulae}.
   \item \tech{Fixed-lexicon pragmatics}: the predicted values are the
     output of \subeg{agents}{L}, but all the lexical items have only
     themselves as refinements, so that the reasoning is entirely in
-    terms of the base lexicon in \figref{fig:grammar}.
+    terms of the base lexicon in \tabref{tab:grammar}.
   \item \tech{Unconstrained refinement}: the inferences of the
     uncertainty listener \subeg{agents}{L} with $\Refine(\word{some})
     = \wp(\sem{\word{some}}){-}\emptyset$
@@ -1544,15 +1551,17 @@ equivalent to the Rational Speech Acts (RSA) model of
 \citet{Frank:Goodman:2012} and \citet{Goodman:Stuhlmuller:2013}
 (perhaps with minor differences concerning how priors are
 incorporated). RSA has been shown to capture a broad range of scalar
-implicatures, but it is limited in ability to derive manner
-implicatures and certain classes of embedded implicature
+implicatures, but it is known to be limited in its ability to derive
+manner implicatures and certain classes of embedded implicature
 \citep{Bergen:Goodman:Levy:2012,Bergen:Levy:Goodman:2014}. The final
 two models are full versions of the one we presented in
-\secref{sec:model}; we saw in connection with \figref{fig:subjects}
-and \figref{fig:subjects-ALTstyle} that there might be substantial
-empirical value in a highly constrained space of refinements.
+\secref{sec:model}. They represent opposite ends of the spectrum of
+non-trivial refinements. We saw in connection with
+\tabref{tab:subjects} and \tabref{tab:subjects-ALTstyle} that there
+might be empirical value in greatly constraining the space of
+refinements.
 
-\marginpar{Mike: perhaps rewrite with deeper thoughts on why we chose these three measures.}
+\todo{Perhaps rewrite with deeper thoughts on why we chose these three measures.}
 
 We employ three methods of comparison: Pearson's correlation
 coefficient, which measures the linear correlation between the human
@@ -1560,8 +1569,10 @@ responses and the model predictions; Spearman's rank correlation
 coefficient, which assesses how closely the human responses and model
 responses are aligned in terms of the rankings they predict; and the
 mean-squared error (MSE) of the model predictions as compared with the
-human response, which provides another summary of the difference
-between the two distributions.
+human responses, which summarizes the distance of the predictions
+from the human behavior.
+
+\marginnote{This paragraph defines the linking hypothesis.}
 
 Our model predictions are conditional probability distributions over
 states given messages, and hence constrained to be in the range
@@ -1576,8 +1587,9 @@ the Likert responses into a probability distribution; we subtract $1$
 because the lowest Likert value is $1$. The one noteworthy thing about
 this calculation is that, because it is done on a per-sentence basis,
 it is not a simple linear rescaling, and so it affects all of our
-assessment metrics. However, we regard it as the minimal viable
-hypothesis linking our model with our experimental data.
+assessment metrics when applied to multiple sentences at
+once. However, we regard it as the minimal viable hypothesis linking
+our model with our experimental data.
 
 \begin{figure}[t]
   \centering
@@ -1587,7 +1599,7 @@ hypothesis linking our model with our experimental data.
   \label{fig:exp-analysis}
 \end{figure}
 
-\begin{figure}[htp]
+\begin{table}[t]
   \centering
   \begin{tabular}[c]{r c c c}
     \toprule
@@ -1600,8 +1612,8 @@ hypothesis linking our model with our experimental data.
     \bottomrule   
   \end{tabular}
   \caption{Overall assessment.}
-  \label{fig:overall}
-\end{figure}
+  \label{tab:overall}
+\end{table}
 
 \Figref{fig:exp-analysis} summarizes the models' predictions alongside
 the human responses. The predicted values are largely aligned for the
@@ -1612,42 +1624,40 @@ occurs embedded, the models diverge in qualitative terms. For
 responses seen in the human data. For \target{exactly one}{some}, only
 the two uncertainty models are able to predict local enrichment, in
 that only they assign high probability to the crucial worlds that are
-false on the literal construal: \world{NSA} and \word{SAA}. The
+false on the literal construal: \world{NSA} and \world{SAA}. The
 `Literal semantics' and `Fixed lexicon pragmatics' models are unable
 to predict the salience of these construals. Similarly, only the two
 uncertainty models predict \target{none}{some} to have embedded
-enrichments leading to acceptability for \word{NNA}, \world{NAA}, and
-\word{AAA}. Here, `Unconstrained uncertainty' is les aggressive in
-calculating local enrichments and so seems better matched with the
-human responses.
+enrichments leading to acceptability for \world{NNA}, \world{NAA}, and
+\world{AAA}.
 
-In \figref{fig:overall}, we summarize our overall quantitative
+\todo{Should we worry that the differences between correlations are not typically statistically significant?}
+
+In \tabref{tab:overall}, we summarize our overall quantitative
 assessment. As noted above, all of the correlations are extremely
 high, and the MSE values are extremely low. This is reassuring about
 the general utility of all of these models for predicting human
-judgments. The comparative values are arguably of more interest,
-though. A few patterns stand out.  First, `Fixed-lexicon pragmatics'
-performs the least well overall.  Since it has been shown to add
-substantial value in other areas of language and cognition, we
-conclude that its particular approach to enrichment is at odds with
-the patterns for embedded implicatures.  The precise causes are hard
-to pin-point, but the fact that our target implicatures are not always
-enrichments of the literal content is surely part of the problem.
-Second, while `Unconstrained uncertainty' is better than literal
-semantics by the Spearman and MSE metrics, it falls behind it on the
-Pearson metric, though the difference is not significant according to
-a test of the difference between the correlation coefficients for
-dependent data. We saw in connection with \figref{fig:subjects} that
-the unintuitive lexica that this model entertains can lead to
-implausible final patterns. We conjecture that this is the root cause
-of the model's poor performance here as well.  Third, neo-Gricean
-uncertainty achieves the best results across all three of our
-models. Here again, this is consistent with our expectations based on
-the large illustrative example from \secref{sec:illustrations}, where
-we saw that this constrained, lexically-driven approach to choosing
+judgments. Comparing the values is arguably more illuminating. A few
+patterns stand out.  First, `Fixed-lexicon pragmatics' performs the
+least well overall.  Since it has been shown to add substantial value
+in other areas of language and cognition, we conclude that its
+particular approach to enrichment is at odds with the patterns for
+embedded implicatures.  The precise causes are hard to pin-point, but
+the fact that our target implicatures are not always enrichments of
+the literal content is surely part of the problem.  Second, while
+`Unconstrained uncertainty' is better than literal semantics by the
+Spearman and MSE metrics, it falls behind it on the Pearson metric. We
+saw in connection with \tabref{tab:subjects} that the unintuitive
+lexica that this model entertains can lead to implausible final
+patterns. We conjecture that this is the root cause of the model's
+poor performance here as well.  Third, neo-Gricean uncertainty
+achieves the best results across all three of our measures. Here
+again, this is consistent with our expectations based on the large
+illustrative example from \secref{sec:illustrations}, where we saw
+that this constrained, lexically-driven approach to choosing
 refinements resulted in the best quantitative and qualitative pattern.
 
-The overall analysis given in \figref{fig:overall} understates the
+The overall analysis given in \tabref{tab:overall} understates the
 value of both uncertainty models when it comes to the distribution of
 embedded implicatures. Our target sentences provide relatively little
 space for pragmatic enrichment; in \figref{fig:exp1-results}, the left
@@ -1657,40 +1667,42 @@ shine. What's more, our qualitative review of
 \figref{fig:exp-analysis} suggests that the right column examples
 reveal major distinctions. It's thus worth assessing them
 quantitatively in isolation. The results of such an assessment are in
-\figref{fig:crucial-items}.  The most dramatic pattern is that the
+\tabref{tab:crucial-items}.  The most dramatic pattern is that the
 first two models, the fixed lexicon ones, are unable to capture the
 patterns for embedded implicatures in the non-monotone and downward
 monotone environments. In contrast, both uncertainty models capture
-the patterns extremely well. These tight fits are already evident in
-the raw distributions of \figref{fig:exp-analysis}, and it is
-reassuring to see them reflected in our assessment measures as well.
+the patterns. These tight fits are already evident in the raw
+distributions of \figref{fig:exp-analysis}, and it is reassuring to
+see them reflected in our assessment measures as well.
 
 It is also striking that the literal model is competitive for
-`every/`some'. This probably traces to the experimentally inconvient
-fact that the enriched meaning entail the literal one, making a
-literal semantics a generally safe bet. It should be noted also that
-the Spearman coefficient best reflects the ability of a model to
-capture the preference ordering in the human data, so the `Neo-Gricean
-uncertainty' model might still be the favored choice for this case.
+\target{every}{some}. This probably traces to the experimentally
+inconvenient fact that the enriched meaning entails the literal one,
+making a literal semantics a generally safe bet. It should be noted
+also that the Spearman coefficient best reflects the ability of a
+model to capture the preference ordering in the human data, so the
+`Neo-Gricean uncertainty' model might still be the favored choice for
+this case.
 
 Finally, it seems that neither uncertainty model is clearly superior
 to the other for these data.  This suggests to us that we have not yet
 found precisely the right approach to refinements (alternatives). It
 is tempting to try additional refinement sets to try to find a single
 model that wins decisively for all the target examples. We are wary of
-doing this becuase, as noted above, it runs the risk of overfitting to
-our experimental responses, but it is nonetheless a fruitful avenue
-for future exploration.
+doing this because, as noted above, it runs the risk of overfitting to
+our experimental responses; we could easily engineer our own success.
+However, this is nonetheless a fruitful avenue for future exploration
+if paired with additional experiments for further validation.
 
-\begin{figure}[htp]
+\begin{table}[htp]
   \centering
   \setlength{\tabcolsep}{3pt}
   \begin{tabular}[c]{r *{3}{r}@{\hspace{20pt}}*{3}{r}@{\hspace{20pt}}*{3}{r} }
     \toprule
     & 
-    \multicolumn{3}{c}{`every'/`some'} & 
-    \multicolumn{3}{c}{`exactly one'/`some'} &
-    \multicolumn{3}{c}{`no'/`some'} \\
+    \multicolumn{3}{c}{\target{every}{some}} & 
+    \multicolumn{3}{c}{\target{exactly one}{some}} &
+    \multicolumn{3}{c}{\target{no}{some}} \\
     & 
     P & S & MSE & 
     P & S & MSE & 
@@ -1703,8 +1715,8 @@ for future exploration.
     \bottomrule
   \end{tabular}
   \caption{Results on crucial items. `P' = `Pearson'; `S' = `Spearman'.}
-  \label{fig:crucial-items}
-\end{figure}
+  \label{tab:crucial-items}
+\end{table}
 
 Our model's performance is sensitive to the space of competitor
 messages, so it is worth asking how robust these findings are to
@@ -1714,49 +1726,57 @@ readers to further explore the space using our implementation.  The
 only noteworthy finding we have to report in this regard is that
 allowing \word{exactly one} into object position has a major impact:
 while \world{SSS} remains the best-guess inference for the message
-\word{every}/\word{some} in this setting, \word{exactly
-  one}/\word{some} effectively loses its embedded implicature reading.
-This makes intuitive sense given the nature of the model: if the
-speaker has the option to choose \word{exactly one of his shots}, and
-that form is equally costly, then surely her avoidance of that form in
-favor of \word{some of his shots} is a signal that she regards the
-local enrichment as infelicitous.
+\target{every}{some} in this setting, \target{exactly one}{some} and
+\target{no}{some} effectively lose their embedded implicature
+readings.  This makes intuitive sense given the nature of the model:
+if the speaker has the option to choose \word{exactly one of his
+  shots}, and that form is equally costly, then surely her avoidance
+of that form in favor of \word{some of his shots} is a signal that she
+regards the local enrichment as infelicitous.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusion}\label{sec:conclusion}
 
-With this paper, we sought a synthesis between Gricean, interactional
-accounts of pragmatic reasoning and grammar-driven ones like that of
+\marginnote{This section has been lightly revised to reflect our newer insights.}
+
+With this paper, we sought a synthesis between Gricean accounts of
+pragmatic reasoning and grammar-driven ones like that of
 \citet{ChierchiaFoxSpector08}. It seems to us inevitable that both
 grammar and interaction will play leading roles in the final theory of
 these phenomena; at some level, all participants in the debate
-acknowledge this. Our achievement is to bring what we regard as the
-crucial components of these approaches together into a unified formal
-model that makes quantitative predictions. The key components of the
-model are lexical uncertainty and recursive modeling of speaker and
-listener agents. The lexical uncertainty property is in evidence in
-\citeauthor{ChierchiaFoxSpector08}'s account as well: underspecified
-logical forms with context dependent meanings mean that each
-expression potentially needs to have its meaning refined in context;
-our model has similar formal mechanisms but offers an account of how
-discourse participants to select among them.  The recursive reasoning
-is characteristic of both Gricean approaches and signaling systems
-approaches like that of \citet{Lewis69}; our model shares formal
-properties of these approaches but makes quantitative predictions of
-the sort that can be correlated with human preferences in
-communication. There are by now many models in the same family as ours
-(see, e.g.,
+acknowledge this. Our achievement is to unify the crucial components
+of these approaches in a single formal model that makes quantitative
+predictions.
+
+The key components of the model are lexical uncertainty and recursive
+modeling of speaker and listener agents. The lexical uncertainty
+property is in evidence in \citeauthor{ChierchiaFoxSpector08}'s
+account as well, in the form of underspecified logical forms with
+context dependent meanings. Our model has similar formal mechanisms
+but offers an account of how discourse participants reason under this
+persistent linguistic uncertainty. This leads to an important
+conceptual point: not all underspecification has to be resolved in
+order for robust pragmatic enrichment to take place.
+
+The recursive reasoning of our model is characteristic of both Gricean
+approaches and signaling systems approaches; our model shares formal
+properties of both but makes quantitative predictions of the sort that
+can be correlated with human preferences in communication. There are
+by now many models in the same family as ours (see, e.g.,
 \citealt{CamererHo:2004,Jaeger:2011,Smith:Goodman:Frank:2013,Kao-etal:2014}),
 so further exploration is likely to yield an even more nuanced
-picture. In addition, we saw that the space of refinements
-(alternatives) has a significant impact on the final predictions, It
-would thus be worthwhile to further explore the theoretically
-moticated options in this area, seeking better fits with our own
-experimental patterns and validating those conclusions in follow-up
-experiments. We have made publicly available all the data and code
-associated with this paper in an effort to encourage these new strands
-of theory development and quantitative assessment.
+picture.
+
+In addition, we saw that the space of refinements (alternatives) has a
+significant impact on the final predictions. It would thus be
+worthwhile to further explore different notions of refinement, seeking
+better fits with our own experimental patterns and then validating
+those conclusions in follow-up experiments using our experimental
+items, or applying the resulting models in new domains.  We have made
+publicly available all the data and code associated with this paper in
+an effort to encourage these new strands of theory development and
+quantitative assessment.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
