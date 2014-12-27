@@ -50,7 +50,8 @@ def experimental_assessment(
         models=[mod])
     
     analysis.overall_analysis()
-    analysis.analysis_by_message()
+    #analysis.analysis_by_message()
+    analysis.comparison_plot()
         
 
 experimental_assessment()

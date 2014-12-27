@@ -8,6 +8,7 @@ import numpy as np
 from scipy.stats import spearmanr, pearsonr
 from plots import *
 from utils import *
+from experiment import TITLES
 import csv
 
 ######################################################################
@@ -58,39 +59,45 @@ class Analysis:
                 err = mse(expvec, lisvec)            
                 rows.append(np.array([pearson, pearson_p, spearman, spearman_p, err]))        
         display_matrix(np.array(rows), rnames=rnames, cnames=['Pearson', 'Pearson p', 'Spearman', 'Spearman p', 'MSE'], digits=digits)
-                	
-	def comparison_plot(self):
-		pass
-		
 
-    def listener_comparison_plot(self, output_filename=None, indices=[], nrows=1, ncols=None):
-        # Correlations:
-        correlation_stats = [(self.correlation_test(self.modmat[i], self.expmat[i])) for i in range(self.modmat.shape[0])]
-        correlation_texts = self.correlation(by_message=True)
-        correlation_texts = [r"%s $\rho = %s$; %s" % (self.correlation_func_name, round(coef, 2), self.printable_pval(p)) for coef, p in correlation_texts]
-        self.correlation_func = spearmanr
-        self.correlation_func_name = 'Spearman'
-        correlation_texts2 = self.correlation(by_message=True)
-        correlation_texts2 = [r"%s $\rho = %s$; %s" % (self.correlation_func_name, round(coef, 2), self.printable_pval(p)) for coef, p in correlation_texts2]
-        correlation_texts = [x + "\n" + y for x, y in zip(correlation_texts, correlation_texts2)]
-        # MSE:
-        errs = [self.mse(self.modmat[i], self.expmat[i]) for i in range(self.modmat.shape[0])]
-        errs = ["MSE = %s" % np.round(err, 4) for err in errs]
-        correlation_texts = [x + "\n" + y for x, y in zip(errs, correlation_texts)]
-        # Limits:                
-        comparison_plot(modmat=self.modmat,
-                        expmat=self.expmat,
-                        confidence_intervals=self.confidence_intervals,
-                        correlation_texts=correlation_texts,
-                        rnames=self.messages,
-                        cnames=self.worlds,
-                        nrows=nrows,
-                        ncols=ncols,
-                        output_filename=output_filename,
-                        indices=indices,
-                        ylim=self.ylim,
-                        yticks=self.yticks,
-                        ylabel="")
+    def comparison_plot(self, stats=False, width=0.2, output_filename=None):        
+        fig, axarray = plt.subplots(nrows=len(self.listeners)+1, ncols=len(self.messages))
+        for i, lis in enumerate(self.listeners):
+            self.model_comparison_plot(axarray[i], lis, stats=stats, width=width, color=colors[i+1], top=i==0, bottom=False, modname=self.modnames[i])
+        self.model_comparison_plot(axarray[-1], self.expmat, stats=stats, width=width, color=colors[0], top=False, bottom=True, modname='Human')
+        fig.text(0.06, 0.5, 'Probability', ha='center', va='center', rotation='vertical', fontsize=20)
+        if output_filename:
+            plt.savefig(output_filename, bbox_inches='tight')
+        else:
+            plt.show()
+
+    def model_comparison_plot(self, axarray, modmat, stats=False, width=1.0, color='black', top=False, bottom=False, modname=None):
+        pos = np.arange(0.0, len(self.worlds)*width, width)
+        xlim = [0.0, len(self.worlds)*width]
+        xtick_labels = "" * len(self.worlds)                
+        if bottom:
+            xtick_labels = self.worlds
+        yticks = [0.0, 0.25, 0.5, 0.75, 1.0]            
+        ytick_labels = ["0", "", ".5", "", "1"]
+        for j, ax in enumerate(axarray):
+            msg = self.messages[j]
+            row = modmat[j]
+            ax.bar(pos, row, width, color=color)
+            ax.set_xlim(xlim)
+            ax.set_ylim((0.0, 1.0))
+            ax.set_xticks(pos+(width/2.0))
+            ax.set_xticklabels(xtick_labels, fontsize=14, rotation='vertical', color='black')            
+            if top:
+                ax.set_title(TITLES[self.messages[j]])
+            ax.set_yticks(yticks)     
+            if j == 0:                                           
+                ax.set_yticklabels(ytick_labels)
+            else:
+                ax.set_yticklabels([])
+            if j == len(self.messages)-1:
+                ax.yaxis.tick_right()
+                ax.set_yticks([0.5])
+                ax.set_yticklabels([modname], rotation='vertical')
 
     def printable_pval(self, p):
         return r"$p = %s$" % np.round(p, 3) if p >= 0.001 else r"$p < 0.001$"
