@@ -2,9 +2,13 @@ import csv
 from collections import defaultdict
 import numpy as np
 from scipy import stats
-from plots import message_state_barplot, comparison_plot, add_confidence_intervals
+from plots import message_state_barplot
 import matplotlib.pyplot as plt
 
+######################################################################
+# High-level settings and notation:
+
+# For relating the experimental data to the logical grammar:
 SENTENCES = {
     "Every player hit all of his shots": "every(player)(hit(every(shot)))",
     "Every player hit none of his shots": "every(player)(hit(no(shot)))",    
@@ -14,24 +18,21 @@ SENTENCES = {
     "Exactly one player hit some of his shots": "exactly_one(player)(hit(some(shot)))",
     "No player hit all of his shots": "no(player)(hit(every(shot)))",
     "No player hit none of his shots": "no(player)(hit(no(shot)))",
-    "No player hit some of his shots": "no(player)(hit(some(shot)))",
-    "Every player hit only some of his shots": "every(player)(hit(exactly_one(shot)))",
-    "Exactly one player hit only some of his shots": "exactly_one(player)(hit(exactly_one(shot)))",
-    "No player hit only some of his shots": "no(player)(hit(exactly_one(shot)))"
-}
+    "No player hit some of his shots": "no(player)(hit(some(shot)))"}
 
+# Abbreviated plot titles:
 TITLES = {
-    "every(player)(hit(every(shot)))": 'every...every',
-    "every(player)(hit(no(shot)))": 'every...no',
+    "every(player)(hit(every(shot)))": 'every...all',
+    "every(player)(hit(no(shot)))": 'every...none',
     "every(player)(hit(some(shot)))": 'every...some',
-    "exactly_one(player)(hit(every(shot)))": 'exactly one...every',
-    "exactly_one(player)(hit(no(shot)))": 'exactly one ..no',
+    "exactly_one(player)(hit(every(shot)))": 'exactly one...all',
+    "exactly_one(player)(hit(no(shot)))": 'exactly one ..none',
     "exactly_one(player)(hit(some(shot)))": 'exactly one...some',
-    "no(player)(hit(every(shot)))": 'no...every',
-    "no(player)(hit(no(shot)))": 'no...no',
+    "no(player)(hit(every(shot)))": 'no...all',
+    "no(player)(hit(no(shot)))": 'no...none',
     "no(player)(hit(some(shot)))": 'no...some'}
-    
 
+# Map from the experiment to our preferred notation for worlds/conditions:
 CONDITION_MAP = {
     "none-none-none": "NNN",
     "none-none-half": "NNS",
@@ -44,7 +45,11 @@ CONDITION_MAP = {
     "half-all-all": "SAA",
     "all-all-all": "AAA" }
 
+# Separate vector to ensure the desired ordering:
 CONDITIONS = ("NNN", "NNS", "NNA", "NAA", "NSS", "NSA", "SSS", "SSA", "SAA", "AAA")
+
+######################################################################
+# Clas for modeling experimental items (rows in the table):
 
 class Item:
     def __init__(self, data):
@@ -77,16 +82,13 @@ class Item:
     def __str__(self):
         return str(self.d)
 
+######################################################################
+# Class for the entire experiment, built from the spreadsheet:
+    
 class Experiment:
-    def __init__(self,
-                 src_filename="../data/basketball-pilot-2-11-14-results-parsed.csv",
-                 subjectCondition=None):
-        
+    def __init__(self, src_filename="../data/basketball-pilot-2-11-14-results-parsed.csv"):        
         self.src_filename = src_filename
-        self.subjectCondition = subjectCondition
         self.data = [Item(d) for d in csv.DictReader(file(src_filename))]
-        if self.subjectCondition:
-            self.data = [x for x in self.data if x.subjectCondition == self.subjectCondition]
         self.targets = defaultdict(lambda : defaultdict(list))
         self.get_target_responses()
 
@@ -143,55 +145,12 @@ class Experiment:
             mat.append(row)
         return mat
 
-    def count_unique(self, attr=None):
-        x = set([])
-        for item in self.data:
-            x.add(getattr(item, attr))
-        return len(x)
-
-    def report(self):
-        print 'Participants:', self.count_unique('workerid')
-        print 'Sentences:', self.count_unique('sentence')
-        print 'Conditions:', self.count_unique('condition')
-
-
-    def analyze_clustered_item(self, sentence, world_clusters):
-        d = defaultdict(list)
-        for item in self.data:
-            if item.sentence == sentence:
-                d[world_clusters[item.condition_norm]].append(item.response)                
-        vals = []
-        cis = []
-        cnames = sorted(set(world_clusters.values()))
-        for cname in cnames:
-            vals.append(np.mean(d[cname]))
-            cis.append(self.get_ci(np.array(d[cname])))
-        return (vals, cis)        
-
-    def plot_clustered_item(self, sentence, world_clusters, output_filename=None):
-        vals, cis = self.analyze_clustered_item(sentence, world_clusters)
-        cnames = sorted(set(world_clusters.values()))
-        message_state_barplot(mat=[vals],
-                              confidence_intervals=[cis],
-                              rnames=[sentence],
-                              cnames=cnames,
-                              nrows=1,
-                              ncols=1,
-                              output_filename=output_filename,
-                              ylim=[0,8],
-                              yticks=range(0,8),
-                              ylabel="Subject responses")
 
 ######################################################################
     
 if __name__ == '__main__':
 
-
     exp1 = Experiment(src_filename='../data/basketball-pilot-2-11-14-results-parsed.csv')
     exp1.plot_targets(output_filename="../fig/basketball-pilot-2-11-14-results-parsed.pdf")
-    exp1.report()
 
-    #exp2a = Experiment(src_filename='../data/basketball-focus-only-manip-3-17-14-results-parsed.csv',  subjectCondition="focus")    
-    #exp2b = Experiment(src_filename='../data/basketball-focus-only-manip-3-17-14-results-parsed.csv',  subjectCondition="only")
 
-    

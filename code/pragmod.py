@@ -11,6 +11,7 @@ from utils import rownorm, colnorm, safelog, display_matrix
         
 class LexicalUncertaintyModel:
     def __init__(self,
+                 name="",
                  lexicon_iterator=None,
                  baselexicon=None,
                  messages=None,
@@ -22,6 +23,7 @@ class LexicalUncertaintyModel:
                  temperature=1.0,
                  nullmsg=True,
                  nullcost=5.0):
+        self.name = name
         self.lexicon_iterator = lexicon_iterator
         self.baselexicon = baselexicon
         self.messages = messages

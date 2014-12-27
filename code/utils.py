@@ -51,3 +51,8 @@ def powerset(x, minsize=0, maxsize=None):
         for val in itertools.combinations(x, i):
             result.append(list(val))
     return result
+
+def mse(x, y):
+    err = np.sqrt(np.sum((x-y)**2)/len(x))
+    return err
+

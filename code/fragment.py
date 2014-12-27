@@ -11,7 +11,7 @@ s1 = 's1' ; s2 = 's2'
 
 def define_lexicon(player=[], shot=[], worlds=[]):
     D_et = powerset(player+shot)
-    relational_made =  [[w, x, y] for w, x, y in product(worlds, player, shot) if y in shot[: w[player.index(x)]]]
+    relational_hit =  [[w, x, y] for w, x, y in product(worlds, player, shot) if y in shot[: w[player.index(x)]]]
     lex = {
         # Concessions to tractability -- these are defined extensionally (invariant across worlds):
         "some":        [[X, Y] for X, Y in product(D_et, repeat=2) if len(set(X) & set(Y)) > 0],
@@ -31,7 +31,7 @@ def define_lexicon(player=[], shot=[], worlds=[]):
         "scored":      [[w, x] for w, x in product(worlds, player) if len(shot[: w[player.index(x)]]) > 0],
         "aced":        [[w, x] for w, x in product(worlds, player) if len(shot[: w[player.index(x)]]) > 1],
         "missed":      [[w, x] for w, x in product(worlds, player) if len(shot[: w[player.index(x)]]) == 0],
-        "made" :       [[w, x, y] for w, x, y in product(worlds, player, shot) if y in shot[: w[player.index(x)]]],
+        "hit" :        [[w, x, y] for w, x, y in product(worlds, player, shot) if y in shot[: w[player.index(x)]]],
         # More concessions to tractability -- we'll refine these rather than the determiners;
         # this should have no effect because of the limited class of predicates -- no predicate
         # is true of both players and shots, and player and shot have the same extensions in all
@@ -102,8 +102,8 @@ if __name__ == '__main__':
 
     # Examples:
     for d1, d2 in product(("some", "exactly_one", "every", "no"), repeat=2):
-        msg = "%s(player)(made(%s(shot)))" % (d1, d2)
-        formula = "iv(fa(%s, player), tv(made, fa(%s, shot), worlds, player))" % (d1,  d2)       
+        msg = "%s(player)(hit(%s(shot)))" % (d1, d2)
+        formula = "iv(fa(%s, player), tv(hit, fa(%s, shot), worlds, player))" % (d1,  d2)       
         print msg, [worldname(w) for w in worlds if eval(formula)(w)]
 
     # Examples:
