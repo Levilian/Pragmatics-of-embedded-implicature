@@ -1,6 +1,6 @@
 rm(list=ls())
 source("~/Projects/R/Ranalysis/useful_dplyr.R")
-d <- read.csv("~/Projects/embedded_implicature/Pragmatics-of-embedded-implicature/data/embeddedscalars-exp01-analysis-2014-12-04.csv")
+d <- read.csv("~/Projects/embedded_implicature/Pragmatics-of-embedded-implicature/data/embeddedscalars-exp01-analysis-2014-12-15-cfs.csv")
 
 d <- d %>% mutate(HumanMean = (HumanMean - 1) / 6) %>%
   group_by(Sentence) %>%
@@ -32,7 +32,7 @@ d$shortSentence <- factor(d$Sentence,
 
 hd <- d %>% 
   select(-HumanLowerCI, -HumanUpperCI) %>%
-  gather(Model, Value, LiteralListener:UncertaintyListener) %>%
+  gather(Model, Value, LiteralListener:CFS.UncertaintyListener) %>%
   group_by(Model) %>%
   mutate(pearson = paste("pearson r =",
                          as.character(signif(cor.test(Value,HumanMeanNormalized,
@@ -40,13 +40,13 @@ hd <- d %>%
                           digits=2))),
          spearman = paste("spearman r = ",
                           as.character(signif(cor.test(Value,HumanMeanNormalized,
-                                    method="pearson")$estimate, 
+                                    method="spearman")$estimate, 
                            digits=2))),
          mse = paste("MSE = ",
                      as.character(signif(mean((Value - HumanMeanNormalized)^2),
                       digits=2))))
   
-quartz(width=8,height=3)
+quartz(width=7,height=6)
 ggplot(hd, aes(x=Value, y=HumanMeanNormalized)) + 
   facet_wrap(~Model) +
   geom_text(aes(label=Condition, col=shortSentence), cex=3) + 
@@ -59,10 +59,30 @@ ggplot(hd, aes(x=Value, y=HumanMeanNormalized)) +
   ylab("Normalized Human Ratings") + 
   xlim(c(0,1)) + ylim(c(0,1))
 
+d %>% select(-HumanLowerCI, -HumanUpperCI) %>%
+  gather(Model, Value, LiteralListener:CFS.UncertaintyListener) %>%
+  group_by(shortSentence, Model) %>%
+  summarise(pearson = signif(cor.test(Value,HumanMeanNormalized,
+                                      method="pearson")$estimate,2), 
+            spearman = signif(cor.test(Value,HumanMeanNormalized,
+                                       method="spearman")$estimate,2), 
+            mse = signif(mean((Value - HumanMeanNormalized)^2),
+                         digits=2))
+
+d %>% select(-HumanLowerCI, -HumanUpperCI) %>%
+  gather(Model, Value, LiteralListener:CFS.UncertaintyListener) %>%
+  group_by(Model) %>%
+  summarise(pearson = signif(cor.test(Value,HumanMeanNormalized,
+                                      method="pearson")$estimate,2), 
+            spearman = signif(cor.test(Value,HumanMeanNormalized,
+                                       method="spearman")$estimate,2), 
+            mse = signif(mean((Value - HumanMeanNormalized)^2),
+                         digits=2))
+
 
 hdm <- d %>% 
   select(-HumanLowerCI, -HumanUpperCI) %>%
-  gather(Model, Value, LiteralListener:UncertaintyListener) %>%
+  gather(Model, Value, LiteralListener:CFS.UncertaintyListener) %>%
   group_by(Model, shortSentence) %>%
   mutate(pearson = paste("pearson r =",
                          as.character(signif(cor.test(Value,HumanMeanNormalized,
@@ -70,12 +90,12 @@ hdm <- d %>%
                                              digits=2))),
          spearman = paste("spearman r = ",
                           as.character(signif(cor.test(Value,HumanMeanNormalized,
-                                                       method="pearson")$estimate, 
+                                                       method="spearman")$estimate, 
                                               digits=2))),
          mse = paste("MSE = ",
                      as.character(signif(mean((Value - HumanMeanNormalized)^2),
                                          digits=2))))
-quartz(width=7,height=9)
+quartz(width=11,height=9)
 ggplot(hdm, aes(x=Value, y=HumanMeanNormalized)) + 
   facet_grid(shortSentence~Model) +
   geom_text(aes(label=Condition), cex=2) + 
@@ -91,7 +111,7 @@ ggplot(hdm, aes(x=Value, y=HumanMeanNormalized)) +
 
 ##### INDIVIDUAL CONDITIONS
 md <- d %>% 
-  gather(Model, Value, LiteralListener, RSAListener, UncertaintyListener, HumanMeanNormalized)
+  gather(Model, Value, LiteralListener, RSAListener, UncertaintyListener, CFS.UncertaintyListener, HumanMeanNormalized)
 
 quartz(height=3.5,width=10)
 qplot(Condition, Value, fill=Model, 
@@ -121,8 +141,8 @@ qplot(Condition, Value, fill=Model,
   theme(axis.text.x = element_text(angle = 90,vjust=0.5))
 
 qplot(Condition, Value, fill=Model, 
-      facets = shortSentence~Model, geom="bar",
+      facets = Model~ shortSentence, geom="bar",
       stat="identity",
       position="dodge", 
       data=md) +
-  theme(axis.text.x = element_text(angle = 90,vjust=0.5))
+  theme(axis.text.x = element_text(angle = 90,vjust=0.5, size=6)) 
