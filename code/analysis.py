@@ -6,7 +6,6 @@ from collections import defaultdict
 from itertools import product
 import numpy as np
 from scipy.stats import spearmanr, pearsonr
-from plots import *
 from utils import *
 from experiment import TITLES
 import csv
@@ -22,13 +21,12 @@ class Analysis:
         self.literal_listener, rsa_spk, self.rsa_listener = self.models[0].rsa()
         self.uncertainty_listeners = [mod.final_listener for mod in self.models]
         self.listeners = [self.literal_listener, self.rsa_listener] + self.uncertainty_listeners
-        self.modnames = ['Literal semantics', 'Fixed lexicon pragmatics'] + [mod.name for mod in self.models]
+        self.modnames = ['Literal', 'Fixed lexicon'] + [mod.name for mod in self.models]
         if NULL in self.messages:
             self.messages.remove(NULL)
             for i, lis in enumerate(self.listeners):
                 self.listeners[i] = lis[: -1]
         self.expmat = np.array(self.experiment.target_means2matrix(self.messages, self.worlds))
-        self.confidence_intervals = self.experiment.target_cis2matrix(self.messages, self.worlds)
         self.rescale_experiment()        
 
     def rescale_experiment(self):
@@ -60,18 +58,22 @@ class Analysis:
                 rows.append(np.array([pearson, pearson_p, spearman, spearman_p, err]))        
         display_matrix(np.array(rows), rnames=rnames, cnames=['Pearson', 'Pearson p', 'Spearman', 'Spearman p', 'MSE'], digits=digits)
 
-    def comparison_plot(self, stats=False, width=0.2, output_filename=None):        
-        fig, axarray = plt.subplots(nrows=len(self.listeners)+1, ncols=len(self.messages))
+    def comparison_plot(self, width=0.2, output_filename=None):
+        nrows = len(self.listeners)+1
+        ncols = len(self.messages)
+        fig, axarray = plt.subplots(nrows=nrows, ncols=ncols)
+        fig.subplots_adjust(bottom=-1.0)
+        fig.set_figheight(nrows)
+        fig.set_figwidth(ncols*2.5)        
         for i, lis in enumerate(self.listeners):
-            self.model_comparison_plot(axarray[i], lis, stats=stats, width=width, color=colors[i+1], top=i==0, bottom=False, modname=self.modnames[i])
-        self.model_comparison_plot(axarray[-1], self.expmat, stats=stats, width=width, color=colors[0], top=False, bottom=True, modname='Human')
-        fig.text(0.06, 0.5, 'Probability', ha='center', va='center', rotation='vertical', fontsize=20)
+            self.model_comparison_plot(axarray[i], lis, width=width, color=colors[i+1], top=i==0, bottom=False, modname=self.modnames[i])
+        self.model_comparison_plot(axarray[-1], self.expmat, width=width, color=colors[0], top=False, bottom=True, modname='Human')
         if output_filename:
             plt.savefig(output_filename, bbox_inches='tight')
         else:
             plt.show()
 
-    def model_comparison_plot(self, axarray, modmat, stats=False, width=1.0, color='black', top=False, bottom=False, modname=None):
+    def model_comparison_plot(self, axarray, modmat, width=1.0, color='black', top=False, bottom=False, modname=None):
         pos = np.arange(0.0, len(self.worlds)*width, width)
         xlim = [0.0, len(self.worlds)*width]
         xtick_labels = "" * len(self.worlds)                
@@ -95,12 +97,9 @@ class Analysis:
             else:
                 ax.set_yticklabels([])
             if j == len(self.messages)-1:
-                ax.yaxis.tick_right()
-                ax.set_yticks([0.5])
-                ax.set_yticklabels([modname], rotation='vertical')
-
-    def printable_pval(self, p):
-        return r"$p = %s$" % np.round(p, 3) if p >= 0.001 else r"$p < 0.001$"
+                ax.yaxis.set_label_position("right")
+                ax.set_ylabel(modname, fontsize=16)                
+            ax.tick_params(axis='both', which='both', bottom='off', left='off', top='off', right='off')
             
     def to_csv(self, output_filename):
         writer = csv.writer(file(output_filename, 'w'))

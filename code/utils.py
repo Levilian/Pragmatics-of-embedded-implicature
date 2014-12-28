@@ -2,20 +2,31 @@
 
 import itertools
 import numpy as np
+import matplotlib.pyplot as plt
 import matplotlib
 
 ######################################################################
+# Plot set-up
+
+plt.style.use('ggplot')
+matplotlib.rc('text', usetex=True)
+matplotlib.rc('font', family='serif', serif='cm10')
+matplotlib.rcParams['text.latex.preamble'] = [r"\usepackage{amsmath}", r'\boldmath']
+
+colors = [
+    '#1B9E77', # green; human data
+    '#666666', # gray; literal semantics
+    '#A6761D', # brownish; RSA
+    '#E7298A', # dark pink; unconstrained
+    '#D95F02'] # orange; neo-gricean model
+
+######################################################################
+# Strings
 
 NULL = 'NULL'
 
-COLORS = matplotlib.colors.cnames.values()
-
-colors = ['#1B9E77', '#D95F02', '#7570B3', '#E7298A', '#66A61E', '#E6AB02', '#A6761D', '#666666']
-
-PROB_LIMS = [0, 1.1]
-LIKERT_LIMS = [0, 8]
-PROB_AXIS_TICKS = np.arange(0.0, 1.1, 0.1)
-LIKERT_AXIS_TICKS = np.arange(0.0, 8.0, 1.0)
+######################################################################
+# Utility functions
 
 def rownorm(mat):
     """Row normalization of a matrix"""
