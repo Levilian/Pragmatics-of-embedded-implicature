@@ -1,10 +1,6 @@
 import sys
 from copy import copy
 import numpy as np
-try:
-    from plots import *
-except:
-    pass
 from utils import rownorm, colnorm, safelog, display_matrix
 
 ######################################################################
@@ -91,7 +87,7 @@ class LexicalUncertaintyModel:
         return rownorm(np.exp(self.temperature * (safelog(lis.T) - self.costs)))
 
     def listener_report(self, digits=4):
-        print "======================================================================"
+        print "=" * 70 # Divider bar.
         print 'Lexica:', self.lexcount
         print 'Final listener'
         display_matrix(self.final_listener, rnames=self.messages, cnames=self.states, digits=digits)
@@ -129,32 +125,6 @@ class LexicalUncertaintyModel:
         s += "\\bottomrule\n"
         s += "\\end{tabular}"
         return s
-
-    def final_listener2plot(self,
-                            nrows=None,
-                            ncols=None,
-                            output_filename=None,                            
-                            include_null=True,
-                            indices=[]):
-        if not nrows:
-            nrows = 1
-            ncols = len(self.messages)
-        ylabel = r"$L(w \mid m)$"
-        mat = copy(self.final_listener)
-        if not include_null:
-            mat = mat[:-1]
-            ncols -= 1
-        message_state_barplot(mat=mat,
-                              rnames=self.messages,
-                              cnames=self.states,
-                              nrows=nrows,
-                              ncols=ncols,
-                              output_filename=output_filename,
-                              indices=indices,
-                              ylim=PROB_LIMS,
-                              yticks=PROB_AXIS_TICKS,
-                              ylabel=ylabel)
-
      
 ######################################################################
 
@@ -194,8 +164,6 @@ if __name__ == '__main__':
         mod.run(n=3)
         
         mod.listener_report()
-
-        #mod.final_listener2plot(output_filename=None)
 
     manner_example()
     

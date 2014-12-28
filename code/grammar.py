@@ -27,7 +27,7 @@ class UncertaintyGrammars:
         self.baselexicon_mat = self.interpretation_matrix(self.baselexicon)
         
     def lexicon_iterator(self):
-        words, refinements = zip(*self.get_all_refinements().items())               
+        words, refinements = zip(*self.get_all_refinements().items())
         for meaning_vector in itertools.product(*refinements):
             lex = dict(zip(words, meaning_vector))
             mat = self.interpretation_matrix(lex)
@@ -87,10 +87,9 @@ if __name__ == '__main__':
                   ("no(player)(scored)",    "iv(fa(no, player), scored)"),
                   ("some_player(scored)",   "iv(some_player, scored)")],
         worlds=worlds,
-        refinable=('scored',), # 'scored'),
+        refinable={'scored':[]},
         nullmsg=True)
 
     worldnames = [worldname(w) for w in worlds]
-    print ug.messages
     for lex in ug.lexicon_iterator():
         display_matrix(lex, rnames=ug.messages, cnames=worldnames)

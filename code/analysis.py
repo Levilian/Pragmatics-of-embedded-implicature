@@ -6,7 +6,6 @@ from collections import defaultdict
 from itertools import product
 import numpy as np
 from scipy.stats import spearmanr, pearsonr
-from plots import *
 from utils import *
 from experiment import TITLES
 import csv
@@ -65,11 +64,10 @@ class Analysis:
         fig, axarray = plt.subplots(nrows=nrows, ncols=ncols)
         fig.subplots_adjust(bottom=-1.0)
         fig.set_figheight(nrows)
-        fig.set_figwidth(ncols*2.5)
+        fig.set_figwidth(ncols*2.5)        
         for i, lis in enumerate(self.listeners):
             self.model_comparison_plot(axarray[i], lis, width=width, color=colors[i+1], top=i==0, bottom=False, modname=self.modnames[i])
         self.model_comparison_plot(axarray[-1], self.expmat, width=width, color=colors[0], top=False, bottom=True, modname='Human')
-        #fig.text(0.00, 0.5, 'Probability', ha='center', va='center', rotation='vertical', fontsize=20)
         if output_filename:
             plt.savefig(output_filename, bbox_inches='tight')
         else:
@@ -99,12 +97,9 @@ class Analysis:
             else:
                 ax.set_yticklabels([])
             if j == len(self.messages)-1:
-                ax.yaxis.tick_right()
-                ax.set_yticks([0.5])
-                ax.set_yticklabels([modname], rotation='vertical')
-
-    def printable_pval(self, p):
-        return r"$p = %s$" % np.round(p, 3) if p >= 0.001 else r"$p < 0.001$"
+                ax.yaxis.set_label_position("right")
+                ax.set_ylabel(modname, fontsize=16)                
+            ax.tick_params(axis='both', which='both', bottom='off', left='off', top='off', right='off')
             
     def to_csv(self, output_filename):
         writer = csv.writer(file(output_filename, 'w'))

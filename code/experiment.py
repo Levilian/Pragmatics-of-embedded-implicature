@@ -2,8 +2,8 @@ import csv
 from collections import defaultdict
 import numpy as np
 from scipy import stats
-from plots import message_state_barplot
 import matplotlib.pyplot as plt
+import bootstrap
 
 ######################################################################
 # High-level settings and notation:
@@ -110,9 +110,13 @@ class Experiment:
         return self.target_analysis(func=self.get_ci)
 
     def get_ci(self, vals):
-        loc = np.mean(vals)
-        scale = np.std(vals) / np.sqrt(len(vals))
-        return stats.t.interval(0.95, len(vals)-1, loc=loc, scale=scale)
+        if len(set(vals)) == 1:
+            return (vals[0], vals[0])
+        # In case bootstrp.py is missing or not working:
+        # loc = np.mean(vals)
+        # scale = np.std(vals) / np.sqrt(len(vals))
+        # return stats.t.interval(0.95, len(vals)-1, loc=loc, scale=scale)        
+        return bootstrap.ci(vals, method='bca')
     
     def target_analysis(self, func=np.mean):
         mu = defaultdict(lambda : defaultdict(list))
@@ -120,21 +124,6 @@ class Experiment:
             for cond, vals in cond_dict.items():
                 mu[form][cond] = func(vals)
         return mu
-
-    def plot_targets(self, output_filename=None):
-        rnames = sorted(self.targets.keys())
-        cnames = CONDITIONS
-        message_state_barplot(mat=self.target_means2matrix(rnames, cnames),
-                              confidence_intervals=self.target_cis2matrix(rnames, cnames),
-                              rnames=[TITLES[s] for s in rnames],
-                              cnames=cnames,
-                              nrows=3,
-                              ncols=3,
-                              output_filename=output_filename,
-                              indices=[],                              
-                              ylim=[0,8],
-                              yticks=range(0,8),
-                              ylabel="Subject responses")
         
     def target_values2matrix(self, rnames, cnames, value_dict):        
         mat = []
@@ -143,8 +132,61 @@ class Experiment:
             for j, cname in enumerate(cnames):
                 row.append(value_dict[rname][cname])
             mat.append(row)
-        return mat
+        return mat    
 
+    def plot_targets(self, output_filename=None):        
+        mat = self.target_means2matrix(rnames, cnames)
+        confidence_intervals = self.target_cis2matrix(rnames, cnames)
+        rnames = sorted(self.targets.keys())
+        cnames = CONDITIONS
+        nrows=3
+        ncols=3
+        title = [TITLES[s] for s in rnames]
+        indices = []
+        ylim = [0,8]
+        yticks = range(0,8)
+        ylabel = "Human responses"
+        # Basic figure dimensions and design:
+        fig, axarray = plt.subplots(nrows=nrows, ncols=ncols)
+        fig.set_figheight(axis_height*nrows)
+        fig.set_figwidth(axis_width*ncols)    
+        #fig.subplots_adjust(bottom=-1.0)
+        # Axes:
+        pos = np.arange(0.0, len(cnames)*width, width)
+        xlim = [0.0, len(cnames)*width]
+        xticks = pos+(width/2.0)    
+        # If indices doesn't specify an ordering, create an array of
+        # axis coordinate pairs for the plot:
+        if not indices:
+            if nrows == 1:
+                indices = list(range(ncols))
+            else:
+                indices = list(itertools.product(range(nrows), range(ncols)))
+        # Left edges of the bars:    
+        # Plot each row as an axis:
+        for i, row in enumerate(mat):
+            axindex = indices[i]
+            ax = axarray[axindex]
+            ax.tick_params(axis='both', which='both', bottom='off', left='off', top='off', right='off', labelbottom='on')
+            ax.bar(pos, row, width, color=colors[0])
+            ax.set_title(rnames[i])
+            # Axis label only for the leftmost plots:
+            if (isinstance(axindex, int) and axindex == 0) or (isinstance(axindex, tuple) and axindex[1] == 0):
+                ax.set_ylabel(ylabel, fontsize=14)
+            ax.set_xlim(xlim)
+            ax.set_ylim(ylim)
+            ax.set_xticks(xticks)
+            ax.set_xticklabels(cnames, fontsize=14, rotation='vertical', color='black')
+            ax.set_yticks(yticks)
+            ax.set_yticklabels(yticks)
+            # Confidence intervals:
+            if confidence_intervals:
+                add_confidence_intervals(ax=ax, pos=pos+(width/2.0), cis=confidence_intervals[i])
+        # Output:
+        if output_filename:
+            plt.savefig(output_filename, bbox_inches='tight')
+        else:
+            plt.show()
 
 ######################################################################
     
