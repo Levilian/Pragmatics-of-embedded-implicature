@@ -1465,20 +1465,27 @@ the website for this paper.
 
 \subsection{Results}\label{sec:exp1:results}
 
-\todo{Does this section need to do some stats testing of pairwise differences? If so, I suppose I would do Mann-Whitney U test (not all the items have the same number of responses), but I am open to alternatives. All the differences we care about are numerically large, though.}
+% \todo{Does this section need to do some stats testing of pairwise differences? If so, I suppose I would do Mann-Whitney U test (not all the items have the same number of responses), but I am open to alternatives. All the differences we care about are numerically large, though.}
 
 \Figref{fig:exp1-results} summarizes the responses by target sentence
-and world of evaluation using the average response with bootstrapped
-95\% confidence intervals. The overall pattern shows that participants
-accurately perceived whether the sentence was true or false. This is
+and the world in which it was evaluated. Overall, participants made judgments that accurately reflected whether sentences were true or false; accuracy was
 especially clear for the sentences in the first two columns, which do
-not admit of pragmatic enrichment of the sort that our experimental
-conditions can reveal. For these cases, the average ratings are not
+not admit pragmatic enrichment. For these cases, the average ratings are not
 statistically different from 1 (the lowest value) where the sentence
 is false, and the ratings average above 6 (the second highest value)
-where the sentence is true. This is reassuring about the ability of
-our subjects to make the sort of interpretive judgments we are hoping
-for.
+where the sentence is true. The pattern of judgments in these
+conditions thus suggests that our method is appropriate for measuring
+participants' interpretations.\footnote{The only exception to this general pattern is the sentence \word{No player hit
+  none of his shots} (bottom middle), which received lower than normal
+ratings in all its true conditions and relatively high ratings for
+\world{NNN}, where it is false on its literal construal. We
+hypothesize that this pattern of date reflects a
+negative concord construal, on which the embedded term is interpreted
+as equivalent to \word{any of his shots}, creating a meaning that is
+true only in \world{NNN}. Negative concord of this sort is productive
+in many dialects of English and understandable in all or nearly all of
+them. This likely created uncertainty about the intended meaning of
+the sentence, leading participants to disfavor it in general.}
 
 \begin{figure}[!ht]
   \centering
@@ -1487,19 +1494,9 @@ for.
   \label{fig:exp1-results}
 \end{figure}
 
-The only exception to this is for the sentence \word{No player hit
-  none of his shots} (bottom middle), which received lower than normal
-ratings in all its true conditions and relatively high ratings for
-\world{NNN}, where it is false on its literal construal. We
-hypothesize that this traces to the fact that the sentence has a
-negative concord construal on which the embedded term is interpreted
-as equivalent to \word{any of his shots}, creating a meaning that is
-true only in \world{NNN}. Negative concord of this sort is productive
-in many dialects of English and understandable in all or nearly all of
-them. This likely created uncertainty about the intended meaning of
-the sentence, leading participants to disfavor it in general.
 
-The response pattern for \target{every}{some} (upper right) is
+Turning to the critical conditions, responses for 
+\target{every}{some} (upper right) were
 strongly indicative of local enrichment. This sentence received its
 highest ratings in the \world{SSS} world. As we reviewed in
 \secref{sec:implicature}, example \eg{everysome-sem}, in order to
@@ -1507,23 +1504,26 @@ count as a complete report in this world, this sentence requires
 either local enrichment or a Gricean calculation with auxiliary
 premises. Worlds \world{SSA} and \world{SAA} received the next highest
 average ratings. Only a simple Gricean calculation is required for the
-sentence to completely describe this condition. Finally, the
+sentence to completely describe this condition. The
 \world{AAA} world received significantly lower ratings than the
 others, which probably reflects the pragmatic fact that the salient
 alternative \word{every player hit all of his shots} is a more
 complete description.
 
-The entailment relations between the readings for \target{every}{some}
+Nevertheless, \target{every}{some} is not a strong test of the
+presence of local readings, since the entailment relations between the readings
 introduce some indeterminacy into the analysis. In particular, since
 the local enrichment entails the literal reading, we can't be sure
 whether the high ratings for \world{SSS} derive entirely from the
-availability of a local enrichment, since a literal construal also
-suffices to make the sentence true. However, as we discussed in
+availability of a local enrichment: a literal construal would
+suffice to make the sentence true. However, as we discussed in
 \secref{sec:implicature}, \citeauthor{Chemla:Spector:2011} show that
 \target{every}{some} is of limited utility in distinguishing
 theoretical proposals anyway. It is the \target{exactly one}{some}
 sentence that allows us to probe most confidently for local
-readings. The response pattern for this sentence is given in the
+readings. 
+
+The response pattern for the critical item \target{exactly one}{some} is given in the
 middle right of \figref{fig:exp1-results}. The highest ratings are in
 the \world{NNS} condition, where it is true under its literal and
 local enrichment construals. However, it also received high ratings in
@@ -1534,7 +1534,7 @@ also that its more strictly truth-conditional interpretation seems to
 be salient as well, as it was rated highly on average in the
 \world{NNA} condition.
 
-Finally, the pattern for \target{no}{some} suggests a non-trivial
+Finally, the pattern for \target{no}{some} also suggests a non-trivial
 amount of local enrichment: though \world{NNN} received the highest
 average ratings, indicating a preference for a literal construal, the
 ratings for \world{NNA}, \world{NAA}, and \world{AAA} are fairly high
@@ -1553,16 +1553,17 @@ player hit them') that took the scalar term out of the scope of the
 negation.
 
 We conclude from these response patterns that local enrichment is
-possible even in non-monotone environments, vindicating the guiding
-hypotheses of \citet{Chemla:Spector:2011}, and that it might be
+possible even in non-monotone environments (replicating
+\citet{Chemla:Spector:2011}), and that local enrichment might be
 available in downward monotone environments as well. However, our
-primary concern is not whether such readings are possible or
-impossible in a binary sense, but rather how accurately we can predict
-them on the basis of contextual and world knowledge. In this way, our
-objectives are more closely aligned with Griceans like
-\citet{Geurts09}, \citet{Geurts:Pouscoulous:2009}, and
-\citet{geurts-vantiel:2013:scalar}. We turn now to the task of
-assessing the ability of the model in \secref{sec:model} to predict
+concern is not whether such readings are possible or
+impossible, but rather how accurately we can predict
+their availability on the basis of contextual and world knowledge. 
+% In this way, our objectives are more closely aligned with Griceans like
+% \citet{Geurts09}, \citet{Geurts:Pouscoulous:2009}, and
+% \citet{geurts-vantiel:2013:scalar}. 
+We turn now to the task of
+assessing the ability of the model in \secref{sec:model} to match
 both the quantitative and qualitative patterns in this experimental
 data.
 
@@ -1570,23 +1571,33 @@ data.
 
 \subsection{Model assessment}
 
-\marginnote{This section has been totally reconceived and rewritten.}
+\marginnote{CP: This section has been totally reconceived and rewritten.}
 
-We frame our assessment in terms of a competition between four related
-models that embody different characterizations of linguistic meaning.
-Our goal is to determine which model achieves the best match with the
-human responses described above. The rationale for this approach is
-that a more standard regime of assessing correlations with the
-experimental responses against the null hypothesis of statistical
-independence is not illuminating: as we have seen, our human response
-patterns are broadly in agreement with the intuitions that guided the
-development of these models, so we can take it for granted that these
-correlations are high. And, indeed, all the models considered here
-achieve significant correlations at $p < 0.001$, for just about any
-measure of correlation one chooses.  We know already that the null
-hypotheses given by frequentist statistical tests are false, so we
-pursue a strategy that is more stringent and more likely to provide
-insights into the quality of the underlying model.
+\marginnote{MCF: slight changes to the model justification, in
+  particular, cutting down NHST justification.}
+
+The pattern of data we observed is sufficiently precise and detailed
+that arbitrary statistical comparisons with a null hypothesis are
+not informative. Instead, to characterize the patterns of inference
+that give rise to the observed data, we use a model-comparison
+approach. In particular, we evaluate four related
+models that each embody different characterizations of linguistic
+meaning. By comparing these models, we can gain insights into the
+aspects of each that contribute to particular patterns of predictions.
+
+
+%  The rationale for this approach is
+% that a more standard regime of assessing correlations with the
+% experimental responses against the null hypothesis of statistical
+% independence is not illuminating: as we have seen, our human response
+% patterns are broadly in agreement with the intuitions that guided the
+% development of these models, so we can take it for granted that these
+% correlations are high. And, indeed, all the models considered here
+% achieve significant correlations at $p < 0.001$, for just about any
+% measure of correlation one chooses.  We know already that the null
+% hypotheses given by frequentist statistical tests are false, so we
+% pursue a strategy that is more stringent and more likely to provide
+% insights into the quality of the underlying model.
 
 For all the models, we take as given the literal semantics described
 in \tabref{tab:grammar}, as well as the following features of the
@@ -1658,7 +1669,7 @@ non-trivial refinements. We saw in connection with
 might be empirical value in greatly constraining the space of
 refinements.
 
-\todo{Perhaps rewrite with deeper thoughts on why we chose these three measures.}
+% \todo{Perhaps rewrite with deeper thoughts on why we chose these three measures.}
 
 We employ three methods of comparison: Pearson's correlation
 coefficient, which measures the linear correlation between the human
@@ -1667,9 +1678,12 @@ coefficient, which assesses how closely the human responses and model
 responses are aligned in terms of the rankings they predict; and the
 mean-squared error (MSE) of the model predictions as compared with the
 human responses, which summarizes the distance of the predictions
-from the human behavior.
+from the human behavior. The use of these three measures allows us to
+detect models that reproduce quantitative correspondence (Pearson
+correlation), qualitative correspondence (Spearman correlation), and absolute
+fit between models and data.
 
-\marginnote{This paragraph defines the linking hypothesis.}
+% \marginnote{This paragraph defines the linking hypothesis.}
 
 Our model predictions are conditional probability distributions over
 states given messages, and hence constrained to be in the range
@@ -1696,7 +1710,7 @@ our model with our experimental data.
   \label{fig:exp-analysis}
 \end{figure}
 
-\begin{table}[t]
+\begin{table}[th!]
   \centering
   \begin{tabular}[c]{r c c c}
     \toprule
