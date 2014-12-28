@@ -33,7 +33,7 @@ def experimental_assessment(
         nullmsg=True)
     
     mod = LexicalUncertaintyModel(
-        name="Neo-Gricean refinement",
+        name="Neo-Gricean",
         lexicon_iterator=ug.lexicon_iterator,
         baselexicon=ug.baselexicon_mat,
         messages=ug.messages,
@@ -49,9 +49,9 @@ def experimental_assessment(
         experiment=Experiment(src_filename="../data/basketball-pilot-2-11-14-results-parsed.csv"),
         models=[mod])
     
-    analysis.overall_analysis()
+    #analysis.overall_analysis()
     #analysis.analysis_by_message()
-    analysis.comparison_plot()
+    analysis.comparison_plot(output_filename='temp.pdf')
         
 
 experimental_assessment()

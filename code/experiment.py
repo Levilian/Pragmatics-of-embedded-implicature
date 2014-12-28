@@ -26,7 +26,7 @@ TITLES = {
     "every(player)(hit(no(shot)))": 'every...none',
     "every(player)(hit(some(shot)))": 'every...some',
     "exactly_one(player)(hit(every(shot)))": 'exactly one...all',
-    "exactly_one(player)(hit(no(shot)))": 'exactly one ..none',
+    "exactly_one(player)(hit(no(shot)))": 'exactly one...none',
     "exactly_one(player)(hit(some(shot)))": 'exactly one...some',
     "no(player)(hit(every(shot)))": 'no...all',
     "no(player)(hit(no(shot)))": 'no...none',
