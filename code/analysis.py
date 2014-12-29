@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 
 import sys
+import csv
 from copy import copy
 from collections import defaultdict
 from itertools import product
 import numpy as np
 from scipy.stats import spearmanr, pearsonr
 from utils import *
-from experiment import TITLES
-import csv
 
 ######################################################################
 
@@ -59,47 +58,75 @@ class Analysis:
         display_matrix(np.array(rows), rnames=rnames, cnames=['Pearson', 'Pearson p', 'Spearman', 'Spearman p', 'MSE'], digits=digits)
 
     def comparison_plot(self, width=0.2, output_filename=None):
-        nrows = len(self.listeners)+1
-        ncols = len(self.messages)
+        # Preferred: human left, then models from best to worse, informally:
+        listeners = copy(self.listeners)[::-1]
+        modnames = copy(self.modnames)[::-1]
+        # Plot dimensions:              
+        nrows = len(self.messages)
+        ncols = len(self.listeners)+1
+        # Basic set-up:
         fig, axarray = plt.subplots(nrows=nrows, ncols=ncols)
-        fig.subplots_adjust(bottom=-1.0)
-        fig.set_figheight(nrows)
-        fig.set_figwidth(ncols*2.5)        
-        for i, lis in enumerate(self.listeners):
-            self.model_comparison_plot(axarray[i], lis, width=width, color=colors[i+1], top=i==0, bottom=False, modname=self.modnames[i])
-        self.model_comparison_plot(axarray[-1], self.expmat, width=width, color=colors[0], top=False, bottom=True, modname='Human')
+        fig.set_figheight(nrows*4)
+        fig.set_figwidth(ncols*4)
+        fig.subplots_adjust(wspace=0.1, hspace=0.1)
+        fig.text(0.5, 0.08, 'Probability', ha='center', va='center', fontsize=24)
+        fig.text(0.08, 0.5, 'World', ha='center', va='center', rotation='vertical', fontsize=24)
+        # Human column, then model columns:
+        self.model_comparison_plot(axarray[:,0], self.expmat, width=width, color=colors[0], modname='Human', left=True, right=False)
+        for i, lis in enumerate(listeners):
+            self.model_comparison_plot(axarray[: , i+1], lis, width=width, color=colors[-(i+1)], modname=modnames[i], left=False, right=i==ncols-2)
+        # Output:
         if output_filename:
             plt.savefig(output_filename, bbox_inches='tight')
         else:
             plt.show()
 
-    def model_comparison_plot(self, axarray, modmat, width=1.0, color='black', top=False, bottom=False, modname=None):
+    def model_comparison_plot(self, axarray, modmat, width=1.0, color='black', modname=None, left=False, right=False):
+        # Preferred ordering puts the embedded 'some' sentences last:
+        message_ordering_indices = [0,3,6,1,4,7,2,5,8]
+        msgs = [self.messages[i] for i in message_ordering_indices]
+        titles = [TITLES[msg] for msg in msgs]
+        titles = ["\emph{%s}" % t for t in titles]
+        # Sizing:
+        title_size = 24
+        xtick_labelsize = 16
+        ytick_labelsize = 16
+        # Orientation:
         pos = np.arange(0.0, len(self.worlds)*width, width)
-        xlim = [0.0, len(self.worlds)*width]
-        xtick_labels = "" * len(self.worlds)                
-        if bottom:
-            xtick_labels = self.worlds
-        yticks = [0.0, 0.25, 0.5, 0.75, 1.0]            
-        ytick_labels = ["0", "", ".5", "", "1"]
+        ylim = [0.0, len(self.worlds)*width]
+        yticks = pos+(width/2.0)
+        ytick_labels = [r'\texttt{%s}' % s for s in self.worlds]
+        ytick_labels = ytick_labels[::-1] # Reverse for preferred ordering.       
+        xlim = [0.0, 1.0]
+        xticks = [0.0, 0.25, 0.5, 0.75, 1.0]            
+        xtick_labels = ["0", ".25", ".5", ".75", "1"]        
+        # Axes:        
         for j, ax in enumerate(axarray):
-            msg = self.messages[j]
-            row = modmat[j]
-            ax.bar(pos, row, width, color=color)
-            ax.set_xlim(xlim)
-            ax.set_ylim((0.0, 1.0))
-            ax.set_xticks(pos+(width/2.0))
-            ax.set_xticklabels(xtick_labels, fontsize=14, rotation='vertical', color='black')            
-            if top:
-                ax.set_title(TITLES[self.messages[j]])
-            ax.set_yticks(yticks)     
-            if j == 0:                                           
-                ax.set_yticklabels(ytick_labels)
+            msg = msgs[j]
+            modmat = modmat[message_ordering_indices]
+            row = modmat[j][::-1] # Reversal for preferred ordering.
+            ax.tick_params(axis='both', which='both', bottom='off', left='off', top='off', right='off')            
+            ax.barh(pos, row, width, color=color)
+            # title as model name:
+            if j == 0:
+                ax.set_title(r"\textbf{%s}" % modname, fontsize=title_size+3, color=color, fontweight='bold')                
+            # x-axis
+            ax.set_xlim(xlim)            
+            ax.set_xticks(xticks)
+            if j == len(axarray)-1:
+                ax.set_xticklabels(xtick_labels, fontsize=xtick_labelsize, color='black')
             else:
-                ax.set_yticklabels([])
-            if j == len(self.messages)-1:
-                ax.yaxis.set_label_position("right")
-                ax.set_ylabel(modname, fontsize=16)                
-            ax.tick_params(axis='both', which='both', bottom='off', left='off', top='off', right='off')
+                ax.set_xticklabels([])
+            # y-axis:
+            if right:
+                ax.yaxis.set_label_position("right")                
+                ax.set_ylabel(titles[j], fontsize=title_size+3, color='black')
+            ax.set_ylim(ylim)
+            ax.set_yticks(yticks)
+            if left:
+                ax.set_yticklabels(ytick_labels, fontsize=ytick_labelsize, color='black')
+            else:
+                ax.set_yticklabels([])            
             
     def to_csv(self, output_filename):
         writer = csv.writer(file(output_filename, 'w'))

@@ -6,51 +6,8 @@ from itertools import product
 import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
-from utils import colors
+from utils import *
 import bootstrap
-
-######################################################################
-# High-level settings and notation:
-
-# For relating the experimental data to the logical grammar:
-SENTENCES = {
-    "Every player hit all of his shots": "every(player)(hit(every(shot)))",
-    "Every player hit none of his shots": "every(player)(hit(no(shot)))",    
-    "Every player hit some of his shots": "every(player)(hit(some(shot)))",    
-    "Exactly one player hit all of his shots": "exactly_one(player)(hit(every(shot)))",
-    "Exactly one player hit none of his shots": "exactly_one(player)(hit(no(shot)))",
-    "Exactly one player hit some of his shots": "exactly_one(player)(hit(some(shot)))",
-    "No player hit all of his shots": "no(player)(hit(every(shot)))",
-    "No player hit none of his shots": "no(player)(hit(no(shot)))",
-    "No player hit some of his shots": "no(player)(hit(some(shot)))"}
-
-# Abbreviated plot titles:
-TITLES = {
-    "every(player)(hit(every(shot)))": 'every...all',
-    "every(player)(hit(no(shot)))": 'every...none',
-    "every(player)(hit(some(shot)))": 'every...some',
-    "exactly_one(player)(hit(every(shot)))": 'exactly one...all',
-    "exactly_one(player)(hit(no(shot)))": 'exactly one...none',
-    "exactly_one(player)(hit(some(shot)))": 'exactly one...some',
-    "no(player)(hit(every(shot)))": 'no...all',
-    "no(player)(hit(no(shot)))": 'no...none',
-    "no(player)(hit(some(shot)))": 'no...some'}
-
-# Map from the experiment to our preferred notation for worlds/conditions:
-CONDITION_MAP = {
-    "none-none-none": "NNN",
-    "none-none-half": "NNS",
-    "none-none-all": "NNA",
-    "none-half-half": "NSS",
-    "none-half-all": "NSA",                         
-    "none-all-all": "NAA",
-    "half-half-half": "SSS",
-    "half-half-all": "SSA",
-    "half-all-all": "SAA",
-    "all-all-all": "AAA" }
-
-# Separate vector to ensure the desired ordering:
-CONDITIONS = ("NNN", "NNS", "NNA", "NAA", "NSS", "NSA", "SSS", "SSA", "SAA", "AAA")
 
 ######################################################################
 # Clas for modeling experimental items (rows in the table):
@@ -153,10 +110,7 @@ class Experiment:
         yticklabels = [r'\texttt{%s}' % s for s in CONDITIONS[::-1]] # Reversal for preferred condition order.
         titles = [TITLES[s] for s in rnames]
         titles = [r"\emph{%s}" % s for s in titles]
-        # Sizing:
-        title_size = 20
-        xtick_labelsize = 16
-        ytick_labelsize = 16
+        # Sizing:        
         nrows = 3
         ncols = 3
         axis_height = 4

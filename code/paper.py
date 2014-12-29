@@ -110,7 +110,7 @@ def experiment_plot_and_report(
 ######################################################################
     
 def experimental_assessment(experiment_src="../data/basketball-pilot-2-11-14-results-parsed.csv",
-                            plot_output_filename='temp.pdf'):
+                            plot_output_filename='../fig/allmodels.pdf'):
     # General settings:
     subjs= ('every_player', 'exactly_one_player', 'no_player')
     objs = ('every_shot', 'no_shot', 'some_shot')
@@ -173,7 +173,7 @@ def experimental_assessment(experiment_src="../data/basketball-pilot-2-11-14-res
     analysis = Analysis(experiment=Experiment(experiment_src), models=[ucmod, neomod])    
     analysis.overall_analysis()
     analysis.analysis_by_message()
-    analysis.comparison_plot(plot_output_filename='temp.pdf')
+    analysis.comparison_plot(output_filename=plot_output_filename)
 
     
 ######################################################################
@@ -182,8 +182,8 @@ def experimental_assessment(experiment_src="../data/basketball-pilot-2-11-14-res
 if __name__ == '__main__':
 
     #simple_scalar_inference_example()
-    complex_example()
+    #complex_example()
     #experiment_plot_and_report()
-    #experimental_assessment()
+    experimental_assessment()
 
 
