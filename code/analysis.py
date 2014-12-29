@@ -69,8 +69,8 @@ class Analysis:
         fig.set_figheight(nrows*4)
         fig.set_figwidth(ncols*4)
         fig.subplots_adjust(wspace=0.1, hspace=0.1)
-        fig.text(0.5, 0.08, 'Probability', ha='center', va='center', fontsize=24)
-        fig.text(0.08, 0.5, 'World', ha='center', va='center', rotation='vertical', fontsize=24)
+        fig.text(0.5, 0.08, 'Probability', ha='center', va='center', fontsize=30)
+        fig.text(0.08, 0.5, 'World', ha='center', va='center', rotation='vertical', fontsize=30)
         # Human column, then model columns:
         self.model_comparison_plot(axarray[:,0], self.expmat, width=width, color=colors[0], modname='Human', left=True, right=False)
         for i, lis in enumerate(listeners):
@@ -86,9 +86,9 @@ class Analysis:
         message_ordering_indices = [0,3,6,1,4,7,2,5,8]
         msgs = [self.messages[i] for i in message_ordering_indices]
         titles = [TITLES[msg] for msg in msgs]
-        titles = ["\emph{%s}" % t for t in titles]
+        titles = [r"\textbf{\emph{%s}}" % t for t in titles]
         # Sizing:
-        title_size = 24
+        title_size = 30
         xtick_labelsize = 16
         ytick_labelsize = 16
         # Orientation:
@@ -109,7 +109,7 @@ class Analysis:
             ax.barh(pos, row, width, color=color)
             # title as model name:
             if j == 0:
-                ax.set_title(r"\textbf{%s}" % modname, fontsize=title_size+3, color=color, fontweight='bold')                
+                ax.set_title(r"\textbf{%s}" % modname, fontsize=title_size, color=color, fontweight='bold')                
             # x-axis
             ax.set_xlim(xlim)            
             ax.set_xticks(xticks)
@@ -120,7 +120,7 @@ class Analysis:
             # y-axis:
             if right:
                 ax.yaxis.set_label_position("right")                
-                ax.set_ylabel(titles[j], fontsize=title_size+3, color='black')
+                ax.set_ylabel(titles[j], fontsize=title_size, color='black')
             ax.set_ylim(ylim)
             ax.set_yticks(yticks)
             if left:
