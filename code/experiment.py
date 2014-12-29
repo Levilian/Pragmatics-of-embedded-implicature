@@ -152,6 +152,7 @@ class Experiment:
         yticks = pos+(barwidth/2.0)
         yticklabels = [r'\texttt{%s}' % s for s in CONDITIONS[::-1]] # Reversal for preferred condition order.
         titles = [TITLES[s] for s in rnames]
+        titles = [r"\emph{%s}" % s for s in titles]
         # Sizing:
         title_size = 20
         xtick_labelsize = 16
@@ -179,6 +180,7 @@ class Experiment:
             # x-axis
             ax.set_xlim(xlim)
             ax.set_xticks(xticks)
+            # x-axis labels only for bottom row to avoid clutter:
             if axindex[0] == 2:
                 ax.set_xticklabels(xticks, fontsize=xtick_labelsize, color='black')
             else:
@@ -186,10 +188,7 @@ class Experiment:
             # y-axis:
             ax.set_ylim(ylim)
             ax.set_yticks(yticks)            
-            #if axindex[1] == 0:
             ax.set_yticklabels(yticklabels, fontsize=ytick_labelsize, rotation='horizontal', color='black')
-            #else:
-            #    ax.set_yticklabels([])
             # Confidence intervals:
             cis = confidence_intervals[i]
             cis = cis[::-1]  # Reversal for preferred condition order.
