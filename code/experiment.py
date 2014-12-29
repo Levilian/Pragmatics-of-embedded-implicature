@@ -1,8 +1,12 @@
+#!/usr/bin/env python
+
 import csv
 from collections import defaultdict
+from itertools import product
 import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
+from utils import colors
 import bootstrap
 
 ######################################################################
@@ -112,7 +116,7 @@ class Experiment:
     def get_ci(self, vals):
         if len(set(vals)) == 1:
             return (vals[0], vals[0])
-        # In case bootstrp.py is missing or not working:
+        # In case bootstrap.py is missing or not working:
         # loc = np.mean(vals)
         # scale = np.std(vals) / np.sqrt(len(vals))
         # return stats.t.interval(0.95, len(vals)-1, loc=loc, scale=scale)        
@@ -134,54 +138,64 @@ class Experiment:
             mat.append(row)
         return mat    
 
-    def plot_targets(self, output_filename=None):        
-        mat = self.target_means2matrix(rnames, cnames)
-        confidence_intervals = self.target_cis2matrix(rnames, cnames)
+    def plot_targets(self, output_filename=None):
         rnames = sorted(self.targets.keys())
-        cnames = CONDITIONS
-        nrows=3
-        ncols=3
-        title = [TITLES[s] for s in rnames]
-        indices = []
-        ylim = [0,8]
-        yticks = range(0,8)
-        ylabel = "Human responses"
+        mat = self.target_means2matrix(rnames, CONDITIONS)
+        confidence_intervals = self.target_cis2matrix(rnames, CONDITIONS)                        
+        # Orientation:
+        barwidth = 1.0
+        pos = np.arange(0.0, len(CONDITIONS)*barwidth, barwidth)
+        xlim = [0,8]
+        xticks = range(1,8)
+        xlabel = "Human responses"
+        ylim = [0.0, len(CONDITIONS)*barwidth]
+        yticks = pos+(barwidth/2.0)
+        yticklabels = [r'\texttt{%s}' % s for s in CONDITIONS[::-1]] # Reversal for preferred condition order.
+        titles = [TITLES[s] for s in rnames]
+        # Sizing:
+        title_size = 20
+        xtick_labelsize = 16
+        ytick_labelsize = 16
+        nrows = 3
+        ncols = 3
+        axis_height = 4
+        axis_width = 4        
         # Basic figure dimensions and design:
         fig, axarray = plt.subplots(nrows=nrows, ncols=ncols)
         fig.set_figheight(axis_height*nrows)
-        fig.set_figwidth(axis_width*ncols)    
-        #fig.subplots_adjust(bottom=-1.0)
+        fig.set_figwidth(axis_width*ncols)
+        fig.subplots_adjust(wspace=0.3)
+        fig.text(0.5, 0.05, 'Mean human response', ha='center', va='center', fontsize=xtick_labelsize+2)
+        fig.text(0.05, 0.5, 'World', ha='center', va='center', rotation='vertical', fontsize=ytick_labelsize+2)
         # Axes:
-        pos = np.arange(0.0, len(cnames)*width, width)
-        xlim = [0.0, len(cnames)*width]
-        xticks = pos+(width/2.0)    
-        # If indices doesn't specify an ordering, create an array of
-        # axis coordinate pairs for the plot:
-        if not indices:
-            if nrows == 1:
-                indices = list(range(ncols))
-            else:
-                indices = list(itertools.product(range(nrows), range(ncols)))
-        # Left edges of the bars:    
-        # Plot each row as an axis:
+        indices = list(product(range(nrows), range(ncols)))    
         for i, row in enumerate(mat):
+            row = row[::-1] # Reversal for preferred condition order.
             axindex = indices[i]
             ax = axarray[axindex]
             ax.tick_params(axis='both', which='both', bottom='off', left='off', top='off', right='off', labelbottom='on')
-            ax.bar(pos, row, width, color=colors[0])
-            ax.set_title(rnames[i])
-            # Axis label only for the leftmost plots:
-            if (isinstance(axindex, int) and axindex == 0) or (isinstance(axindex, tuple) and axindex[1] == 0):
-                ax.set_ylabel(ylabel, fontsize=14)
+            ax.barh(pos, row, barwidth, color=colors[0])
+            ax.set_title(titles[i], fontsize=title_size)
+            # x-axis
             ax.set_xlim(xlim)
-            ax.set_ylim(ylim)
             ax.set_xticks(xticks)
-            ax.set_xticklabels(cnames, fontsize=14, rotation='vertical', color='black')
-            ax.set_yticks(yticks)
-            ax.set_yticklabels(yticks)
+            if axindex[0] == 2:
+                ax.set_xticklabels(xticks, fontsize=xtick_labelsize, color='black')
+            else:
+                ax.set_xticklabels([])
+            # y-axis:
+            ax.set_ylim(ylim)
+            ax.set_yticks(yticks)            
+            #if axindex[1] == 0:
+            ax.set_yticklabels(yticklabels, fontsize=ytick_labelsize, rotation='horizontal', color='black')
+            #else:
+            #    ax.set_yticklabels([])
             # Confidence intervals:
-            if confidence_intervals:
-                add_confidence_intervals(ax=ax, pos=pos+(width/2.0), cis=confidence_intervals[i])
+            cis = confidence_intervals[i]
+            cis = cis[::-1]  # Reversal for preferred condition order.
+            for j, xpos in enumerate(pos):
+                xpos = xpos+(barwidth/2.0)
+                ax.plot(cis[j], [xpos, xpos], linewidth=2, color='#555555') 
         # Output:
         if output_filename:
             plt.savefig(output_filename, bbox_inches='tight')
