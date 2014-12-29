@@ -22,10 +22,6 @@ colors = [
     '#E7298A', # dark pink; unconstrained
     '#D95F02'] # orange; neo-gricean model
 
-title_size = 20
-xtick_labelsize = 16
-ytick_labelsize = 16
-
 ######################################################################
 # High-level settings and notation:
 

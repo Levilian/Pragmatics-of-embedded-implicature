@@ -114,7 +114,10 @@ class Experiment:
         nrows = 3
         ncols = 3
         axis_height = 4
-        axis_width = 4        
+        axis_width = 4
+        title_size = 20
+        xtick_labelsize = 16
+        ytick_labelsize = 16
         # Basic figure dimensions and design:
         fig, axarray = plt.subplots(nrows=nrows, ncols=ncols)
         fig.set_figheight(axis_height*nrows)
