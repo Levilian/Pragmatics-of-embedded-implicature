@@ -10,7 +10,7 @@ import matplotlib
 
 plt.style.use('ggplot')
 matplotlib.rc('text', usetex=True)
-matplotlib.rc('font', family='serif', serif='cm10')
+matplotlib.rc('font', family='serif', serif='times')
 matplotlib.rcParams['text.latex.preamble'] = [r"\usepackage{amsmath}", r'\boldmath']
 matplotlib.rcParams['xtick.major.pad']='1'
 matplotlib.rcParams['ytick.major.pad']='0'
