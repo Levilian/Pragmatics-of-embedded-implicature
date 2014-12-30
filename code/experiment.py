@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import csv
-from collections import defaultdict
+from collections import defaultdict, Counter
 from itertools import product
 import numpy as np
 from scipy import stats
@@ -93,8 +93,66 @@ class Experiment:
             for j, cname in enumerate(cnames):
                 row.append(value_dict[rname][cname])
             mat.append(row)
-        return mat    
+        return mat
 
+    ##################################################################
+    # Experimental report
+
+    def experimental_report(self):
+        print "=" * 70
+        print "Experimental report for", self.src_filename
+        print '\nSubjects:', self.subject_count()
+        print '\nResponses per sentence:'
+        for phi, count in self.target_sentence_response_counts().items():
+            print "\t", phi, count
+        print '\nResponses per sentence--condition pair:'
+        for key, val in self.target_sentence_condition_response_summary().items():
+            print "\t", key, val
+        print '\nCondition presentation'
+        for key, vals in self.condition_presentation().items():
+            print "\t", key, "; ".join(["%s: %s" % cond_count for cond_count in vals.items()])
+        self.plot_response_distribution()
+                 
+    def subject_count(self):
+        return len(set(item.workerid for item in self.data))        
+
+    def target_sentence_response_counts(self):        
+        return {phi: sum(len(x) for x in cond_dist.values()) for phi, cond_dist in self.targets.items()}
+
+    def target_sentence_condition_response_summary(self):
+        counts = self.target_analysis(func=len)
+        counts = [x for cond_dist in counts.values() for x in cond_dist.values()]
+        return {'min': min(counts), 'max': max(counts), 'mean': np.mean(counts), 'median': np.median(counts)}
+
+    def condition_presentation(self):
+        d = defaultdict(lambda : defaultdict(int))
+        for item in self.data:
+            if item.formula:
+                d[item.condition_norm][item.conditionOrder] += 1
+        return d
+
+    ##################################################################
+    # Plot
+
+    def plot_response_distribution(self):
+        all_responses = Counter([item.response for item in self.data])
+        all_counts = [all_responses.get(x, 0.0) for x in range(1,8)]
+        fig, axarray = plt.subplots(nrows=1, ncols=2)
+        ax1, ax2 = axarray
+        pos = np.arange(1.0, 8.0, 1.0)
+        barwidth = 1.0
+        ax1.bar(pos, all_counts, barwidth)       
+        ax1.set_title('All items')
+        ax1.set_xlabel('Response category')
+        ax1.set_ylabel('Count')
+        target_responses = Counter([x for cond_dist in self.targets.values() for vals in cond_dist.values() for x in vals])
+        target_counts = [target_responses.get(x, 0.0) for x in range(1,8)]
+        ax2.bar(pos, target_counts, barwidth)
+        ax2.set_title('Target items')
+        ax2.set_xlabel('Response category')
+        ax2.set_ylabel('Count')
+        plt.show()
+                
     def plot_targets(self, output_filename=None):
         rnames = sorted(self.targets.keys())
         mat = self.target_means2matrix(rnames, CONDITIONS)
@@ -116,6 +174,7 @@ class Experiment:
         axis_height = 4
         axis_width = 4
         title_size = 20
+        labsize = 20
         xtick_labelsize = 16
         ytick_labelsize = 16
         # Basic figure dimensions and design:
@@ -123,8 +182,8 @@ class Experiment:
         fig.set_figheight(axis_height*nrows)
         fig.set_figwidth(axis_width*ncols)
         fig.subplots_adjust(wspace=0.3)
-        fig.text(0.5, 0.05, 'Mean human response', ha='center', va='center', fontsize=xtick_labelsize+2)
-        fig.text(0.05, 0.5, 'World', ha='center', va='center', rotation='vertical', fontsize=ytick_labelsize+2)
+        fig.text(0.5, 0.05, 'Mean human response', ha='center', va='center', fontsize=labsize)
+        fig.text(0.05, 0.5, 'World', ha='center', va='center', rotation='vertical', fontsize=labsize)
         # Axes:
         indices = list(product(range(nrows), range(ncols)))    
         for i, row in enumerate(mat):
@@ -162,7 +221,8 @@ class Experiment:
     
 if __name__ == '__main__':
 
-    exp1 = Experiment(src_filename='../data/basketball-pilot-2-11-14-results-parsed.csv')
-    exp1.plot_targets(output_filename="../fig/basketball-pilot-2-11-14-results-parsed.pdf")
+    exp = Experiment(src_filename='../data/basketball-pilot-2-11-14-results-parsed.csv')
+    #exp.plot_targets(output_filename="../fig/basketball-pilot-2-11-14-results-parsed.pdf")
+    exp.experimental_report()
 
 

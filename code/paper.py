@@ -104,8 +104,9 @@ def complex_example():
 def experiment_plot_and_report(
         src_filename='../data/basketball-pilot-2-11-14-results-parsed.csv',
         output_filename="../fig/basketball-pilot-2-11-14-results-parsed.pdf"):
-    exp1 = Experiment(src_filename=src_filename)
-    exp1.plot_targets(output_filename=output_filename)
+    exp = Experiment(src_filename=src_filename)
+    exp.experimental_report()
+    exp.plot_targets(output_filename=output_filename)
 
 ######################################################################
     
@@ -183,7 +184,7 @@ if __name__ == '__main__':
 
     #simple_scalar_inference_example()
     #complex_example()
-    #experiment_plot_and_report()
-    experimental_assessment()
+    experiment_plot_and_report()
+    #experimental_assessment()
 
 
