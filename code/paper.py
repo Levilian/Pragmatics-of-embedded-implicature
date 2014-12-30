@@ -38,6 +38,9 @@ def simple_scalar_inference_example():
         display_matrix(mod.l0(lex), rnames=mod.messages, cnames=mod.states, digits=2)
         print 's1'
         display_matrix(mod.S(lex), rnames=mod.states, cnames=mod.messages, digits=2)
+        print 'l1'
+        display_matrix(mod.L(mod.S(lex)), rnames=mod.messages, cnames=mod.states, digits=2)
+        
 
     display_matrix(mod.final_listener,  rnames=mod.messages, cnames=mod.states, digits=2)
             
@@ -182,9 +185,9 @@ def experimental_assessment(experiment_src="../data/basketball-pilot-2-11-14-res
 
 if __name__ == '__main__':
 
-    #simple_scalar_inference_example()
+    simple_scalar_inference_example()
     #complex_example()
-    experiment_plot_and_report()
+    #experiment_plot_and_report()
     #experimental_assessment()
 
 
