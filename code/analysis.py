@@ -100,11 +100,12 @@ class Analysis:
         xlim = [0.0, 1.0]
         xticks = [0.0, 0.25, 0.5, 0.75, 1.0]            
         xtick_labels = ["0", ".25", ".5", ".75", "1"]        
-        # Axes:        
+        # Axes:
+        modmat = modmat[message_ordering_indices, : ]
         for j, ax in enumerate(axarray):
-            msg = msgs[j]
-            modmat = modmat[message_ordering_indices]
-            row = modmat[j][::-1] # Reversal for preferred ordering.
+            msg = msgs[j]            
+            row = modmat[j]
+            row = row[::-1] # Reversal for preferred ordering.
             ax.tick_params(axis='both', which='both', bottom='off', left='off', top='off', right='off')            
             ax.barh(pos, row, width, color=color)
             # title as model name:

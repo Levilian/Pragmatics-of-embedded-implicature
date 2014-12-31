@@ -185,9 +185,9 @@ def experimental_assessment(experiment_src="../data/basketball-pilot-2-11-14-res
 
 if __name__ == '__main__':
 
-    simple_scalar_inference_example()
+    #simple_scalar_inference_example()
     #complex_example()
     #experiment_plot_and_report()
-    #experimental_assessment()
+    experimental_assessment()
 
 
