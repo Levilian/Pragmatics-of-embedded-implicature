@@ -127,7 +127,7 @@ pragmatics to intrude on the semantics. However, they go on to
 identify a class of examples that will not admit such a treatment:
 scalar terms in the scope of non-monotone quantifiers, as in
 \word{Exactly one player hit some of his shots}. In such cases, the
-embedded implicature (\word{\ldots some but not all of his shots})
+interpretation enriched by an embedded implicature (\word{\ldots some but not all of his shots})
 does not entail the literal meaning, whereas the Gricean analysis of
 scalar terms can only strengthen literal meanings.
 
@@ -147,7 +147,7 @@ conclusions and help to address the skeptical reactions of
 to a role for compositional semantics in understanding
 implicatures. But pragmatic factors also play a crucial role: even
 embedded implicatures arise only with proper contextual support
-\citep{Russell06,ChierchiaFoxSpector08,Geurts:2011,Chemla:Spector:2011}
+\citep{Russell06,ChierchiaFoxSpector08,Geurts:2011,Chemla:Spector:2011}.
 
 To describe the complementary roles of grammar and pragmatics in
 embedded implicatures, we propose a model that both embraces the
@@ -166,7 +166,7 @@ composition.
 
 We show not only that our model captures the qualitative pattern of
 implicature behaviors that \citeauthor{Chemla:Spector:2011} found, but
-also that its predictions are highly correlated with people's actual
+also makes quantitative predictions that are highly correlated with people's actual
 inferential behavior in context. In addition, we show that these
 correlations can be improved if the set of refinements is lexically
 constrained, in keeping with broadly neo-Gricean views of scalar
@@ -176,12 +176,12 @@ substantively on the fine details of semantic composition \emph{and}
 broader considerations of rational interaction. This is perhaps a
 departure from \posscitet{Grice75} particular conception of pragmatic
 meaning, but it is well-aligned with his general theory of meaning and
-intention.  In view of our experimental results, the chief advantage
+intention \citep{grice57}.  In view of our experimental results, the chief advantage
 of our model is that it makes quantitative predictions that are easily
 and rigorously linked with our human response patterns. In other
 words, the model makes predictions not only about what is possible in
 terms of pragmatic inferences but also about how likely those
-inferences are.
+inferences are. 
 
 Our broader position is that grammar-driven accounts and Gricean
 accounts are not in opposition, but rather offer complementary
@@ -190,7 +190,7 @@ on linguistic conventions to try to identify and convey each other's
 intentions. All sides in the debate acknowledge this mix of
 grammatical and interactional factors. \posscitet{Grice75} definition
 of conversational implicature is interactional, but his maxim of
-manner embraces a role for language. Neo-Griceans expand this role
+manner embraces a role for language. By introducing additional devices such as Horn scales, Neo-Griceans expand this role
 into areas Grice addressed with the maxims of quantity, quality, and
 relevance. \citet{Sperber95} and \citet{Bach94} characterize many
 kinds of pragmatic enrichment as inferences about logical forms. And
@@ -212,10 +212,9 @@ fleshing it out into a precise formulation is challenging
 \citep{Hirschberg85}, but the guiding idea seems clear.  The listener
 assumes that that the speaker is cooperative, in the Gricean sense of
 rational interaction. However, the listener is confronted with an
-utterance $U$ with content $p$ that falls short of this assumption,
-creating a conflict. If the listener posits that the speaker actually
-intended a different proposition $q$, then $U$ is reconciled with the
-assumption of cooperativity.
+utterance $U$ with content $p$ that meets this assumption only if certain additional conditions are met. The listener can resolve this tension by positing that these conditions are in fact met; in many (but not all) cases, this means inferring that the speaker actually
+intended for the listener to infer the truth of an additional proposition $q$, or of a different but related proposition $q'$. By this reasoning, the listener is able to reconcile the observation that the speaker chose to utter $U$ with the
+assumption that the speaker is behaving in a cooperative manner.
 
 In the current work, we do not try to make the above description more
 rigorous. The model that we develop does not depend on an
@@ -233,7 +232,7 @@ Gricean accounts.
 
 On the classic Gricean account, scalar implicatures arise when the
 imperative `Be as informative as is required' (a subclause of the
-maxim of quantity) is in tension with another pragmatic pressure. The
+maxim of quantity) is in tension with another pragmatic pressure related to cooperative communication. The
 opposing force can take many forms, for example, relating to
 considerations of politeness, discretion, or secrecy, but it is
 usually attributed to the maxim of quality, which instructs speakers
@@ -252,8 +251,8 @@ the above ideas. We assume the sportscaster is cooperative in the
 Gricean sense, and knowledgeable and forthcoming about the
 events. Why, then, did she opt for a weak statement like
 \word{Player~A hit some of his shots} when a stronger statement like
-\word{Player~A hit all of his shots} would have been more informative?
-Given our assumptions, it must be that she was prevented from using
+\word{Player~A hit all of his shots} is available and would have been more informative?
+If knowledgeability is the only relevant consideration, it must be that she was prevented from using
 this stronger form because she does not know it to be true. Together
 with our assumption that she observed the full outcome, she can lack
 knowledge of this proposition only because it is false, leading to the
@@ -263,7 +262,7 @@ way, a listener can enrich the speaker's message.
 To make this concrete, suppose that we have two players, A and B, and
 that we care (for present purposes) only about whether each of them
 hit none, some but not all, or all of his shots. We can identify these
-possible worlds with labels like \world{NA}, which means that Player~A
+(equivalence classes of) possible worlds with labels like \world{NA}, which means that Player~A
 hit none of his shots and Player~B hit all of his shots, and
 \world{SS}, which means that both players hit some but not all of
 their shots. There are $3^{2} = 9$ such worlds. The literal semantics
@@ -287,7 +286,7 @@ intersection of these two meanings delivers the communicated meaning,
 There are many proposals for how to formalize this reasoning. The
 common theme running through all of them is that the implicature is
 accessible because it is a refinement that strictly entails the
-original literal content. In \citeauthor{Grice75}'s terms, a general
+original literal content --- in this example, because the utterance's literal meaning and the implicature are combined into an enriched meaning by intersection. In \citeauthor{Grice75}'s terms, a general
 claim is further restricted by the interaction of quantity and
 quality.
 
@@ -367,7 +366,7 @@ proposition in (\ref{exactlyonesome-sem}b), whereas the content of the
   \end{tabular}
 \end{examples}
 %
-Any theory based on broadly Gricean notions of enrichment will fail to
+Any theory in which enriched scalar interpretation are always generated by conjunction/intersection, as they are in classical Gricean and neo-Gricean accounts of scalar implicature, will fail to
 arrive at (\ref{exactlyonesome-sem}c). Such theories head inexorably
 towards a refinement that excludes \world{NA} and \world{AN}, but they
 are essentially incapable of `introducing' \world{SA} and \world{AS}.
@@ -396,8 +395,8 @@ either because of the way pragmatic pressures interact or because
 negative environments, leaving no room for further
 enrichment. Grammar-driven approaches have tended to agree with the
 basic empirical assumption, arguing that local enrichment is blocked
-in environments where it would strictly weaken the literal content.
-
+in environments where it would strictly weaken the literal content \citep{chierchia2006broaden}. 
+ 
 The empirical evidence is mixed but seems to support the accessibility
 of these local interpretations. Modifying an earlier design by
 \citet{Geurts:Pouscoulous:2009}, \citeauthor{Chemla:Spector:2011} used
@@ -464,10 +463,10 @@ The basic exhaustification operator is given in \eg{def:O}
 \end{examples}
 %
 The $O$ operator maps an expression $\varphi$ to one that entails
-$\sem{\varphi}$ and excludes all of the meanings that are strictly
+$\sem{\varphi}$ and excludes the denotations of expressions in $\ALT(\varphi)$ that are strictly
 stronger than $\sem{\varphi}$. When dealing with truth-functional
 expressions, we can regard $\sqcap$ as boolean conjunction and
-$\entails$ as a conditional, but the definition should be thought of
+$\entails$ as a material conditional, but the definition should be thought of
 as broad enough to include any kind of partial ordering
 \seccitet{Hirschberg85}{4}.
 
@@ -635,7 +634,7 @@ guide the process.
 Summarizing so far, we have evidence from
 \posscitet{Chemla:Spector:2011} experiments that some implicatures
 require, in some sense, local enrichment of embedded content via
-enhanced logical forms. Gricean accounts seem unable to capture such
+enhanced logical forms. Traditional Gricean accounts seem unable to capture such
 cases, though such accounts excel at characterizing how speakers and
 listeners coordinate on implicatures in simpler cases. \CFS\ define a
 model in which local calculation is immediate, but they do not venture
@@ -1570,7 +1569,7 @@ We conclude from these response patterns that local enrichment is
 possible even in non-monotone environments (replicating
 \citet{Chemla:Spector:2011}), and that local enrichment might be
 available in downward monotone environments as well. However, our
-concern is not whether such readings are possible or
+concern is not only whether such readings are possible or
 impossible, but rather how accurately we can predict
 their availability on the basis of contextual and world knowledge. 
 % In this way, our objectives are more closely aligned with Griceans like
@@ -1639,7 +1638,7 @@ context:
 The domain $\Domain$ and worlds $\Worlds$ come directly from our human
 experiment. Similarly, the set of messages $\Messages$ corresponds to
 \eg{expmsgs}, with some adjustments to keep the logical grammar
-simple. We stipulate flat priors and even costs. As noted in
+simple. We stipulate flat priors and even costs (other than the empty message). As noted in
 \secref{sec:model}, we do not have empirical estimates for these
 values; though better fits to the human data can be achieved by adding
 assumptions about them, this risks overfitting to the data we have and
@@ -1702,8 +1701,8 @@ fit between models and data.
 Our model predictions are conditional probability distributions over
 states given messages, and hence constrained to be in the range
 $[0,1]$ and to sum to $1$. In contrast, our human responses are Likert
-values in the range $[1,7]$ with no constraint that they sum to
-$1$. To align these values, we rescale the human responses: if $x^{s}$
+values in $\{1,2,3,4,5,6,7\}$ with no constraint that they sum to
+any particular value. To align these values, we rescale the human responses: if $x^{s}$
 is the $10$-dimensional vector of mean human responses for target
 sentence $s$, then each $p^{s}$ is the vector of normalized values for
 that sentence, defined so that
