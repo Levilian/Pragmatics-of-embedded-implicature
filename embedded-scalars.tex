@@ -74,7 +74,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\marginnote{This section heading seems just right to me. Is there a problem with it I am overlooking? MF's alternative is commented-out.}
+%\marginnote{This section heading seems just right to me. Is there a problem with it I am overlooking? MF's alternative is commented-out.}
 
 %\section{Interactions of pragmatics and grammar}\label{sec:introduction}
 \section{Conversational implicature: Interacting with grammar}\label{sec:introduction}
@@ -166,22 +166,23 @@ composition.
 
 We show not only that our model captures the qualitative pattern of
 implicature behaviors that \citeauthor{Chemla:Spector:2011} found, but
-also makes quantitative predictions that are highly correlated with people's actual
-inferential behavior in context. In addition, we show that these
-correlations can be improved if the set of refinements is lexically
-constrained, in keeping with broadly neo-Gricean views of scalar
-implicature \citep{Horn72,Gazdar79b,Gazdar79a,SchulzVanRooij06}.  Our
-results suggest that the full theory of implicature depends
-substantively on the fine details of semantic composition \emph{and}
-broader considerations of rational interaction. This is perhaps a
-departure from \posscitet{Grice75} particular conception of pragmatic
-meaning, but it is well-aligned with his general theory of meaning and
-intention \citep{grice57}.  In view of our experimental results, the chief advantage
-of our model is that it makes quantitative predictions that are easily
-and rigorously linked with our human response patterns. In other
-words, the model makes predictions not only about what is possible in
-terms of pragmatic inferences but also about how likely those
-inferences are. 
+also makes quantitative predictions that are highly correlated with
+people's actual inferential behavior in context. In addition, we show
+that these correlations can be improved if the set of refinements is
+lexically constrained, in keeping with broadly neo-Gricean views of
+scalar implicature
+\citep{Horn72,Gazdar79b,Gazdar79a,SchulzVanRooij06}.  Our results
+suggest that the full theory of implicature depends substantively on
+the fine details of semantic composition \emph{and} broader
+considerations of rational interaction. This is perhaps a departure
+from \posscitet{Grice75} particular conception of pragmatic meaning,
+but it is well-aligned with his general theory of meaning and
+intention \citep{grice57}.  In view of our experimental results, the
+chief advantage of our model is that it makes quantitative predictions
+that are easily and rigorously linked with our human response
+patterns. In other words, the model makes predictions not only about
+which pragmatic inferences are possible but also about how likely
+those inferences are.
 
 Our broader position is that grammar-driven accounts and Gricean
 accounts are not in opposition, but rather offer complementary
@@ -190,8 +191,9 @@ on linguistic conventions to try to identify and convey each other's
 intentions. All sides in the debate acknowledge this mix of
 grammatical and interactional factors. \posscitet{Grice75} definition
 of conversational implicature is interactional, but his maxim of
-manner embraces a role for language. By introducing additional devices such as Horn scales, Neo-Griceans expand this role
-into areas Grice addressed with the maxims of quantity, quality, and
+manner embraces a role for language. By introducing additional devices
+such as Horn scales, Neo-Griceans expand this role into areas Grice
+addressed with the maxims of quantity, quality, and
 relevance. \citet{Sperber95} and \citet{Bach94} characterize many
 kinds of pragmatic enrichment as inferences about logical forms. And
 \citet{ChierchiaFoxSpector08} invoke broadly Gricean pressures to
@@ -212,9 +214,15 @@ fleshing it out into a precise formulation is challenging
 \citep{Hirschberg85}, but the guiding idea seems clear.  The listener
 assumes that that the speaker is cooperative, in the Gricean sense of
 rational interaction. However, the listener is confronted with an
-utterance $U$ with content $p$ that meets this assumption only if certain additional conditions are met. The listener can resolve this tension by positing that these conditions are in fact met; in many (but not all) cases, this means inferring that the speaker actually
-intended for the listener to infer the truth of an additional proposition $q$, or of a different but related proposition $q'$. By this reasoning, the listener is able to reconcile the observation that the speaker chose to utter $U$ with the
-assumption that the speaker is behaving in a cooperative manner.
+utterance $U$ with content $p$ that meets this assumption only if
+certain additional conditions are met. The listener can resolve this
+tension by positing that these conditions are in fact met; in many
+(but not all) cases, this means inferring that the speaker actually
+intended for the listener to infer the truth of an additional
+proposition $q$, or of a different but related proposition $q'$. By
+this reasoning, the listener is able to reconcile the observation that
+the speaker chose to utter $U$ with the assumption that the speaker is
+behaving in a cooperative manner.
 
 In the current work, we do not try to make the above description more
 rigorous. The model that we develop does not depend on an
@@ -1075,11 +1083,11 @@ implicature.
     \\
     \speakerOne
     &
-    \scalarspeaker{0}{0}{\graycell{1}}{\graycell{.99}}{0}{.01}{.5}{.5}{0}
+    \scalarspeaker{0}{0}{1}{.99}{0}{.01}{.5}{.5}{0}
     &
-    \scalarspeaker{0}{0}{\graycell{1}}{\graycell{.99}}{0}{.01}{0}{.99}{.01}
+    \scalarspeaker{0}{0}{1}{.99}{0}{.01}{0}{.99}{.01}
     &
-    \scalarspeaker{0}{0}{\graycell{1}}{0}{0}{\graycell{1}}{.5}{.5}{0}
+    \scalarspeaker{0}{0}{1}{0}{0}{1}{.5}{.5}{0}
     \\
     & \downarrow & \downarrow & \downarrow
     \\
@@ -1394,24 +1402,32 @@ Target sentences describing the displays were defined as follows:
 %
 \begin{examples}
 \item\label{expmsgs} 
-  \begin{tabbing}    
-    \phantom{Exactly one} \= \phantom{player hit some} \= \kill
-    Every \> player hit  all \> of his shots.\\
-    Every \> player hit none \> of his shots.\\
-    Every \> player hit some \> of his shots.\\    
-    Exactly one \> player hit all \> of his shots.\\
-    Exactly one \> player hit none \> of his shots.\\
-    Exactly one \> player hit some \> of his shots.\\
-    No \> player hit all \> of his shots.\\
-    No \> player hit none \> of his shots.\\
-    No \> player hit some \> of his shots.
-  \end{tabbing}
- % $\set{
- %      \text{$Q$ player hit his $S$ of his shots} :
- %      \begin{array}{l}        
- %        Q \in \set{\text{exactly one}, \text{every}, \text{no}}, \\
- %        S \in \set{\text{all}, \text{none}, \text{some}}
- %      \end{array}}$
+  $\set{
+      \begin{tabular}[c]{l}
+        Every \\
+        Exactly one \\
+        No 
+      \end{tabular}}$
+    player hit 
+    $\set{
+      \begin{tabular}[c]{l}
+        all \\
+        none \\
+        some 
+      \end{tabular}}$
+    of his shots.
+  % \begin{tabbing}    
+  %   \phantom{Exactly one} \= \phantom{player hit some} \= \kill
+  %   Every \> player hit  all \> of his shots.\\
+  %   Every \> player hit none \> of his shots.\\
+  %   Every \> player hit some \> of his shots.\\    
+  %   Exactly one \> player hit all \> of his shots.\\
+  %   Exactly one \> player hit none \> of his shots.\\
+  %   Exactly one \> player hit some \> of his shots.\\
+  %   No \> player hit all \> of his shots.\\
+  %   No \> player hit none \> of his shots.\\
+  %   No \> player hit some \> of his shots.
+  % \end{tabbing}
 \end{examples}
 %
 Following previous studies, we put a bound pronoun in the embedded
@@ -1846,7 +1862,7 @@ if paired with additional experiments for further validation.
     Neo-Gricean   &            .88 & \graycell{.89} &            .00660 &            .96 &            .89 &            .00290 &            .89 & \graycell{.88} & \graycell{.00420} \\
     \bottomrule
   \end{tabular}
-  \caption{Results on crucial items. `P' = `Pearson'; `S' = `Spearman'.}
+  \caption{Assessment of crucial items. `P' = `Pearson'; `S' = `Spearman'.}
   \label{tab:crucial-items}
 \end{table}
 
