@@ -531,23 +531,28 @@ $\ALT(\word{some shot})$ is defined as follows:
     \labelednode{0.5,2}{$\set{a,b}$}
     \labelednode{2.75,2}{$\set{a,c}$}
     \labelednode{5,2}{$\set{b,c}$}
-    \picline{2.5,1.2}{-3,1}{1.8}
+    \picline{2.50,1.2}{-3,1}{1.8}
     \picline{2.75,1.2}{0,1}{0.6}
-    \picline{3.0,1.2}{3,1}{1.8}    
-    \picline{0.5,1.2}{0,1}{0.6}
+    \picline{3.00,1.2}{3,1}{1.8}    
+    \picline{0.50,1.2}{0,1}{0.6}
     \picline{0.75,1.2}{3,1}{1.8}
     \picline{4.75,1.2}{-3,1}{1.8}
     \picline{5,   1.2}{0,2}{0.6}
 
+    \picline{2.50,.2}{-3,1}{1.8}
+    \picline{2.75,.2}{0,1}{0.6}
+    \picline{3.00,.2}{3,1}{1.8}
+
     \labelednode{0.5,1}{$\set{a}$}
     \labelednode{2.75,1}{$\set{b}$}
     \labelednode{5,1}{$\set{c}$}
+    \labelednode{2.75,0}{$\emptyset$}
 
     \linethickness{2pt}
-    {\color{cborange}\put(4.9,1){\oval(0.65,0.65)}}
-    {\color{cbpurple}\rotatebox{20}{\put(1.6,2.1){\oval(3.5,0.85)}}}
-    {\color{cbgreen}\rotatebox{20}{\put(1.72,1.5){\oval(5.7,2.65)}}}
-    {\color{gray}\rotatebox{20}{\put(1.25,1.18){\oval(5.5,1.48)}}}
+    \rotatebox{20}{\put(3.75,-0.8){{\color{cborange}\oval(3.5,0.65)}}}
+    \rotatebox{20}{\put(1.3,2.25){{\color{cbpurple}\oval(3.6,0.85)}}}
+    \rotatebox{20}{\put(1.5,1.65){{\color{cbgreen}\oval(5.8,2.7)}}}
+    \rotatebox{20}{\put(1,1.35){{\color{gray}\oval(5.5,1.48)}}}
 
     \labelednodeleft{4,4}{{\color{cbgreen}$\sem{\word{some shot\/}}$}}
     \labelednodeleft{4,3}{{\color{cbpurple}$\sem{\word{every shot\/}}$}}
@@ -555,6 +560,9 @@ $\ALT(\word{some shot})$ is defined as follows:
     \labelednodeleft{4,1}{{\color{cborange}$\sem{\word{no shot\/}}$}}
 
   \end{picture}
+
+  \vspace{4pt}
+
   \caption{Given a domain $\set{a,b,c}$ with $\sem{\word{shot}} = \set{a,b}$,
     $\sem{\word{some shot}}$ is equal to the set of sets circled in green,
     $\sem{\word{every shot}}$ to the set of sets in purple, and
