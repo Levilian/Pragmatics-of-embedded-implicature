@@ -91,5 +91,5 @@ sympy-plots-for-*.tex/
 *.xdy
 
 *.pyc
-*.DS_Store
+.DS_Store
 *.Rhistory
