@@ -316,11 +316,11 @@ account, posit an auxiliary premise. One example of such a premise is
   \setlength{\tabcolsep}{2pt}
   \begin{tabular}[t]{@{} r@{. \ }l *{9}{c} @{\hspace{18pt}} l }
     a & Worlds:         & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} & \world{AA} \\
-    b & Literal:        &            &            &            &            & \world{SS} & \world{SA} &            & \world{AS} & \world{AA} & `every hit at least some' \\ 
-    c & Implicature:    & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} &            & `not every hit every' \\
-    d & Result:         &            &            &            &            & \world{SS} & \world{SA} &            & \world{AS} &            & `every hit some; not every hit all'\\    
+    b & Literal:        &            &            &            &            & \world{SS} & \world{SA} &            & \world{AS} & \world{AA} & `all hit at least some' \\ 
+    c & Implicature:    & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} &            & `not all hit all' \\
+    d & Result:         &            &            &            &            & \world{SS} & \world{SA} &            & \world{AS} &            & `all hit some; not all hit all'\\    
     e & Aux.~premise:   & \world{NN} &            &            &            & \world{SS} &            &            &            & \world{AA} & `uniform outcomes' \\
-    f & Communicated:   &            &            &            &            & \world{SS} &            &            &            &            & `every hit only some'
+    f & Communicated:   &            &            &            &            & \world{SS} &            &            &            &            & `all hit only some'
   \end{tabular}
 \end{examples}
 
@@ -1738,10 +1738,10 @@ hypothesis linking our model with our experimental data.
     \toprule
     & Pearson & Spearman & MSE \\
     \midrule
-    Literal semantics         & 0.94 & 0.76 & 0.0079\\
-    Fixed-lexicon pragmatics  & 0.92 & 0.75 & 0.0094\\
-    Unconstrained uncertainty & 0.93 & 0.79 & 0.0052\\
-    Neo-Gricean uncertainty   & 0.95 & 0.80 & 0.0046\\
+    Literal semantics         & .94 & .76 & .0079\\
+    Fixed-lexicon pragmatics  & .92 & .75 & .0094\\
+    Unconstrained uncertainty & .93 & .79 & .0052\\
+    Neo-Gricean uncertainty   & \graycell{.95} & \graycell{.80} & \graycell{.0046}\\
     \bottomrule   
   \end{tabular}
   \caption{Overall assessment.}
