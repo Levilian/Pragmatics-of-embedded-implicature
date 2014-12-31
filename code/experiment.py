@@ -153,7 +153,7 @@ class Experiment:
         ax2.set_ylabel('Count')
         plt.show()
                 
-    def plot_targets(self, output_filename=None):
+    def plot_targets(self, output_filename=None, all_x_labels=False):
         rnames = sorted(self.targets.keys())
         mat = self.target_means2matrix(rnames, CONDITIONS)
         confidence_intervals = self.target_cis2matrix(rnames, CONDITIONS)                        
@@ -197,7 +197,7 @@ class Experiment:
             ax.set_xlim(xlim)
             ax.set_xticks(xticks)
             # x-axis labels only for bottom row to avoid clutter:
-            if axindex[0] == 2:
+            if axindex[0] == 2 or all_x_labels:
                 ax.set_xticklabels(xticks, fontsize=xtick_labelsize, color='black')
             else:
                 ax.set_xticklabels([])
@@ -222,7 +222,7 @@ class Experiment:
 if __name__ == '__main__':
 
     exp = Experiment(src_filename='../data/basketball-pilot-2-11-14-results-parsed.csv')
-    #exp.plot_targets(output_filename="../fig/basketball-pilot-2-11-14-results-parsed.pdf")
-    exp.experimental_report()
+    #exp.plot_targets(output_filename="../fig/basketball-pilot-2-11-14-results-parsed.pdf")   
+    #exp.experimental_report()
 
 
