@@ -367,7 +367,7 @@ proposition in (\ref{exactlyonesome-sem}b), whereas the content of the
 \begin{examples}
 \item\label{exactlyonesome-sem}
   \setlength{\tabcolsep}{2pt}
-  \begin{tabular}[t]{@{} r@{. \ } l *{9}{c}@{\hspace{8pt}} l}
+  \begin{tabular}[t]{@{} r@{. \ } l *{9}{c}@{\hspace{18pt}} l}
     a& Worlds:       & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} & \world{AA} & \\
     b& Literal:      &            & \world{NS} & \world{NA} & \world{SN} &            &            & \world{AN} &            &            & `exactly one hit at least some'\\
     c& Local:        &            & \world{NS} &            & \world{SN} &            & \world{SA} &            & \world{AS} &            & `exactly one hit only some' \\
@@ -1267,7 +1267,7 @@ sentences.
 
 \begin{table}[t]
   \centering
-  \setlength{\tabcolsep}{4pt}
+  \setlength{\tabcolsep}{8pt}
   %
   % Lexica: 2,086,465
   %
@@ -1275,17 +1275,17 @@ sentences.
     \toprule
     & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} & \world{AA}\\
     \midrule
-    \word{Player A scored} & 0.0 & 0.0 & 0.0 & \graycell{0.24} & 0.19 & 0.16 & 0.18 & 0.16 & 0.07\\
-    \word{Player A aced} & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{0.36} & 0.3 & 0.34\\
-    \word{Player B scored} & 0.0 & \graycell{0.24} & 0.18 & 0.0 & 0.19 & 0.16 & 0.0 & 0.16 & 0.07\\
-    \word{Player B aced} & 0.0 & 0.0 & \graycell{0.36} & 0.0 & 0.0 & 0.3 & 0.0 & 0.0 & 0.34\\
-    \word{some player scored} & 0.0 & 0.14 & 0.11 & 0.14 & \graycell{0.17} & 0.14 & 0.11 & 0.14 & 0.05\\
-    \word{some player aced} & 0.0 & 0.0 & \graycell{0.22} & 0.0 & 0.0 & 0.19 & \graycell{0.22} & 0.19 & 0.18\\
-    \word{every player scored} & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{0.31} & 0.27 & 0.0 & 0.27 & 0.14\\
-    \word{every player aced} & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{1.0}\\
-    \word{no player scored} & \graycell{0.31} & 0.14 & 0.12 & 0.14 & 0.06 & 0.05 & 0.12 & 0.05 & 0.01\\
-    \word{no player aced} & 0.18 & \graycell{0.19} & 0.08 & \graycell{0.19} & 0.14 & 0.06 & 0.08 & 0.06 & 0.0\\
-    $\nullmsg$ & 0.01 & 0.01 & \graycell{0.32} & 0.01 & 0.01 & 0.15 & \graycell{0.32} & 0.15 & 0.0\\
+    \word{Player A scored}     & 0 & 0 & 0 & \graycell{.24} & .19 & .16 & .18 & .16 & .07\\
+    \word{Player A aced}       & 0 & 0 & 0 & 0 & 0 & 0 & \graycell{.36} & .30 & .34\\
+    \word{Player B scored}     & 0 & \graycell{.24} & .18 & 0 & .19 & .16 & 0 & .16 & .07\\
+    \word{Player B aced}       & 0 & 0 & \graycell{.36} & 0 & 0 & .30 & 0 & 0 & .34\\
+    \word{some player scored}  & 0 & .14 & .11 & .14 & \graycell{.17} & .14 & .11 & .14 & .05\\
+    \word{some player aced}    & 0 & 0 & \graycell{.22} & 0 & 0 & .19 & \graycell{.22} & .19 & .18\\
+    \word{every player scored} & 0 & 0 & 0 & 0 & \graycell{.31} & .27 & 0 & .27 & .14\\
+    \word{every player aced}   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \graycell{1}\\
+    \word{no player scored}    & \graycell{.31} & .14 & .12 & .14 & .06 & .05 & .12 & .05 & .01\\
+    \word{no player aced}      & .18 & \graycell{.19} & .08 & \graycell{.19} & .14 & .06 & .08 & .06 & 0\\
+    $\nullmsg$                 & .01 & .01 & \graycell{.32} & .01 & .01 & .15 & \graycell{.32} & .15 & 0\\
     \bottomrule
   \end{tabular}
   \caption{Enrichment in the largest space of
@@ -1295,7 +1295,7 @@ sentences.
 
 \begin{table}[t]
   \centering
-  \setlength{\tabcolsep}{4pt}
+  \setlength{\tabcolsep}{8pt}
   %
   % Lexica: 476
   %
@@ -1303,17 +1303,17 @@ sentences.
   \toprule
     & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} & \world{AA}\\
     \midrule
-    \word{Player A scored} & 0.0 & 0.0 & 0.0 & \graycell{0.45} & 0.11 & 0.22 & 0.15 & 0.05 & 0.02\\
-    \word{Player A aced} & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{0.42} & 0.36 & 0.22\\
-    \word{Player B scored} & 0.0 & \graycell{0.45} & 0.15 & 0.0 & 0.11 & 0.05 & 0.0 & 0.22 & 0.02\\
-    \word{Player B aced} & 0.0 & 0.0 & \graycell{0.42} & 0.0 & 0.0 & 0.36 & 0.0 & 0.0 & 0.22\\
-    \word{some player scored} & 0.0 & \graycell{0.25} & 0.09 & \graycell{0.25} & 0.06 & 0.12 & 0.09 & 0.12 & 0.01\\
-    \word{some player aced} & 0.0 & 0.0 & \graycell{0.24} & 0.0 & 0.0 & 0.21 & \graycell{0.24} & 0.21 & 0.11\\
-    \word{every player scored} & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{0.61} & 0.16 & 0.0 & 0.16 & 0.07\\
-    \word{every player aced} & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & \graycell{1.0}\\
-    \word{no player scored} & \graycell{0.61} & 0.0 & 0.16 & 0.0 & 0.0 & 0.0 & 0.16 & 0.0 & 0.06\\
-    \word{no player aced} & \graycell{0.19} & 0.17 & 0.1 & 0.17 & 0.13 & 0.07 & 0.1 & 0.07 & 0.0\\
-    $\nullmsg$ & \graycell{0.15} & 0.13 & 0.13 & 0.13 & 0.1 & 0.09 & 0.13 & 0.09 & 0.05\\
+    \word{Player A scored}     & 0 & 0 & 0 & \graycell{.45} & .11 & .22 & .15 & .05 & .02\\
+    \word{Player A aced}       & 0 & 0 & 0 & 0 & 0 & 0 & \graycell{.42} & .36 & .22\\
+    \word{Player B scored}     & 0 & \graycell{.45} & .15 & 0 & .11 & .05 & 0 & .22 & .02\\
+    \word{Player B aced}       & 0 & 0 & \graycell{.42} & 0 & 0 & .36 & 0 & 0 & .22\\
+    \word{some player scored}  & 0 & \graycell{.25} & .09 & \graycell{.25} & .06 & .12 & .09 & .12 & .01\\
+    \word{some player aced}    & 0 & 0 & \graycell{.24} & 0 & 0 & .21 & \graycell{.24} & .21 & .11\\
+    \word{every player scored} & 0 & 0 & 0 & 0 & \graycell{.61} & .16 & 0 & .16 & .07\\
+    \word{every player aced}   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \graycell{1}\\
+    \word{no player scored}    & \graycell{.61} & 0 & .16 & 0 & 0 & 0 & .16 & 0 & .06\\
+    \word{no player aced}      & \graycell{.19} & .17 & .10 & .17 & .13 & .07 & .10 & .07 & 0\\
+    $\nullmsg$                 & \graycell{.15} & .13 & .13 & .13 & .10 & .09 & .13 & .09 & .05\\
     \bottomrule
   \end{tabular}
   \caption{Enrichment using the lexically-driven
