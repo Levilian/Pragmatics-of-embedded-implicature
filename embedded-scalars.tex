@@ -790,7 +790,7 @@ refinement throughout the lexicon.
     and the right column gives its recursive interpretation in an intensional model
     $\tuple{\Domain, \Worlds, \sem{\cdot}}$, where $\Domain$ is a set of entities,
     $\Worlds$ is a set of possible worlds, and $\sem{\cdot}$ is a semantic interpretation
-    function. Assume $x, y \in \Domain$, $w \in \Worlds$, and $X, Y \subseteq (\Worlds \times \Domain)$.}
+    function. Notational conventions: $x, y \in \Domain$, $w \in \Worlds$, and $X, Y \subseteq (\Worlds \times \Domain)$.}
   \label{tab:grammar}
 \end{table}
 
@@ -1079,9 +1079,9 @@ one entity, $\playera$, and that the only intensional distinction of
 interest is whether $\playera$ scored none of his shots (world
 \world{N}), some but not all of his shots (\world{S}), or all of his
 shots (\world{A}). The action is in the relationship between the two
-predicates \word{scored} and \word{aced}: we define $\gsem{scored} =
+predicates \word{scored} and \word{aced}: we define $\sem{\word{scored\/}} =
 \set{\tuple{\world{S}, \playera}, \tuple{\world{A}, \playera}}$ and
-$\gsem{aced} = \set{\tuple{\world{A}, \playera}}$. Thus, \word{aced}
+$\sem{\word{aced\/}} = \set{\tuple{\world{A}, \playera}}$. Thus, \word{aced}
 strictly entails \word{scored}, creating the potential for a scalar
 implicature.
 
@@ -1146,11 +1146,12 @@ $\Refine(\word{Player A}) = \set{\sem{\word{Player A}}}$. Since
 \word{aced} already denotes a singleton set, it has no space for
 further refinement. However, \word{scored} has two further
 refinements. This gives rise to the three lexica in the bottom row of
-\figref{fig:simplescalar}. The literal listener $\listenerZero$ turns
-these lexica into conditional distributions over states given
-messages.  The prior over states is flat in this example, so this
-calculation just evenly divides the probability mass over the true
-states. The pragmatic speaker responds to this agent. 
+\figref{fig:simplescalar}.  Using the fixed rules of semantic
+composition, the literal listener $\listenerZero$ turns these lexica
+into conditional distributions over states given messages.  The prior
+over states is flat in this example, so this calculation just evenly
+divides the probability mass over the true states. The pragmatic
+speaker responds to this agent.
 %%%% Woops, this isn't true for s1! ---CP
 % Already at this stage, we can see Gricean behavior: where possible,
 % the speaker avoids an ambiguity inherent in the original lexicon by
@@ -1190,8 +1191,8 @@ signal marked meanings and unmarked forms signal unmarked meanings
 
 %\marginnote{This example reframed around the two different approaches to refinement.}
 
-Let's now look at a larger and more complex signaling game, one that
-starts to show the potential of this model to predict embedded
+Let's now look at a larger and more complex scenario, one that starts
+to show the potential of this model to predict embedded
 implicatures. In this scenario, there are two players. We continue our
 convention of referring to worlds using sequences like \world{NN}
 (`neither player scored'). The lexical items are \word{Player A},
@@ -1199,7 +1200,7 @@ convention of referring to worlds using sequences like \world{NN}
 and \word{aced}.  To start, we assume that, for all lexical items
 $\varphi$, $\Refine(\varphi) = \wp(\sem{\varphi}){-}\emptyset$.  This
 creates an enormous space of lexica, and allows the full range of
-possible interactions between the refinements. 
+possible interactions between the refinements.
 
 The listener inferences are summarized in \tabref{tab:subjects}. For
 the most part, they seem aligned with the general view in the
@@ -1213,9 +1214,8 @@ leads to a scalar implicature due to the salience of
 inference from \word{scored} to not-aced remains in evidence not just
 with the proper names but also in the scope of the quantified
 subjects: the best-guess inference for \word{every player scored} is
-\world{SS}, and the best-guess inferences for \word{some player aced}
-are \world{NA} and \world{AN}. These effects derive from interacting
-lexical uncertainty between the subjects and predicates.
+\world{SS}.  These effects derive from interacting lexical uncertainty
+between the subjects and predicates.
 
 \Tabref{tab:subjects} reveals some drawbacks to unfettered exploration
 of refinements, however. First, we might expect hearing \word{some
@@ -1239,8 +1239,8 @@ contextually and lexically constrained. \CFS's treatment of $\OALT$
 reflects this insight, and our own handling of refinement and lexical
 uncertainty allows us to incorporate it as well. So it is worth seeing
 whether we can improve the picture in \tabref{tab:subjects} by further
-specify that the following set of refinements, which basically encode
-lexical scales that we might specify for these items:
+specifying the following set of refinements, which basically
+encode lexical scales that we might specify for these items:
 %
 \begin{examples}
 \item\label{neo}
@@ -1261,19 +1261,17 @@ except we now also achieve the target enrichment for \word{some player
 fully addressed. The only worry one might have about
 \tabref{tab:subjects-ALTstyle} is that it predicts rather aggressive
 pragmatic enrichment of the scalar term in the scope of the negative
-quantifier. It has long been assumed that scalar items in such
-environments fail to give rise to implicatures, presumably because the
-negative environment makes weak scalar items strong and thus leaves
-them less space for enrichment
-\citep{Levinson00}. \citet{Chemla:Spector:2011} address this question
+quantifier. As we noted in \secref{sec:implicature}, it has long been
+assumed that scalar items in such environments fail to give rise to
+implicatures. \citet{Chemla:Spector:2011} address this question
 experimentally, finding low but non-negligible rates of local
 enrichment in negative environments. We too treat this as an
 experimental question; in \secref{sec:exp1}, we find evidence that
-local enrichment of this sort are indeed salient possibilities for
+local enrichments of this sort are indeed salient possibilities for
 humans.
 
 This completes our overview of the compositional lexical uncertainty
-model. We now to turn to our human subjects experiments, where we show
+model. We now to turn to our human-subjects experiments, where we show
 both that embedded implicatures seem to be real and that the above
 model achieves excellent fits with human judgment patterns for such
 sentences.
