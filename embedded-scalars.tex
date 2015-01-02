@@ -115,8 +115,9 @@ centered around what we informally called \tech{embedded implicatures}
 incorporated into the compositional semantics. Such readings seem
 initially to demand implicature-enriched semantic representations.
 However, many of the relevant examples have received straightforward
-Gricean accounts in which the embedding is simulated by the
-interaction of semantic content with contextual assumptions
+Gricean accounts in which semantic content and contextual assumptions
+interact to yield global implicatures that are meaning-equivalent to
+interpretations that would derive from local pragmatic enrichment
 \citep{Russell06,Geurts09}. This reduces the power of such examples to
 decide in favor of one side or the other.
 
@@ -299,7 +300,7 @@ meaning by intersection. In \citeauthor{Grice75}'s terms, a general
 claim is further restricted by the interaction of quantity and
 quality.
 
-The above informal reasoning extends to examples like \eg{everysome},
+The above reasoning extends to examples like \eg{everysome},
 in which \word{some} is in the scope of a universal quantifier.
 %
 \begin{examples}
@@ -307,17 +308,18 @@ in which \word{some} is in the scope of a universal quantifier.
 \end{examples}
 %
 In the same general context as before, this can be enriched to convey
-that every player hit some but not all of his shots. Making this
-reasoning precise is, however, somewhat more challenging than it was
-for \eg{some}.  If we take the implicature to be the negation of the
-stronger alternative \word{Every player hit all of his shots}, then
-the reasoning proceeds as in the first four lines of
+that every player hit some but not all of his shots. However, making
+this reasoning precise under a Gricean account requires more
+assumptions than for \eg{some}.  If we take the implicature to be the
+negation of the stronger alternative \word{Every player hit all of his
+  shots}, then the reasoning proceeds as in the first four lines of
 \eg{everysome-sem}, which takes us to a meaning (\ref{everysome-sem}d)
 that is consistent with one or the other of the players (but not both)
 having hit all of his shots. To arrive at the target meaning (every
-player hit some but not all of his shots), we must, on this simple
-account, posit an auxiliary premise. One example of such a premise is
-(\ref{everysome-sem}e); there are many others that will do the job
+player hit some but not all of his shots), we must further assume an
+auxiliary premise beyond that required for \eg{some}. One example of
+such a premise is that of uniform outcomes (\ref{everysome-sem}e);
+there are many others that will do the job
 \citep{Spector:2007:SCALAR}.
 %
 \begin{examples}
@@ -447,7 +449,7 @@ The effect of applying the basic exhaustification operator $O$ to an
 expression $\varphi$ in the context of a given $\ALT$ is shown in
 \eg{def:O}
 \citep{Spector:2007,Fox:2007,Fox:2009,Magri:2009,ChierchiaFoxSpector08}.\footnote{This
-  is not the operator that those authors ultimately favor, since it
+  is not the operator that \CFS ultimately favor, since it
   requires some implicit restrictions on allowable $\ALT$ functions in
   order to get the right inferences.  The final version has the same
   form as \eg{def:O} but further restricts $\ALT$.}
@@ -784,8 +786,8 @@ this variability. The core notion is that of lexical
 \begin{examples}
 \item\label{refinement} 
   \begin{examples}
-  \item Let $\varphi$ be a set-denoting expression. $X$ is a
-    \tech{refinement} of $\varphi$ iff $X \neq \emptyset$ and
+  \item Let $\varphi$ be a set-denoting expression. $\refine$ is a
+    \tech{refinement} of $\varphi$ iff $\refine \neq \emptyset$ and
     $X \subseteq \sem{\varphi}$.
   \item\label{refine} $\Refine(\varphi)$, the set of refinements for
     $\varphi$ in context $c$, is constrained so that
@@ -1412,7 +1414,7 @@ and the world in which it was evaluated. Overall, participants made
 judgments that accurately reflected whether sentences were true or
 false; accuracy was especially clear for the sentences in the first
 two columns, which do not admit pragmatic enrichment. For these cases,
-the average ratings are not statistically different from 1 (the lowest
+the average ratings are very close to 1 (the lowest
 value) where the sentence is false, and the ratings average above 6
 (the second highest value) where the sentence is true. The pattern of
 judgments in these conditions thus suggests that our method is
@@ -1437,20 +1439,23 @@ appropriate for measuring participants' interpretations.\footnote{The
   \label{fig:exp1-results}
 \end{figure}
 
-We now turn to the critical conditions. Responses for
-\target{every}{some} (upper right) were consistent with the hypothesis
-that \emph{some} is locally enriched in this condition. In particular,
-this sentence received its highest ratings in the \world{SSS}
-world. As we reviewed in \secref{sec:implicature}, example
-\eg{everysome-sem}, in order to count as a complete report in this
-world, this sentence requires either local enrichment or a Gricean
-calculation with auxiliary premises. Worlds \world{SSA} and
-\world{SAA} received the next highest average ratings. Only a simple
-Gricean calculation is required for the sentence to completely
-describe these conditions. The \world{AAA} world received
-significantly lower ratings than the others, which probably reflects
-the pragmatic fact that the salient alternative \word{every player hit
-  all of his shots} is a more complete description.
+We now turn to the critical conditions, reporting significance levels
+for key theoretical comparisons based on the nonparametric
+Mann-Whitney U test. Responses for \target{every}{some} (upper right)
+were consistent with the hypothesis that \emph{some} is locally
+enriched in this condition. In particular, this sentence received its
+highest ratings in the \world{SSS} world. As we reviewed in
+\secref{sec:implicature}, example \eg{everysome-sem}, in order to
+count as a complete report in this world, this sentence requires
+either local enrichment or a Gricean calculation with auxiliary
+premises. Worlds \world{SSA} and \world{SAA} received the next highest
+ratings (lower than \world{SSS} both at $p<0.005$), and of all the
+literally true worlds for this condition world \world{AAA} received
+the lowest rating (lower than \world{SSA} and \world{SAA} both at
+$p<0.05$).  Only a simple Gricean calculation is required to account
+for the higher rating of \world{SSA} and \world{SAA} compared with
+\world{AAA}: in the latter world, the salient alternative \word{every
+  player hit all of his shots} is a more complete description.
 
 Nevertheless, \target{every}{some} is not a strong test of the
 presence of local readings, since the entailment relations between the
@@ -1458,28 +1463,34 @@ readings introduce some indeterminacy into the analysis. In
 particular, since the local enrichment entails the literal reading, we
 can't be sure whether the high ratings for \world{SSS} derive entirely
 from the availability of a local enrichment: a literal construal would
-suffice to make the sentence true. However, as we discussed in
-\secref{sec:implicature}, \citeauthor{Chemla:Spector:2011} show that
-\target{every}{some} is of limited utility in distinguishing
-theoretical proposals anyway. It is the \target{exactly one}{some}
-sentence that allows us to probe most confidently for local readings.
+suffice to make the sentence true. Furthermore, as discussed in
+\secref{sec:implicature} of this paper and in
+\citeauthor{Chemla:Spector:2011}, \target{every}{some} is of limited
+utility in distinguishing theoretical proposals anyway. It is the
+\target{exactly one}{some} sentence that allows us to probe most
+confidently for local readings.
 
 The response pattern for the critical item \target{exactly one}{some}
 is given in the middle right of \figref{fig:exp1-results}. The highest
 ratings are in the \world{NNS} condition, where it is true under its
 literal and local enrichment construals. However, it also received
-high ratings in the \world{NSA} and \world{SAA} worlds, where it is
-true only with local enrichment (because two players hit at least some
-of their baskets in these worlds, ruling out the literal construal).
-We note also that its more strictly truth-conditional interpretation
-seems to be salient as well, as it was rated highly on average in the
-\world{NNA} condition.
+high ratings in the \world{NSA} and \world{SAA} worlds (both higher at
+$p<0.05$ than in \world{SSA}, the world yielding the highest rating
+among those in which the sentence is false both literally and under
+all possible enrichments), where it is true only with local enrichment
+(because two players hit at least some of their baskets in these
+worlds, ruling out the literal construal).  We note also that its more
+strictly truth-conditional interpretation seems to be salient as well,
+as it was rated highly on average in the \world{NNA} condition.
 
 Finally, the pattern for \target{no}{some} also suggests a non-trivial
 amount of local enrichment: though \world{NNN} received the highest
 average ratings, indicating a preference for a literal construal, the
 ratings for \world{NNA}, \world{NAA}, and \world{AAA} are fairly high
-(though with wide confidence intervals). These are the worlds in which
+(confidence intervals are wide, but a pooled comparison of
+\{\world{NNS},\world{NSA}\} with
+\{\world{NNA},\world{NAA},\world{AAA}\} shows the latter set
+significantly higher-rated at $p<0.005$). These are the worlds in which
 no player hit only some of his shots, the local enrichment. This
 finding seems consistent with the low but non-negligible rates of
 local enrichment that \seccitet{Chemla:Spector:2011}{4.4.4} report for
