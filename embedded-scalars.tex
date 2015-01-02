@@ -79,7 +79,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\section{Interactions of pragmatics and grammar}\label{sec:introduction}
 \section{Conversational implicature: Interacting with grammar}\label{sec:introduction}
 
 The linguistic forms that discourse participants exchange with each
@@ -135,11 +134,6 @@ scalar terms can only strengthen literal
 meanings. \citeauthor{Geurts:Pouscoulous:2009}'s experiments fail to
 support enrichment in such contexts, whereas
 \citeauthor{Chemla:Spector:2011}'s suggest that it is possible.
-
-% \marginnote{MCF: Pared down and revised description of
-%   contributions. Particularly moved the parts on lexical uncertainty
-%   down below. We want to acknowledge contributions, but not at the expense of
-%   making this intro inaccessible.}
 
 In this paper, we reproduce the central qualitative result of
 \citet{Chemla:Spector:2011} using more naturalistic experimental
@@ -388,8 +382,6 @@ neo-Gricean accounts, will fail to arrive at
 refinement that excludes \world{NA} and \world{AN}, but they are
 essentially incapable of `introducing' \world{SA} and \world{AS}.
 
-% \marginnote{New discussion of downward entailing contexts. Foreshadows experimental discussion.}
-
 The issue is even clearer when a scalar term is in the scope of a
 downward-monotone operator like \word{no}, as in \word{no player hit
   some of his shots}. In such cases, the embedded enrichment creates a
@@ -429,26 +421,6 @@ challenges posed by embedded implicatures are real. In
 \secref{sec:exp1}, we describe a new experiment that reproduces the
 core findings of \citeauthor{Chemla:Spector:2011}'s studies.
 
-
-% For example, participants in their experiment clearly struggled with
-% the complex visual displays, often giving low ratings to true
-% readings and sometimes giving high ratings to false ones.
-% We believe that the theoretical challenges posed by embedded
-% implicatures are real, however. In \secref{sec:exp1}, we describe a
-% new experiment that 
-
-% uses simpler displays, but that reproduces the
-% core findings of \citeauthor{Chemla:Spector:2011}'s studies.
-
-% In addition,
-% \citeauthor{Chemla:Spector:2011} rely on additional theoretical
-% assumptions in order to link their theory to the response patterns
-% --- roughly, they must invoke an auxiliary hypothesis that the more
-% true construals are available for an ambiguous or underspecified
-% sentence, the more confident people will be in their judgment that a
-% sentence is true. Whether or not this assumption is valid, the need
-% to invoke it opens up further room for criticism.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{\CFS's grammar-driven model}\label{sec:cfs}
@@ -465,11 +437,8 @@ For $\ALT$, the relevant notion of alternative is familiar from
 theories of questions and focus \citep{Groenendijk84,Rooth85,Rooth92}:
 we can assume, as a default, that the alternatives for an expression
 $\varphi$ is some subset of the items in the same type-theoretic
-denotation domain as $\sem{\varphi}$, the meaning of $\varphi$. 
-% I think this assumption is not needed ---CP
-% Except for the restriction that $\sem{\varphi} \in\ALT(\varphi)$ for
-% any $\varphi$.
-The precise value of the function $\ALT$ is context-dependent, and
+denotation domain as $\sem{\varphi}$, the meaning of $\varphi$.  The
+precise value of the function $\ALT$ is context-dependent, and
 discourse participants are presumed to coordinate on it, just as they
 coordinate on the meanings of deictic or discourse-bound pronouns,
 elided phrases, and other pragmatically controlled free variables.
@@ -647,11 +616,6 @@ participants to coordinate on the right logical forms:
   operator and those that do not). (p.~2317)
 \end{quote}
 
-% \marginnote{DL: changed ``always underdetermines'' to
-% ``frequently'', since whether O-insertion generates ambiguity
-% depends on details of the sister's denotation and its alternative
-% set.}
-
 The coordination problem that \citeauthor{Grice75} sought to solve
 therefore remains, though its precise form is different. In the
 context of \CFS's theory, the discourse participants must coordinate
@@ -689,10 +653,6 @@ both approaches.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{The compositional lexical uncertainty model}\label{sec:model}
-
-% \marginnote{MCF: Added RSA models to the cite list. Also planted the
-%   Bergen et al. text here, which works for me because it gives a model
-%   intuition right before the formal description.}
 
 We now present our mixed semantic--pragmatic model, which can be seen
 as a conceptual fusion of the Montagovian semantic perspective in
@@ -752,8 +712,6 @@ order for robust pragmatic inferences to go through.
 
 \subsection{Grammar fragment}\label{sec:grammar}
 
-%\todo{The grammar is hard to work with because of its intensional aspects. I am open to rewriting it using lambdas. This will require a more convoluted definition of refinement.}
-
 \Tabref{tab:grammar} gives the intensional fragment that we use
 throughout the remainder of this paper, both to explain how our
 pragmatic model works and to conduct our experimental analyses in
@@ -804,8 +762,6 @@ refinement throughout the lexicon.
 
 \subsection{Refinement}\label{sec:refine}
 
-%\marginnote{This section has been substantially revised in terms of prose and technical content.}
-
 The grammar in \tabref{tab:grammar} contains both lexical entries and
 rules of semantic combination. We assume that the rules are fixed.
 The lexical entries, on the other hand, are merely a starting point
@@ -817,16 +773,6 @@ accordingly for the purposes of our interaction. In semantics, we like
 to imagine that word meanings are fixed across speakers and contexts,
 but in fact they are sometimes idiosyncratic and usually adaptable
 \citep{Clark97}.
-
-% I am not sure I understand this comment. Is it just that `lefthand
-% side' was ambiguous? If so, I think I've fixed it. If not, I don't
-% see what the issue is. Maybe the comment expresses a preference for
-% giving lexical denotations and then having one rule that says a
-% non-branching mother is interpreted as identical to its daughter.
-% If so, that will take up more space and require more notation, but
-% I guess we could do it.
-%
-%\marginnote{`lefthand side' not quite right in figure 2 column labels; `rule/item'? relatedly, do you envision rules having denotations in this grammar?}
 
 The `lexical uncertainty' aspects of our model are designed to capture
 this variability. The core notion is that of lexical
@@ -888,45 +834,9 @@ circle. These are all potential results of $\OALT(\word{some shot})$
 for some choice of $\ALT$, and our theory can be regarded as one that
 reasons in terms of all of these options.
 
-% % I'm thinking the figure is concrete enough, but this could be added
-% % back too. The only trick is that, since we now allow different kinds
-% % of refinement, it needs to be emphasize that it depicts just one
-% % example. 
-%
-% Here is an example of what refinement looks like, using a proper name
-% and extensionalizing the semantics so that the example fits onto the
-% page.  The important thing here is that we entertain lexica like the
-% third-listed one in \subeg{refinement-ex}{ex-refinements} in which
-% \word{Player A} means `Only Player A'.
-%
-% \begin{examples}
-% \item\label{refinement-ex}
-%  
-%   \begin{examples}
-%   \item $D = \set{a,b}$
-%   \item $W = \set{w_{1}, w_{2}}$
-%   \item  $\begin{array}[t]{@{} r@{ \ = \ }l}
-%             \sem{\word{Player A}} 
-%             & \set{Y \subseteq D : \playera \in Y} \\
-%             & \set{ \set{a,b}, \set{a} }
-%           \end{array}$  
-%    \item\label{ex-refinements} 
-%      $\Refine(\word{Player A}) = 
-%      \set{
-%        \begin{array}[c]{l}
-%          \set{\set{a,b}, \set{a}}  \\
-%          \set{\set{a,b}} \\
-%          \set{\set{a}} \\
-%        \end{array}
-%      }$
-%   \end{examples}
-% \end{examples}
-
 %=====================================================================
 
 \subsection{Pragmatic reasoning}\label{sec:agents}
-
-%\marginnote{This section has been substantially revised in response to the technical changes for refinement.}
 
 Our pragmatic model combines the logical grammar of
 \secref{sec:grammar} with the lexical refinements of
@@ -956,7 +866,7 @@ for all lexical items in $\Grammar$.
   \item $\Costs : \Messages \mapsto \Reals$ is a cost function on
     messages.  For lexical items, costs are specified. For a
     nonterminal node $A$ with daughters $B_{1} \ldots B_{n}$,
-    $\Costs(A) = \sum_{Y_{i}}\Costs(B_{i})$.
+    $\Costs(A) = \sum_{i=1}^{n}\Costs(B_{i})$.
 
   \item $\LexPrior : \LexSet \mapsto [0,1]$ is a prior probability
     distribution over lexica.
@@ -1159,7 +1069,7 @@ into conditional distributions over states given messages.  The prior
 over states is flat in this example, so this calculation just evenly
 divides the probability mass over the true states. The pragmatic
 speaker responds to this agent.
-%%%% Woops, this isn't true for s1! ---CP
+%%%% Oops, this isn't true for s1! ---CP
 % Already at this stage, we can see Gricean behavior: where possible,
 % the speaker avoids an ambiguity inherent in the original lexicon by
 % saying \word{Player A aced} in \world{A} even though \word{Player A
@@ -1195,8 +1105,6 @@ discussion of this important point, we refer to
 generating implicatures based on the principle that marked forms
 signal marked meanings and unmarked forms signal unmarked meanings
 \citep{McCawley78,Horn84,Blutner98,Levinson00}.
-
-%\marginnote{This example reframed around the two different approaches to refinement.}
 
 Let's now look at a larger and more complex scenario, one that starts
 to show the potential of this model to predict embedded
@@ -1341,10 +1249,6 @@ sentences.
 
 \section{Experiment: Scalars under quantifiers}\label{sec:exp1}
 
-% \marginnote{Tried to give a slightly more ``APA''-ish writeup to the
-%   study so that experimental methods are a bit more transparent, while
-%   maintaining the useful justification from previous draft.}
-
 With our experiment, we sought to obtain a clearer picture of the
 availability of enriched inferences for scalar terms embedded below
 quantifiers. We told participants that they were helping to train an
@@ -1405,7 +1309,6 @@ Mechanical Turk. No participants or responses were excluded.
   \label{fig:exp1}
 \end{figure}
 
-
 We generated displays like those in \figref{fig:exp1}. In each
 display, each of the three players, A, B, and C, has taken 12
 basketball shots (a number small enough for visual display but outside
@@ -1432,19 +1335,7 @@ Target sentences describing the displays were defined as follows:
         none \\
         some 
       \end{tabular}}$
-    of his shots.
-  % \begin{tabbing}    
-  %   \phantom{Exactly one} \= \phantom{player hit some} \= \kill
-  %   Every \> player hit  all \> of his shots.\\
-  %   Every \> player hit none \> of his shots.\\
-  %   Every \> player hit some \> of his shots.\\    
-  %   Exactly one \> player hit all \> of his shots.\\
-  %   Exactly one \> player hit none \> of his shots.\\
-  %   Exactly one \> player hit some \> of his shots.\\
-  %   No \> player hit all \> of his shots.\\
-  %   No \> player hit none \> of his shots.\\
-  %   No \> player hit some \> of his shots.
-  % \end{tabbing}
+    of his shots.  
 \end{examples}
 %
 Following previous studies, we put a bound pronoun in the embedded
@@ -1464,8 +1355,6 @@ using to identify possible worlds.
     \world{SAA}, \world{AAA}}$
 \end{examples}
 %
-%\todo{Dan might check this paragraph to make sure the details align with the set-up he created.}
-%
 This is a subset of the full cross-product of the three outcomes
 \world{N}, \world{S}, and \world{A} in which player $i$ always did at
 least as well as player $i+1$, going left to right.  Our target
@@ -1475,8 +1364,6 @@ any single player, meaning that we don't distinguish, e.g.,
 set of conditions. In the experiment, the `order' of each world was
 randomized, so that, e.g., \world{NSA} appeared visually in each of
 its three orders approximately the same number of times.
-
-% \marginnote{This is the paragraph justifying our experiment as more than a reproduction. We could tr to be more hard-hitting, but my heart isn't in it --- C\&S did a great job too.}
 
 \subsubsection{Procedure} 
 
@@ -1516,8 +1403,6 @@ the website for this paper.
 %=====================================================================
 
 \subsection{Results}\label{sec:exp1:results}
-
-% \todo{Does this section need to do some stats testing of pairwise differences? If so, I suppose I would do Mann-Whitney U test (not all the items have the same number of responses), but I am open to alternatives. All the differences we care about are numerically large, though.}
 
 \Figref{fig:exp1-results} summarizes the responses by target sentence
 and the world in which it was evaluated. Overall, participants made
@@ -1564,27 +1449,26 @@ alternative \word{every player hit all of his shots} is a more
 complete description.
 
 Nevertheless, \target{every}{some} is not a strong test of the
-presence of local readings, since the entailment relations between the readings
-introduce some indeterminacy into the analysis. In particular, since
-the local enrichment entails the literal reading, we can't be sure
-whether the high ratings for \world{SSS} derive entirely from the
-availability of a local enrichment: a literal construal would
+presence of local readings, since the entailment relations between the
+readings introduce some indeterminacy into the analysis. In
+particular, since the local enrichment entails the literal reading, we
+can't be sure whether the high ratings for \world{SSS} derive entirely
+from the availability of a local enrichment: a literal construal would
 suffice to make the sentence true. However, as we discussed in
 \secref{sec:implicature}, \citeauthor{Chemla:Spector:2011} show that
 \target{every}{some} is of limited utility in distinguishing
 theoretical proposals anyway. It is the \target{exactly one}{some}
-sentence that allows us to probe most confidently for local
-readings. 
+sentence that allows us to probe most confidently for local readings.
 
-The response pattern for the critical item \target{exactly one}{some} is given in the
-middle right of \figref{fig:exp1-results}. The highest ratings are in
-the \world{NNS} condition, where it is true under its literal and
-local enrichment construals. However, it also received high ratings in
-the \world{NSA} and \world{SAA} worlds, where it is true only with
-local enrichment (because two players hit at least some of their
-baskets in these worlds, ruling out the literal construal).  We note
-also that its more strictly truth-conditional interpretation seems to
-be salient as well, as it was rated highly on average in the
+The response pattern for the critical item \target{exactly one}{some}
+is given in the middle right of \figref{fig:exp1-results}. The highest
+ratings are in the \world{NNS} condition, where it is true under its
+literal and local enrichment construals. However, it also received
+high ratings in the \world{NSA} and \world{SAA} worlds, where it is
+true only with local enrichment (because two players hit at least some
+of their baskets in these worlds, ruling out the literal construal).
+We note also that its more strictly truth-conditional interpretation
+seems to be salient as well, as it was rated highly on average in the
 \world{NNA} condition.
 
 Finally, the pattern for \target{no}{some} also suggests a non-trivial
@@ -1610,23 +1494,13 @@ even in non-monotone environments, and that local enrichment might be
 available in downward-monotone environments as well. However, our
 concern is not only whether such readings are possible or impossible,
 but rather how accurately we can predict their availability on the
-basis of contextual and world knowledge.
-% In this way, our objectives are more closely aligned with Griceans like
-% \citet{Geurts09}, \citet{Geurts:Pouscoulous:2009}, and
-% \citet{geurts-vantiel:2013:scalar}. 
-We turn now to the task of
-assessing the ability of the model in \secref{sec:model} to match
-both the quantitative and qualitative patterns in our experimental
-data.
+basis of contextual and world knowledge.  We turn now to the task of
+assessing the ability of the model in \secref{sec:model} to match both
+the quantitative and qualitative patterns in our experimental data.
 
 %=====================================================================
 
 \subsection{Model assessment}
-
-% \marginnote{CP: This section has been totally reconceived and rewritten.}
-
-% \marginnote{MCF: slight changes to the model justification, in
-%   particular, cutting down NHST justification.}
 
 The pattern of data we observed is sufficiently precise and detailed
 that arbitrary statistical comparisons with a null hypothesis are not
@@ -1639,20 +1513,6 @@ we evaluate four related models that each embody different
 characterizations of linguistic meaning. By comparing these models, we
 can gain insights into the aspects of each that contribute to
 particular patterns of predictions.
-
-
-%  The rationale for this approach is
-% that a more standard regime of assessing correlations with the
-% experimental responses against the null hypothesis of statistical
-% independence is not illuminating: as we have seen, our human response
-% patterns are broadly in agreement with the intuitions that guided the
-% development of these models, so we can take it for granted that these
-% correlations are high. And, indeed, all the models considered here
-% achieve significant correlations at $p < 0.001$, for just about any
-% measure of correlation one chooses.  We know already that the null
-% hypotheses given by frequentist statistical tests are false, so we
-% pursue a strategy that is more stringent and more likely to provide
-% insights into the quality of the underlying model.
 
 For all the models, we take as given the literal semantics described
 in \tabref{tab:grammar}, as well as the following features of the
@@ -1725,30 +1585,26 @@ non-trivial refinements. We saw in connection with
 might be empirical value in greatly constraining the space of
 refinements.
 
-% \todo{Perhaps rewrite with deeper thoughts on why we chose these three measures.}
-
 We employ three methods of comparison: Pearson's correlation
 coefficient, which measures the linear correlation between the human
 responses and the model predictions; Spearman's rank correlation
 coefficient, which assesses how closely the human responses and model
 responses are aligned in terms of the rankings they predict; and the
 mean-squared error (MSE) of the model predictions as compared with the
-human responses, which summarizes the distance of the predictions
-from the human behavior. The use of these three measures allows us to
+human responses, which summarizes the distance of the predictions from
+the human behavior. The use of these three measures allows us to
 detect models that reproduce quantitative correspondence (Pearson
-correlation), qualitative correspondence (Spearman correlation), and absolute
-fit between models and data.
-
-% \marginnote{This paragraph defines the linking hypothesis.}
+correlation), qualitative correspondence (Spearman correlation), and
+absolute fit between models and data.
 
 Our model predictions are conditional probability distributions over
 states given messages, and hence constrained to be in the range
 $[0,1]$ and to sum to $1$. In contrast, our human responses are Likert
 values in $\set{1,2,3,4,5,6,7}$ with no constraint that they sum to
-any particular value. To align these values, we rescale the human responses: if $x^{s}$
-is the $10$-dimensional vector of mean human responses for target
-sentence $s$, then each $p^{s}$ is the vector of normalized values for
-that sentence, defined so that
+any particular value. To align these values, we rescale the human
+responses: if $x^{s}$ is the $10$-dimensional vector of mean human
+responses for target sentence $s$, then each $p^{s}$ is the vector of
+normalized values for that sentence, defined so that
 $p^{s}_{i} = (x^{S}_{i}-1)/\sum_{j=1}^{10}(x^{S}_{j}-1)$. This simply
 normalizes the Likert responses into a probability distribution; we
 subtract $1$ because the lowest Likert value is $1$. The one
@@ -1797,8 +1653,6 @@ enrichments leading to acceptability for \world{NNA}, \world{NAA}, and
   \caption{Overall assessment.}
   \label{tab:overall}
 \end{table}
-
-%\todo{Should we worry that the differences between correlations are not typically statistically significant?}
 
 \Tabref{tab:overall} summarizes our overall quantitative
 assessment. All of the correlations are extremely high, and the MSE
@@ -1863,21 +1717,23 @@ if paired with additional experiments for further validation.
 \begin{table}[t]
   \centering
   \setlength{\tabcolsep}{4pt}
-  \begin{tabular}[c]{r rrr @{\hspace{36pt}} rrr  @{\hspace{36pt}} rrr }
+  \newcommand{\rcoldiv}{\hspace{44pt}}
+  
+  \begin{tabular}[c]{r rrr @{\rcoldiv} rrr  @{\rcoldiv} rrr }
     \toprule
     & 
-    \multicolumn{3}{c}{\target{every}{some}}{\hspace{36pt}} & 
-    \multicolumn{3}{c}{\target{exactly one}{some}}{\hspace{36pt}} &
+    \multicolumn{3}{c}{\target{every}{some}}{\rcoldiv} & 
+    \multicolumn{3}{c}{\target{exactly one}{some}}{\rcoldiv} &
     \multicolumn{3}{c}{\target{no}{some}} \\
     & 
     P & S & MSE & 
     P & S & MSE & 
     P & S & MSE \\
     \midrule  
-    Literal       & \graycell{.98} &            .85 & \graycell{.00076} &            .77 &            .70 &            .01900 & \graycell{.91} &            .52 &            .03400 \\
-    Fixed-lexicon &            .93 &            .87 &            .00250 &            .79 &            .70 &            .01800 &            .91 &            .52 &            .03400 \\
-    Unconstrained &            .91 &            .85 &            .00350 & \graycell{.97} & \graycell{.92} & \graycell{.00096} &            .74 &            .49 &            .00890 \\
-    Neo-Gricean   &            .88 & \graycell{.89} &            .00660 &            .96 &            .89 &            .00290 &            .89 & \graycell{.88} & \graycell{.00420} \\
+    Literal       & \graycell{.98} &            .85 & \graycell{.0008} &            .77 &            .70 &            .0188 & \graycell{.91} &            .52 &            .0343 \\
+    Fixed-lexicon &            .93 &            .87 &            .0025 &            .79 &            .70 &            .0184 &            .91 &            .52 &            .0343 \\
+    Unconstrained &            .91 &            .85 &            .0035 & \graycell{.97} & \graycell{.92} & \graycell{.0010} &            .74 &            .49 &            .0089 \\
+    Neo-Gricean   &            .88 & \graycell{.89} &            .0066 &            .96 &            .89 &            .0029 &            .89 & \graycell{.88} & \graycell{.0042} \\
     \bottomrule
   \end{tabular}
   \caption{Assessment of crucial items. `P' = `Pearson'; `S' = `Spearman'.}
@@ -1902,8 +1758,6 @@ regards the local enrichment as infelicitous.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusion}\label{sec:conclusion}
-
-%\marginnote{This section has been lightly revised to reflect our newer insights.}
 
 With this paper, we sought a synthesis between Gricean accounts of
 pragmatic reasoning and grammar-driven ones like that of
@@ -1946,7 +1800,6 @@ quantitative assessment.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\small
 \bibliographystyle{sp}
 \setlength{\bibsep}{0pt}
 \bibliography{embedded-scalars-bib}
