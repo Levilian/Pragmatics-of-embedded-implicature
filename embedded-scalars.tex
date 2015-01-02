@@ -231,10 +231,10 @@ interact. Similarly, the model of \citet{ChierchiaFoxSpector08} is
 noncommittal about the reality of conversational implicatures per
 se. For them, `conversational implicature' can be seen as an informal
 label for a certain class of logical forms, rather than a conceptual
-primitive. With this in mind, we use the notion of conversational
-implicature only to articulate the central empirical focus of this
-paper --- embedded scalar terms --- and the associated challenges for
-Gricean accounts.
+primitive (see Section~\ref{sec:cfs} of this paper). With this in
+mind, we use the notion of conversational implicature only to
+articulate the central empirical focus of this paper --- embedded
+scalar terms --- and the associated challenges for Gricean accounts.
 
 On the classic Gricean account, scalar implicatures arise when the
 imperative `Be as informative as is required' (a subclause of the
@@ -443,7 +443,9 @@ discourse participants are presumed to coordinate on it, just as they
 coordinate on the meanings of deictic or discourse-bound pronouns,
 elided phrases, and other pragmatically controlled free variables.
 
-The basic exhaustification operator is given in \eg{def:O}
+The effect of applying the basic exhaustification operator $O$ to an
+expression $\varphi$ in the context of a given $\ALT$ is shown in
+\eg{def:O}
 \citep{Spector:2007,Fox:2007,Fox:2009,Magri:2009,ChierchiaFoxSpector08}.\footnote{This
   is not the operator that those authors ultimately favor, since it
   requires some implicit restrictions on allowable $\ALT$ functions in
@@ -478,13 +480,13 @@ other phenomena (p.~2304), the correspondences are nonetheless
 noteworthy.
 
 Those are the technical pieces. The proposal can then be summarized
-easily: $O$ operators can appear anywhere in the logical form of a
+easily: $O$ operators can optionally appear anywhere in the logical form of a
 sentence, perhaps subject to additional restrictions and general
 preferences (see \CFS: $\S$4.6). To see the effects that this could
 have, let's return to the examples involving \word{some} that we
 reviewed in \secref{sec:implicature}. Simplifying slightly, let's
-suppose that \word{some shot} denotes the set of sets in \eg{someshot}
---- the set of all sets that have a non-empty intersection with the
+suppose that \word{some shot} denotes the set of sets  in \eg{someshot}
+--- the set of all sets $Y$ that have a non-empty intersection with the
 set of shots.
 %
 \begin{examples}
@@ -617,38 +619,39 @@ participants to coordinate on the right logical forms:
 \end{quote}
 
 The coordination problem that \citeauthor{Grice75} sought to solve
-therefore remains, though its precise form is different. In the
-context of \CFS's theory, the discourse participants must coordinate
-on the nature of the function $\ALT$.  Similarly, because the language
-permits silent, embedded $O$ operators in many positions, the
+therefore remains, in the following form. First, in\CFS's theory the
+discourse participants must crucially coordinate on the nature of the
+function $\ALT$.  Second, because the language permits but does not
+require silent, embedded $O$ operators in many positions, the
 speaker's signal frequently underdetermines her intended message; a
 given surface form $U$ might be consistent with logical forms that
-encode implicatures and those that don't. The speaker must therefore
-rely on the listener to select the right one.  From this perspective,
-implicature calculation amounts to reasoning about which logical form
-was intended. How this coordination happens has not been a focus of
-grammar-driven accounts, but the above quotation suggests that
-communicative pressures like those \citeauthor{Grice75} identified
-guide the process.
+encode implicatures and those that don't, depending on where $O$
+appeared. Crucially, the speaker must rely on the listener to select
+the right one.  Overall, then, implicature calculation now amounts to
+reasoning about which logical form was intended. How this coordination
+happens has not been a focus of grammar-driven accounts, but the above
+quotation suggests that communicative pressures like those
+\citeauthor{Grice75} identified guide the process.
 
 Summarizing so far, we have evidence from
 \posscitet{Chemla:Spector:2011} experiments that some implicatures
 require, in some sense, local enrichment of embedded content via
-enhanced logical forms. Traditional Gricean accounts seem unable to capture such
-cases, though such accounts excel at characterizing how speakers and
-listeners coordinate on implicatures in simpler cases. \CFS\ define a
-model in which local calculation is immediate, but they do not venture
-an account of how discourse participants coordinate on the right
-logical forms when more than one is allowed by the grammar. Stepping
-back, we see that each side clearly has something to contribute. We
-now turn to the task of developing a synthesis of the two approaches:
-a model that formally implements pragmatic reasoning over complex,
-compositionally defined logical forms and that is able to achieve the
-readings that seem to demand local enrichment. The technical details
-of the compositional model are different from \CFS's, and the
-technical details of the pragmatic account are different from
-\citeauthor{Grice75}, but we hope that it combines the best aspects of
-both approaches.
+enhanced logical forms. Traditional Gricean accounts seem unable to
+capture such cases, but such accounts excel at characterizing how
+speakers and listeners coordinate on implicatures in simpler
+cases. \CFS, in contrast define a model in which local calculation is
+immediate, but they do not venture an account of how discourse
+participants coordinate on the right logical forms when more than one
+is allowed by the grammar. Stepping back, we see that both the Gricean
+and grammar-driven accounts each clearly have something to
+contribute. We now turn to the task of developing a synthesis of the
+two approaches: a model that formally implements pragmatic reasoning
+over complex, compositionally defined logical forms and that is able
+to achieve the readings that seem to demand local enrichment. The
+technical details of the compositional model are different from
+\CFS's, and the technical details of the pragmatic account are
+different from \citeauthor{Grice75}, but we hope that it combines the
+best aspects of both approaches.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1341,7 +1344,7 @@ Target sentences describing the displays were defined as follows:
 Following previous studies, we put a bound pronoun in the embedded
 quantifier to try to ensure that the subject took scope over the
 object. The partitive forms seem likely to further encourage
-implicature calculation \citep{Grodner-etal:2010}. We chose the verb
+implicature calculation \citep{reed:1991-interpreting,Grodner-etal:2010,degen:inpress-SP}. We chose the verb
 \word{hit} over the slightly less marked verb \word{make} to try to
 avoid the sense of `make' as in `take' (consistent with missing).
 
@@ -1434,19 +1437,20 @@ appropriate for measuring participants' interpretations.\footnote{The
   \label{fig:exp1-results}
 \end{figure}
 
-Turning to the critical conditions, responses for \target{every}{some}
-(upper right) were strongly indicative of local enrichment. This
-sentence received its highest ratings in the \world{SSS} world. As we
-reviewed in \secref{sec:implicature}, example \eg{everysome-sem}, in
-order to count as a complete report in this world, this sentence
-requires either local enrichment or a Gricean calculation with
-auxiliary premises. Worlds \world{SSA} and \world{SAA} received the
-next highest average ratings. Only a simple Gricean calculation is
-required for the sentence to completely describe these conditions. The
-\world{AAA} world received significantly lower ratings than the
-others, which probably reflects the pragmatic fact that the salient
-alternative \word{every player hit all of his shots} is a more
-complete description.
+We now turn to the critical conditions. Responses for
+\target{every}{some} (upper right) were consistent with the hypothesis
+that \emph{some} is locally enriched in this condition. In particular,
+this sentence received its highest ratings in the \world{SSS}
+world. As we reviewed in \secref{sec:implicature}, example
+\eg{everysome-sem}, in order to count as a complete report in this
+world, this sentence requires either local enrichment or a Gricean
+calculation with auxiliary premises. Worlds \world{SSA} and
+\world{SAA} received the next highest average ratings. Only a simple
+Gricean calculation is required for the sentence to completely
+describe these conditions. The \world{AAA} world received
+significantly lower ratings than the others, which probably reflects
+the pragmatic fact that the salient alternative \word{every player hit
+  all of his shots} is a more complete description.
 
 Nevertheless, \target{every}{some} is not a strong test of the
 presence of local readings, since the entailment relations between the
@@ -1503,10 +1507,12 @@ the quantitative and qualitative patterns in our experimental data.
 \subsection{Model assessment}
 
 The pattern of data we observed is sufficiently precise and detailed
-that arbitrary statistical comparisons with a null hypothesis are not
-informative. As we have seen, our human response patterns are broadly
-in agreement with the intuitions that guided the development of these
-models, so such null hypotheses can be rejected with high confidence.
+that extracting its full theoretical value requires more than
+arbitrary statistical tests of simple null hypotheses---e.g., the null
+hypothesis that in the \target{exactly one}{some} condition, ratings
+are the same for the worlds admitted by local enrichment as for those
+excluded under both global and locally-enriched interpretations.  This
+and other such null hypotheses can be rejected with high confidence.
 Instead, to characterize the patterns of inference that give rise to
 the observed data, we use a model-comparison approach. In particular,
 we evaluate four related models that each embody different
@@ -1612,7 +1618,7 @@ noteworthy thing about this calculation is that, because it is done on
 a per-sentence basis, it is not a simple linear rescaling, and so it
 affects all of our assessment metrics when applied to multiple
 sentences at once. However, we regard it as the minimal viable
-hypothesis linking our model with our experimental data.
+linking hypothesis relating our model with our experimental data.
 
 \begin{figure}[!t]
   \centering
