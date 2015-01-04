@@ -499,7 +499,7 @@ set of shots.
 %
 Consider a domain of three entities $\set{a,b,c}$, and assume that
 $\sem{\word{shot}} = \set{a,b}$. Then the above is equivalent to the
-set of sets circled in green in \figref{fig:qspace}. Now suppose that
+set of sets contained in the green box in \figref{fig:qspace}. Now suppose that
 $\ALT(\word{some shot})$ is defined as follows:
 %
 \begin{examples}
@@ -564,9 +564,9 @@ $\ALT(\word{some shot})$ is defined as follows:
   \vspace{4pt}
 
   \caption{Given a domain $\set{a,b,c}$ with $\sem{\word{shot}} = \set{a,b}$,
-    $\sem{\word{some shot}}$ is equal to the set of sets circled in green,
-    $\sem{\word{every shot}}$ to the set of sets in purple, and
-    $\sem{\word{no shot}}$ to the set of sets in orange. If $\OALT(\word{some shot})$ 
+    $\sem{\word{some shot}}$ is equal to the set of sets in the green box,
+    $\sem{\word{every shot}}$ to the set of sets in the purple box, and
+    $\sem{\word{no shot}}$ to the set of sets in the orange box. If $\OALT(\word{some shot})$ 
     contains  $\sem{\word{every shot}}$, then \word{some shot} is 
     refined to exclude the purple subset.}
   \label{fig:qspace}
@@ -659,7 +659,7 @@ best aspects of both approaches.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{The compositional lexical uncertainty model}\label{sec:model}
+\section{A compositional lexical uncertainty model for embedded implicature}\label{sec:model}
 
 We now present our mixed semantic--pragmatic model, which can be seen
 as a conceptual fusion of the Montagovian semantic perspective in
@@ -670,27 +670,26 @@ the iterated best response model of \citet{Jaeger:2007,Jaeger:2011}
 and \citet{Franke09DISS}.  Our Python implementation of the model is
 available from the website for this paper.
 
-The model we use here is a direct extension of the lexical uncertainty
-model of \citet{Bergen:Goodman:Levy:2012} and
-\citet{Bergen:Levy:Goodman:2014}. The lexical uncertainty model
-defines production and interpretation as recursive processes in which
-speakers and listeners reason jointly about the state of world and the
-precise interpretation of lexical items in context.
-\citeauthor{Bergen:Levy:Goodman:2014} show that this model captures a
-wide range of well-studied classes of implicature, including many
-embedded implicatures involving scalar terms. Our extension simply
-allows for greater diversity in the semantic lexicon and includes more
-complex aspects of semantic composition. Thus, in many ways, our
-central finding is that \citeauthor{Bergen:Levy:Goodman:2014}'s model
-predicts embedded implicatures in non-monotone and downward-monotone
-contexts if it is combined with a full theory of semantic composition.
+The model we implement here is a direct extension of the compositional
+lexical uncertainty model of \citet{Bergen:Goodman:Levy:2012} and
+\citet{Bergen:Levy:Goodman:2014} (see also
+\citealp{lassiter-goodman:2013SALT} for a closely related
+variant). This model defines production and
+interpretation as recursive processes in which speakers and listeners
+reason jointly about the state of world and the precise interpretation
+of lexical items in context.  Our extension simply allows for greater
+diversity in the semantic lexicon and includes more complex aspects of
+semantic composition. Thus, in many ways, our central theoretical
+result is that \citeauthor{Bergen:Levy:Goodman:2014}'s model predicts
+embedded implicatures in non-monotone and downward-monotone contexts
+if it is combined with a full theory of semantic composition.
 
-The crucial feature of our model is its notion of \tech{lexical
-  uncertainty}. The discourse participants are not presumed to share a
-single, fixed lexicon. Rather, they consider many lexica, and their
-communicative behavior, in both production and interpretation, is
-guided by their best attempts to synthesize the information from these
-varied sources. Thus, in the sentences of interest, the discourse
+The model's crucial feature is \tech{lexical uncertainty}. Discourse
+participants are not presumed to share a single, fixed
+lexicon. Rather, they consider many lexica, and their communicative
+behavior, in both production and interpretation, is guided by their
+best attempts to synthesize the information from these varied
+sources. Thus, in the sentences of interest, the discourse
 participants might entertain multiple senses for an embedded
 \word{some}, including not only its `at least' meaning but also the
 `only some' meaning that corresponds to its enrichment by scalar
@@ -810,36 +809,38 @@ set).
 
 The guiding idea is that, in interaction, pragmatic agents reason
 about possible refinements of their lexical items, with the base
-lexical meaning serving as a kind of focal point for the interaction
-\citep{Franke09DISS}.  Intuitively, one can imagine that part of what
-it means to be a responsible interlocutor is to make inferences based
-on the speaker's behavior not only about the world information she
-would like to convey but also about the nature of the lexicon she is
-using.
+lexical meaning serving as a kind of anchor to which each word's
+interpretation is loosely tethered.  Intuitively, one can
+imagine that part of what it means to be a responsible interlocutor is
+to make inferences based on the speaker's behavior not only about the
+world information she would like to convey but also about the precise
+meanings she intends the words she is using to carry in the context of
+the interaction.
 
-As we noted above, \CFS's model embodies aspects of lexical
-uncertainty. For any given lexical item that one hears, the speaker
-might have in mind its literal content $\sem{\varphi}$ or one of the
-many enrichments available with $\OALT(\varphi)$ for different choices
-of $\ALT$. Similarly, we admit the trivial refinement set
-$\Refine(\varphi) = \set{\sem{\varphi}}$ as well as supersets of
-it. The major technical difference lies in how these sets of
-denotations enter into the compositional semantics. For \CFS, the
-alternatives all contribute to a single denotation, whereas our model
-keeps them separate during the semantic composition, synthesizing them
-only for pragmatic inference. In terms of \figref{fig:qspace}, we saw
-that \CFS's theory uses $\OALT$ to create a single refined meaning for
-\word{some shot}, represented by the set of sets in the gray circle
-(`some, not all'). Our theory of refinement could create one lexicon
-for every non-empty subset of the green circle. So, in addition to
-considering `some, not all', we admit lexica in which \word{some
-  player} denotes $\set{\set{a}, \set{b}}$ (`exactly one shot'),
-lexica in which it denotes $\set{\set{a,b,c}}$ (`every shot'), lexica
-in which it denotes $\set{\set{a,b,c},\set{a}}$ (no obvious
-paraphrase), and so forth for all the other subsets of the green
-circle. These are all potential results of $\OALT(\word{some shot})$
-for some choice of $\ALT$, and our theory can be regarded as one that
-reasons in terms of all of these options.
+As we noted above, \CFS's model embodies a kind of semantic
+uncertainty very similar to that considered here. For any given
+expression that one hears, the speaker might have in mind its literal
+content $\sem{\varphi}$ or one of the many enrichments available with
+$\OALT(\varphi)$ for different choices of $\ALT$. Similarly, we admit
+the trivial refinement $R = \sem{\varphi}$ as well as enrichments
+(technically, subsets) of it. The major technical difference lies in
+how these sets of denotations enter into the compositional
+semantics. For \CFS, the alternatives all contribute to a single
+denotation, whereas our model keeps the alternatives separate during
+semantic composition, synthesizing them only for pragmatic
+inference. In terms of \figref{fig:qspace}, we saw that \CFS's theory
+uses $\OALT$ to create a single refined meaning for \word{some shot},
+represented by the set of sets in the gray box (`some, not
+all'). Our theory of refinement could create one lexicon for every
+non-empty subset of the green box. So, in addition to considering
+`some, not all', we admit lexica in which \word{some player} denotes
+$\set{\set{a}, \set{b}}$ (`exactly one shot'), lexica in which it
+denotes $\set{\set{a,b,c}}$ (`every shot'), lexica in which it denotes
+$\set{\set{a,b,c},\set{a}}$ (no obvious paraphrase), and so forth for
+all the other subsets in the green box. These are all potential
+results of $\OALT(\word{some shot})$ for some choice of $\ALT$, and
+our theory can be regarded as one that reasons in terms of all of
+these options.
 
 %=====================================================================
 
@@ -970,11 +971,17 @@ state prior, as $\listenerZero$ does, and the prior over lexica.  This
 is the agent that we use to characterize listener inferences and
 define our predictions about our experimental findings.
 
-We have given the model in its simplest form. Many elaborations are
-possible. For instance, one could allow further iteration before the
-lexical uncertainty listener, by defining generalized versions of
-these fixed-lexicon agents that can reason about each
-other. Similarly, one could allow further iteration beyond
+We have given the compositional lexical uncertainty model in its
+simplest form, and have gone beyond
+\citeauthor{Bergen:Levy:Goodman:2014} only in giving the more
+complete treatment of semantic composition necessary for the empirical
+domain under discussion, in allowing uncertainty in the denotations of
+lexical items of a wider range of semantic types, and in entertaining
+the possibility of restrictions on the set of possible refinements.
+But many other elaborations are possible. For instance, one could allow
+further iteration before the lexical uncertainty listener, by defining
+generalized versions of these fixed-lexicon agents that can reason
+about each other. Similarly, one could allow further iteration beyond
 $\UncertaintyListener$, defining speaker and listener agents
 analogously to their fixed-lexicon counterparts.  For exploration of
 these ideas, we refer to the extended treatment in
@@ -997,16 +1004,18 @@ aggressive inferential strategies
 
 Our first illustration, given in \figref{fig:simplescalar}, is
 designed solely to reveal details about how the agents interact to
-produce enriched meanings. We assume that the domain consists of just
-one entity, $\playera$, and that the only intensional distinction of
-interest is whether $\playera$ scored none of his shots (world
-\world{N}), some but not all of his shots (\world{S}), or all of his
-shots (\world{A}). The action is in the relationship between the two
-predicates \word{scored} and \word{aced}: we define $\sem{\word{scored\/}} =
-\set{\tuple{\world{S}, \playera}, \tuple{\world{A}, \playera}}$ and
-$\sem{\word{aced\/}} = \set{\tuple{\world{A}, \playera}}$. Thus, \word{aced}
-strictly entails \word{scored}, creating the potential for a scalar
-implicature.
+produce enriched meanings. (This first illustration is isomorphic to
+the example covered in Section 4.4 of
+\citealp{Bergen:Levy:Goodman:2014}.) We assume that the domain
+consists of just one entity, $\playera$, and that the only intensional
+distinction of interest is whether $\playera$ scored none of his shots
+(world \world{N}), some but not all of his shots (\world{S}), or all
+of his shots (\world{A}). The action is in the relationship between
+the two predicates \word{scored} and \word{aced}: we define
+$\sem{\word{scored\/}} = \set{\tuple{\world{S}, \playera},
+  \tuple{\world{A}, \playera}}$ and $\sem{\word{aced\/}} =
+\set{\tuple{\world{A}, \playera}}$. Thus, \word{aced} strictly entails
+\word{scored}, creating the potential for a scalar implicature.
 
 \begin{figure}[!ht]
   \[
@@ -1154,15 +1163,17 @@ exclude one of the players. In that case, the negative universal turns
 out to be true. Only a few lexica support this interaction, ensuring
 that it cannot become dominant, but it still seems worrisome.
 
-It's a bit perverse to assume, as we did in this example, that lexical
-items can be enriched in arbitrary ways. We take it to be one of the
+This worry is a touchstone for revisiting an
+assumption of the model underlying \tabref{tab:subjects}: that the lexical
+items can be refined in completely arbitrary ways. We take it to be one of the
 major lessons of neo-Gricean approaches that alternatives are
 contextually and lexically constrained. \CFS's treatment of $\OALT$
 reflects this insight, and our own handling of refinement and lexical
 uncertainty allows us to incorporate it as well. So it is worth seeing
-whether we can improve the picture in \tabref{tab:subjects} by further
-specifying the following set of refinements, which basically encode
-lexical scales that we might specify for these items:%
+whether we can improve the picture in \tabref{tab:subjects} by
+encoding lexical scales in our grammar fragment.  We
+implement this by constraining the refinement sets for
+several lexical items, as follows:%
 \footnote{We define $\sem{\word{only Player A}} = \set{\tuple{w, Y} : \set{\playera} = \set{x : \tuple{w,x} \in Y}}$,
   and similarly for $\sem{\word{only Player B}}$, not as a claim about natural language \word{only}, but rather just 
   for the sake of the simulation.}
@@ -1183,15 +1194,15 @@ The results of working in this more refined refinement space are given
 in \tabref{tab:subjects-ALTstyle}. The picture is mostly unchanged,
 except we now also achieve the target enrichment for \word{some player
   scored}, and the messiness surrounding \word{no player scored} is
-fully addressed. The only worry one might have about
+fully addressed. The one remaining potential concern about
 \tabref{tab:subjects-ALTstyle} is that it predicts rather aggressive
 pragmatic enrichment of the scalar term in the scope of the negative
 quantifier. As we noted in \secref{sec:implicature}, it has long been
 assumed that scalar items in such environments fail to give rise to
 implicatures. \citet{Chemla:Spector:2011} address this question
-experimentally, finding low but non-negligible rates of local
+empirically, finding in their experiment low but non-negligible rates of local
 enrichment in negative environments. We too treat this as an
-experimental question; in \secref{sec:exp1}, we find evidence that
+empirical question; in \secref{sec:exp1}, we present evidence that
 local enrichments of this sort are indeed salient possibilities for
 humans.
 
