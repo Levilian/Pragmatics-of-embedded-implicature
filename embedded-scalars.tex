@@ -12,7 +12,7 @@
   C.~Frank}
 \maketitle
 
-\vspace{-28pt}
+%\vspace{-28pt}
 
 \begin{abstract} 
   How do comprehenders reason about pragmatically ambiguous scalar
@@ -75,7 +75,7 @@
  %  that these predictions can be improved by incorporating neo-Gricean
  %  hypotheses about lexical alternatives.
 
-\vspace{-16pt}
+%\vspace{-16pt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -100,14 +100,13 @@ same social inferencing mechanisms that are at work in other
 implicatures.  However, this assumption has always been
 controversial. Even \citeauthor{Grice75} suggested that SIs might be
 closer to the grammar than other implicatures (p.~56; see also
-\citealt{Levinson00,Sperber95,Bach06}), and recent
-grammar-driven accounts are framed in direct opposition to an
-implicature analysis.  For example,
-\pgcitet{ChierchiaFoxSpector08}{2316} write, ``the facts suggest that
-SIs are not pragmatic in nature but arise, instead, as a consequence
-of semantic or syntactic mechanisms''. The ensuing debates have
-stimulated new insights, pushing researchers to identify and evaluate
-previously unnoticed consequences of the two broad positions.
+\citealt{Levinson00,Sperber95,Bach06}), and recent grammar-driven
+accounts are framed in direct opposition to an implicature analysis.
+For example, \pgcitet{ChierchiaFoxSpector08}{2316} write, ``the facts
+suggest that SIs are not pragmatic in nature but arise, instead, as a
+consequence of semantic or syntactic mechanisms''. The ensuing debates
+have stimulated new insights, pushing researchers to identify and
+evaluate previously unnoticed consequences of the two broad positions.
 
 Much of the debate between Gricean and grammar-driven accounts has
 centered around what we informally called \tech{embedded implicatures}
@@ -158,13 +157,12 @@ the tradition of \tech{rational speech act} models
   best response} models \citep{Franke09DISS,Jaeger:2011}, and is a
 direct extension of the \tech{compositional lexical uncertainty} model
 of \citet{Bergen:Goodman:Levy:2012} and
-\citet{Bergen:Levy:Goodman:2014}. The model accounts for how
-discourse participants coordinate on the right logical forms
-(implicature-rich or not), seeking to retain the insights of Gricean
-accounts while paying close attention to the details of semantic
-composition.
+\citet{Bergen:Levy:Goodman:2014}. The model accounts for how discourse
+participants coordinate on the right logical forms (implicature-rich
+or not), seeking to retain the insights of Gricean accounts while
+paying close attention to the details of semantic composition.
 
-We show not only that our model captures the qualitative pattern of
+We show that our model not only captures the qualitative pattern of
 implicature behaviors that \citeauthor{Chemla:Spector:2011} found, but
 also makes quantitative predictions that are highly correlated with
 people's actual inferential behavior in context. In addition, we show
@@ -177,7 +175,7 @@ the fine details of semantic composition \emph{and} broader
 considerations of rational interaction. This is perhaps a departure
 from \posscitet{Grice75} particular conception of pragmatic meaning,
 but it is well-aligned with his general theory of meaning and
-intention \citep{grice57}.  In view of our experimental results, the
+intention \citep{Grice89}.  In view of our experimental results, the
 chief advantage of our model is that it makes quantitative predictions
 that are easily and rigorously linked with our human response
 patterns. In other words, the model makes predictions not only about
@@ -313,7 +311,7 @@ In the same general context as before, this can be enriched to convey
 that every player hit some but not all of his shots. However, making
 this reasoning precise under a Gricean account requires more
 assumptions than for \eg{some}.  If we take the implicature to be the
-negation of the stronger alternative \word{Every player hit all of his
+negation of the stronger alternative \word{every player hit all of his
   shots}, then the reasoning proceeds as in the first four lines of
 \eg{everysome-sem}, which takes us to a meaning (\ref{everysome-sem}d)
 that is consistent with one or the other of the players (but not both)
@@ -451,7 +449,7 @@ The effect of applying the basic exhaustification operator $O$ to an
 expression $\varphi$ in the context of a given $\ALT$ is shown in
 \eg{def:O}
 \citep{Spector:2007,Fox:2007,Fox:2009,Magri:2009,ChierchiaFoxSpector08}.\footnote{This
-  is not the operator that \CFS ultimately favor, since it
+  is not the operator that \CFS\ ultimately favor, since it
   requires some implicit restrictions on allowable $\ALT$ functions in
   order to get the right inferences.  The final version has the same
   form as \eg{def:O} but further restricts $\ALT$.}
@@ -659,7 +657,7 @@ best aspects of both approaches.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{A compositional lexical uncertainty model for embedded implicature}\label{sec:model}
+\section{A compositional lexical uncertainty model}\label{sec:model}
 
 We now present our mixed semantic--pragmatic model, which can be seen
 as a conceptual fusion of the Montagovian semantic perspective in
@@ -789,7 +787,7 @@ this variability. The core notion is that of lexical
   \begin{examples}
   \item Let $\varphi$ be a set-denoting expression. $\refine$ is a
     \tech{refinement} of $\varphi$ iff $\refine \neq \emptyset$ and
-    $X \subseteq \sem{\varphi}$.
+    $\refine \subseteq \sem{\varphi}$.
   \item\label{refine} $\Refine(\varphi)$, the set of refinements for
     $\varphi$ in context $c$, is constrained so that
     $\sem{\varphi} \in \Refine(\varphi)$ and
@@ -810,10 +808,10 @@ case the uncertainty is eliminated), or as large as the full power set
 The guiding idea is that, in interaction, pragmatic agents reason
 about possible refinements of their lexical items, with the base
 lexical meaning serving as a kind of anchor to which each word's
-interpretation is loosely tethered.  Intuitively, one can
-imagine that part of what it means to be a responsible interlocutor is
-to make inferences based on the speaker's behavior not only about the
-world information she would like to convey but also about the precise
+interpretation is loosely tethered.  Intuitively, one can imagine that
+part of what it means to be a responsible interlocutor is to make
+inferences, based on the speaker's behavior, not only about the world
+information she would like to convey, but also about the precise
 meanings she intends the words she is using to carry in the context of
 the interaction.
 
@@ -830,17 +828,15 @@ denotation, whereas our model keeps the alternatives separate during
 semantic composition, synthesizing them only for pragmatic
 inference. In terms of \figref{fig:qspace}, we saw that \CFS's theory
 uses $\OALT$ to create a single refined meaning for \word{some shot},
-represented by the set of sets in the gray box (`some, not
-all'). Our theory of refinement could create one lexicon for every
-non-empty subset of the green box. So, in addition to considering
-`some, not all', we admit lexica in which \word{some player} denotes
-$\set{\set{a}, \set{b}}$ (`exactly one shot'), lexica in which it
-denotes $\set{\set{a,b,c}}$ (`every shot'), lexica in which it denotes
-$\set{\set{a,b,c},\set{a}}$ (no obvious paraphrase), and so forth for
-all the other subsets in the green box. These are all potential
-results of $\OALT(\word{some shot})$ for some choice of $\ALT$, and
-our theory can be regarded as one that reasons in terms of all of
-these options.
+represented by the set of sets in the gray box (`some, not all'). Our
+theory of refinement could create one lexicon for every non-empty
+subset of the green box. So, in addition to considering `some, not
+all', we admit lexica that produce
+$\sem{\word{some player}} = \set{\set{a,b,c}}$ (`every shot'), lexica
+that produce $\sem{\word{some player}} = \set{\set{a,b,c},\set{a}}$
+(no obvious paraphrase), and so forth. These are all potential results
+of $\OALT(\word{some shot})$ for some choice of $\ALT$, and our theory
+can be regarded as one that reasons in terms of all of these options.
 
 %=====================================================================
 
@@ -973,7 +969,7 @@ define our predictions about our experimental findings.
 
 We have given the compositional lexical uncertainty model in its
 simplest form, and have gone beyond
-\citeauthor{Bergen:Levy:Goodman:2014} only in giving the more
+\citeauthor{Bergen:Levy:Goodman:2014}\ only in giving the more
 complete treatment of semantic composition necessary for the empirical
 domain under discussion, in allowing uncertainty in the denotations of
 lexical items of a wider range of semantic types, and in entertaining
@@ -1005,7 +1001,7 @@ aggressive inferential strategies
 Our first illustration, given in \figref{fig:simplescalar}, is
 designed solely to reveal details about how the agents interact to
 produce enriched meanings. (This first illustration is isomorphic to
-the example covered in Section 4.4 of
+the example covered in section~4.4 of
 \citealp{Bergen:Levy:Goodman:2014}.) We assume that the domain
 consists of just one entity, $\playera$, and that the only intensional
 distinction of interest is whether $\playera$ scored none of his shots
@@ -1017,7 +1013,7 @@ $\sem{\word{scored\/}} = \set{\tuple{\world{S}, \playera},
 \set{\tuple{\world{A}, \playera}}$. Thus, \word{aced} strictly entails
 \word{scored}, creating the potential for a scalar implicature.
 
-\begin{figure}[!ht]
+\begin{figure}[!t]
   \[
   \setlength{\arraycolsep}{4pt}
   %\renewcommand{\arraystretch}{0.95}
@@ -1214,6 +1210,7 @@ sentences.
 
 \begin{table}[t]
   \centering
+  \renewcommand{\arraystretch}{0.98}
   \setlength{\tabcolsep}{8pt}
   %
   % Lexica: 2,086,465
@@ -1241,6 +1238,7 @@ sentences.
 
 \begin{table}[t]
   \centering
+  \renewcommand{\arraystretch}{0.98}
   \setlength{\tabcolsep}{8pt}
   %
   % Lexica: 476
@@ -1297,7 +1295,7 @@ demanding in ways that could affect the stability and reliability of
 the responses (for discussion, see \citealt{Clifton:Dube:2010}). Our
 more naturalistic displays arguably place fewer cognitive demands on
 participants, allowing them to concentrate on how well the sentences
-identify the world.  Second, \citeauthor{Chemla:Spector:2011} use
+identify the world.  Second, \citeauthor{Chemla:Spector:2011} used
 wheel-like displays in which lines extend from the vertex to the
 perimeter. There are potentially many ways this state can be drawn,
 and some might be more iconic than others. With our displays, it was
@@ -1465,7 +1463,7 @@ highest ratings in the \world{SSS} world. As we reviewed in
 count as a complete report in this world, this sentence requires
 either local enrichment or a Gricean calculation with auxiliary
 premises. Worlds \world{SSA} and \world{SAA} received the next highest
-ratings (lower than \world{SSS}; both at $p<0.05$), and of all the
+ratings (lower than \world{SSS}; both at $p<0.001$), and of all the
 literally true worlds for this condition world \world{AAA} received
 the lowest rating (lower than \world{SSA} and \world{SAA}; both at
 $p<0.05$).  Only a simple Gricean calculation is required to account
@@ -1480,11 +1478,10 @@ particular, since the local enrichment entails the literal reading, we
 can't be sure whether the high ratings for \world{SSS} derive entirely
 from the availability of a local enrichment: a literal construal would
 suffice to make the sentence true. Furthermore, as discussed in
-\secref{sec:implicature} of this paper and in
-\citeauthor{Chemla:Spector:2011}, \target{every}{some} is of limited
-utility in distinguishing theoretical proposals anyway. It is the
-\target{exactly one}{some} sentence that allows us to probe most
-confidently for local readings.
+\secref{sec:implicature} and in \citeauthor{Chemla:Spector:2011},
+\target{every}{some} is of limited utility in distinguishing
+theoretical proposals anyway. It is the \target{exactly one}{some}
+sentence that allows us to probe most confidently for local readings.
 
 The response pattern for the critical item \target{exactly one}{some}
 is given in the middle right of \figref{fig:exp1-results}. The highest
@@ -1506,7 +1503,7 @@ ratings for \world{NNA}, \world{NAA}, and \world{AAA} are fairly high.
 (The confidence intervals are wide, but a pooled comparison of
 \set{\world{NNS},\world{NSA}} with
 \set{\world{NNA},\world{NAA},\world{AAA}} shows the latter set to be
-significantly higher-rated; $p < 0.005$.) These are the worlds in which
+significantly higher-rated; $p = 0.006$.) These are the worlds in which
 no player hit only some of his shots, the local enrichment. This
 finding seems consistent with the low but non-negligible rates of
 local enrichment that \seccitet{Chemla:Spector:2011}{4.4.4} report for
@@ -1817,7 +1814,7 @@ approaches and signaling systems approaches; our model shares formal
 properties of both but makes quantitative predictions of the sort that
 can be correlated with human preferences in communication. There are
 by now many models in the same family as ours (see, e.g.,
-\citealt{CamererHo:2004,Jaeger:2011,Smith:Goodman:Frank:2013,Kao-etal:2014}),
+\citealt{CamererHo:2004,Jaeger:2011,Smith:Goodman:Frank:2013,Kao-etal:2014,Jaeger:Franke:2014}),
 so further exploration is likely to yield an even more nuanced
 picture.
 
