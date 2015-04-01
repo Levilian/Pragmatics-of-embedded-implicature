@@ -1,0 +1,321 @@
+%% This is LaTeX document style option `examples.sty', for making
+%% numbered examples.
+%%
+%% Written by Alexander Holt, Centre for Cognitive Science, University
+%% of Edinburgh <lex@cogsci.ed.ac.uk>.
+%%
+%% $Id: examples.sty,v 1.12 1994/01/19 15:59:55 lex Exp $
+
+\def\fileversion{1.12}
+\def\filedate{19 January 1994}
+
+\typeout{Style Option `examples'
+  version \fileversion\space <\filedate> (AGBH)}
+
+%%======================================================================
+%%
+%% This document style option defines the environment "examples",
+%% intended for the display of linguistic examples.  Examples resemble
+%% equations with the document style options "leqno" (left hand equation
+%% numbering) and "fleqn" (flush-left equations) in force.  The
+%% "examples" environment can be nested two or three deep, to create
+%% subexamples and subsubexamples respectively.  Subexamples are
+%% displayed as lists numbered by arabic letters, subsubexamples with
+%% roman letters.
+%%
+%% The main difference is that examples are made with the standard
+%% displayed paragraph environment "list", whereas equations use
+%% displaymath mode.  A further difference is in the vertical
+%% positioning of the number: example numbers come at the top of the
+%% display, equation numbers in the centre.  By default, examples and
+%% equations share the same numbering sequence.  Example numbers always
+%% appear on the left; this style option forces equation numbers to
+%% appear on the left too, for consistency, by automatically selecting
+%% the leqno option.  Whether equations themselves are centred or
+%% left-aligned, however, is at the discretion of the user.  They are
+%% centred by default in LaTeX.  The fleqn option makes them
+%% left-aligned; if this option is used, it should ideally precede
+%% "examples" on the options list, to ensure that equations and
+%% examples have the same indentation.
+%% 
+%% The "examples" environment is used like this (note that \label and
+%% \ref work as might be expected):
+%% 
+%%     Consider now the following data, in particular
+%%     (\ref{ex:johnmary}):
+%%     \begin{examples}
+%%     \item                       \label{ex:johnmary}
+%%       \begin{examples}
+%%       \item John loves Mary.
+%%       \item Mary loves John.
+%%       \item \sqz{*} loves John Mary.        \label{ex:jmbad}
+%%       \end{examples}
+%%     \item
+%%      ...
+%%     \end{examples}
+%% 
+%% It is also possible to use \label and \ref to refer to subexample
+%% numbering.  When \label is used within a nested examples environment
+%% it will record the letter corresponding to the current (sub)subexample.
+%% So given the example above, one may refer to
+%%
+%%     \ref{ex:johnmary}\ref{ex:jmbad}
+%%
+%% in order to get something like "34c".  If you prefer brackets round
+%% the subexample letter, just do
+%%
+%%     \ref{ex:johnmary}(\ref{ex:jmbad})
+%%
+%% to get "34(c)".  Similarly for subsubexamples.
+%% 
+%% In the above, the command \sqz{*} has the effect of `squeezing' an
+%% asterisk in front of the sentence "loves John Mary".  Users might
+%% find it worthwhile to define their own commands which call \sqz, for
+%% example,
+%%
+%%     \newcommand{\bad}{\sqz{*}}
+%%
+%% which has the advantage of localizing the choice of letter.
+%%
+%% Collections of subexamples and subsubexamples will not be split
+%% over page breaks (except possibly between the paragraphs of a item
+%% containing multiple paragraphs).  If you don't want this behaviour,
+%% the environment "examples*" allows page breaks anywhere, but is
+%% otherwise identical to the unstarred version.
+%%
+%% A couple of remarks on vertical space: first, if you wish to display
+%% more than one example consecutively, you should use a single examples
+%% environment to do so; using a sequence of one-item examples
+%% environments will result in too much space between them.  Second,
+%% there should not be a blank line before an "example" environment, as
+%% this indicates to LaTeX the start of a paragraph, and it will add
+%% extra vertical space.  Similarly, there should be no blank line after
+%% the environment either, unless you actually intend to start a new
+%% paragraph at that point.  This comment applies to any LaTeX
+%% environment.  Recall that you can use lines starting with the "%"
+%% character to space out your input file harmlessly.
+%% 
+%% There is provision for arbitrary numbering of examples at all levels.
+%% the numbers being provided by the user.  This is typically used for
+%% repeating earlier examples with the same number.  You do this by
+%% giving the \item command an argument, in square brackets, consisting
+%% of the required number.  (In the case of (sub)subexamples this will
+%% normally be a letter, of course -- though there is nothing to stop
+%% you using any symbol you like at any level.)  For example:
+%% 
+%%     \begin{examples}
+%%     \item[\ref{ex:johnmary}]
+%%       \begin{examples}
+%%       \item[\ref{ex:jmbad}] \sqz{*} loves John Mary.
+%%       \end{examples}
+%%     ...
+%%     \item[XV]
+%%       \begin{examples}
+%%       \item[i] Roman numbering, provided by the user.
+%%       \item[iii] I've chosen to leave out (ii).
+%%       \end{examples}
+%%     \end{examples}
+%% 
+%% If an `empty' number is specified, with "[]", then the numbering
+%% position will be left completely blank.
+%%
+%% One cautionary note: sometimes one may have an example which uses
+%% square brackets in the example text itself (for example, to indicate
+%% constituent structure).  In these cases one must follow the \item
+%% command with something before the first "[" to avoid part of the
+%% example being taken as a user-supplied number.  A good thing to use
+%% is "{}":
+%% 
+%%     \begin{examples}
+%%     \item{} [Mary] [loves John].
+%%     \end{examples}
+%% 
+%% There are a number of parameters which the user can modify in his or
+%% her LaTeX document in order to change the appearance of examples.
+%% The commands \theexample, \thesubexample and \thesubsubexample do the
+%% actual numbering (or lettering), and may be redefined if desired.
+%% Note, however, that if \theexample is not defined to be \theequation
+%% (as it is by default), then it will be necessary to define a new
+%% counter for examples, which will then be quite independent of the
+%% equation counter.  Hence it will usually be preferable to redefine
+%% \theequation instead, so as to keep equation and example numbering in
+%% sync.  The other parameter which the user may like to change is
+%% \exampleindent, which determines the inital indent of example text.
+%% By default, it is set to 5/3 of the value of \leftmargini.  If
+%% \exampleindent is changed and the document style option fleqn is in
+%% effect, it may be desired to change \mathindent to the same new
+%% value.
+%%
+%% Finally, there are two ancilliary commands for use with the examples
+%% environment -- \attop and \atcenter.  They can be used to change the
+%% positioning of the example number when something other than ordinary
+%% text -- for example, a picture of some kind -- is the example
+%% material.  With most included pictures, the example number will by
+%% default be aligned with the bottom of the picture.  If you wish the
+%% number to be aligned (vertically) with the centre of the picture you
+%% can do something like this:
+%%
+%%     \begin{ex}
+%%       \atcenter{\input{mypicture}}
+%%     \end{ex}
+%%
+%% Similarly for \attop.
+%%
+%% Deprecated, but present for backwards compatibility with earlier
+%% versions, are the following environments: ex, subex, subex*,
+%% subexamples, subexamples*, subsubexamples, subsubexamples*.
+%%
+%%======================================================================
+
+
+% Get leqno.sty, so that equation numbers are on the left too
+% % Updated by Potts to leqno.clo, Sunday, July 13, 2003 at 14:36
+\input leqno.clo
+
+% Make \exampleindent a new dimen, equal to 5/3 of \leftmargini
+
+\newdimen\exampleindent
+\exampleindent=10 \leftmargini
+\divide\exampleindent by 8
+
+% If \mathindent is defined (whence `fleqn' preceded us on the options
+% list) set it to \exampleindent
+
+\@ifundefined{mathindent}{}{%
+  \mathindent=\exampleindent
+}
+
+% We need a depth counter
+
+\newcount\@exdepth
+\@exdepth=0
+
+% The examples and examples* environments, numbered lists
+
+\def\theexample{\theequation}       % so we use the existing counter
+
+\def\examples{%
+  \ifcase \@exdepth \@examples
+  \or               \@subexamples \samepage
+  \or               \@subsubexamples \samepage
+  \else \@toodeep
+  \fi
+  \global\advance\@exdepth\@ne\relax
+}
+
+\@namedef{examples*}{%
+  \ifcase \@exdepth \@examples
+  \or               \@subexamples
+  \or               \@subsubexamples
+  \else \@toodeep
+  \fi
+  \global\advance\@exdepth\@ne\relax
+}
+
+\def\endexamples{%
+  \global\advance\@exdepth\m@ne
+  \endlist
+}
+
+\@namedef{endexamples*}{%
+  \global\advance\@exdepth\m@ne
+  \endlist
+}
+
+\def\@examples{%
+  \list{]}{%
+    \leftmargin=\exampleindent
+    \labelwidth=\exampleindent
+    \advance\labelwidth -\labelsep
+    \def\@listctr{equation}%        % can't use \usecounter
+    \@nmbrlisttrue          % as that initialises to zero
+    \let\makelabel=\@mkexlabel
+  }%
+}
+
+\def\@mkexlabel#1{%
+  \if\@itemlabel#1(\theexample)%
+  \else \def\@tempa{#1}\ifx \@tempa\@empty {}%
+    \else (#1)%
+    \fi \fi \hfil
+}
+
+% The subexamples environment, another list
+
+\newcounter{subexample}         % counter for subexamples
+
+\def\thesubexample{\alph{subexample}}   % make them letters not numbers
+
+\def\@subexamples{%
+  \list{]}{%
+    \usecounter{subexample}%
+    \let\makelabel=\@mksubexlabel
+}}
+
+\def\@mksubexlabel#1{%
+  \if\@itemlabel#1\thesubexample.%
+  \else \def\@tempa{#1}\ifx \@tempa\@empty {}%
+    \else #1.%
+    \fi \fi \hfil
+}
+
+% subsubexamples
+
+\newcounter{subsubexample}
+
+\def\thesubsubexample{\roman{subsubexample}}
+
+\def\@subsubexamples{%
+  \list{]}{%
+    \usecounter{subsubexample}%
+    \let\makelabel=\@mksubsubexlabel
+}}
+
+\def\@mksubsubexlabel#1{%
+  \if\@itemlabel#1\thesubsubexample.%
+  \else \def\@tempa{#1}\ifx \@tempa\@empty {}%
+    \else #1.%
+    \fi \fi \hfil
+}
+
+% \sqz, for squeezing in grammaticality judgements
+
+\def\sqz#1{\leavevmode \llap{#1\kern 0.1 em}\ignorespaces}
+
+% The number positioning commands
+
+\def\attop#1{%
+  \leavevmode
+  \vtop{\vbox to \baselineskip{}\kern -\baselineskip \hbox{#1}}%
+}
+
+\def\atcenter#1{$\vcenter{\hbox{#1}}$}
+
+% The ex and subex environments, for less typing (but not really
+% recommended -- in particular, "ex" clashes with various other
+% packages...)
+
+\def\ex{\examples \item{}}
+\def\endex{\endexamples}
+
+\def\subex{\examples \item \begingroup \examples}
+\def\endsubex{\endexamples \endgroup \endexamples}
+
+\@namedef{subex*}{\examples \item \begingroup \@nameuse{examples*}}
+\@namedef{endsubex*}{\@nameuse{endexamples*} \endgroup \endexamples}
+
+% The old subexamples, etc., environments (now deprecated)
+
+\let\subexamples=\examples
+\let\endsubexamples=\endexamples
+\let\subsubexamples=\examples
+\let\endsubsubexamples=\endexamples
+
+\def\@namelet#1=#2{%
+  \def\@tempa{\expandafter\let\csname #1\endcsname=}%
+  \expandafter\@tempa\csname #2\endcsname}
+
+\@namelet{subexamples*}={examples*}
+\@namelet{endsubexamples*}={endexamples*}
+\@namelet{subsubexamples*}={examples*}
+\@namelet{endsubsubexamples*}={endexamples*}

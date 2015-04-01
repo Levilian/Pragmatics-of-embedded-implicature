@@ -1,0 +1,207 @@
+%=====================================================================
+%============================= packages ==============================
+
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage[varg]{txfonts}
+\usepackage{times}
+%\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{fancyhdr}
+\usepackage{natbib}
+\usepackage[normalem]{ulem}
+\usepackage{examples-slim}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{qtree}
+\usepackage{ifthen}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\definecolor{black}{HTML}{000000}
+\usepackage[colorlinks, linkcolor=black, urlcolor=black, citecolor=black]{hyperref}
+
+% Good colors for colorblind readers (apparently):
+\definecolor{cbgreen}{HTML}{1B9E77}
+\definecolor{cborange}{HTML}{D95F02}
+\definecolor{cbpurple}{HTML}{7570B3}
+
+\bibpunct[; ]{(}{)}{;}{a}{}{,}  % natbib citation style
+
+\defcitealias{ChierchiaFoxSpector08}{CFS}
+\newcommand{\CFS}{\citetalias{ChierchiaFoxSpector08}}
+\defcitealias{Geurts:Pouscoulous:2009}{G\&S}
+\newcommand{\GP}{\citetalias{Geurts:Pouscoulous:2009}}
+
+%=====================================================================
+%========================= cross-references ==========================
+
+% Flexible sec/fig/tbl/def cross-refs.
+\newcommand{\Secref}[1]{Section~\ref{#1}}
+\newcommand{\secref}[1]{section~\ref{#1}}
+\newcommand{\dashsecref}[2]{sections~\ref{#1}--\ref{#2}}
+
+% \newcommand{\Defref}[1]{Def.~\ref{#1}}
+% \newcommand{\defref}[1]{def.~\ref{#1}}
+% \newcommand{\Defrefc}[2]{\Defref{#1}, clause~\ref{#2}}
+% \newcommand{\defrefc}[2]{\defref{#1}, clause~\ref{#2}}
+
+\newcommand{\Figref}[1]{Figure~\ref{#1}}
+\newcommand{\figref}[1]{figure~\ref{#1}}
+\newcommand{\dashfigref}[2]{figures~\ref{#1}--\ref{#2}}
+\newcommand{\Tabref}[1]{Table~\ref{#1}}
+\newcommand{\tabref}[1]{table~\ref{#1}}
+
+% Examples:
+\newcommand{\eg}[1]{(\ref{#1})}
+\newcommand{\subeg}[2]{(\ref{#1}\ref{#2})}
+\newcommand{\dblsubeg}[3]{(\ref{#1}\ref{#2},~\ref{#3})}
+\newcommand{\dashsubeg}[3]{(\ref{#1}\ref{#2}--\ref{#3})}
+
+% In-text citations
+\newcommand{\posscitet}[1]{\citeauthor{#1}'s~(\citeyear{#1})}
+\newcommand{\sposscitet}[1]{\citeauthor{#1}'~(\citeyear{#1})}
+\newcommand{\possciteauthor}[1]{\citeauthor{#1}'s}
+\newcommand{\spossciteauthor}[1]{\citeauthor{#1}'}
+\newcommand{\pgposscitet}[2]{\citeauthor{#1}'s~(\citeyear{#1}:~#2)}
+\newcommand{\secposscitet}[2]{\citeauthor{#1}'s~(\citeyear{#1}:~$\S$#2)}
+\newcommand{\pgcitealt}[2]{\citealt{#1}:~#2}
+\newcommand{\seccitealt}[2]{\citealt{#1}:~$\S$#2}
+\newcommand{\pgcitep}[2]{(\citealt{#1}:~#2)}
+\newcommand{\seccitep}[2]{(\citealt{#1}:~$\S$#2)}
+\newcommand{\pgcitet}[2]{\citeauthor{#1}~(\citeyear{#1}:~#2)}
+\newcommand{\seccitet}[2]{\citeauthor{#1}~(\citeyear{#1}:~$\S$#2)}
+
+%=====================================================================
+%============================ text styles ============================
+
+\newcommand{\word}[1]{\emph{#1}}
+\newcommand{\tech}[1]{\textbf{#1}}
+\newcommand{\highlight}[1]{\uline{#1}}
+
+% Gray table cell:
+\newcommand{\graycell}[1]{{\cellcolor[gray]{.8}#1}}
+
+%=====================================================================
+%=============================== models ==============================
+
+\newcommand{\set}[1]{\ensuremath{\left\{ #1 \right\}}}
+\newcommand{\True}{\texttt{T}}
+\newcommand{\False}{\texttt{F}}
+\newcommand{\entails}{\sqsubseteq}
+\newcommand{\evee}{\mathbin{\overline{\vee}}}
+\newcommand{\tuple}[1]{\langle #1 \rangle}
+
+\newcommand{\Reals}{\mathbb{R}}
+\newcommand{\given}{\mid}
+\newcommand{\Indicator}{\mathbb{I}}
+
+\newcommand{\sem}[1]{\ensuremath{\llbracket#1\rrbracket}}
+\newcommand{\States}{W}
+\newcommand{\state}{w}
+\newcommand{\Lex}{\mathcal{L}}
+\newcommand{\LexSet}{\mathbf{L}}
+\newcommand{\Messages}{M}
+\newcommand{\Refinable}{\textit{Refinable}}
+\newcommand{\msg}{m}
+\newcommand{\Costs}{C}
+\newcommand{\StatePrior}{P}
+\newcommand{\LexPrior}{P_{\LexSet}}
+
+\newcommand{\listenerZero}{l_{0}}
+\newcommand{\speakerOne}{s_{1}}
+%\newcommand{\listenerOne}{l_{1}}
+\newcommand{\UncertaintyListener}{L}
+
+\newcommand{\nullmsg}{\mathbf{0}}
+
+\newcommand{\ALT}{\emph{ALT}}
+\newcommand{\OALT}{\mathop{O\negthinspace_{\ALT}}}
+
+\newcommand{\Grammar}{\mathcal{G}}
+\newcommand{\refine}{\ensuremath{R}}
+\newcommand{\Refine}[1][c]{\mathcal{R}_{#1}}
+
+\newcommand{\world}[1]{\texttt{#1}}
+\newcommand{\Worlds}{W}
+\newcommand{\Domain}{D}
+
+\newcommand{\Likert}{\emph{Likert}}
+\newcommand{\target}[2]{`\word{#1}\ldots\word{#2}'}
+
+%=====================================================================
+%============================ annotations ============================
+
+\newcommand{\marginnote}[1]{\marginpar[\color{blue}\raggedright\scriptsize #1]{\color{blue}\raggedright\scriptsize #1}}
+
+\newcommand{\todo}[1]{\marginpar[\color{red}\raggedright\scriptsize #1]{\color{red}\raggedright\scriptsize TODO: #1}}
+
+
+\newcommand{\mynote}[1]{{\color{red}#1}}
+
+%=====================================================================
+%============================== grammar ==============================
+
+\newcommand{\playera}{\texttt{a}}     
+\newcommand{\playerb}{\texttt{b}}     
+\newcommand{\playerc}{\texttt{c}}
+\newcommand{\Vt}{V$_{\text{T}}$}
+\newcommand{\Vi}{V$_{\text{I}}$}
+
+% For writing grammar definitions:
+\newcommand{\gsem}[1]{\sem{\text{#1}}}
+
+% Attempt to simplify quantifier meaning code:
+\newcommand{\genericquantifier}[3][]{%
+  \ifthenelse{\equal{#1}{cardinality}}%
+  {$\set{\tuple{w, X, Y} : |\set{x : \tuple{w,x} \in X} #2 \set{y : \tuple{w,y} \in Y}| #3}$}
+  {$\set{\tuple{w, X, Y} :  \set{x : \tuple{w,x} \in X} #2 \set{y : \tuple{w,y} \in Y}  #3}$}}
+  
+% Attempt to simplify proper name meaning code:
+\newcommand{\genericpn}[1]{\set{\tuple{w, Y} : #1 \in \set{x : \tuple{w,x} \in Y}}}
+
+\newcommand{\scalarlex}[1]{
+  \begin{array}[c]{r@{ \ = \ }l}
+    \sem{\word{scored}} & \set{#1} \\
+    \sem{\word{aced}}   & \set{\tuple{\world{A}, \playera}} \\
+    \sem{\word{A}} & \text{as in tab.\,\ref{tab:grammar}}
+  \end{array}}
+
+\newcommand{\genericscalar}[9]{
+  \setlength{\arraycolsep}{2pt}
+  \begin{array}[c]{r r r r}
+    \toprule
+    & \world{N} & \world{S} & \world{A} \\
+    \midrule
+    \word{A scored} & #1 & #2 & #3 \\
+    \word{A aced}   & #4 & #5 & #6 \\
+    \nullmsg        & #7 & #8 & #9 \\
+    \bottomrule
+  \end{array}}
+
+\newcommand{\scalarspeaker}[9]{
+  \setlength{\arraycolsep}{2pt}
+  \begin{array}[c]{r r r r}
+    \toprule
+    & \word{A scored} & \word{A aced} & \nullmsg \\
+    \midrule
+    \world{N}  & #1 & #2 & #3 \\
+    \world{S}  & #4 & #5 & #6 \\
+    \world{A}  & #7 & #8 & #9 \\
+    \bottomrule
+  \end{array}}
+
+\usepackage{geometry}
+
+\geometry{
+  body={6.5in, 8.5in},
+  left=1.0in,
+  top=1.0in, 
+  bottom=1.0in
+}
