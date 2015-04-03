@@ -18,21 +18,21 @@
 \author{Christopher Potts, Daniel Lassiter, Roger Levy, and Michael C.~Frank}
 \maketitle
 
-%\vspace{-28pt}
+\marginnote{Light revision to abstract in response to objections that it's not about what's possible but rather about what's marked.}
 
 \begin{abstract} 
   How do comprehenders reason about pragmatically ambiguous scalar
-  terms like \word{some} in complex syntactic contexts?  In Gricean
+  terms like \word{some} in complex syntactic contexts?  In many
   theories of conversational implicature, local exhaustification of
-  such terms (`only some') is predicted to be impossible if it does
-  not strengthen the literal meaning, whereas grammatical accounts of
-  implicature predict such construals to be available. Recent
-  experimental evidence supports the availability of these local
-  enrichments, but the grammatical theories that this evidence
-  supports do not provide viable mechanisms for weighting such
-  construals against others. We propose a probabilistic model that
-  combines previous work on pragmatic inference under `lexical
-  uncertainty' with a more detailed model of compositional
+  such terms (`only some') is predicted to be highly marked or
+  impossible if it does not strengthen the literal meaning, whereas
+  recent grammatical accounts of implicature predict such construals
+  to be robustly available. Recent experimental evidence supports the
+  salience of these local enrichments, but the grammatical theories
+  that this evidence supports do not provide viable mechanisms for
+  weighting such construals against others. We propose a probabilistic
+  model that combines previous work on pragmatic inference under
+  `lexical uncertainty' with a more detailed model of compositional
   semantics. We show that this model makes accurate predictions about
   new experimental data on embedded implicatures in both non-monotonic
   and downward-entailing semantic contexts. In addition, the model's
@@ -41,47 +41,6 @@
   a synthesis of grammatical and probabilistic views on pragmatic
   inference.
 \end{abstract}
-
-  % How do comprehenders reason about the meaning of pragmatically
-  % ambiguous scalar terms like `some' in complex syntactic contexts?
-  % In Gricean theories of conversational implicature, comprehenders
-  % should consider only the set of global alternatives; but on recent
-  % grammatical accounts, locally-enriched meanings should be available
-  % as well. Recent experimental evidence supports the availability of
-  % these local interpretations, but the grammatical theories that this
-  % evidence supports do not provide a viable mechanism for weighting
-  % them against other possible interpretations. We propose a
-  % probabilistic model that combines previous work on pragmatic
-  % inference under `lexical uncertainty' with a more detailed model of
-  % compositional semantics. We show that this model makes accurate
-  % predictions about new experimental data on embedded implicatures in
-  % both non-monotonic and downward-entailing contexts. In addition, the
-  % model's predictions can be improved by the incorporation of
-  % neo-Gricean hypotheses about lexical alternatives. This work thus
-  % contributes to a synthesis of grammatical and probabilistic views on
-  % pragmatic inference.
-
- % \citet{Chemla:Spector:2011} present experimental evidence that
- %  scalar terms like \word{some} in the scope of non-monotonic
- %  quantifiers can be locally enriched to an exhaustified meaning
- %  (`only some'). Such construals are predicted not to occur on Gricean
- %  accounts of conversational implicature, but they are easily within
- %  reach of recent grammar-driven theories like that of
- %  \citealt{ChierchiaFoxSpector08}.  We propose a model that 
- %  embraces the semantic insights of grammar-driven theories, but also offers
- %  a pragmatic explanation for how implicatures arise. The model
- %  straightforwardly synthesizes \posscitet{Bergen:Levy:Goodman:2014}
- %  `lexical uncertainty' model with a full compositional
- %  semantics. After describing it in detail, we present new
- %  experimental evidence that people arrive at locally enrichments, not
- %  just in non-monotonic environments but also (and more
- %  controversially) in downward-entailing ones. We then show not only
- %  that our model generates local enrichments, but also that its
- %  predictions are highly correlated with our experimental data, and
- %  that these predictions can be improved by incorporating neo-Gricean
- %  hypotheses about lexical alternatives.
-
-%\vspace{-16pt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -126,32 +85,38 @@ interpretations that would derive from local pragmatic enrichment
 \citep{Russell06,Geurts09}. This reduces the power of such examples to
 decide in favor of one side or the other.
 
+\marginnote{Light revisions to try to answer reviewer objections about framing.}
+
 \citet{Geurts:Pouscoulous:2009} and \citet{Chemla:Spector:2011} study
 a wide range of embedded implicatures involving scalar terms in the
 scope of quantified phrases. They show that many of these listener
-inferences are amenable to Gricean treatments with no need for the
-pragmatics to intrude on the semantics. However, they identify a class
-of examples that will not admit such a treatment: scalar terms in the
-scope of non-monotone quantifiers, as in \word{Exactly one player hit
-  some of his shots}. In such cases, the interpretation enriched by an
+inferences are amenable to Gricean treatments based on implicature
+calculation, with no need for the pragmatics to intrude on the
+semantics. However, they identify a class of examples that, if
+attested, would not admit such a treatment: scalar terms in the scope
+of non-monotone quantifiers, as in \word{Exactly one player hit some
+  of his shots}. In such cases, the interpretation enriched by an
 embedded implicature (\word{\ldots some but not all of his shots})
-does not entail the literal meaning, whereas the Gricean analysis of
-scalar terms can only strengthen literal
+does not entail the literal meaning, whereas the Gricean implicature
+analysis of scalar terms can only strengthen literal
 meanings. \citeauthor{Geurts:Pouscoulous:2009}'s experiments fail to
 support enrichment in such contexts, whereas
 \citeauthor{Chemla:Spector:2011}'s suggest that it is possible.
 
+\marginnote{More revisions to try to answer reviewer objections about framing.}
+
 In this paper, we reproduce the central qualitative result of
 \citet{Chemla:Spector:2011} using more naturalistic experimental
-stimuli and a more direct method of interpreting participants'
-responses. Like \citeauthor{Chemla:Spector:2011}, we find that scalar
-terms in non-monotone environments support implicature inferences. We
-hope that these results bolster \citeauthor{Chemla:Spector:2011}'s
-conclusions and help to address the skeptical reactions of
-\citet{geurts-vantiel:2013:scalar}. In our view, this evidence points
-to a role for compositional semantics in understanding
-implicatures. But pragmatic factors also play a crucial role: even
-embedded implicatures arise only with proper contextual support
+stimuli, a fully randomized between-subjects design to avoid unwanted
+inferences across critical items \citep{geurts-vantiel:2013:scalar},
+and a more direct method of interpreting participants' responses. Like
+\citeauthor{Chemla:Spector:2011}, we find that scalar terms in
+non-monotone environments support implicature inferences (though seem
+not to be the preferred or most salient construals).  In our view,
+this evidence points to a role for compositional semantics in
+understanding implicatures. But pragmatic factors also play a crucial
+role: even embedded implicatures arise only with proper contextual
+support
 \citep{Russell06,ChierchiaFoxSpector08,Geurts:2011,Chemla:Spector:2011}.
 
 To describe the complementary roles of grammar and pragmatics in
@@ -168,25 +133,28 @@ participants coordinate on the right logical forms (implicature-rich
 or not), seeking to retain the insights of Gricean accounts while
 paying close attention to the details of semantic composition.
 
+\marginnote{Mid-paragraph, added a note about the limited nature of our understanding of the correct refinements.}
+
 We show that our model not only captures the qualitative pattern of
 implicature behaviors that \citeauthor{Chemla:Spector:2011} found, but
 also makes quantitative predictions that are highly correlated with
-people's actual inferential behavior in context. In addition, we show
-that these correlations can be improved if the set of refinements is
-lexically constrained, in keeping with broadly neo-Gricean views of
-scalar implicature
-\citep{Horn72,Gazdar79b,Gazdar79a,SchulzVanRooij06}.  Our results
-suggest that the full theory of implicature depends substantively on
-the fine details of semantic composition \emph{and} broader
-considerations of rational interaction. This is perhaps a departure
-from \posscitet{Grice75} particular conception of pragmatic meaning,
-but it is well-aligned with his general theory of meaning and
-intention \citep{Grice89}.  In view of our experimental results, the
-chief advantage of our model is that it makes quantitative predictions
-that are easily and rigorously linked with our human response
-patterns. In other words, the model makes predictions not only about
-which pragmatic inferences are possible but also about how likely
-those inferences are.
+people's actual inferential behavior in context. In addition, we
+present evidence that these correlations can be improved if the set of
+refinements is lexically constrained, in keeping with broadly
+neo-Gricean views of scalar implicature
+\citep{Horn72,Gazdar79b,Gazdar79a,SchulzVanRooij06}, though the
+precise nature of the true refinements remains a challenging open
+question.  Our results suggest that the full theory of implicature
+depends substantively on the fine details of semantic composition
+\emph{and} broader considerations of rational interaction. This is
+perhaps a departure from \posscitet{Grice75} particular conception of
+pragmatic meaning, but it is well-aligned with his general theory of
+meaning and intention \citep{Grice89}.  In view of our experimental
+results, the chief advantage of our model is that it makes
+quantitative predictions that are easily and rigorously linked with
+our human response patterns. In other words, the model makes
+predictions not only about which pragmatic inferences are possible but
+also about how likely those inferences are.
 
 Our broader position is that grammar-driven accounts and Gricean
 accounts are not in opposition, but rather offer complementary
@@ -209,23 +177,25 @@ substantially more consensus than the rhetoric often suggests.
 
 \section{Implicature, enrichment, and embedding}\label{sec:implicature}
 
+\marginnote{Light revisions throughout this section to avoid characterizations in terms of `Griceans', etc.}
+
 In this section, we describe embedded implicatures, seeking to
-identify their relevance for Gricean and grammar-driven
-frameworks. Under \posscitet{Grice75} original definition,
-conversational implicature is an act of social cognition. The original
-definition is somewhat underspecified, and fleshing it out into a
-precise formulation is challenging \citep{Hirschberg85}, but the
-guiding idea seems clear.  The listener assumes that that the speaker
-is cooperative in the Gricean sense of rational interaction. However,
-the listener is confronted with an utterance $U$ with content $p$ that
-meets this assumption only if certain additional conditions are
-met. The listener can resolve this tension by positing that these
-conditions are in fact met; in many (but not all) cases, this means
-inferring that the speaker intended for the listener to infer the
-truth of an additional proposition $q$, or of a different but related
-proposition $q'$. By this reasoning, the listener is able to reconcile
-the observation that the speaker chose to utter $U$ with the
-assumption that the speaker is communicating cooperatively.
+identify the special theoretical challenges that they pose.  Under
+\posscitet{Grice75} original definition, conversational implicature is
+an act of social cognition. The original definition is somewhat
+underspecified, and fleshing it out into a precise formulation is
+challenging \citep{Hirschberg85}, but the guiding idea seems clear.
+The listener assumes that that the speaker is cooperative in the
+Gricean sense of rational interaction. However, the listener is
+confronted with an utterance $U$ with content $p$ that meets this
+assumption only if certain additional conditions are met. The listener
+can resolve this tension by positing that these conditions are in fact
+met; in many (but not all) cases, this means inferring that the
+speaker intended for the listener to infer the truth of an additional
+proposition $q$, or of a different but related proposition $q'$. By
+this reasoning, the listener is able to reconcile the observation that
+the speaker chose to utter $U$ with the assumption that the speaker is
+communicating cooperatively.
 
 In the current work, we do not try to make the above description more
 rigorous. The model that we develop does not depend on an
@@ -236,10 +206,10 @@ interact. Similarly, the model of \citet{ChierchiaFoxSpector08} is
 noncommittal about the reality of conversational implicatures per
 se. For them, `conversational implicature' can be seen as an informal
 label for a certain class of logical forms, rather than a conceptual
-primitive (see \secref{sec:cfs} of this paper). With this in
-mind, we use the notion of conversational implicature only to
-articulate the central empirical focus of this paper --- embedded
-scalar terms --- and the associated challenges for Gricean accounts.
+primitive (see \secref{sec:cfs} of this paper). With this in mind, we
+use the notion of conversational implicature only to articulate the
+central empirical focus of this paper --- embedded scalar terms ---
+and the associated challenges for formal pragmatic accounts.
 
 On the classic Gricean account, scalar implicatures arise when the
 imperative `Be as informative as is required' (a subclause of the
@@ -315,17 +285,17 @@ implicature.
 %
 In the same general context as before, this can be enriched to convey
 that every player hit some but not all of his shots. However, making
-this reasoning precise under a Gricean account requires more
-assumptions than for \eg{some}.  If we take the implicature to be the
-negation of the stronger alternative \word{every player hit all of his
-  shots}, then the reasoning proceeds as in the first four lines of
-\eg{everysome-sem}, which takes us to a meaning (\ref{everysome-sem}d)
-that is consistent with one or the other of the players (but not both)
-having hit all of his shots. To arrive at the target meaning (every
-player hit some but not all of his shots), we must further assume an
-auxiliary premise beyond that required for \eg{some}. One example of
-such a premise is that of uniform outcomes (\ref{everysome-sem}e);
-there are many others that will do the job
+this reasoning precise in the terms we just used for \eg{some}
+requires more assumptions than for \eg{some}.  If we take the
+implicature to be the negation of the stronger alternative \word{every
+  player hit all of his shots}, then the reasoning proceeds as in the
+first four lines of \eg{everysome-sem}, which takes us to a meaning
+(\ref{everysome-sem}d) that is consistent with one or the other of the
+players (but not both) having hit all of his shots. To arrive at the
+target meaning (every player hit some but not all of his shots), we
+must further assume an auxiliary premise beyond that required for
+\eg{some}. One example of such a premise is that of uniform outcomes
+(\ref{everysome-sem}e); there are many others that will do the job
 \citep{Spector:2007:SCALAR}.
 %
 \begin{examples}
@@ -349,11 +319,11 @@ meaning is an enrichment of the literal content, and Gricean pressures
 and contextual assumptions deliver the stronger
 meaning. \citet{Geurts:Pouscoulous:2009} and
 \citet{Chemla:Spector:2011} home in on this common theme in scalar
-implicature calculation and use it to probe the empirical adequacy of
-the Gricean framework. Examples like \eg{exactlyonesome} drive their
-discussions.  This is a minimal variant of \eg{everysome} with the
-subject universal determiner \word{every} replaced by \word{exactly
-  one}.
+implicature calculation and use it to probe the scope and adequacy of
+the Gricean implicature framework. Examples like \eg{exactlyonesome}
+drive their discussions.  This is a minimal variant of \eg{everysome}
+with the subject universal determiner \word{every} replaced by
+\word{exactly one}.
 %
 \begin{examples}
 \item\label{exactlyonesome} Exactly one player hit some of his shots.
@@ -427,7 +397,7 @@ grounds for challenging \citeauthor{Chemla:Spector:2011}'s findings
 (see \secref{sec:exp1}), but we believe that the theoretical
 challenges posed by embedded implicatures are real. In
 \secref{sec:exp1}, we describe a new experiment that reproduces the
-core findings of \citeauthor{Chemla:Spector:2011}'s studies.
+core qualitative findings of \citeauthor{Chemla:Spector:2011}'s studies.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -651,28 +621,31 @@ cases. \CFS, in contrast, define a model in which local calculation is
 immediate, but they do not venture an account of how discourse
 participants coordinate on the right logical forms when more than one
 is allowed by the grammar. Stepping back, we see that both the Gricean
-and grammar-driven accounts each clearly have something to
-contribute. We now turn to the task of developing a synthesis of the
-two approaches: a model that formally implements pragmatic reasoning
-over complex, compositionally defined logical forms and that is able
-to achieve the readings that seem to demand local enrichment. The
-technical details of the compositional model are different from
-\CFS's, and the technical details of the pragmatic account are
-different from \citeauthor{Grice75}, but we hope that it combines the
-best aspects of both approaches.
+and grammar-driven accounts clearly have something to contribute. We
+now turn to the task of developing a synthesis of the two approaches:
+a model that formally implements pragmatic reasoning over complex,
+compositionally defined logical forms and that is able to achieve the
+readings that seem to demand local enrichment. The technical details
+of the compositional model are different from \CFS's, and the
+technical details of the pragmatic account are different from
+\citeauthor{Grice75}, but we hope that it combines the best aspects of
+both approaches.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{A compositional lexical uncertainty model}\label{sec:model}
 
+\marginnote{Added a reference to Ben Russell's thesis.}
+
 We now present our mixed semantic--pragmatic model, which can be seen
 as a conceptual fusion of the Montagovian semantic perspective in
 \citet{Lewis70GS}, the signaling systems of \citet{Lewis69}, the
 probabilistic rational speech acts perspective of
-\citet{Frank:Goodman:2012} and \citet{Goodman:Stuhlmuller:2013}, and
-the iterated best response model of \citet{Jaeger:2007,Jaeger:2011}
-and \citet{Franke09DISS}.  Our Python implementation of the model is
-available from the website for this paper.
+\citet{Frank:Goodman:2012} and \citet{Goodman:Stuhlmuller:2013}, the
+iterated best response model of \citet{Jaeger:2007,Jaeger:2011} and
+\citet{Franke09DISS}, and the Bayesian view of Gricean reasoning
+formulated by \citet{Russell:2012}.  Our Python implementation of the
+model is available from the website for this paper.
 
 The model we implement here is a direct extension of the compositional
 lexical uncertainty model of \citet{Bergen:Goodman:Levy:2012} and
@@ -688,16 +661,21 @@ result is that \citeauthor{Bergen:Levy:Goodman:2014}'s model predicts
 embedded implicatures in non-monotone and downward-monotone contexts
 if it is combined with a full theory of semantic composition.
 
-The model's crucial feature is \tech{lexical uncertainty}. Discourse
+\marginnote{Some refs.\ on the reality of lexical uncertainty. More would be great!}
+
+The model's crucial feature is \tech{lexical uncertainty}.  In
+semantics, we like to imagine that word meanings are fixed across
+speakers and contexts, but in fact they are sometimes idiosyncratic
+and usually adaptable \citep{Clark97}. Thus, in our model, discourse
 participants are not presumed to share a single, fixed
 lexicon. Rather, they consider many lexica, and their communicative
 behavior, in both production and interpretation, is guided by their
-best attempts to synthesize the information from these varied
-sources. Thus, in the sentences of interest, the discourse
-participants might entertain multiple senses for an embedded
-\word{some}, including not only its `at least' meaning but also the
-`only some' meaning that corresponds to its enrichment by scalar
-implicature. This uncertainty carries through the compositional
+best attempts to synthesize the information from these varied sources
+\citep{Giles:Coupland:Coupland:1991}. Thus, in the sentences of
+interest, the discourse participants might entertain multiple senses
+for an embedded \word{some}, including not only its `at least' meaning
+but also the `only some' meaning that corresponds to its enrichment by
+scalar implicature. This uncertainty carries through the compositional
 semantics to deliver embedded implicature readings. From this
 perspective, \citeauthor{ChierchiaFoxSpector08}'s model is
 conceptually very close to lexical uncertainty, in that it requires
@@ -746,6 +724,7 @@ refinement throughout the lexicon.
     N   & \word{shot}        & $\set{\tuple{w, x} : x \text{ is a shot in } w}$ \\
     \Vt & \word{hit}         & $\set{\tuple{w, x, y} : x \text{ hit } y \text{ in } w}$ \\
     \Vi & \word{scored}      & $\set{\tuple{w, x} : \exists y \ x \text{ hit } y \text{ in } w}$ \\
+    \Vi & \word{cheered}     & $\set{\tuple{w, x} : x \text{ cheered in } w}$ \\
     D   & \word{some}        & \genericquantifier{\cap}{\neq \emptyset} \\
     D   & \word{every}       & \genericquantifier{\subseteq}{} \\
     D   & \word{no}          & \genericquantifier{\cap}{= \emptyset} \\
@@ -772,6 +751,8 @@ refinement throughout the lexicon.
 
 \subsection{Refinement}\label{sec:refine}
 
+\marginnote{More discussion of the prevalence of lexical uncertainty, with new examples.}
+
 The grammar in \tabref{tab:grammar} contains both lexical entries and
 rules of semantic combination. We assume that the rules are fixed.
 The lexical entries, on the other hand, are merely a starting point
@@ -779,10 +760,15 @@ for linguistic communication --- a set of somewhat negotiable
 conventions. You might assume that \word{couch} and \word{sofa} are
 synonymous, but if I say ``It's a couch but not a sofa'', you'll learn
 something about my lexical representations and perhaps adjust your own
-accordingly for the purposes of our interaction. In semantics, we like
-to imagine that word meanings are fixed across speakers and contexts,
-but in fact they are sometimes idiosyncratic and usually adaptable
-\citep{Clark97}.
+accordingly for the purposes of our interaction.  If a speaker uses
+the phrase \word{synagogues and other churches}, then her listeners
+can conclude that she regards a synagogue to be a kind of church, via
+the presuppositional nature of the phrase. Conversely, if she says
+\word{church or synagogue}, her listeners receive a weak signal that
+she regard those two terms as disjoint, via the pressure for disjuncts
+to be exclusive; \citep{Hurford:1974}. \citet{Chemla-HurfordCounts} and
+\citet{Potts:Levy:2015} connect this uncertainty directly with
+implicature salience and implicature blocking.
 
 The `lexical uncertainty' aspects of our model are designed to capture
 this variability. The core notion is that of lexical
@@ -821,6 +807,8 @@ information she would like to convey, but also about the precise
 meanings she intends the words she is using to carry in the context of
 the interaction.
 
+\marginnote{Corrected minor errors in this pargraph noted by R1.}
+
 As we noted above, \CFS's model embodies a kind of semantic
 uncertainty very similar to that considered here. For any given
 expression that one hears, the speaker might have in mind its literal
@@ -837,9 +825,9 @@ uses $\OALT$ to create a single refined meaning for \word{some shot},
 represented by the set of sets in the gray box (`some, not all'). Our
 theory of refinement could create one lexicon for every non-empty
 subset of the green box. So, in addition to considering `some, not
-all', we admit lexica that produce
-$\sem{\word{some player}} = \set{\set{a,b,c}}$ (`every shot'), lexica
-that produce $\sem{\word{some player}} = \set{\set{a,b,c},\set{a}}$
+all, shots, we admit lexica that produce
+$\sem{\word{some shot}} = \set{\set{a,b,c}}$ (`every player'), lexica
+that produce $\sem{\word{some shot}} = \set{\set{a,b,c},\set{a}}$
 (no obvious paraphrase), and so forth. These are all potential results
 of $\OALT(\word{some shot})$ for some choice of $\ALT$, and our theory
 can be regarded as one that reasons in terms of all of these options.
@@ -910,23 +898,25 @@ context that our decision to refine only lexical items, as in
 allow arbitrary words and phrases to be refined, as \CFS\ in effect
 do.
 
+\marginnote{Here and in the following paragraphs, I've tried to more fully explicate the definitions.}
+
 With this background in place, we now define the core lexical
-uncertainty model. It consists of three inter-related
-agents:\footnote{Two notational conventions. First, $\Indicator$ is an
-  indicator function, returning $1$ if its argument is true, else
-  $0$. Second, $P(a \given b) \propto X$ is read `the value $P(a
-  \given b)$ is proportional to the value $X$'. In this context, the
-  exact value of $P(a \given b)$ can always be obtained by dividing
-  $P(a \given b)$ by the sum of all the values $X'$ obtained by
-  replacing $a$ by one of its $a'$.}
+uncertainty model. It consists of three inter-related agents, as
+defined in \eg{agents}. The agents are defined in terms of the cost
+function $\Costs$, the state prior $\StatePrior$, and the lexica in
+$\LexSet$. We assume that $\msg$ is any message in $\Messages$
+$\state$ is any state in $\States$, and $\Lex$ is any lexicon in the
+set $\LexSet$.\footnote{$P(a \given b) \propto X$ is read `the value
+  $P(a \given b)$ is proportional to the value $X$'. In this context,
+  the exact value of $P(a \given b)$ can always be obtained by
+  dividing $P(a \given b)$ by the sum of all the values $X'$ obtained
+  by replacing $a$ by one of its $a'$.}
 %
 \begin{examples}
 \item\label{agents}
   \begin{examples}
   \item\label{l0}%
-    $\listenerZero(\state \given \msg, \Lex) \propto
-    \frac{\Indicator(\state \in \Lex(\msg))}{|\Lex(\msg)|}
-    \StatePrior(\state)$
+    $\listenerZero(\state \given \msg, \Lex) \propto \StatePrior(\state) \text{ if } \state \in \Lex(\msg), \text{ else } 0$
 
   \item\label{s1}% 
     $\speakerOne(\msg \given \state, \Lex) \propto
@@ -951,27 +941,33 @@ The first two agents, $\listenerZero$ and $\speakerOne$, are
 fixed-lexicon agents, and the final listener $\UncertaintyListener$
 reasons over all of the lexica in $\LexSet$.  The most basic agent is
 $\listenerZero$. It defines a conditional distribution over worlds
-given messages. It does this by simply mapping the truth conditions
-into a probability distribution and incorporating the state prior. So
-this is just the semantics turned into a probability distribution for
-the sake of decision making.
+$\state$ given messages $\msg$. It does this by simply mapping the
+truth conditions into a probability distribution and incorporating the
+state prior. So this is just the semantics turned into a probability
+distribution for the sake of decision making; the intuitive idea is
+that agent heard $\msg$ and estimates the relative likelihood world
+$\state$ on that basis.
 
 The speaker agent $\speakerOne$ is already a pragmatic agent, in the
 sense that it reasons, not about the lexicon directly, but rather
-about how the listener will reason about the lexicon. The logarithm
-and exponentiation in this definition allow us to include real-valued
-costs; where the costs are all $0$, it reduces to
-$\listenerZero(\state \given \msg)$, by the identity $x =
-\exp(\log(x))$.  Similarly, if the costs are scaled into $[0,1]$, then
-the values can be given as a product of the listener probabilities and
-the costs, analogously to the listener.
+about how the listener will reason about the lexicon. The speaker
+observes a state $\state$ and chooses messages on that basis. The
+logarithm and exponentiation in this definition allow us to include
+real-valued costs; where the costs are all $0$, it reduces to
+$\listenerZero(\state \given \msg)$, by the identity
+$x = \exp(\log(x))$.  Similarly, if the costs are scaled into $[0,1]$,
+then the values can be given as a product of the listener
+probabilities and the costs, analogously to the listener.
 
 Our pragmatic listener is defined in \subeg{agents}{L}. This agent
-sums over all of the inferences defined by the lexicon-specific agents
-$\speakerOne$ and $\listenerZero$. It additionally incorporates the
-state prior, as $\listenerZero$ does, and the prior over lexica.  This
-is the agent that we use to characterize listener inferences and
-define our predictions about our experimental findings.
+resembles the literal listener $\listenerZero$, but it sums over all
+of the inferences defined by the lexicon-specific agents $\speakerOne$
+and $\listenerZero$. It additionally incorporates the state prior, as
+$\listenerZero$ does, and the prior over lexica.  This is the agent
+that we use to characterize listener inferences and define our
+predictions about our experimental findings.
+
+\marginnote{This paragraph introduces different parameter settings and introduces our appendiex on parameter exploration.}
 
 We have given the compositional lexical uncertainty model in its
 simplest form, and have gone beyond
@@ -980,25 +976,29 @@ complete treatment of semantic composition necessary for the empirical
 domain under discussion, in allowing uncertainty in the denotations of
 lexical items of a wider range of semantic types, and in entertaining
 the possibility of restrictions on the set of possible refinements.
-But many other elaborations are possible. For instance, one could allow
-further iteration before the lexical uncertainty listener, by defining
-generalized versions of these fixed-lexicon agents that can reason
-about each other. Similarly, one could allow further iteration beyond
-$\UncertaintyListener$, defining speaker and listener agents
-analogously to their fixed-lexicon counterparts.  For exploration of
-these ideas, we refer to the extended treatment in
-\citealt{Bergen:Levy:Goodman:2014}. In a similar vein, one can
-refactor the uncertainty listener so that it makes joint inferences
-about the lexicon, the world, and perhaps other objects
-\citep{Smith:Goodman:Frank:2013, Kao-etal:2014}. In addition, with
-recursion allowed on both sides of the lexical-uncertainty listener,
-one can push the marginalization up and down in the agent hierarchy
-\citep{Goodman:Lassiter:2013}. Finally, one can include a real-valued
-temperature parameter $\lambda$ in the speaker agents to control how
-greedily they try to extract information from the agent they are
-reasoning about, with higher $\lambda$ values leading to more
-aggressive inferential strategies
-\citep{Sutton:Barto:1998,Bergen:Levy:Goodman:2014}.
+But many elaborations are possible, and these can have far-reaching
+consequences for or the predictions about pragmatic inference
+\citep{Goodman:Lassiter:2013, Smith:Goodman:Frank:2013,
+  Kao-etal:2014,Potts:Levy:2015}. Ideally, we would explore the full
+space of reasonable models when making predictions. Since the nature
+of this space is unknown, this is impossible. However, there are two
+elaborations of the above model that are highly salient given the
+prior literature in this area and thus worth exploring. First, one
+could allow further iteration beyond $\UncertaintyListener$, defining
+speaker and listener agents analogously to their fixed-lexicon
+counterparts. This can amplify existing pragmatic inferences and
+create new ones
+\citep{Bergen:Levy:Goodman:2014,Vogel-etal:2014,Potts:Levy:2015}.
+Second, one can include a real-valued temperature parameter $\lambda$
+in the speaker agents to control how greedily they try to extract
+information from the agent they are reasoning about, with higher
+$\lambda$ values leading to more aggressive inferential strategies
+\citep{Sutton:Barto:1998}. This too can radically reshape the agents'
+behavior.  In \appendixref{app:paramexplore}, we systematically
+explore these choices and their interaction with the cost assigned to
+the null message, guided by how the choices affect our predictions in
+our experimental setting.
+
 
 %=====================================================================
 
@@ -1082,31 +1082,29 @@ $\Refine(\word{Player A}) = \set{\sem{\word{Player A}}}$. Since
 further refinement. However, \word{scored} has two further
 refinements. This gives rise to the three lexica in the bottom row of
 \figref{fig:simplescalar}.  Using the fixed rules of semantic
-composition, the literal listener $\listenerZero$ turns these lexica
-into conditional distributions over states given messages.  The prior
-over states is flat in this example, so this calculation just evenly
+composition, these lexica determine the messages \word{Player A
+  scored} and \word{Player A aced}. The literal listener
+$\listenerZero$ turns the denotations of these messages into
+conditional distributions over states given messages. The prior over
+states is flat in this example, so this calculation just evenly
 divides the probability mass over the true states. The pragmatic
-speaker responds to this agent.
-%%%% Oops, this isn't true for s1! ---CP
-% Already at this stage, we can see Gricean behavior: where possible,
-% the speaker avoids an ambiguity inherent in the original lexicon by
-% saying \word{Player A aced} in \world{A} even though \word{Player A
-% scored} is also true there. The rightmost lexicon does not support
-% this pragmatic behavior, but the others do.
-Finally, our uncertainty listener sums over these three speakers,
-achieving a scalar implicature: hearing \word{Player~A scored} leads
-this listener to assume that the state is \world{S}.
+speaker responds to this agent. Finally, our uncertainty listener sums
+over these three speakers, achieving a scalar implicature: hearing
+\word{Player~A scored} leads this listener to assume that the state is
+\world{S}.
 
 Lexical uncertainty is not required to achieve this result. If we
 allow no meanings to be refined, then we deal with the singleton set
 of lexica containing only the leftmost lexicon. In this small space,
-the model is effectively equivalent to the rational speech act model of
-\citet{Frank:Goodman:2012} (with potentially small differences
-relating to how the prior over states is incorporated), and it is also
-a more thoroughly probabilistic version of the iterated best response
-model \citep{Franke09DISS,Jaeger:2007,Jaeger:2011}. Nonetheless, the
-example illuminates how the lexical uncertainty model works. As the
-downward arrows indicate, it is useful to start conceptually from
+the model is shares deep affinities with the Bayesian model of Grice
+given by \citet{Russell:2012}, it is effectively equivalent to the
+rational speech act model of \citet{Frank:Goodman:2012} (with
+potentially small differences relating to how the prior over states is
+incorporated), and it can be seeen as a more thoroughly probabilistic
+version of the iterated best response model
+\citep{Franke09DISS,Jaeger:2007,Jaeger:2011}. Nonetheless, the example
+illuminates how the lexical uncertainty model works. As the downward
+arrows indicate, it is useful to start conceptually from
 $\UncertaintyListener$. This agent effectively reasons in Gricean
 terms about three separate lexica; the alternation from speaker to
 listener and down to the lexicon mirrors the nested belief structure
@@ -1124,8 +1122,82 @@ generating implicatures based on the principle that marked forms
 signal marked meanings and unmarked forms signal unmarked meanings
 \citep{McCawley78,Horn84,Blutner98,Levinson00}.
 
-Let's now look at a larger and more complex scenario, one that starts
-to show the potential of this model to predict embedded
+\marginnote{This paragraph and the next are new, as is \figref{fig:sauerland}. They are an attempt to answer some of R3's concerns about ``global'' implicature.}
+
+The lexical uncertainty aspects of the model are a rich source of
+implicatures, and they are the key to achieving local implicatures of
+the sort reviewed in \secref{sec:implicature} above. However, as the
+fixed lexicon versions of the model make clear, the recursive nature
+of the agents suffices for many kinds of enrichment. Even with a
+single lexicon, we have a listener reasoning about a speaker reasoning
+about the literal interpretive semantics, which creates powerful
+forces for removing semantic overlap among the available messages. One
+powerful illustration of this comes from
+\citet{Sauerland01,Sauerland04}, who studies the implicatures of
+sentences like \word{Player~A hit some of his shots or cheered}, in
+which the weak scalar term \word{some of his shots} is nested inside
+the weak connective \word{or}. The guiding intuition is that the
+sentence is most prominently construed as entailing that Player~A did
+not make all of his shots and that Player~A did not both make shots
+and cheer. \citeauthor{Sauerland01}'s is that these entailments are
+within reach of traditional Gricean reasoning as long as the available
+alternative messages that the speaker might have used is comprehensive
+in that it fully crosses the alternatives for \word{some} with the
+alternatives for \word{or}.
+
+As \figref{fig:sauerland} shows, our model suffices to achieve this
+even with a fixed lexicon. Here, a world-type specification like
+\world{s$_{1}$c} means that player A made only shot~1 and cheered,
+\world{s$_{1}$s$_{2}$c} means that Player~A made both shot~1 and
+shot~2 and cheered, \word{c} means that he made no shots but did
+cheer, and \word{--} means that Player~A made no shot and did not
+cheer. The crucial analytic step is to define the set of messages
+$\Messages$ so that it covers the space that
+\citeauthor{Sauerland01}. Allowing lexical refinements, as in the full
+version of our model, strengthens the relevant inferences without
+changing the qualitative pattern seen in
+\figref{fig:sauerland}.)\footnote{There is one unnatural aspect of the
+  simulation in \figref{fig:sauerland}: it does not allow the speaker
+  to be uncertain about the state space, whereas disjunction is
+  naturally used in situations where the speaker has only partial
+  information even at the level of granularity given by the
+  world-types in $\States$. This results in predicted overlap between
+  \word{Player~A hit some shot or cheered} and \word{PlayerA hit some
+    shot}. For a version of the model that allows for the requisite
+  sort of uncertainty, we refer to \citealt{Potts:Levy:2015}.}
+  
+\begin{figure}[tp]
+  \centering
+  \begin{tabular}[c]{ *{9}{r} }
+    \toprule
+    & \world{--} & \world{c} & \world{s$_{1}$} & \world{s$_{2}$} & \world{s$_{1}$c} & \world{s$_{2}$c} & \world{s$_{1}$s$_{2}$} & \world{s$_{1}$s$_{2}$c}\\
+    \midrule
+    \word{Player~A cheered}                    &    .0 &   \graycell{.42} &    .0 &    .0 &   .23 &   .23 &    .0 &   .12\\
+    \word{PlayerA hit some shot}               &    .0 &    .0 &    \graycell{.3} &    \graycell{.3} &   .09 &   .09 &   .18 &   .04\\
+    \word{Player~A hit some shot or cheered}   &    .0 &   .14 &   \graycell{.26} &   \graycell{.26} &   .07 &   .07 &   .16 &   .04\\
+    \word{PlayerA hit some shot and cheered}   &    .0 &    .0 &    .0 &    .0 &    \graycell{.4} &    \graycell{.4} &    .0 &   .21\\
+    \word{PlayerA hit every shot or cheered}   &    .0 &   .28 &    .0 &    .0 &   .15 &   .15 &   \graycell{.33} &   .08\\
+    \word{Player~A hit every shot and cheered} &    .0 &    .0 &    .0 &    .0 &    .0 &    .0 &    .0 &    \graycell{1} \\
+    $\nullmsg$ &   .99 &    .0 &    .0 &    .0 &    .0 &    .0 &    .0 &    .0\\
+    \bottomrule
+  \end{tabular}
+  \caption{Nested scalar terms. We assume that there are just two
+    shots. Thus, \world{s$_{1}$s$_{2}$} is a world in which Player~A
+    made every shot. \world{c} is a world in which Player~A made no
+    shots, but cheered. And so forth.  The message of greatest
+    interest is \word{Player~A hit some shot or cheered}. Consistent
+    with intuitions reported in the literature, the model predicts
+    that the highest probability inferences are those in which the
+    player did not make all shots and did not both make shots and
+    cheered. This inference derives solely from competitions between
+    available messages. Lexical uncertainty only strengthens the basic
+    pattern.}
+  \label{fig:sauerland}
+\end{figure}
+
+Let's now look at a larger and more complex scenario, one that
+interacts lexical uncertainty with message competitions like the above
+to help reveal the potential of this model to predict embedded
 implicatures. In this scenario, there are two players. We continue our
 convention of referring to worlds using sequences like \world{NN}
 (`neither player scored'). The lexical items are \word{Player A},
@@ -1329,7 +1401,7 @@ Mechanical Turk. No participants or responses were excluded.
 
 \begin{figure}[t]
   \centering
-  \framebox{\includegraphics[scale=1]{fig/experiment-display}}
+  \framebox{\includegraphics[scale=1]{fig/experiment-display-binary}}
   \caption{Experiment display.}
   \label{fig:exp1}
 \end{figure}
@@ -1454,7 +1526,8 @@ appropriate for measuring participants' interpretations.\footnote{The
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=0.85\textwidth]{fig/basketball-pilot-2-11-14-results-parsed}
+  %\includegraphics[width=0.85\textwidth]{fig/basketball-pilot-2-11-14-results-parsed}
+  \includegraphics[width=0.85\textwidth]{fig/basketball-binary-version-pilot-4-1-15-results-parsed}
   \caption{Mean ratings by sentence with bootstrapped 95\% confidence intervals.}
   \label{fig:exp1-results}
 \end{figure}
@@ -1652,7 +1725,7 @@ linking hypothesis relating our model with our experimental data.
 
 \begin{figure}[!t]
   \centering
-  \includegraphics[height=0.92\textheight]{fig/allmodels}
+  \includegraphics[height=0.92\textheight]{fig/allmodels-binary}
   \caption{Analysis by target sentence, comparing model predictions
     with human responses.}
   \label{fig:exp-analysis}
@@ -1833,6 +1906,13 @@ items, or applying the resulting models in new domains.  We have made
 publicly available all the data and code associated with this paper in
 an effort to encourage these new strands of theory development and
 quantitative assessment.
+
+\begin{appendix}
+  \section{Parameter exploration}\label{app:paramexplore}
+
+  \section{Likert scale experiment}\label{app:likert}
+
+\end{appendix}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
