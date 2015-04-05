@@ -24,10 +24,10 @@
   How do comprehenders reason about pragmatically ambiguous scalar
   terms like \word{some} in complex syntactic contexts?  In many
   theories of conversational implicature, local exhaustification of
-  such terms (`only some') is predicted to be highly marked or
-  impossible if it does not strengthen the literal meaning, whereas
-  recent grammatical accounts of implicature predict such construals
-  to be robustly available. Recent experimental evidence supports the
+  such terms (`only some') is predicted to be marked or impossible if
+  it does not strengthen the literal meaning, whereas recent
+  grammatical accounts of implicature predict such construals to be
+  robustly available. Recent experimental evidence supports the
   salience of these local enrichments, but the grammatical theories
   that this evidence supports do not provide viable mechanisms for
   weighting such construals against others. We propose a probabilistic
@@ -915,6 +915,8 @@ set $\LexSet$.\footnote{$P(a \given b) \propto X$ is read `the value
 \begin{examples}
 \item\label{agents}
   \begin{examples}
+    \marginnote{I took up R3's suggestion about how to specify $\listenerZero$. To me, the new version is more gnomic, but I think it does force a deeper understanding of the use of $\propto$ throughout.}
+
   \item\label{l0}%
     $\listenerZero(\state \given \msg, \Lex) \propto \StatePrior(\state) \text{ if } \state \in \Lex(\msg), \text{ else } 0$
 
@@ -1006,7 +1008,7 @@ our experimental setting.
 
 Our first illustration, given in \figref{fig:simplescalar}, is
 designed solely to reveal details about how the agents interact to
-produce enriched meanings. (This first illustration is isomorphic to
+produce enriched construals. (This first illustration is isomorphic to
 the example covered in section~4.4 of
 \citealp{Bergen:Levy:Goodman:2014}.) We assume that the domain
 consists of just one entity, $\playera$, and that the only intensional
@@ -1015,13 +1017,14 @@ distinction of interest is whether $\playera$ scored none of his shots
 of his shots (\world{A}). The action is in the relationship between
 the two predicates \word{scored} and \word{aced}: we define
 $\sem{\word{scored\/}} = \set{\tuple{\world{S}, \playera},
-  \tuple{\world{A}, \playera}}$ and $\sem{\word{aced\/}} =
-\set{\tuple{\world{A}, \playera}}$. Thus, \word{aced} strictly entails
-\word{scored}, creating the potential for a scalar implicature.
+  \tuple{\world{A}, \playera}}$
+and $\sem{\word{aced\/}} = \set{\tuple{\world{A}, \playera}}$. Thus,
+\word{aced} strictly entails \word{scored}, creating the potential for
+a scalar implicature.
 
 \begin{figure}[!t]
   \[
-  \setlength{\arraycolsep}{4pt}
+  \setlength{\arraycolsep}{5pt}
   %\renewcommand{\arraystretch}{0.95}
   \begin{array}{r c c c}
     \UncertaintyListener &
@@ -1031,7 +1034,7 @@ $\sem{\word{scored\/}} = \set{\tuple{\world{S}, \playera},
     \\
     \speakerOne
     &
-    \scalarspeaker{0}{0}{1}{.99}{0}{.01}{.5}{.5}{0}
+    \scalarspeaker{0}{0}{1}{.99}{0}{.01}{.33}{.67}{0}
     &
     \scalarspeaker{0}{0}{1}{.99}{0}{.01}{0}{.99}{.01}
     &
@@ -1076,6 +1079,8 @@ $\sem{\word{scored\/}} = \set{\tuple{\world{S}, \playera},
   \label{fig:simplescalar}
 \end{figure}
 
+\marginnote{Added a note, at the end of the paragraph, about what that probability means. Perhaps this needs its own paragraph, but I am wary of too much methodological hand-wringing --- such prose can be the hardest of all on readers.}
+
 To keep the example compact, we let
 $\Refine(\word{Player A}) = \set{\sem{\word{Player A}}}$. Since
 \word{aced} already denotes a singleton set, it has no space for
@@ -1090,8 +1095,10 @@ states is flat in this example, so this calculation just evenly
 divides the probability mass over the true states. The pragmatic
 speaker responds to this agent. Finally, our uncertainty listener sums
 over these three speakers, achieving a scalar implicature: hearing
-\word{Player~A scored} leads this listener to assume that the state is
-\world{S}.
+\word{Player~A scored} leads this listener to assume that the most
+probable state is \world{S}, and if this listener is forced to make a
+categorical decision about the intended meaning of the utterance, it
+would chose this enriched construal.
 
 Lexical uncertainty is not required to achieve this result. If we
 allow no meanings to be refined, then we deal with the singleton set
@@ -1122,7 +1129,7 @@ generating implicatures based on the principle that marked forms
 signal marked meanings and unmarked forms signal unmarked meanings
 \citep{McCawley78,Horn84,Blutner98,Levinson00}.
 
-\marginnote{This paragraph and the next are new, as is \figref{fig:sauerland}. They are an attempt to answer some of R3's concerns about ``global'' implicature.}
+\marginnote{This para and the next are new, as is \tabref{fig:sauerland}. They seel to answer R3's concerns about ``global'' implicature.}
 
 The lexical uncertainty aspects of the model are a rich source of
 implicatures, and they are the key to achieving local implicatures of
@@ -1145,7 +1152,7 @@ alternative messages that the speaker might have used is comprehensive
 in that it fully crosses the alternatives for \word{some} with the
 alternatives for \word{or}.
 
-As \figref{fig:sauerland} shows, our model suffices to achieve this
+As \tabref{tab:sauerland} shows, our model suffices to achieve this
 even with a fixed lexicon. Here, a world-type specification like
 \world{s$_{1}$c} means that player A made only shot~1 and cheered,
 \world{s$_{1}$s$_{2}$c} means that Player~A made both shot~1 and
@@ -1156,29 +1163,32 @@ $\Messages$ so that it covers the space that
 \citeauthor{Sauerland01}. Allowing lexical refinements, as in the full
 version of our model, strengthens the relevant inferences without
 changing the qualitative pattern seen in
-\figref{fig:sauerland}.)\footnote{There is one unnatural aspect of the
-  simulation in \figref{fig:sauerland}: it does not allow the speaker
+\tabref{tab:sauerland}.)\footnote{There is one unnatural aspect of the
+  simulation in \tabref{tab:sauerland}: it does not allow the speaker
   to be uncertain about the state space, whereas disjunction is
   naturally used in situations where the speaker has only partial
   information even at the level of granularity given by the
   world-types in $\States$. This results in predicted overlap between
   \word{Player~A hit some shot or cheered} and \word{PlayerA hit some
     shot}. For a version of the model that allows for the requisite
-  sort of uncertainty, we refer to \citealt{Potts:Levy:2015}.}
+  sort of uncertainty by closing the state space under joins, we refer
+  to \citealt{Potts:Levy:2015}.}
   
-\begin{figure}[tp]
+\begin{table}[tp]
   \centering
-  \begin{tabular}[c]{ *{9}{r} }
+  \renewcommand{\arraystretch}{1.05}
+  \setlength{\tabcolsep}{8pt}
+  \begin{tabular}[c]{l *{8}{r} }
     \toprule
     & \world{--} & \world{c} & \world{s$_{1}$} & \world{s$_{2}$} & \world{s$_{1}$c} & \world{s$_{2}$c} & \world{s$_{1}$s$_{2}$} & \world{s$_{1}$s$_{2}$c}\\
     \midrule
-    \word{Player~A cheered}                    &    .0 &   \graycell{.42} &    .0 &    .0 &   .23 &   .23 &    .0 &   .12\\
-    \word{PlayerA hit some shot}               &    .0 &    .0 &    \graycell{.3} &    \graycell{.3} &   .09 &   .09 &   .18 &   .04\\
-    \word{Player~A hit some shot or cheered}   &    .0 &   .14 &   \graycell{.26} &   \graycell{.26} &   .07 &   .07 &   .16 &   .04\\
-    \word{PlayerA hit some shot and cheered}   &    .0 &    .0 &    .0 &    .0 &    \graycell{.4} &    \graycell{.4} &    .0 &   .21\\
-    \word{PlayerA hit every shot or cheered}   &    .0 &   .28 &    .0 &    .0 &   .15 &   .15 &   \graycell{.33} &   .08\\
-    \word{Player~A hit every shot and cheered} &    .0 &    .0 &    .0 &    .0 &    .0 &    .0 &    .0 &    \graycell{1} \\
-    $\nullmsg$ &   .99 &    .0 &    .0 &    .0 &    .0 &    .0 &    .0 &    .0\\
+    \word{Player~A cheered}                    &    0 &   \graycell{.42} &    0 &    0 &   .23 &   .23 &    0 &   .12\\
+    \word{Player~A hit some shot}               &    0 &    0 &    \graycell{.3} &    \graycell{.3} &   09 &   09 &   .18 &   04\\
+    \word{Player~A hit some shot or cheered}   &    0 &   .14 &   \graycell{.26} &   \graycell{.26} &   07 &   07 &   .16 &   04\\
+    \word{Player~A hit some shot and cheered}   &    0 &    0 &    0 &    0 &    \graycell{.4} &    \graycell{.4} &    0 &   .21\\
+    \word{Player~A hit every shot or cheered}   &    0 &   .28 &    0 &    0 &   .15 &   .15 &   \graycell{.33} &   08\\
+    \word{Player~A hit every shot and cheered} &    0 &    0 &    0 &    0 &    0 &    0 &    0 &    \graycell{1} \\
+    $\nullmsg$ &   \graycell{1} &    0 &    0 &    0 &    0 &    0 &    0 &    0\\
     \bottomrule
   \end{tabular}
   \caption{Nested scalar terms. We assume that there are just two
@@ -1191,9 +1201,8 @@ changing the qualitative pattern seen in
     player did not make all shots and did not both make shots and
     cheered. This inference derives solely from competitions between
     available messages. Lexical uncertainty only strengthens the basic
-    pattern.}
-  \label{fig:sauerland}
-\end{figure}
+    pattern.}\label{tab:sauerland}
+\end{table}
 
 Let's now look at a larger and more complex scenario, one that
 interacts lexical uncertainty with message competitions like the above
@@ -1274,17 +1283,11 @@ pragmatic enrichment of the scalar term in the scope of the negative
 quantifier. As we noted in \secref{sec:implicature}, it has long been
 assumed that scalar items in such environments fail to give rise to
 implicatures. \citet{Chemla:Spector:2011} address this question
-empirically, finding in their experiment low but non-negligible rates of local
-enrichment in negative environments. We too treat this as an
-empirical question; in \secref{sec:exp1}, we present evidence that
+empirically, finding in their experiment low but non-negligible rates
+of local enrichment in negative environments. We too treat this as an
+empirical question; in \secref{sec:binary}, we present evidence that
 local enrichments of this sort are indeed salient possibilities for
 humans.
-
-This completes our overview of the compositional lexical uncertainty
-model. We now to turn to our human-subjects experiments, where we show
-both that embedded implicatures seem to be real and that the above
-model achieves excellent fits with human judgment patterns for such
-sentences.
 
 \begin{table}[t]
   \centering
@@ -1293,7 +1296,7 @@ sentences.
   %
   % Lexica: 2,086,465
   %
-  \begin{tabular}[c]{r *{9}{r} }
+  \begin{tabular}[c]{l *{9}{r} }
     \toprule
     & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} & \world{AA}\\
     \midrule
@@ -1321,7 +1324,7 @@ sentences.
   %
   % Lexica: 476
   %
-  \begin{tabular}[c]{r *{9}{r} }
+  \begin{tabular}[c]{l *{9}{r} }
   \toprule
     & \world{NN} & \world{NS} & \world{NA} & \world{SN} & \world{SS} & \world{SA} & \world{AN} & \world{AS} & \world{AA}\\
     \midrule
@@ -1344,78 +1347,153 @@ sentences.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Experiment: Scalars under quantifiers}\label{sec:exp1}
+\section{Prior experimental work}\label{sec:lit}
 
-With our experiment, we sought to obtain a clearer picture of the
-availability of enriched inferences for scalar terms embedded below
-quantifiers. We told participants that they were helping to train an
-automated sportscasting system and asked them to make judgments about
-sentences in the context of displays like \figref{fig:exp1}.  This
-cover story was designed to ensure that implicatures are relevant,
-that is, worth calculating where available
-(\seccitealt{Chemla:Spector:2011}{3.1};
-\citealt{Clifton:Dube:2010}). Our goal was to better understand the
-extent to which certain pragmatic inferences are available, so we
-sought out a scenario that would be maximally favorable to
-them.\footnote{For studies aimed at understanding the
-  prevalence of implicatures, see
-  \citealt{Paris:1973,Hendriks-etal:2009}.}
+\marginnote{This material was extracted from the previous section and greatly expanded. Essentially all the prose is new.}
 
-Our design builds directly on previous studies by
-\citet{Geurts:Pouscoulous:2009} and \citet{Chemla:Spector:2011}, and
-there is an obvious correspondence between their geometric shapes and
-our tournament displays. However, our experiment is not a simple
-reproduction of theirs. Three major differences are worth
-highlighting. First, previous experiments in this area have used
-abstract displays. Together with the inevitable complexity
-of the sentences involved, this seems likely to be cognitively
-demanding in ways that could affect the stability and reliability of
-the responses (for discussion, see \citealt{Clifton:Dube:2010}). Our
-more naturalistic displays arguably place fewer cognitive demands on
-participants, allowing them to concentrate on how well the sentences
-identify the world.  Second, \citeauthor{Chemla:Spector:2011} used
+The illustrative examples in the previous section beging to show that
+our compositional lexical uncertainty model naturally generates local
+enrichments. Thus, the question of whether listeners actually make
+such inferences is extremely pressing. We now begin to pursue this
+question directly. The present section reviews the prior literature in
+this area, which provides clear and fairly comprehensive guidance.
+
+The pioneering paper in this area is
+\citealt{Geurts:Pouscoulous:2009}. Their experiments 3 and 4 asked
+participants to provide truth-value judgments for sentences
+interpreted in abstract visual scenes consisting of shapes connected
+by lines. The target sentences included weak scalar terms in upward,
+downward, and non-monotone contexts that are comparable in relevant
+respects to the examples reviewed in \secref{sec:implicature} above.
+\citeauthor{Geurts:Pouscoulous:2009} found only negligible rates of
+inferences consistent with local enrichment. These findings stimulated
+a number of responses commenting on the prevalence of local enrichment
+and its theoretical import \citep{Ippolito:2010,Sauerland:2010}. The
+two responses that are most relevant for our purposes are those of
+\citet{Clifton:Dube:2010} and \citet{Chemla:Spector:2011}.
+
+\citet{Clifton:Dube:2010} argue that the experimental setting used by
+\citeauthor{Geurts:Pouscoulous:2009} was prone to understating the
+rate of implicatures, and they sought to address this with a design in
+which participants chose, from a set of scenes, which was the better
+match for the prompt sentence. In this setting, participants tended to
+chose the scene consistent with local enrichment. The design is a
+natural choice in the context of a pragmatic model like ours, since it
+places participants in a role comparable to that of one of our
+listener agents. However, the method was criticized by
+\seccitet{geurts-vantiel:2013:scalar}{5.1} and \citet{vanTiel:2014} on
+the grounds that, for the examples involving monotone quantifiers, the
+inferences are better explained in terms of the typicality effects of
+the quantifiers involved (see also \citealt{Degen:Tanenhaus:2014}).
+Roughly speaking, the claim is that the typicality structure of
+\word{some A are B} favors situations in which just shy of half the
+A's are B's, and experimental designs (like
+\citeauthor{Clifton:Dube:2010}'s) that allow participants to express
+extra-truth-conditional preferences will be sensitive to this
+typicality structure. While we think that typicality is an important
+component of many implicatures,\footnote{\posscitet{Levinson00}
+  I-implicatures involve inferences from a general term or statement
+  to one of its salient or proptypical subkinds. In the context of a
+  generalized theory of scalar (partial-order) inference like that of
+  \citet{Hirschberg85}, this can be seen as a scalar inference guided
+  by prior expectations.} we see the value in trying to neutralize its
+effects in the context of studying local enrichment.
+
+\citet{Chemla:Spector:2011} followed \citet{Geurts:Pouscoulous:2009}
+in asking participants to interpret quantified sentences in abstract
+geometric scenes, but they sought to simplify those scenes (see
+\pgcitealt{geurts-vantiel:2013:scalar}{31} for criticisms of this
+presumption), and they allowed subjects to provide graded truth-value
+judgments on a scale between `Yes' and `No'. The results experiments
+were consistent with very high rates of local enrichment in upward and
+non-monotone environments, and even yielded suggestive evidence for
+local enrichment in downward monotone environments. These findings
+stand in stark contrast to those of \citet{Geurts:Pouscoulous:2009}.
+
+However, there are at least three features of the experimental design
+that might have exaggerated the rates of judgments consistent with
+local enrichment \citep{geurts-vantiel:2013:scalar}. First, the graded
+response categories mean that, for the monotone cases, typicality
+effects might have played a role. Second, the visual scenes were
 wheel-like displays in which lines extend from the vertex to the
-perimeter. There are potentially many ways this state can be drawn,
-and some might be more iconic than others. With our displays, it was
-computationally straightforward to show participants every relevant
-variant of the condition, which allowed us to factor out this kind of
-variation in our analyses.  Third, \citeauthor{Chemla:Spector:2011}
-used a within-subjects design: the individual participants judged
-every sentence in every context. This means that subjects could draw
+perimeter. There are potentially many ways this state can be drawn.
+Some might be more iconic than others, and some might create spurious
+patterns and salience contrasts that could affect linguistic inference
+in unmeasured ways. Third, \citeauthor{Chemla:Spector:2011} used a
+within-subjects design: the individual participants judged every
+sentence in every context. This means that subjects could draw
 comparisons across different conditions, which creates opportunities
 for them to register comparative judgments involving the experimental
 contexts itself, rather than relying solely on their linguistic
-intuitions. We hypothesized that a between-subjects design would avoid
-these potential complications.
+intuitions.
+
+We draw three major lessons from the above studies and debates. First,
+we should seek our simple, naturalistic displays. Previous experiments
+in this area have used abstract displays. Together with the inevitable
+complexity of the sentences involved, this seems likely to be
+cognitively demanding in ways that could affect the stability and
+reliability of the responses. Second, scalar response categories might
+encourage typicality inferences that could cloud the implicature
+picture; this might be a concern only for monotone environments, but
+we can hope to avoid the issue by restricting to just truth-value
+responses. Third, to the greatest extent possible, we should seek a
+design that supports analyses in which we can marginalize out the
+idiosynacracies of particular displays, to avoid artifacts of salience
+or contrast that could stimulate responses that are consistent with
+implicature calculation without requiring it.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Experiment: Scalars under quantifiers}\label{sec:binary}
+
+\marginnote{Revised framing to connect with the prior lit discussion.}
+
+We now present our main experiment involving \word{some} in quantified
+environments. We told participants that they were helping to train an
+automated sportscasting system and asked them to provide truth-value
+judgments about sentences in the context of displays like
+\figref{fig:binary:materials}. This cover story was designed to
+ensure that implicatures are relevant, that is, worth calculating
+where available (\seccitealt{Chemla:Spector:2011}{3.1};
+\citealt{Clifton:Dube:2010}). Our goal was to better understand the
+extent to which certain pragmatic inferences are available, so we
+sought out a scenario that would be maximally favorable to
+them.\footnote{For studies aimed at understanding the prevalence of
+  implicatures, see \citealt{Paris:1973,Hendriks-etal:2009}.}
 
 %=====================================================================
 
 \subsection{Methods}
 
+\marginnote{Updates throughout this section for the sake of the new design.}
+
 \subsubsection{Participants}
 
-The experiment had 300 participants, all recruited with Amazon's
+The experiment had 800 participants, all recruited with Amazon's
 Mechanical Turk. No participants or responses were excluded.
 
 \subsubsection{Materials}
 
 \begin{figure}[t]
   \centering
-  \framebox{\includegraphics[scale=1]{fig/experiment-display-binary}}
+  \framebox{\includegraphics[width=0.8\textwidth]{fig/experiment-display-binary}}
   \caption{Experiment display.}
-  \label{fig:exp1}
+  \label{fig:binary:materials}
 \end{figure}
 
-We generated displays like those in \figref{fig:exp1}. In each
-display, each of the three players, A, B, and C, has taken 12
+We generated displays like those in \figref{fig:binary:materials}. In
+each display, each of the three players, A, B, and C, has taken 12
 basketball shots (a number small enough for visual display but outside
 of the subitizing range and thus less likely to introduce competitions
 from cardinal determiners like \word{three shots};
 \citealt{Degen:Tanenhaus:2014}). The shots were divided into two
-piles, labeled `baskets' (green) and `misses' (red).  The colors of
-the players clothes were set randomly from a palette of 14 colors.
+piles, labeled `baskets' (green) and `misses' (red).  For our target
+items, the player either made all 12 baskets (Player~A in
+\figref{fig:binary:materials}), missed all 12 baskets (Player~B), or
+made six and missed 6 (Player~C). The colors of the players clothes
+were set randomly from a palette of 14 colors.
 
-Target sentences describing the displays were defined as follows:
+The target sentences describing the displays were defined as follows:
 %
 \begin{examples}
 \item\label{expmsgs} 
@@ -1438,9 +1516,11 @@ Target sentences describing the displays were defined as follows:
 Following previous studies, we put a bound pronoun in the embedded
 quantifier to try to ensure that the subject took scope over the
 object. The partitive forms seem likely to further encourage
-implicature calculation \citep{reed:1991-interpreting,Grodner-etal:2010,degen:inpress-SP}. We chose the verb
-\word{hit} over the slightly less marked verb \word{make} to try to
-avoid the sense of `make' as in `take' (consistent with missing).
+implicature calculation
+\citep{reed:1991-interpreting,Grodner-etal:2010,degen:inpress-SP}. We
+chose the verb \word{hit} over the slightly less marked verb
+\word{make} to try to avoid the sense of `make' as in `take'
+(consistent with missing).
 
 For the target items, there were nine different conditions,
 corresponding to the worlds in \eg{conds}, in the notation we've been
@@ -1466,131 +1546,140 @@ its three orders approximately the same number of times.
 
 After reading our consent form, participants were given the following
 cover story:
-
-\begin{quote}
+%
+\begin{examples}
+\item\label{coverstory}
   We are trying to train an automated sportscasting system to generate
   color commentary on simple competitions. We'd like you to make
   judgments about the quality of the comments it generates. We'll use
   these ratings to train our system further.
-\end{quote}
+\end{examples}
 
 After reading the cover story and some instructions, participants were
-presented with three training items, designed to ensure that participants
-understood the cover story, displays, and sentences. They then judged 32
-sentences, divided into nine target sentences and 23 fillers. The
-design was between-subjects: no experimental participant judged the same sentence twice. 
+presented with three training items, designed to ensure that
+participants understood the cover story, displays, and sentences. They
+then judged 32 sentences, divided into nine target sentences and 23
+fillers. The design was between-subjects: no experimental participant
+judged the same sentence twice.
  
-Each sentence received a total of 300 responses. For the target
-sentences, each sentence--world pair received between 19 and 44
-responses (mean 30); this variation resulted from randomization of the
+Each sentence received a total of 800 responses. For the target
+sentences, each sentence--world pair received between 58 and 103
+responses (mean 80); this variation resulted from randomization of the
 assignment of worlds to sentences.
 
 Target sentences were presented below displays. Participants were
-asked to evaluate sentences on a seven-point Likert scale ranging from
-`Bad description' to `Good description'. Our rationale for using this
-scale is that it allows enough space for participants to both register
-a truth-value assessment and convey information about the quality of
-the report. (In this sense, our participants acted as listeners who
-got to observe the speaker's state and assess the extent to which the
-speaker succeeded in conveying that state with her utterance.)
+asked to evaluate sentences as either true or false. In this sense,
+our participants acted as listeners who got to observe the speaker's
+state and assess the extent to which the speaker succeeded in
+conveying that state with her utterance. We also conducted a variant
+of the experiment in which participants gave responses on a
+seven-point Likert scale ranging from `Bad description' to `Good
+description', to see whether this would reveal information about the
+quality of the report. These two versions of the experiment led to
+qualitatively identical outcomes. See \appendixref{app:likert} for
+details.
 
-All the materials and response data for the experiment are available at
-the website for this paper.
+All the materials and response data for the experiment are available
+at the website for this paper.
 
 %=====================================================================
 
-\subsection{Results}\label{sec:exp1:results}
+\subsection{Results}\label{sec:binary:results}
 
-\Figref{fig:exp1-results} summarizes the responses by target sentence
-and the world in which it was evaluated. Overall, participants made
-judgments that accurately reflected whether sentences were true or
-false; accuracy was especially clear for the sentences in the first
-two columns, which do not admit pragmatic enrichment. For these cases,
-the average ratings are very close to 1 (the lowest
-value) where the sentence is false, and the ratings average above 6
-(the second highest value) where the sentence is true. The pattern of
-judgments in these conditions thus suggests that our method is
-appropriate for measuring participants' interpretations.\footnote{The
-  only exception to this general pattern is the sentence \word{No
-    player hit none of his shots} (bottom middle), which received
-  lower than normal ratings in all its true conditions and relatively
-  high ratings for \world{NNN}, where it is false on its literal
-  construal. We hypothesize that this pattern reflects a negative
-  concord construal, on which the embedded term is interpreted as
-  equivalent to \word{any of his shots}, creating a meaning that is
-  true only in \world{NNN}. Negative concord of this sort is
-  productive in many dialects of English and understandable in all or
-  nearly all of them. This likely created uncertainty about the
-  intended meaning of the sentence, leading participants to disfavor
-  it in general.}
+\Figref{fig:binary:results} summarizes the responses by target
+sentence and the world in which it was evaluated. Overall,
+participants made judgments that accurately reflected whether
+sentences were true or false; accuracy was especially clear for the
+sentences in the first two columns, which do not admit pragmatic
+enrichment. For these cases, the responses were essentially
+categorical. This pattern suggests that our method is appropriate for
+measuring participants' interpretations.\footnote{The only exception
+  to this general pattern is the sentence \word{No player hit none of
+    his shots} (bottom middle). The percentage of `True' responses is
+  lower than normal in all its true conditions and relatively high for
+  \world{NNN}, where it is false on its literal construal. We
+  hypothesize that this pattern reflects a negative concord construal,
+  on which the embedded term is interpreted as equivalent to \word{any
+    of his shots}, creating a meaning that is true only in
+  \world{NNN}. Negative concord of this sort is productive in many
+  dialects of English and understandable in all or nearly all of
+  them. This likely created uncertainty about the intended meaning of
+  the sentence, leading participants to disfavor it in general.}
 
 \begin{figure}[!ht]
   \centering
   %\includegraphics[width=0.85\textwidth]{fig/basketball-pilot-2-11-14-results-parsed}
   \includegraphics[width=0.85\textwidth]{fig/basketball-binary-version-pilot-4-1-15-results-parsed}
   \caption{Mean ratings by sentence with bootstrapped 95\% confidence intervals.}
-  \label{fig:exp1-results}
+  \label{fig:binary:results}
 \end{figure}
+
+\marginnote{Revisions from here to the end of the section, just updating p-values and changing the prose to reflect the new response categories.}
 
 We now turn to the critical conditions, reporting significance levels
 for key theoretical comparisons based on the nonparametric
-Mann-Whitney U test. Responses for \target{every}{some} (upper right)
-were consistent with the hypothesis that \emph{some} is locally
-enriched in this condition. In particular, this sentence received its
-highest ratings in the \world{SSS} world. As we reviewed in
-\secref{sec:implicature}, example \eg{everysome-sem}, in order to
-count as a complete report in this world, this sentence requires
-either local enrichment or a Gricean calculation with auxiliary
-premises. Worlds \world{SSA} and \world{SAA} received the next highest
-ratings (lower than \world{SSS}; both at $p<0.001$), and of all the
-literally true worlds for this condition world \world{AAA} received
-the lowest rating (lower than \world{SSA} and \world{SAA}; both at
-$p<0.05$).  Only a simple Gricean calculation is required to account
-for the higher rating of \world{SSA} and \world{SAA} compared with
-\world{AAA}: in the latter world, the salient alternative \word{every
-  player hit all of his shots} is a more complete description.
+Mann--Whitney U test. Responses for \target{every}{some} (upper right)
+were consistent with the hypothesis that \word{some} is locally
+enriched in this condition. In particular, this sentence received the
+greatest percentage of `True' responses in the \world{SSS} world. As
+we reviewed in \secref{sec:implicature}, example \eg{everysome-sem},
+in order to count as a complete report in this world, this sentence
+requires either local enrichment or a Gricean calculation with
+auxiliary premises. Worlds \world{SSA} and \world{SAA} received the
+next highest percentages of `True' responses (lower than \world{SSS},
+$p = 0.09$ and $p = 0.04$, respectively), and of all the literally
+true worlds for this condition world \world{AAA} received the lowest
+percentage of `True' responses (lower than \world{SSA} and
+\world{SAA}; both at $p < 0.01$).  Only a simple Gricean calculation
+is required to account for the higher rate of `True' for \world{SSA}
+and \world{SAA} compared with \world{AAA}: in the latter world, the
+salient alternative \word{every player hit all of his shots} is a more
+complete description.
 
 Nevertheless, \target{every}{some} is not a strong test of the
 presence of local readings, since the entailment relations between the
 readings introduce some indeterminacy into the analysis. In
 particular, since the local enrichment entails the literal reading, we
-can't be sure whether the high ratings for \world{SSS} derive entirely
-from the availability of a local enrichment: a literal construal would
-suffice to make the sentence true. Furthermore, as discussed in
-\secref{sec:implicature} and in \citeauthor{Chemla:Spector:2011},
-\target{every}{some} is of limited utility in distinguishing
-theoretical proposals anyway. It is the \target{exactly one}{some}
-sentence that allows us to probe most confidently for local readings.
+can't be sure whether the `True' responses for \world{SSS} derive
+entirely from the availability of a local enrichment: a literal
+construal would suffice to make the sentence true. Furthermore, as
+discussed in \secref{sec:implicature} and in
+\citeauthor{Chemla:Spector:2011}, \target{every}{some} is of limited
+utility in distinguishing theoretical proposals anyway. It is the
+\target{exactly one}{some} sentence that allows us to probe most
+confidently for local readings.
 
 The response pattern for the critical item \target{exactly one}{some}
-is given in the middle right of \figref{fig:exp1-results}. The highest
-ratings are in the \world{NNS} condition, where it is true under its
-literal and local enrichment construals. However, it also received
-high ratings in the \world{NSA} and \world{SAA} worlds (both higher at
-$p<0.05$ than in \world{SSA}, the world yielding the highest rating
-among those in which the sentence is false both literally and under
-all possible enrichments), where it is true only with local enrichment
+is given in the middle right of \figref{fig:binary:results}. The
+percentage of `True' responses is for the \world{NNS} condition, where
+it is true under its literal and local enrichment construals. However,
+it was also frequently judged true in the \world{NSA} and \world{SAA}
+worlds (both higher at $p < 0.001$ than in \world{SSA}, the world
+yielding the highest rating among those in which the sentence is false
+both literally and under all possible enrichments). For \world{NSA}
+and \world{SAA}, the sentence is true only with local enrichment
 (because two players hit at least some of their baskets in these
 worlds, ruling out the literal construal).  We note also that its more
 strictly truth-conditional interpretation seems to be salient as well,
-as it was rated highly on average in the \world{NNA} condition.
+as it was generally perceived to be true in the \world{NNA} condition.
 
 Finally, the pattern for \target{no}{some} also suggests a non-trivial
-amount of local enrichment: though \world{NNN} received the highest
-average ratings, indicating a preference for a literal construal, the
-ratings for \world{NNA}, \world{NAA}, and \world{AAA} are fairly high.
-(The confidence intervals are wide, but a pooled comparison of
-\set{\world{NNS},\world{NSA}} with
-\set{\world{NNA},\world{NAA},\world{AAA}} shows the latter set to be
-significantly higher-rated; $p = 0.006$.) These are the worlds in which
-no player hit only some of his shots, the local enrichment. This
-finding seems consistent with the low but non-negligible rates of
-local enrichment that \seccitet{Chemla:Spector:2011}{4.4.4} report for
-this quantifier pair. One qualification we should add here is that our
-sentence is arguably somewhat unnatural in that it places \word{some},
-a positive polarity item \citep{Baker70,Israel96}, in the scope of a
-negative quantifier. The binding relation between the subject and the
-pronoun \word{his} in the embedded phrase should force a surface-scope
+amount of local enrichment: though \world{NNN} produced the highest
+rate of `True' responses, indicating a preference for a literal
+construal, the `True' rates for \world{NNA}, \world{NAA}, and
+\world{AAA} are consistently higher than for the most favored false
+worlds \word{NNS} and \world{NSA}; all pairwise significance tests for
+the cross-product of $\set{\world{NNS}, \world{NSA}}$ and
+$\set{\world{AAA}, \world{NNA}, \world{NAA}}$ are significant at
+$p = 0.002$. These are the worlds in which no player hit only some of
+his shots, the local enrichment. This finding seems consistent with
+the low but non-negligible rates of local enrichment that
+\seccitet{Chemla:Spector:2011}{4.4.4} report for this quantifier
+pair. One qualification we should add here is that our sentence is
+arguably somewhat unnatural in that it places \word{some}, a positive
+polarity item \citep{Baker70,Israel96}, in the scope of a negative
+quantifier. The binding relation between the subject and the pronoun
+\word{his} in the embedded phrase should force a surface-scope
 reading, but we can't rule out the possibility that participants might
 have found an inverse-scope construal (`some shots are such that no
 player hit them') that took the scalar term out of the scope of the
@@ -1607,7 +1696,7 @@ the quantitative and qualitative patterns in our experimental data.
 
 %=====================================================================
 
-\subsection{Model assessment}
+\subsection{Model assessment}\label{sec:binary:assess}
 
 The pattern of data we observed is sufficiently precise and detailed
 that extracting its full theoretical value requires more than
@@ -1632,6 +1721,9 @@ context:
   \begin{examples}
   \item $\Domain = \set{\playera, \playerb, \playerc}$
   \item $\Worlds = $ the set in \eg{conds}
+
+    \marginnote{Added the missing null message to $\Messages$ -- thanks R1!}
+
   \item\label{expformulae} $\Messages =
     \setlength{\arraycolsep}{2pt}
     \set{
@@ -1639,12 +1731,14 @@ context:
       \begin{array}{l}        
         Q \in \set{\word{exactly one}, \word{every}, \word{no}}, \\
         S \in \set{\word{every}, \word{no}, \word{some}}
-      \end{array}}$
+      \end{array}} \cup \set{\nullmsg}$
   \item $\Costs(\nullmsg) = 5$; $\Costs(\msg) = 0$ for all $\msg \in \Messages{-}\set{\nullmsg}$  
   \item Flat state prior: $\StatePrior(w) = \StatePrior(w')$ for all $w, w' \in \Worlds$
   \item Flat lexicon prior: $\LexPrior(\Lex) = \LexPrior(\Lex')$ for all $\Lex, \Lex' \in \LexSet$
   \end{examples}
 \end{examples}
+
+\marginnote{Note about the null message cost, with a link to the new appendix.}
 
 The domain $\Domain$ and worlds $\Worlds$ come directly from our human
 experiment. Similarly, the set of messages $\Messages$ corresponds to
@@ -1654,7 +1748,9 @@ message). As noted in \secref{sec:model}, we do not have empirical
 estimates for these values; though better fits to the human data can
 be achieved by adding assumptions about them, this risks overfitting
 to the particular data we have and thus overstating the true accuracy
-of the models.
+of the models. The value $\Costs(\nullmsg) = 5$ was chosen
+arbitrarily; \appendixref{app:paramexplore} explores a wide range of
+values for it.
 
 The models we consider are defined as follows:
 %
@@ -1693,6 +1789,7 @@ non-trivial refinements. We saw in connection with
 \tabref{tab:subjects} and \tabref{tab:subjects-ALTstyle} that there
 might be empirical value in greatly constraining the space of
 refinements.
+\marginnote{Slight elaboration to address reviewer questions about the assessments.}
 
 We employ three methods of comparison: Pearson's correlation
 coefficient, which measures the linear correlation between the human
@@ -1704,24 +1801,29 @@ human responses, which summarizes the distance of the predictions from
 the human behavior. The use of these three measures allows us to
 detect models that reproduce quantitative correspondence (Pearson
 correlation), qualitative correspondence (Spearman correlation), and
-absolute fit between models and data.
+absolute fit between models and data. We find that the Spearman
+measure is often the most illuminating, since our fundamental goal is
+to reproduce the preference orderings revealed by the human responses,
+but the three measures together yield a succinct multidimensional
+summary of how the models fare.
+
+\todo{Everyone except Chris had great ideas about how to explicate and justify our link between model probabilities and human responses. Those could go here!}
 
 Our model predictions are conditional probability distributions over
 states given messages, and hence constrained to be in the range
-$[0,1]$ and to sum to $1$. In contrast, our human responses are Likert
-values in $\set{1,2,3,4,5,6,7}$ with no constraint that they sum to
-any particular value. To align these values, we rescale the human
-responses: if $x^{s}$ is the $10$-dimensional vector of mean human
-responses for target sentence $s$, then each $p^{s}$ is the vector of
-normalized values for that sentence, defined so that
-$p^{s}_{i} = (x^{S}_{i}-1)/\sum_{j=1}^{10}(x^{S}_{j}-1)$. This simply
-normalizes the Likert responses into a probability distribution; we
-subtract $1$ because the lowest Likert value is $1$. The one
-noteworthy thing about this calculation is that, because it is done on
-a per-sentence basis, it is not a simple linear rescaling, and so it
-affects all of our assessment metrics when applied to multiple
-sentences at once. However, we regard it as the minimal viable
-linking hypothesis relating our model with our experimental data.
+$[0,1]$ and to sum to $1$. In contrast, our human responses are binary
+true/false judgments. To align these values, we rescale the human
+responses: if $x^{s}$ is the $10$-dimensional vector of
+percentage-true human responses for target sentence $s$, then each
+$p^{s}$ is the vector of normalized values for that sentence, defined
+so that $p^{s}_{i} = x^{s}_{i}/\sum_{j=1}^{10}(x^{s}_{j})$. This
+simply normalizes the responses into a conditional probability
+distribution over states given messsages. The one noteworthy thing
+about this calculation is that, because it is done on a per-sentence
+basis, it is not a simple linear rescaling, and so it affects all of
+our assessment metrics when applied to multiple sentences at
+once. However, we regard it as the minimal viable linking hypothesis
+relating our model with our experimental data.
 
 \begin{figure}[!t]
   \centering
@@ -1753,17 +1855,17 @@ enrichments leading to acceptability for \world{NNA}, \world{NAA}, and
     \toprule
     & Pearson & Spearman & MSE \\
     \midrule
-    Literal semantics         & .94 & .76 & .0079\\
-    Fixed-lexicon pragmatics  & .92 & .75 & .0094\\
-    Unconstrained uncertainty & .93 & .79 & .0052\\
-    Neo-Gricean uncertainty   & \graycell{.95} & \graycell{.80} & \graycell{.0046}\\
+    Literal semantics         & .94 & .76 & .0065 \\
+    Fixed-lexicon pragmatics  & .92 & .76 & .0079 \\
+    Unconstrained uncertainty & .95 & .79 & .0038 \\
+    Neo-Gricean uncertainty   & \graycell{.96} & \graycell{.81} & \graycell{.0034}\\
     \bottomrule   
   \end{tabular}
   \caption{Overall assessment.}
-  \label{tab:overall}
+  \label{tab:binary:overall}
 \end{table}
 
-\Tabref{tab:overall} summarizes our overall quantitative
+\Tabref{tab:binary:overall} summarizes our overall quantitative
 assessment. All of the correlations are extremely high, and the MSE
 values are extremely low. This is reassuring about the general utility
 of all of these models for predicting human judgments. Comparing the
@@ -1787,10 +1889,10 @@ expectations based on the large illustrative example from
 lexically-driven approach to choosing refinements resulted in the best
 quantitative and qualitative pattern.
 
-The overall analysis given in \tabref{tab:overall} understates the
+The overall analysis given in \tabref{tab:binary:overall} understates the
 value of both uncertainty models when it comes to the distribution of
 embedded implicatures. Our target sentences provide relatively little
-space for pragmatic enrichment; in \figref{fig:exp1-results}, the left
+space for pragmatic enrichment; in \figref{fig:binary:results}, the left
 and middle columns essentially have only literal interpretations,
 leaving just the right column for our pragmatic models to
 shine. What's more, our qualitative review of
@@ -1839,10 +1941,10 @@ if paired with additional experiments for further validation.
     P & S & MSE & 
     P & S & MSE \\
     \midrule  
-    Literal       & \graycell{.98} &            .85 & \graycell{.0008} &            .77 &            .70 &            .0188 & \graycell{.91} &            .52 &            .0343 \\
-    Fixed-lexicon &            .93 &            .87 &            .0025 &            .79 &            .70 &            .0184 &            .91 &            .52 &            .0343 \\
-    Unconstrained &            .91 &            .85 &            .0035 & \graycell{.97} & \graycell{.92} & \graycell{.0010} &            .74 &            .49 &            .0089 \\
-    Neo-Gricean   &            .88 & \graycell{.89} &            .0066 &            .96 &            .89 &            .0029 &            .89 & \graycell{.88} & \graycell{.0042} \\
+    Literal       & \graycell{.99} &            .86 & \graycell{.0002} &            .80 &            .70 &            .0180 &            .88 &            .52 &            .0346 \\
+    Fixed-lexicon &            .93 &            .85 &            .0027 &            .80 &            .70 &            .0179 &            .88 &            .52 &            .0346 \\
+    Unconstrained &            .88 &            .84 &            .0043 & \graycell{.98} & \graycell{.94} & \graycell{.0007} &            .76 &            .57 &            .0097 \\
+    Neo-Gricean   &            .82 & \graycell{.88} &            .0087 &            .94 &            .87 &            .0036 & \graycell{.93} & \graycell{.89} & \graycell{.0028} \\
     \bottomrule
   \end{tabular}
   \caption{Assessment of crucial items. `P' = `Pearson'; `S' = `Spearman'.}
@@ -1907,13 +2009,229 @@ publicly available all the data and code associated with this paper in
 an effort to encourage these new strands of theory development and
 quantitative assessment.
 
-\begin{appendix}
-  \section{Parameter exploration}\label{app:paramexplore}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \section{Likert scale experiment}\label{app:likert}
+\begin{appendix}
+
+\section{Parameter exploration}\label{app:paramexplore}
+
+As we discussed in \secref{sec:agents}, the definition of our model
+naturally suggests at least two extensions: (i) a temperature
+parameter $\lambda$ modulating the speaker's inferences, and (ii)
+further iteration beyond the level of $\UncertaintyListener$. The full
+extended form of the model is defined as follows, again drawing on the
+objects and notational conventions established in \secref{sec:agents}:
+%
+\begin{examples}
+\item\label{agents-extended}
+  \begin{examples}
+  \item
+    $\listenerZero(\state \given \msg, \Lex) \propto \StatePrior(\state) \text{ if } \state \in \Lex(\msg), \text{ else } 0$
+
+  \item 
+    $\speakerOne(\msg \given \state, \Lex) \propto
+    \exp
+    \left(\lambda \left(
+      \log\listenerZero(\state \given \msg, \Lex)
+      - 
+      \Costs(\msg)\right)
+    \right)$
+    
+  \item\label{L} 
+    $\UncertaintyListener[1](\state \given \msg) 
+    \propto 
+    \StatePrior(\state)
+    \sum_{\Lex \in \LexSet}
+    \LexPrior(\Lex)
+    \speakerOne(\msg \given \state, \Lex)$
+
+  \item $\UncertaintySpeaker{k}(\msg \given \state) \propto
+    \exp
+    \left(\lambda \left(
+      \log\UncertaintyListener[k-1](\state \given \msg)
+      - 
+      \Costs(\msg)
+    \right)\right)$
+  \hfill (for $k > 1$)
+
+  \item $\UncertaintyListener[k](\state \given \msg) \propto \UncertaintySpeaker{k}(\msg \given \state) \StatePrior(\state)$
+    \hfill (for $k > 1$)
+  \end{examples}
+\end{examples}
+
+From the perspetive of this model, our decision to set $\lambda=1$ and
+focus on $\UncertaintyListener[1]$ might appear arbitrary.  In
+addition, even from the perspective of our simpler model, our decision
+to fix the cost of the null message at $5$ for all simulations and
+assessments was arbitrary. It is therefore worth exploring other
+settings for these hyper-parameters. To do this, we conducted a
+comprehensive grid search of the following values:
+%
+\begin{examples}
+\item
+  \begin{examples}
+  \item $\lambda$: $[0.1, 2]$ in increments of $.1$, and $[3,5]$ in increments of $1$
+  \item $\UncertaintyListener[k]$ for $k \in \set{1,2,3,4,5,6}$
+  \item $\Costs(\nullmsg) \in \set{0, 1, 2, 3, 4, 5, 6}$
+  \end{examples}
+\end{examples}
+%
+The grid search explores the full cross product of these values for
+each of our four models. For each setting, we conduct our standard
+model assessment against the data from our main (binary response)
+experiment. \Tabref{tab:grid} reports the best values for each of our
+four models, along with the minimal parameter settings that deliver
+those values. These results suggest that further iteration beyond
+$\UncertaintyListener[1]$ is not necessary \citep{Vogel-etal:2014},
+and that $\lambda=1$ is too aggressive. (The cost of the null message
+has a relatively small impact on the outcomes.) In addition, the
+Unconstrained refinements model appears more viable for these minimal
+settings; it consistently beats out the Neo-Gricean refinements,
+though only by a narrow margin.
+
+\begin{table}[H]
+  \centering
+  \setlength{\tabcolsep}{12pt}
+  \begin{tabular}[c]{ *{6}{r} }
+    \toprule
+    &&& $\Costs(\nullmsg)$ & $\lambda$ & $k$\\
+    \midrule
+    \multirow{3}{*}{Literal semantics} & Pearson & .94 &  &  & \\
+    & Spearman & .76 &   &  & \\
+    & MSE & .0065 &  &  & \\
+    \addlinespace[1ex]
+    \multirow{3}{*}{Fixed lexicon pragmatics} & Pearson & .93 & 1 & .1 & 1\\
+    & Spearman & .76 & 0 & .2 & 1\\
+    & MSE & .0069 & 1 & .1 & 1\\
+    \addlinespace[1ex]
+    \multirow{3}{*}{Unconstrained uncertainty} & Pearson & \graycell{.98} & 1 & .1 & 1\\
+    & Spearman & \graycell{.81} & 1 & .2 & 1\\
+    & MSE & \graycell{.0018} & 1 & .1 & 1\\
+    \addlinespace[1ex]
+    \multirow{3}{*}{Neo-Gricean uncertainty} & Pearson & .97 & 1 & .1 & 1\\
+    & Spearman & .80 & 1 & .1 & 1\\
+    & MSE & .0022 & 1 & .1 & 1\\
+    \bottomrule
+  \end{tabular}
+  \caption{Best models found in hyper-parameter exploration, as 
+    assessed against the binary-response experiment. 
+    The literal listener is not affected
+    by any of the parameters explored.}\label{tab:grid}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Likert-scale experiment}\label{app:likert}
+
+We also conducted a version of the binary-response experiment
+discussed in \secref{sec:binary} using a Likert-scale for the response
+catetories.  Our rationale for using this scale is that it allows
+enough space for participants to both register a truth-value
+assessment and convey information about the quality of the
+report. This appendix reports briefly on this experiment.  The two
+experiments yielded results that were identical in all important
+respects.
+
+\subsection{Methods}
+
+\subsubsection{Participants}
+
+The experiment had 300 participants, all recruited with Amazon's
+Mechanical Turk. No participants or responses were excluded.
+
+\subsubsection{Materials}
+
+The displays were identical to those in \figref{fig:exp-binary},
+generated by the same procedures, but with the binary response
+categories replaced with a seven-point Likert scale ranging from `Bad
+description' to `Good description'. The target sentences were the ones
+in \eg{expmsgs}, and the conditions were as in \eg{conds}. The same 23
+fillers were used.
+
+\subsubsection{Procedure} 
+
+After reading our consent form, participants were given the cover
+story in \eg{coverstory}, and then they completed the same three
+training items as were used in our main experiment. The design was
+again between-subjects.  Each sentence received a total of 300
+responses. For the target sentences, each sentence--world pair
+received between 19 and 44 responses (mean 30); this variation
+resulted from randomization of the assignment of worlds to sentences.
+
+%=====================================================================
+
+\subsection{Results}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig/basketball-pilot-2-11-14-results-parsed}
+  \caption{Likert-scale experimental results. Mean ratings by sentence with bootstrapped 95\% confidence intervals.}
+  \label{fig:likert:results}
+\end{figure}
+
+\Figref{fig:likert:results} summarizes the responses by target sentence
+and world of evaluation. The results mirror those
+seen in \figref{fig:binary:results} in all important respects.
+%
+For our key theoretical comparisons, we again report significance
+levels using the nonparametric Mann--Whitney U test. In the
+\target{every}{some} case, the highest ratings came in the \world{SSS}
+world. Worlds \world{SSA} and \world{SAA} received the next highest
+ratings (lower than \world{SSS}; both at $p<0.001$). Of all the
+literally true worlds, \world{AAA} received the lowest rating (lower
+than \world{SSA} and \world{SAA}; both at $p<0.05$).
+%
+For the \target{exactly one}{some} item, the highest ratings are again
+in the \world{NNS} condition, where it is true under its literal and
+locally enriched construals, but it also received high ratings in the
+two worlds where it is true only with local enrichment: \world{NSA}
+and \world{SAA}, which were both higher at $p<0.05$ than in
+\world{SSA}, the world yielding the highest rating among those in
+which the sentence is false both literally and under all possible
+enrichments. As before, the strictly truth-conditional interpretation
+seems to be salient as well.
+%
+Finally, we also find evidence for local enrichment under
+\target{no}{some}. Condition \world{NNN} received the highest average
+ratings, suggesting a preference for a literal construal, but the
+ratings are high for the conditions requiring local enrichment:
+\world{NNA}, \world{NAA}, and \world{AAA}. The confidence intervals
+are wide, but a pooled comparison of \set{\world{NNS},\world{NSA}}
+with \set{\world{NNA},\world{NAA},\world{AAA}} shows the latter set to
+be significantly higher-rated; $p = 0.006$.
+
+%=====================================================================
+
+\subsection{Model assessment}
+
+\Tabref{tab:likert:overall} summarizes our model assessment. This
+assessment was done with identical settings and procedures to those
+reported in \secref{sec:binary:assess}, with one exception: since the
+minimal Likert value is $1$, we subtract $1$ from all scores when
+transforming them into the by-message normalized probability space of
+the model. Neo-Gricean uncertainty again seems to be the best model,
+though the results reported in
+\appendixref{app:paramexplore} suggest that this victory is less
+decisive than it would seem.
+
+\begin{table}[t]
+  \centering
+  \begin{tabular}[c]{r c c c}
+    \toprule
+    & Pearson & Spearman & MSE \\
+    \midrule
+    Literal semantics         & .94 & .76 & .0079\\
+    Fixed-lexicon pragmatics  & .92 & .75 & .0094\\
+    Unconstrained uncertainty & .93 & .79 & .0052\\
+    Neo-Gricean uncertainty   & \graycell{.95} & \graycell{.80} & \graycell{.0046}\\
+    \bottomrule   
+  \end{tabular}
+  \caption{Overall assessment of the Likert-scale experiment.}
+  \label{tab:likert:overall}
+\end{table}
 
 \end{appendix}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

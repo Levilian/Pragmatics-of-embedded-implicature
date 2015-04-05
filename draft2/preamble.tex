@@ -120,7 +120,8 @@
 \newcommand{\listenerZero}{l_{0}}
 \newcommand{\speakerOne}{s_{1}}
 %\newcommand{\listenerOne}{l_{1}}
-\newcommand{\UncertaintyListener}{L}
+\newcommand{\UncertaintyListener}[1][]{L_{#1}}
+\newcommand{\UncertaintySpeaker}[1]{S\negthinspace_{#1}}
 
 \newcommand{\nullmsg}{\mathbf{0}}
 
@@ -173,7 +174,7 @@
   \begin{array}[c]{r@{ \ = \ }l}
     \sem{\word{scored}} & \set{#1} \\
     \sem{\word{aced}}   & \set{\tuple{\world{A}, \playera}} \\
-    \sem{\word{A}} & \text{as in tab.\,\ref{tab:grammar}}
+    \sem{\word{Player\,B}}      & \text{as in tab.\,\ref{tab:grammar}}
   \end{array}}
 
 \newcommand{\genericscalar}[9]{
@@ -182,8 +183,8 @@
     \toprule
     & \world{N} & \world{S} & \world{A} \\
     \midrule
-    \word{A scored} & #1 & #2 & #3 \\
-    \word{A aced}   & #4 & #5 & #6 \\
+    \word{B scored} & #1 & #2 & #3 \\
+    \word{B aced}   & #4 & #5 & #6 \\
     \nullmsg        & #7 & #8 & #9 \\
     \bottomrule
   \end{array}}
@@ -192,7 +193,7 @@
   \setlength{\arraycolsep}{2pt}
   \begin{array}[c]{r r r r}
     \toprule
-    & \word{A scored} & \word{A aced} & \nullmsg \\
+    & \word{B scored} & \word{B aced} & \nullmsg \\
     \midrule
     \world{N}  & #1 & #2 & #3 \\
     \world{S}  & #4 & #5 & #6 \\
