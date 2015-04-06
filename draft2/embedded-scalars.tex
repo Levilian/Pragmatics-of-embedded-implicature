@@ -658,7 +658,7 @@ model is available from the website for this paper.
 The model we implement here is a direct extension of the compositional
 lexical uncertainty model of \citet{Bergen:Goodman:Levy:2012} and
 \citet{Bergen:Levy:Goodman:2014} (see also
-\citealp{lassiter-goodman:2013SALT} for a closely related
+\citealp{lassiter-goodman:2013SALT,lassitergoodman15} for a closely related
 variant). This model defines production and
 interpretation as recursive processes in which speakers and listeners
 reason jointly about the state of world and the precise interpretation
@@ -674,7 +674,7 @@ if it is combined with a full theory of semantic composition.
 The model's crucial feature is \tech{lexical uncertainty}.  In
 semantics, we like to imagine that word meanings are fixed across
 speakers and contexts, but in fact they are sometimes idiosyncratic
-and usually adaptable \citep{Clark97}. Thus, in our model, discourse
+and usually adaptable \citep{clark-clark79,Clark97}. Thus, in our model, discourse
 participants are not presumed to share a single, fixed
 lexicon. Rather, they consider many lexica, and their communicative
 behavior, in both production and interpretation, is guided by their
@@ -951,6 +951,11 @@ lexicon in the set $\LexSet$.\footnote{$P(a \given b) \propto X$ is
   \item\label{l0}%
     $\listenerZero(\state \given \msg, \Lex) \propto \StatePrior(\state) \text{ if } \state \in \Lex(\msg), \text{ else } 0$
 
+% would this be clearer if we just wrote it as a conditional probability? something like
+% 	$\listenerZero(\actualstate = \state \given \msg, \Lex) = \StatePrior(\state \given \actualstate \in \Lex(\msg))$
+% the cost would be adding into the model a notion of 'actual state', which is merely implicit at present.
+% this might also allow us to simplify the prose, as in comment added below.
+
   \item\label{s1}% 
     $\speakerOne(\msg \given \state, \Lex) \propto
     \exp
@@ -980,6 +985,9 @@ state prior. So this is just the semantics turned into a probability
 distribution for the sake of decision making; the intuitive idea is
 that agent heard $\msg$ and estimates the relative likelihood of world
 $\state$ on that basis.
+
+% Possible revised gloss, to go along with suggested revision above:
+	% ``$l_0$ simply conditions her prior distribution on the truth of the literal interpretation, relative to the given lexicon''
 
 The speaker agent $\speakerOne$ is already a pragmatic agent, in the
 sense that it reasons, not about the lexicon directly, but rather
@@ -1137,11 +1145,11 @@ relates to decision making.
 Lexical uncertainty is not required to achieve this result. If we
 allow no meanings to be refined, then we deal with the singleton set
 of lexica containing only the leftmost lexicon. In this small space,
-the model shares deep affinities with the Bayesian model of Grice
-given by \citet{Russell:2012}, it is effectively equivalent to the
+the model shares deep affinities with the Bayesian model of Gricean reasoning
+given by \citet{Russell:2012}; it is effectively equivalent to the
 rational speech act model of \citet{Frank:Goodman:2012} (with
 potentially small differences relating to how the prior over states is
-incorporated), and it can be seen as a more thoroughly probabilistic
+incorporated); and it can be seen as a more thoroughly probabilistic
 version of the iterated best response model
 \citep{Franke09DISS,Jaeger:2007,Jaeger:2011}. Nonetheless, the example
 illuminates how the lexical uncertainty model works. As the downward
