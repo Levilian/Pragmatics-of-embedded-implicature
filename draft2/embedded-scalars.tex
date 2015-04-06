@@ -1141,7 +1141,7 @@ the model shares deep affinities with the Bayesian model of Grice
 given by \citet{Russell:2012}, it is effectively equivalent to the
 rational speech act model of \citet{Frank:Goodman:2012} (with
 potentially small differences relating to how the prior over states is
-incorporated), and it can be seeen as a more thoroughly probabilistic
+incorporated), and it can be seen as a more thoroughly probabilistic
 version of the iterated best response model
 \citep{Franke09DISS,Jaeger:2007,Jaeger:2011}. Nonetheless, the example
 illuminates how the lexical uncertainty model works. As the downward
@@ -1429,7 +1429,7 @@ extra-truth-conditional preferences will be sensitive to this
 typicality structure. While we think that typicality is an important
 component of many implicatures,\footnote{\posscitet{Levinson00}
   I-implicatures involve inferences from a general term or statement
-  to one of its salient or proptypical subkinds. In the context of a
+  to one of its salient or prototypical subkinds. In the context of a
   generalized theory of scalar (partial-order) inference like that of
   \citet{Hirschberg85}, this can be seen as a scalar inference guided
   by prior expectations.} we see the value in trying to neutralize its
@@ -1474,7 +1474,7 @@ picture; this might be a concern only for monotone environments, but
 we can hope to avoid the issue by restricting to just truth-value
 responses. Third, to the greatest extent possible, we should seek a
 design that supports analyses in which we can marginalize out the
-idiosynacracies of particular displays, to avoid artifacts of salience
+idiosyncrasies of particular displays, to avoid artifacts of salience
 or contrast that could stimulate responses that are consistent with
 implicature calculation without requiring such calculation.
 
@@ -1864,7 +1864,7 @@ percentage-true human responses for target sentence $s$, then each
 $p^{s}$ is the vector of normalized values for that sentence, defined
 so that $p^{s}_{i} = x^{s}_{i}/\sum_{j=1}^{10}(x^{s}_{j})$. This
 simply normalizes the responses into a conditional probability
-distribution over states given messsages. The one noteworthy thing
+distribution over states given messages. The one noteworthy thing
 about this calculation is that, because it is done on a per-sentence
 basis, it is not a simple linear rescaling, and so it affects all of
 our assessment metrics when applied to multiple sentences at
@@ -1898,7 +1898,7 @@ enrichments leading to acceptability for \world{NNA}, \world{NAA}, and
 \world{AAA}. In broad strokes, we can say that `Fixed-lexicon
 pragmatics' predicts only `global' implicatures, those that \CFS\
 would obtain with unembedded exhaustification, whereas the two
-uncertainty models similate embedded exhaustification (though without
+uncertainty models simulate embedded exhaustification (though without
 predicting it to be the most preferred option, in line with our human
 responses).
 
@@ -2119,36 +2119,7 @@ objects and notational conventions established in \secref{sec:agents}:
   \end{examples}
 \end{examples}
 
-From the perspective of this model, our decision to set $\lambda=1$
-and focus on $\UncertaintyListener[1]$ might appear arbitrary.  In
-addition, even from the perspective of our simpler model, our decision
-to fix the cost of the null message at $5$ for all simulations and
-assessments was arbitrary. It is therefore worth exploring other
-settings for these hyper-parameters. To do this, we conducted a
-comprehensive grid search of the following values:
-%
-\begin{examples}
-\item
-  \begin{examples}
-  \item $\lambda$: $[0.1, 2]$ in increments of $.1$, and $[3,5]$ in increments of $1$
-  \item $\UncertaintyListener[k]$ for $k \in \set{1,2,3,4,5,6}$
-  \item $\Costs(\nullmsg) \in \set{0, 1, 2, 3, 4, 5, 6}$
-  \end{examples}
-\end{examples}
-%
-The grid search explores the full cross product of these values for
-each of our four models. For each setting, we conduct our standard
-model assessment against the data from our main (binary response)
-experiment. \Tabref{tab:grid} reports the best values for each of our
-four models, along with the minimal parameter settings that deliver
-those values. These results suggest that further iteration beyond
-$\UncertaintyListener[1]$ is not necessary \citep{Vogel-etal:2014},
-and that $\lambda=1$ is too aggressive. (The cost of the null message
-has a relatively small impact on the outcomes.) This exploration does
-not change our fundamental assessment of these models when it comes to
-our experimental data (\secref{sec:binary:assess}).
-
-\begin{table}[H]
+\begin{table}[t]
   \centering
   \setlength{\tabcolsep}{12pt}
   \begin{tabular}[c]{ *{6}{r} }
@@ -2178,6 +2149,55 @@ our experimental data (\secref{sec:binary:assess}).
     by any of the parameters explored.}\label{tab:grid}
 \end{table}
 
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=0.8\textwidth]{fig/allmodels-paramexplore-binary}
+  \caption{The crucial target sentences comparing the human data with
+    $\UncertaintyListener[1]$, using parameters in the range that seem
+    to be nearly optimal for all of these models: $\lambda=0.1$ and
+    $\Costs(\nullmsg)=1$.}
+  \label{fig:optimal}
+\end{figure}
+
+From the perspective of this model, our decision to set $\lambda=1$
+and focus on $\UncertaintyListener[1]$ might appear arbitrary.  In
+addition, even from the perspective of our simpler model, our decision
+to fix the cost of the null message at $5$ for all simulations and
+assessments was arbitrary. It is therefore worth exploring other
+settings for these hyper-parameters. To do this, we conducted a
+comprehensive grid search of the following values:
+%
+\begin{examples}
+\item
+  \begin{examples}
+  \item $\lambda$: $[0.1, 2]$ in increments of $.1$, and $[3,5]$ in increments of $1$
+  \item $\UncertaintyListener[k]$ for $k \in \set{1,2,3,4,5,6}$
+  \item $\Costs(\nullmsg) \in \set{0, 1, 2, 3, 4, 5, 6}$
+  \end{examples}
+\end{examples}
+%
+The grid search explores the full cross product of these values for
+each of our four models. For each setting, we conduct our standard
+model assessment against the data from our main (binary-response)
+experiment. \Tabref{tab:grid} reports the best values for each of our
+four models, along with the minimal parameter settings that deliver
+those values. These results are consistent with our fundamental
+assessment of these models (\secref{sec:binary:assess}). They also
+suggest that further iteration beyond $\UncertaintyListener[1]$ is not
+necessary \citep{Vogel-etal:2014}, and that $\lambda=1$ is too
+aggressive. (The cost of the null message has a relatively small
+impact on the outcomes.) \Figref{fig:optimal} offers a finer-grained
+look at how these preferred settings affect outcomes for the crucial
+target items involving embedded \word{some}. The literal column is
+identical to the one in \figref{fig:exp-analysis}. The others are
+subtly different in ways that achieve a better match with the human
+data. For instance, the optimal parameters assign more probability to
+\world{AAA} in the \target{no}{some} condition, which better matches
+the human responses. Overall, though, the contrasts between items are
+dampened relative to the version of the model with $\lambda=1$.
+
+\marginnote{Mike, let me know if this isn't responsive to your suggestions.}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Likert-scale experiment}\label{app:likert}
@@ -2190,6 +2210,13 @@ assessment and convey information about the quality of the
 report. This appendix reports briefly on this experiment. It yielded
 results identical in all important respects to those from our main
 experiment.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig/basketball-pilot-2-11-14-results-parsed}
+  \caption{Likert-scale experimental results. Mean ratings by sentence with bootstrapped 95\% confidence intervals.}
+  \label{fig:likert:results}
+\end{figure}
 
 \subsection{Methods}
 
@@ -2220,13 +2247,6 @@ from our randomized procedure for assigning worlds to sentences.
 %=====================================================================
 
 \subsection{Results}
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=0.85\textwidth]{fig/basketball-pilot-2-11-14-results-parsed}
-  \caption{Likert-scale experimental results. Mean ratings by sentence with bootstrapped 95\% confidence intervals.}
-  \label{fig:likert:results}
-\end{figure}
 
 \Figref{fig:likert:results} summarizes the responses by target sentence
 and world of evaluation. The results mirror those
