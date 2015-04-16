@@ -242,7 +242,7 @@ only because it is false, leading to the implicated meaning that
 Player~A did not hit all of his shots. In this way, a listener can
 enrich the speaker's message.
 
-To make this concrete, suppose that we have two players, A and B, and
+To make this example more concrete, suppose that we have two players, A and B, and
 that we care (for present purposes) only about whether each of them
 hit none, some but not all, or all of his shots. We can identify these
 (equivalence classes of) possible worlds with labels like \world{NA},
@@ -368,7 +368,7 @@ mechanisms.
 The issue is even clearer when a scalar term is in the scope of a
 downward-monotone operator like \word{no}, as in \word{no player hit
   some of his shots}. In such cases, the embedded enrichment creates a
-meaning that is strictly entailed by (weaker than) the literal
+meaning that is strictly entailed by (i.e., weaker than) the literal
 meaning:
 %
 \begin{examples}
@@ -587,8 +587,8 @@ the interactional setting or try to model the speaker and
 hearer. Rather, we can just describe a specific class of logical
 forms.
 
-However, this position is tempered by \CFS's pervasive appeals to
-Gricean reasoning.  The authors' specific examples are generally
+This position is tempered by \CFS's pervasive appeals to
+Gricean reasoning, however.  The authors' specific examples are generally
 placed in contexts that support the target implicatures by ensuring
 that they are relevant, informative, and truthful.  They concede that
 ``aspects of the Gricean picture are sound and effective''
@@ -673,8 +673,8 @@ if it is combined with a full theory of semantic composition.
 
 The model's crucial feature is \tech{lexical uncertainty}.  In
 semantics, we like to imagine that word meanings are fixed across
-speakers and contexts, but in fact they are sometimes idiosyncratic
-and usually adaptable \citep{clark-clark79,Clark97}. Thus, in our model, discourse
+speakers and contexts, but in fact they are often idiosyncratic
+and adaptable \citep{clark-clark79,Clark97}. Thus, in our model, discourse
 participants are not presumed to share a single, fixed
 lexicon. Rather, they consider many lexica, and their communicative
 behavior, in both production and interpretation, is guided by their
@@ -774,7 +774,7 @@ conclude that she regards a synagogue to be a kind of church, via the
 presuppositional nature of the phrase. Conversely, if she says
 \word{church or synagogue}, the listener receives a weak signal that
 she regards those two terms as disjoint, via the pressure for
-disjuncts to be exclusive;
+disjuncts to be exclusive
 \citep{Hurford:1974}. \citet{Chemla-HurfordCounts} and
 \citet{Potts:Levy:2015} connect this uncertainty directly with
 implicature salience and implicature blocking.
@@ -1010,20 +1010,21 @@ predictions about our experimental findings.
 
 \marginnote{This paragraph is heavily revised. It now introduces different parameter settings and introduces our appendix on parameter exploration.}
 
-We have given the compositional lexical uncertainty model in its
-simplest form, and have gone beyond
-\citeauthor{Bergen:Levy:Goodman:2014}\ only in giving the more
-complete treatment of semantic composition, in allowing uncertainty in
+We have presented the compositional lexical uncertainty model in its
+simplest form here, but have gone beyond
+\citeauthor{Bergen:Levy:Goodman:2014} in three respects. We give a more
+complete treatment of semantic composition, we allow uncertainty in
 the denotations of lexical items of a wider range of semantic types,
-and in entertaining the possibility of restrictions on the set of
-possible refinements.  Many elaborations are possible, and these can
-have far-reaching consequences for predictions about pragmatic
-inference \citep{Goodman:Lassiter:2013, Smith:Goodman:Frank:2013,
-  Kao-etal:2014,Potts:Levy:2015}. Ideally, we would explore the full
-space of reasonable models. Since the nature of this space is unknown,
-this is impossible. However, there are two elaborations of the above
-model that are highly salient given the prior literature, and thus
-they are worth exploring. First, one could allow further iteration
+and we entertain the possibility of restrictions on the set of
+possible refinements.  While many other elaborations of models in this 
+space are possible \citep{Goodman:Lassiter:2013, Smith:Goodman:Frank:2013,
+  Kao-etal:2014,Potts:Levy:2015}, our focus here on semantic composition limits 
+the model variants that are relevant to investigate. 
+
+There are two elaborations of the above
+model that are highly salient given the prior literature, however, and thus
+we explore their consequences for modeling the pattern of data we observed. 
+First, one could allow further iteration
 beyond $\UncertaintyListener$, defining speaker and listener agents
 analogously to their fixed-lexicon counterparts. This can amplify
 existing pragmatic inferences and create new ones
@@ -1034,8 +1035,16 @@ information from the agent they are reasoning about, with higher
 $\lambda$ values leading to more aggressive inferential strategies
 \citep{Sutton:Barto:1998}. This too can radically reshape the agents'
 behavior.  In \appendixref{app:paramexplore}, we systematically
-explore these choices and their interaction with the cost assigned to
-the null message.
+explore these choices.
+
+
+
+% Ideally, we would explore the full
+% space of reasonable models. Since the nature of this space is unknown,
+% this is impossible. 
+
+ % and their interaction with the cost assigned to
+% the null message.
 
 %=====================================================================
 
@@ -1202,7 +1211,7 @@ shot~2 and cheered, \word{c} means that he made no shots but did
 cheer, and the dash identifies the world-type in which Player~A made
 no shot and did not cheer. The crucial analytic step is to define the
 set of messages $\Messages$ so that it covers the space that
-\citeauthor{Sauerland01}. This suffices to capture the desired
+\citeauthor{Sauerland01} described. This suffices to capture the desired
 inferences in the probabilistic sense that our model provides.
 Allowing lexical refinements, as in the full version of our model,
 strengthens the relevant inferences without changing the qualitative
@@ -1248,8 +1257,8 @@ pattern seen in \tabref{tab:sauerland}.\footnote{There is one
     pattern.}\label{tab:sauerland}
 \end{table}
 
-Let's now look at a larger and more complex scenario, one that
-interacts lexical uncertainty with message competitions like the above
+Let's now look at a larger and more complex scenario, one in which 
+lexical uncertainty interacts with message competition (as in the example above)
 to help reveal the potential of this model to predict embedded
 implicatures. In this scenario, there are two players. We continue our
 convention of referring to worlds using sequences like \world{NN}
@@ -1298,8 +1307,9 @@ contextually and lexically constrained. \CFS's treatment of $\OALT$
 reflects this insight, and our own handling of refinement and lexical
 uncertainty allows us to incorporate it as well. So it is worth seeing
 whether we can improve the picture in \tabref{tab:subjects} by
-encoding lexical scales in our grammar fragment.  We
-implement this by constraining the refinement sets for
+encoding lexical scales in our grammar fragment.  
+
+We implement lexical scales in our model by constraining the refinement sets for
 several lexical items, as follows:%
 \footnote{We define $\sem{\word{only Player A}} = \set{\tuple{w, Y} : \set{\playera} = \set{x : \tuple{w,x} \in Y}}$,
   and similarly for $\sem{\word{only Player B}}$, not as a claim about natural language \word{only}, but rather just 
@@ -1398,9 +1408,11 @@ humans.
 The illustrative examples in the previous section begin to show that
 our compositional lexical uncertainty model naturally generates local
 enrichments. Thus, the question of whether listeners actually make
-such inferences is extremely pressing. We now begin to pursue this
-question directly. The present section reviews the prior literature in
-this area, which provides clear and fairly comprehensive guidance.
+such inferences is critical in judging the suitability of this model as a description of human reasoning.
+ % We now begin to pursue this
+% question directly. 
+The present section reviews the prior literature in this area.
+% , which provides clear and fairly comprehensive guidance.
 
 The pioneering paper in this area is
 \citealt{Geurts:Pouscoulous:2009}. Their experiments 3 and 4 asked
@@ -1418,14 +1430,14 @@ two responses that are most relevant for our purposes are those of
 
 \citet{Clifton:Dube:2010} argue that the experimental setting used by
 \citeauthor{Geurts:Pouscoulous:2009} was prone to understating the
-rate of implicatures, and they sought to address this with a design in
-which participants chose, from a set of scenes, which was the better
-match for the prompt sentence. In this setting, participants tended to
-chose the scene consistent with local enrichment. The design is a
+rate of implicatures, and they sought to address this issue with a design in
+which participants indicated the best match for the prompt sentence from a set of scenes.
+In this setting, participants tended to
+chose the scene consistent with local enrichment. This design is a
 natural choice in the context of a pragmatic model like ours, since it
 places participants in a role comparable to that of a listener
-agent. However, the method was criticized by
-\seccitet{geurts-vantiel:2013:scalar}{5.1} and \citet{vanTiel:2014} on
+agent. The particulars of the experimental method were criticized by
+\seccitet{geurts-vantiel:2013:scalar}{5.1} and \citet{vanTiel:2014}, however, on
 the grounds that, for the examples involving monotone quantifiers, the
 inferences are better explained in terms of the typicality effects of
 the quantifiers involved (see also \citealt{Degen:Tanenhaus:2014}).
@@ -1454,7 +1466,7 @@ non-monotone environments, and even yielded suggestive evidence for
 local enrichment in downward monotone environments. These findings
 stand in stark contrast to those of \citet{Geurts:Pouscoulous:2009}.
 
-However, there are at least three features of the experimental design
+However, there are at least three features of Chemla and Spector's experimental design
 that might have exaggerated the rates of judgments consistent with
 local enrichment \citep{geurts-vantiel:2013:scalar}. First, the graded
 response categories mean that, for the monotone cases, typicality
@@ -1465,17 +1477,17 @@ Some might be more iconic than others, and some might create spurious
 patterns and salience contrasts that could affect linguistic inference
 in unmeasured ways. Third, \citeauthor{Chemla:Spector:2011} used a
 within-subjects design: the individual participants judged every
-sentence in every context. This means that subjects could draw
-comparisons across different conditions, which creates opportunities
+sentence in every context. Participants could thus have drawn
+comparisons across different conditions, creating opportunities
 for them to register comparative judgments involving the experimental
-contexts itself, rather than relying solely on their linguistic
+contexts themselves, rather than relying solely on their linguistic
 intuitions.
 
 We draw three major lessons from the above studies and debates. First,
 we should seek out simple, naturalistic stimuli. Previous experiments
 in this area have used abstract displays. Together with the inevitable
-complexity of the sentences involved, this seems likely to be
-cognitively demanding in ways that could affect the stability and
+complexity of the sentences involved, this choice seems likely to cause 
+cognitive demands for participants in ways that could affect the stability and
 reliability of the responses. Second, scalar response categories might
 encourage typicality inferences that could cloud the implicature
 picture; this might be a concern only for monotone environments, but
@@ -1503,7 +1515,7 @@ where available (\seccitealt{Chemla:Spector:2011}{3.1};
 extent to which certain pragmatic inferences are available, so we
 sought out a scenario that would be maximally favorable to
 them.\footnote{For studies aimed at understanding the prevalence of
-  implicatures, see \citealt{Paris:1973,Hendriks-etal:2009}.}
+  implicatures, see \citealt{Paris:1973,Hendriks-etal:2009,degen:inpress-SP}.}
 
 %=====================================================================
 
@@ -1765,6 +1777,8 @@ characterizations of linguistic meaning. By comparing these models, we
 can gain insights into the aspects of each that contribute to
 particular patterns of predictions.
 
+Our assumption in this comparison is that our models provide a description of aggregate human behavior across individuals. In this sense, they are posed at \posscitet{marr1982} `computational theory' level. They instantiate claims abou the task that our participants are attempting to perform and the assumptions that they use in performing it, but they are agnostic about the particular processes (`algorithms', in Marr's terminology) by which individuals perform it. In particular, the averaged binary responses that we take as our modeling target could come about via a number of routes. For example, while individuals could be computing or approximating the full computations that we describe here and then stochastically making binary choices based on their estimates of the underlying probability distribution. But they could also be pursuing any number of heuristic, approximate strategies that --- when aggregated across individuals and trials --- could yield a stable probability estimate. We are agnostic about this issue here, but note that a growing literature explores these different hypotheses linking computational-level models to psychological processes (e.g., \citealt{bonawitz2014,griffiths2014,sanborn2010,vul2014}).
+
 For all the models, we take as given the literal semantics described
 in \tabref{tab:grammar}, as well as the following features of the
 context:
@@ -1861,7 +1875,7 @@ However, the three measures together yield a succinct multidimensional
 summary of how the models fare, and the same measures can be applied
 to particular target sentences to achieve more fine-grained insights.
 
-\todo{Everyone except Chris had great ideas about how to explicate and justify our link between model probabilities and human responses. Those could go here!}
+% \todo{Everyone except Chris had great ideas about how to explicate and justify our link between model probabilities and human responses. Those could go here!}
 
 Our model predictions are conditional probability distributions over
 states given messages, and hence constrained to be in the range
@@ -1935,11 +1949,11 @@ First, `Fixed-lexicon pragmatics' performs the least well overall.
 Since it has been shown to add substantial value in other areas of
 language and cognition, we conclude that its particular approach to
 enrichment is at odds with the patterns for embedded implicatures.
-The precise causes are hard to pin-point, but the fact that our target
+The precise causes are hard to pinpoint, but the fact that our target
 implicatures are not always enrichments of the literal content is
 surely part of the problem.  Second, while `Unconstrained uncertainty'
 is better than literal semantics by the Spearman and MSE metrics, it
-falls behind it on the Pearson metric. We saw in connection with
+falls behind on the Pearson metric. We saw in connection with
 \tabref{tab:subjects} that the unintuitive lexica that this model
 entertains can lead to implausible final patterns. We conjecture that
 this is the root cause of the model's poor performance here as well.
@@ -2204,7 +2218,6 @@ data. For instance, the optimal parameters assign more probability to
 the human responses. Overall, though, the contrasts between items are
 dampened relative to the version of the model with $\lambda=1$.
 
-\marginnote{Mike, let me know if this isn't responsive to your suggestions.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
