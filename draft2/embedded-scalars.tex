@@ -205,7 +205,7 @@ to derive such meanings from more basic considerations about how
 speakers and listeners reason about each other whenever they
 interact. Similarly, the model of \citet{ChierchiaFoxSpector08} is
 noncommittal about the reality of conversational implicatures per
-se. For them, `conversational implicature' can be seen as an informal
+se. In that model, `conversational implicature' can be seen as an informal
 label for a certain class of logical forms, rather than a conceptual
 primitive (see \secref{sec:cfs} of this paper). With this in mind, we
 use the notion of conversational implicature only to articulate the
@@ -676,7 +676,7 @@ semantics, we like to imagine that word meanings are fixed across
 speakers and contexts, but in fact they are often idiosyncratic
 and adaptable \citep{clark-clark79,Clark97}. Thus, in our model, discourse
 participants are not presumed to share a single, fixed
-lexicon. Rather, they consider many lexica, and their communicative
+lexicon mapping word forms to meanings. Rather, they consider many such lexica, and their communicative
 behavior, in both production and interpretation, is guided by their
 best attempts to synthesize the information from these varied sources
 \citep{Giles:Coupland:Coupland:1991}. Thus, in the sentences of
@@ -770,18 +770,19 @@ synonymous, but if I say ``It's a couch but not a sofa'', you'll learn
 something about my lexical representations and perhaps adjust your own
 accordingly for the purposes of our interaction.  If a speaker uses
 the phrase \word{synagogues and other churches}, then the listener can
-conclude that she regards a synagogue to be a kind of church, via the
-presuppositional nature of the phrase. Conversely, if she says
-\word{church or synagogue}, the listener receives a weak signal that
-she regards those two terms as disjoint, via the pressure for
-disjuncts to be exclusive
+conclude that the listener regards a synagogue to be a kind of church,
+via the presuppositional nature of the phrase. Conversely, if the
+speaker says \word{church or synagogue}, the listener receives a weak
+signal that the speaker regards those two terms as disjoint, via the
+pressure for disjuncts to be exclusive
 \citep{Hurford:1974}. \citet{Chemla-HurfordCounts} and
-\citet{Potts:Levy:2015} connect this uncertainty directly with
-implicature salience and implicature blocking.
+\citet{Potts:Levy:2015} explicitly investigate such listener
+implicatures and how they can be anticipated and potentially
+forestalled by speakers.
 
 The `lexical uncertainty' aspects of our model are designed to capture
 this variability. The core notion is that of lexical
-\tech{refinement}, as defined in \eg{refinement}.
+\tech{refinement}, as defined in \eg{refinement} following \citet{Bergen:Levy:Goodman:2014}:
 %
 \begin{examples}
 \item\label{refinement} 
@@ -833,11 +834,12 @@ denotation, whereas our model keeps the alternatives separate during
 semantic composition, synthesizing them only for pragmatic
 inference. In terms of \figref{fig:qspace}, we saw that \CFS's theory
 uses $\OALT$ to create a single refined meaning for \word{some shot},
-represented by the set of sets in the gray box (`some, not all'). Our
+represented by the set of sets in the gray box (`some, not all shots'). Our
 theory of refinement could create one lexicon for every non-empty
 subset of the green box. So, in addition to considering `some, not
-all, shots, we admit lexica that produce
-$\sem{\word{some shot}} = \set{\set{a,b,c}}$ (`every player'), lexica
+all, shots', we admit lexica that produce
+$\sem{\word{some shot}} = \set{\set{a,b,c}}$ \Rogersmarginnote{Chris---I
+  don't understand this `every player' thing---RPL}\magentahighlighter{(`every player')}, lexica
 that produce $\sem{\word{some shot}} = \set{\set{a,b,c},\set{a}}$
 (no obvious paraphrase), and so forth. These are all potential results
 of $\OALT(\word{some shot})$ for some choice of $\ALT$, and our theory
@@ -889,33 +891,14 @@ measurements for the priors, this seems like the safest option. (For
 techniques for measuring and manipulating state priors, see
 \citealt{Frank:Goodman:2012} and
 \citealt{Stiller:Goodman:Frank:2011}.)  Similarly, we do not explore
-different cost functions on messages, assuming them all to be $0$ for
-simplicity. Our cost functions play a role only in disfavoring the
-`null message' $\nullmsg$, which is stipulated to be true in all
-worlds in all lexica.
+different cost functions on non-null messages, assuming all costs to
+be identicallyy zero for simplicity.\footnote{The model is
+  mathematically invariant to across-the-board additive
+  transformations of message costs, so assuming all non-null messages
+  to have zero cost loses no generality.} Our cost functions play a
+role only in disfavoring the `null message' $\nullmsg$, which is
+stipulated to be true in all worlds in all lexica.
 
-\marginnote{This paragraph is new, responding to R1's queries about the null message.} 
-
-The null message gathers together all of the messages that are
-unusable in the context because they don't make any relevant
-distinctions, so the speaker remains silent if forced into this
-situation. At a technical level, $\nullmsg$ allows us to explore the
-full space of refinements for messages without encountering a
-situation in which all the available messages have $0$ probability
-given the speaker's observed state, which would result in
-undefinedness. There are a few alternative methods for addressing this
-technical issue. \citet{Bergen:Goodman:Levy:2012} admit only lexica in
-which the speaker has at least one true message for every state;
-\citet{Bergen:Levy:Goodman:2014} briefly consider giving false states
-tiny positive probability; and \citet{Jaeger:2011} defines a
-belief-revision step to handle comparable situations in the context of
-the iterated best-response model. We favor positing the null message
-because it corresponds to a clear linguistic intuition (the speaker
-might sometimes choose to remain silent), and it minimally impacts how
-the listener construes the other messages.  We set
-$\Costs(\nullmsg) = 5$ throughout the paper, but changing this value
-does not change our qualitative predictions.
-%(\Appendixref{app:paramexplore} explores alternative settings.)
 
 Our focus is on the space of lexica defined by
 \subeg{modobjects}{lexset} given a certain set of relevant messages,
@@ -937,11 +920,12 @@ defined in \eg{agents}. The agents are defined in terms of the cost
 function $\Costs$, the state prior $\StatePrior$, and the lexica in
 $\LexSet$. We assume throughout that $\msg$ is any message in
 $\Messages$, $\state$ is any state in $\States$, and $\Lex$ is any
-lexicon in the set $\LexSet$.\footnote{$P(a \given b) \propto X$ is
+lexicon in the set $\LexSet$.\footnote{$P(a \given b) \propto F(a)$ is
   read `the value $P(a \given b)$ is proportional to the value
-  $X$'. In this context, the exact value of $P(a \given b)$ can always
-  be obtained by dividing $P(a \given b)$ by the sum of all the values
-  $X'$ obtained by replacing $a$ by one of its $a'$.}
+  $F(a)$'.The exact value of $P(a \given b)$ can always be obtained by
+  dividing $F(a)$ by the normalizing constant $Z=\sum_{a'} F(a')$ so
+  long as this sum is finite, which is guaranteed to be the case in
+  the class of models defined in Equations~\ref{modobjects}.}
 %
 \begin{examples}
 \item\label{agents}
@@ -990,15 +974,54 @@ $\state$ on that basis.
 	% ``$l_0$ simply conditions her prior distribution on the truth of the literal interpretation, relative to the given lexicon''
 
 The speaker agent $\speakerOne$ is already a pragmatic agent, in the
-sense that it reasons, not about the lexicon directly, but rather
-about how the listener will reason about the lexicon. The speaker
-observes a state $\state$ and chooses messages on that basis. The
-logarithm and exponentiation in this definition allow us to include
-real-valued costs; where the costs are all $0$, it reduces to
-$\listenerZero(\state \given \msg)$, by the identity
-$x = \exp(\log(x))$.  Similarly, if the costs are scaled into $[0,1]$,
-then the values can be given as a product of the listener
-probabilities and the costs, analogously to the listener.
+sense that it reasons not about the lexicon directly but rather about
+how the listener will reason about the lexicon. The speaker observes a
+state $\state$ and chooses messages on that basis. The logarithm and
+exponentiation in this definition allow us to include real-valued
+costs; where the costs are all $0$, it reduces to
+$\speakerOne(\msg|\state) \propto \listenerZero(\state \given \msg)$,
+by the identity $x = \exp(\log(x))$. We could equivalently define an
+alternative cost function $C'$ ranging over $[0,\infty)$ such that
+$C'(\msg)=e^{C(\msg)}$, and then replace Equation~\ref{s1} with
+$\speakerOne(\msg | \state, \Lex) \propto C'(m)
+\listenerZero(\state|\msg,\Lex)$.
+
+\marginnote{This paragraph is new, responding to R1's queries about the null message.} 
+\Rogersmarginnote{I moved this paragraph down from where Chris had it,
+  and edited it.}
+Some comment is in order regarding the role of the null message in the
+model.  % This message can be thought of as gathering together all of
+% the messages that are unusable in the context because they don't make
+% any relevant distinctions, so the speaker remains silent if forced
+% into this situation. 
+Technically, $\nullmsg$ allows us to explore the full space of
+refinements for messages while guaranteeing that for every possible
+speaker's observed state $\state$ there is some compatible message
+$\msg$ such that $\state \in \Lex(\msg)$.  Without this, the speaker
+distribution $\speakerOne(\msg | \state, \Lex)$ would not be defined.
+There are a few alternative methods for addressing this technical
+issue. \citet{Bergen:Goodman:Levy:2012} admit only lexica in which the
+speaker has at least one true message for every state;
+\citet{Bergen:Levy:Goodman:2014} briefly consider giving false states
+tiny positive probability; and \citet{Jaeger:2011} defines a
+belief-revision step to handle comparable situations in the context of
+the iterated best-response model. We favor the null-message approach
+because it is technically simple and it has qualitatively similar
+behavior to the other approaches.\footnote{A closely related
+  alternative, technically more complex but perhaps more
+  pretheoretically transparent, would be to posit a collection of
+  ``null'' messages, one for each speaker's observed state, each
+  admitting only that state, and each having a considerably higher
+  cost than all the non-null messages. This alternative has the
+  interpretation that the null messages constitute the collection of
+  more precise but much more prolix utterances the speaker might have
+  used to describe her observation state.  But the behavior of this
+  alternative approach would be qualitatively the same as ours: the
+  specialization of each null message for a unique world state would
+  strengthen its appeal for $\speakerOne$, but its high cost would
+  countervail that appeal.}  We set $\Costs(\nullmsg) = 5$ throughout
+the paper, but changing this value does not change our qualitative
+predictions.  (See also \Appendixref{app:paramexplore}.)
 
 Our pragmatic listener is defined in \subeg{agents}{L}. This agent
 resembles the literal listener $\listenerZero$, but it sums over all
@@ -1012,30 +1035,28 @@ predictions about our experimental findings.
 
 We have presented the compositional lexical uncertainty model in its
 simplest form here, but have gone beyond
-\citeauthor{Bergen:Levy:Goodman:2014} in three respects. We give a more
-complete treatment of semantic composition, we allow uncertainty in
-the denotations of lexical items of a wider range of semantic types,
-and we entertain the possibility of restrictions on the set of
-possible refinements.  While many other elaborations of models in this 
-space are possible \citep{Goodman:Lassiter:2013, Smith:Goodman:Frank:2013,
-  Kao-etal:2014,Potts:Levy:2015}, our focus here on semantic composition limits 
-the model variants that are relevant to investigate. 
-
-There are two elaborations of the above
-model that are highly salient given the prior literature, however, and thus
-we explore their consequences for modeling the pattern of data we observed. 
-First, one could allow further iteration
-beyond $\UncertaintyListener$, defining speaker and listener agents
-analogously to their fixed-lexicon counterparts. This can amplify
-existing pragmatic inferences and create new ones
+\citeauthor{Bergen:Levy:Goodman:2014} in three respects. We give a
+more complete treatment of semantic composition, we allow uncertainty
+in the denotations of lexical items of a wider range of semantic
+types, and we entertain the possibility of restrictions on the set of
+possible refinements.  However, many other elaborations of models in
+this space are possible \citep{Goodman:Lassiter:2013,
+  Smith:Goodman:Frank:2013, Kao-etal:2014,Potts:Levy:2015}.  Two
+particular elaborations are highly salient given the prior literature,
+however, and in \appendixref{app:paramexplore} we thus explore their
+consequences for modeling the pattern of data we observed.  First, one
+could allow further iteration beyond $\UncertaintyListener$, defining
+speaker and listener agents analogously to their fixed-lexicon
+counterparts. This can amplify existing pragmatic inferences and
+create new ones
 \citep{Bergen:Levy:Goodman:2014,Vogel-etal:2014,Potts:Levy:2015}.
 Second, one can include a real-valued temperature parameter $\lambda$
 in the speaker agents to control how greedily they try to extract
 information from the agent they are reasoning about, with higher
 $\lambda$ values leading to more aggressive inferential strategies
 \citep{Sutton:Barto:1998}. This too can radically reshape the agents'
-behavior.  In \appendixref{app:paramexplore}, we systematically
-explore these choices.
+behavior. The reader can consult \appendixref{app:paramexplore} for
+fuller details.
 
 
 
@@ -1211,21 +1232,26 @@ shot~2 and cheered, \word{c} means that he made no shots but did
 cheer, and the dash identifies the world-type in which Player~A made
 no shot and did not cheer. The crucial analytic step is to define the
 set of messages $\Messages$ so that it covers the space that
-\citeauthor{Sauerland01} described. This suffices to capture the desired
-inferences in the probabilistic sense that our model provides.
-Allowing lexical refinements, as in the full version of our model,
-strengthens the relevant inferences without changing the qualitative
-pattern seen in \tabref{tab:sauerland}.\footnote{There is one
-  unnatural aspect of the simulation in \tabref{tab:sauerland}: it
-  does not allow the speaker to be uncertain about the state space,
-  whereas disjunction is naturally used in situations where the
-  speaker has only partial information even at the level of
-  granularity given by the world-types in $\States$. This results in
-  predicted overlap between \word{Player~A hit some shot or cheered}
-  and \word{Player~A hit some shot}. For a version of the model that
-  allows for the requisite sort of uncertainty by closing the state
-  space under joins, we refer to \citealt{Bergen:Levy:Goodman:2014}
-  and \citealt{Potts:Levy:2015}.}
+\citeauthor{Sauerland01} described. This suffices to capture the
+desired inferences in the probabilistic sense that our model provides.
+We obtained the results of \tabref{tab:sauerland} using a uniform
+prior over states, but similar qualitative patterns would obtain using
+a different prior specification.  Likewise, allowing lexical
+refinements, as in the full version of our model, strengthens the
+relevant inferences without changing the qualitative pattern seen in
+\tabref{tab:sauerland}---for brevity we do not show this result, but
+readers are encouraged to try the simulations for themselves, using
+the code provided with this paper. \footnote{There is one unnatural
+  aspect of the simulation in \tabref{tab:sauerland}: it does not
+  allow the speaker to be uncertain about the state space, whereas
+  disjunction is naturally used in situations where the speaker has
+  only partial information even at the level of granularity given by
+  the world-types in $\States$. This results in overlap in the
+  predicted interpretations of \word{Player~A hit some shot or
+    cheered} and \word{Player~A hit some shot}. For a version of the
+  model that allows for the requisite sort of uncertainty by closing
+  the state space under joins, we refer the reader to
+  \citealt{Bergen:Levy:Goodman:2014} and \citealt{Potts:Levy:2015}.}
   
 \begin{table}[tp]
   \centering
@@ -1236,24 +1262,27 @@ pattern seen in \tabref{tab:sauerland}.\footnote{There is one
     & \world{--} & \world{c} & \world{s$_{1}$} & \world{s$_{2}$} & \world{s$_{1}$c} & \world{s$_{2}$c} & \world{s$_{1}$s$_{2}$} & \world{s$_{1}$s$_{2}$c}\\
     \midrule
     \word{Player~A cheered}                    &    0 &   \graycell{.42} &    0 &    0 &   .23 &   .23 &    0 &   .12\\
-    \word{Player~A hit some shot}               &    0 &    0 &    \graycell{.3} &    \graycell{.3} &   09 &   09 &   .18 &   04\\
-    \word{Player~A hit some shot or cheered}   &    0 &   .14 &   \graycell{.26} &   \graycell{.26} &   07 &   07 &   .16 &   04\\
-    \word{Player~A hit some shot and cheered}   &    0 &    0 &    0 &    0 &    \graycell{.4} &    \graycell{.4} &    0 &   .21\\
-    \word{Player~A hit every shot or cheered}   &    0 &   .28 &    0 &    0 &   .15 &   .15 &   \graycell{.33} &   08\\
+    \word{Player~A hit some shot}               &    0 &    0 &    \graycell{.30} &    \graycell{.30} &   .09 &   .09 &   .18 &   .04\\
+    \word{Player~A hit some shot or cheered}   &    0 &   .14 &   \graycell{.26} &   \graycell{.26} &   .07 &   .07 &   .16 &   .04\\
+    \word{Player~A hit some shot and cheered}   &    0 &    0 &    0 &    0 &    \graycell{.40} &    \graycell{.40} &    0 &   .21\\
+    \word{Player~A hit every shot or cheered}   &    0 &   .28 &    0 &    0 &   .15 &   .15 &   \graycell{.33} &   .08\\
     \word{Player~A hit every shot and cheered} &    0 &    0 &    0 &    0 &    0 &    0 &    0 &    \graycell{1} \\
     $\nullmsg$ &   \graycell{1} &    0 &    0 &    0 &    0 &    0 &    0 &    0\\
     \bottomrule
   \end{tabular}
-  \caption{Nested scalar terms. We assume that there are just two
-    shots. Thus, \world{s$_{1}$s$_{2}$} is a world in which Player~A
-    made every shot. \world{c} is a world in which Player~A made no
-    shots, but cheered. And so forth.  The message of greatest
+  \caption{Nested scalar terms. For simplicity, we assume that there are just two
+    shots. Columns indicate the truth values of individual predicates:
+    in \world{s$_{1}$} Player~A made the first shot, missed the
+    second, and didn't cheer; in \world{s$_{1}$s$_{2}$} Player~A
+    made every shot but didn't cheer; in \world{c} is a world in which Player~A made no
+    shots; in \world{--} Player~A made no shots and didn't cheer; and so forth.  The message of greatest
     interest is \word{Player~A hit some shot or cheered}. Consistent
     with intuitions reported in the literature, the model predicts
-    that the highest probability inferences are those in which the
+    that worlds inferred to have highest probability are those in which the
     player did not make all shots and did not both make shots and
-    cheered. This inference derives solely from competitions between
-    available messages. Lexical uncertainty only strengthens the basic
+    cheered (worlds \world{s$_1$} and \world{s$_{2}$}). This inference derives solely from competitions between
+    available messages. Introducing lexical uncertainty into the model
+    (not shown here) only strengthens the basic
     pattern.}\label{tab:sauerland}
 \end{table}
 
@@ -1327,15 +1356,16 @@ several lexical items, as follows:%
   \end{examples}
 \end{examples}
 %
-The results of working in this more refined refinement space are given
-in \tabref{tab:subjects-ALTstyle}. The picture is mostly unchanged,
-except we now also achieve the target enrichment for \word{some player
-  scored}, and the messiness surrounding \word{no player scored} is
-fully addressed. The one remaining potential concern about
-\tabref{tab:subjects-ALTstyle} is that it predicts rather aggressive
-pragmatic enrichment of the scalar term in the scope of the negative
-quantifier. As we noted in \secref{sec:implicature}, it has long been
-assumed that scalar items in such environments fail to give rise to
+The results of working in this more constrained, \tech{Neo-Gricean}
+refinement space are given in \tabref{tab:subjects-ALTstyle}. The
+picture is mostly unchanged, except we now also achieve the target
+enrichment for \word{some player scored}, and the messiness
+surrounding \word{no player scored} is fully addressed. The one
+remaining potential concern about \tabref{tab:subjects-ALTstyle} is
+that it predicts rather aggressive pragmatic enrichment of the scalar
+term in the scope of the negative quantifier. As we noted in
+\secref{sec:implicature}, it has long been assumed that scalar items
+in such environments fail to give rise to
 implicatures. \citet{Chemla:Spector:2011} address this question
 empirically, finding in their experiment low but non-negligible rates
 of local enrichment in negative environments. We too treat this as an
@@ -1416,44 +1446,50 @@ The present section reviews the prior literature in this area.
 
 The pioneering paper in this area is
 \citealt{Geurts:Pouscoulous:2009}. Their experiments 3 and 4 asked
-participants to provide truth-value judgments for sentences
-interpreted in abstract visual scenes consisting of shapes connected
-by lines. The target sentences included weak scalar terms in upward,
-downward, and non-monotone contexts that are comparable in relevant
-respects to the examples reviewed in \secref{sec:implicature} above.
-\citeauthor{Geurts:Pouscoulous:2009} found only negligible rates of
-inferences consistent with local enrichment. These findings stimulated
-a number of responses commenting on the prevalence of local enrichment
-and its theoretical import \citep{Ippolito:2010,Sauerland:2010}. The
-two responses that are most relevant for our purposes are those of
-\citet{Clifton:Dube:2010} and \citet{Chemla:Spector:2011}.
+participants to provide truth-value judgments for sentences paired
+with abstract visual scenes consisting of shapes connected by
+lines. The target sentences included weak scalar terms in upward,
+downward, and non-monotone contexts, such as \emph{Exactly two of the
+  squares are connected with some of the circles}, comparable in
+relevant respects to the examples reviewed in \secref{sec:implicature}
+above.  \citeauthor{Geurts:Pouscoulous:2009} found only negligible
+rates of inferences consistent with local enrichment. These findings
+stimulated a number of responses commenting on the prevalence of local
+enrichment and its theoretical import
+\citep{Ippolito:2010,Sauerland:2010}. The two responses that are most
+relevant for our purposes are those of \citet{Clifton:Dube:2010} and
+\citet{Chemla:Spector:2011}.
 
 \citet{Clifton:Dube:2010} argue that the experimental setting used by
 \citeauthor{Geurts:Pouscoulous:2009} was prone to understating the
-rate of implicatures, and they sought to address this issue with a design in
-which participants indicated the best match for the prompt sentence from a set of scenes.
-In this setting, participants tended to
-chose the scene consistent with local enrichment. This design is a
-natural choice in the context of a pragmatic model like ours, since it
-places participants in a role comparable to that of a listener
-agent. The particulars of the experimental method were criticized by
-\seccitet{geurts-vantiel:2013:scalar}{5.1} and \citet{vanTiel:2014}, however, on
-the grounds that, for the examples involving monotone quantifiers, the
-inferences are better explained in terms of the typicality effects of
-the quantifiers involved (see also \citealt{Degen:Tanenhaus:2014}).
-Roughly speaking, the claim is that the typicality structure of
-\word{some A are B} favors situations in which just shy of half the
-A's are B's, and experimental designs (like
+rate of implicatures, and they sought to address this issue with a
+different experimental method.  In their experiment, one trial
+consisted of presenting the participant with a sentence together with
+a set of visual scenes.  The participant was instructed to choose the
+scene that he or she considered ``best described by the sentence''.
+They found that participants tended to chose the scene consistent with
+local enrichment. This method is a natural choice given a pragmatic
+model like ours, since it places participants in a role comparable to
+that of a listener agent. The particulars of the experimental method
+were criticized by \seccitet{geurts-vantiel:2013:scalar}{5.1} and
+\citet{vanTiel:2014}, however, on the grounds that, for the examples
+involving monotone quantifiers, the inferences are better explained in
+terms of the typicality effects of the quantifiers involved (see also
+\citealt{Degen:Tanenhaus:2014}).  Roughly speaking, the claim is that
+the typicality structure of \word{some A are B} favors situations in
+which just shy of half the A's are B's, and experimental designs (like
 \citeauthor{Clifton:Dube:2010}'s) that allow participants to express
 extra-truth-conditional preferences will be sensitive to this
 typicality structure. While we think that typicality is an important
-component of many implicatures,\footnote{\posscitet{Levinson00}
-  I-implicatures involve inferences from a general term or statement
-  to one of its salient or prototypical subkinds. In the context of a
-  generalized theory of scalar (partial-order) inference like that of
+component of many implicatures and thus should ultimately be derived
+from a complete pragmatic model rather than considered a separate,
+overlaid factor,\footnote{\posscitet{Levinson00} I-implicatures
+  involve inferences from a general term or statement to one of its
+  salient or prototypical subkinds. In the context of a generalized
+  theory of scalar (partial-order) inference like that of
   \citet{Hirschberg85}, this can be seen as a scalar inference guided
-  by prior expectations.} we see the value in trying to neutralize its
-effects in the context of studying local enrichment.
+  by prior expectations.} we also see value in trying to
+neutralize its effects for purposes of studying local enrichment.
 
 \citet{Chemla:Spector:2011} followed \citet{Geurts:Pouscoulous:2009}
 in asking participants to interpret quantified sentences in abstract
@@ -1486,8 +1522,8 @@ intuitions.
 We draw three major lessons from the above studies and debates. First,
 we should seek out simple, naturalistic stimuli. Previous experiments
 in this area have used abstract displays. Together with the inevitable
-complexity of the sentences involved, this choice seems likely to cause 
-cognitive demands for participants in ways that could affect the stability and
+complexity of the sentences involved, this choice seems likely to put
+cognitive demands on participants in ways that could affect the stability and
 reliability of the responses. Second, scalar response categories might
 encourage typicality inferences that could cloud the implicature
 picture; this might be a concern only for monotone environments, but
@@ -1672,7 +1708,7 @@ measuring participants' interpretations.\footnote{The only exception
   \centering
   %\includegraphics[width=0.85\textwidth]{fig/basketball-pilot-2-11-14-results-parsed}
   \includegraphics[width=0.85\textwidth]{fig/basketball-binary-version-pilot-4-1-15-results-parsed}
-  \caption{Mean ratings by sentence with bootstrapped 95\% confidence intervals.}
+  \caption{Mean truth-value judgment responses by sentence with bootstrapped 95\% confidence intervals.}
   \label{fig:binary:results}
 \end{figure}
 
@@ -1756,7 +1792,7 @@ available in downward-monotone environments as well. However, our
 concern is not only whether such readings are possible or impossible,
 but rather how accurately we can predict their availability on the
 basis of contextual and world knowledge.  We turn now to the task of
-assessing the ability of the model in \secref{sec:model} to match both
+assessing the ability of the model presented in \secref{sec:model} to match both
 the quantitative and qualitative patterns in our experimental data.
 
 %=====================================================================
@@ -1777,7 +1813,21 @@ characterizations of linguistic meaning. By comparing these models, we
 can gain insights into the aspects of each that contribute to
 particular patterns of predictions.
 
-Our assumption in this comparison is that our models provide a description of aggregate human behavior across individuals. In this sense, they are posed at \posscitet{marr1982} `computational theory' level. They instantiate claims abou the task that our participants are attempting to perform and the assumptions that they use in performing it, but they are agnostic about the particular processes (`algorithms', in Marr's terminology) by which individuals perform it. In particular, the averaged binary responses that we take as our modeling target could come about via a number of routes. For example, while individuals could be computing or approximating the full computations that we describe here and then stochastically making binary choices based on their estimates of the underlying probability distribution. But they could also be pursuing any number of heuristic, approximate strategies that --- when aggregated across individuals and trials --- could yield a stable probability estimate. We are agnostic about this issue here, but note that a growing literature explores these different hypotheses linking computational-level models to psychological processes (e.g., \citealt{bonawitz2014,griffiths2014,sanborn2010,vul2014}).
+Our assumption in this comparison is that our models provide a
+description of aggregate human behavior across individuals. In this
+sense, they are posed at \posscitet{marr1982} `computational theory'
+level. They instantiate claims about the task that our participants
+are attempting to perform and the assumptions that they use in
+performing it, but they are agnostic about the particular processes
+(`algorithms', in Marr's terminology) by which individuals perform
+it. In particular, the averaged binary responses that we take as our
+modeling target could come about via a number of routes. For example,
+while individuals could be computing or approximating the full
+computations that we describe here and then stochastically making
+binary choices based on their estimates of the underlying probability
+distribution. But they could also be pursuing any number of heuristic,
+approximate strategies that --- when aggregated across individuals and
+trials --- could yield a stable probability estimate. We remain agnostic about this issue here, but note that a growing literature explores these different hypotheses linking computational-level models to psychological processes (e.g., \citealt{bonawitz2014,griffiths2014,sanborn2010,vul2014}).
 
 For all the models, we take as given the literal semantics described
 in \tabref{tab:grammar}, as well as the following features of the
@@ -1837,7 +1887,8 @@ The models we consider are defined as follows:
     = \wp(\sem{\word{some}}){-}\emptyset$
   \item \tech{Neo-Gricean refinement}: as in `Unconstrained
     refinement', but with $\Refine(\word{some}) =
-    \set{\sem{\word{some}}, \sem{\word{some and not all}}}$.
+    \set{\sem{\word{some}}, \sem{\word{some and not all}}}$ as in
+    Equation~\ref{neo} of Section~\ref{sec:illustrations}.
   \end{examples}
 \end{examples}
 
@@ -1866,14 +1917,15 @@ responses are aligned in terms of the rankings they predict; and the
 mean-squared error (MSE) of the model predictions as compared with the
 human responses, which summarizes the distance of the predictions from
 the human behavior. The use of these three measures allows us to
-detect models that reproduce quantitative correspondence (Pearson
-correlation), qualitative correspondence (Spearman correlation), and
-absolute fit between models and data. We find that the Spearman
-measure is often the most illuminating, since our fundamental goal is
-to reproduce the preference orderings revealed by the human responses.
-However, the three measures together yield a succinct multidimensional
-summary of how the models fare, and the same measures can be applied
-to particular target sentences to achieve more fine-grained insights.
+assess which models best reproduce quantitative correspondence modulo
+arbitrary linear transformation (Pearson correlation), qualitative
+correspondence (Spearman correlation), and absolute fit between models
+and data. We find that the Spearman measure is often the most
+illuminating, since our fundamental goal is to reproduce the
+preference orderings revealed by the human responses.  However, the
+three measures together yield a succinct multidimensional summary of
+how the models fare, and the same measures can be applied to
+particular target sentences to achieve more fine-grained insights.
 
 % \todo{Everyone except Chris had great ideas about how to explicate and justify our link between model probabilities and human responses. Those could go here!}
 
@@ -1890,7 +1942,7 @@ distribution over states given messages. The one noteworthy thing
 about this calculation is that, because it is done on a per-sentence
 basis, it is not a simple linear rescaling, and so it affects all of
 our assessment metrics when applied to multiple sentences at
-once. However, we regard it as the minimal viable linking hypothesis
+once. However, we regard it as the simples viable linking hypothesis
 relating our model with our experimental data.
 
 \begin{figure}[!t]
@@ -1951,18 +2003,20 @@ language and cognition, we conclude that its particular approach to
 enrichment is at odds with the patterns for embedded implicatures.
 The precise causes are hard to pinpoint, but the fact that our target
 implicatures are not always enrichments of the literal content is
-surely part of the problem.  Second, while `Unconstrained uncertainty'
-is better than literal semantics by the Spearman and MSE metrics, it
-falls behind on the Pearson metric. We saw in connection with
-\tabref{tab:subjects} that the unintuitive lexica that this model
-entertains can lead to implausible final patterns. We conjecture that
-this is the root cause of the model's poor performance here as well.
-Third, neo-Gricean uncertainty achieves the best results across all
-three of our measures. Here again, this is consistent with our
-expectations based on the large illustrative example from
-\secref{sec:illustrations}, where we saw that this constrained,
-lexically-driven approach to choosing refinements resulted in the best
-quantitative and qualitative pattern.
+surely part of the problem.  \magentahighlighter{Second, while
+  `Unconstrained uncertainty' is better than literal semantics by the
+  Spearman and MSE metrics, it falls behind on the Pearson metric. We
+  saw in connection with \tabref{tab:subjects} that the unintuitive
+  lexica that this model entertains can lead to implausible final
+  patterns. We conjecture that this is the root cause of the model's
+  poor performance here as well.}\Rogersmarginnote{Chris---this is no
+  longer true for the binary-choice dataset, right?  Shall we just
+  take this whole bit out?---Roger} Third, neo-Gricean uncertainty
+achieves the best results across all three of our measures. Here
+again, this is consistent with our expectations based on the large
+illustrative example from \secref{sec:illustrations}, where we saw
+that this constrained, lexically-driven approach to choosing
+refinements resulted in the best quantitative and qualitative pattern.
 
 The overall analysis given in \tabref{tab:binary:overall} understates the
 value of both uncertainty models when it comes to the distribution of
@@ -1991,16 +2045,17 @@ model to capture the preference ordering in the human data, so the
 this case.
 
 Finally, it seems that neither uncertainty model is clearly superior
-to the other for these data.  This suggests to us that we have not yet
-found precisely the right approach to refinements (alternatives). It
-is tempting to try additional refinement sets to find a single model
-that wins decisively for all the target examples. We are wary of doing
-this because, as noted above, it runs the risk of overfitting to our
-experimental responses; we could easily engineer our own success.
-However, this is nonetheless a fruitful avenue for future exploration
-if paired with additional experiments for further
-validation. \Appendixref{app:paramexplore} offers additional findings
-that are relevant for such investigations.
+to the other for these data: they are the top two models on all
+metrics, and are separated from each other by only a small amount.
+This suggests to us that we may have not yet found precisely the right
+approach to refinements (alternatives). It is tempting to try
+additional refinement sets to find a single model that wins decisively
+for all the target examples. We are wary of doing this because, as
+noted above, it runs the risk of overfitting to our experimental
+responses; we could easily engineer our own success.  However, this is
+nonetheless a fruitful avenue for future exploration if paired with
+additional experiments for further
+validation. \Appendixref{app:paramexplore} offers additional relevant findings.
 
 \begin{table}[t]
   \centering
@@ -2028,10 +2083,22 @@ that are relevant for such investigations.
   \label{tab:crucial-items}
 \end{table}
 
-Our model's performance is sensitive to the space of competitor
+ Our model's performance is sensitive to the space of competitor
 messages, so it is worth asking how robust these findings are to
 changes in this area. We have found that the basic pattern is robust
-to a number of changes to the space of quantifiers.  The only
+to a number of changes to the space of quantifiers.  
+%
+\Rogersmarginnote{\tiny Chris---I don't get
+this.  Is the point that having \target{exactly one}{exactly one} as
+an alternative blocks the local enrichment of \target{exactly
+  one}{some} to be equivalent to what \target{exactly one}{some but
+  not all} would mean?  If so, isn't this an artifact of the fact that
+since our world space is defined in \texttt{N/S/A} terms, there is no
+state-space distinction between \word{exactly one} and \word{some but
+  not all} in the object position, even though a full treatment would
+introduce such a distinction?}
+%
+\magentahighlighter{The only
 noteworthy finding we have to report in this regard is that allowing
 \word{exactly one} into object position has a major impact: while
 \world{SSS} remains the best-guess inference for the message
@@ -2043,7 +2110,7 @@ if the speaker has the option to choose \word{exactly one of his
 of that form in favor of \word{some of his shots} is a signal that she
 regards the local enrichment as infelicitous. As \word{exactly one} is
 made more costly, it becomes a less salient option, and embedded
-implicatures begin to reemerge.
+implicatures begin to reemerge.} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
