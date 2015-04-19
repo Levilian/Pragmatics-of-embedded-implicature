@@ -178,27 +178,27 @@
 \newcommand{\scalarlex}[1]{
   \begin{array}[c]{r@{ \ = \ }l}
     \sem{\word{scored}} & \set{#1} \\
-    \sem{\word{aced}}   & \set{\tuple{\world{A}, \playera}} \\
+    \sem{\word{aced}}   & \set{\tuple{\world{A}, \playerb}} \\
     \sem{\word{Player\,B}}      & \text{as in tab.\,\ref{tab:grammar}}
   \end{array}}
 
 \newcommand{\genericscalar}[9]{
-  \setlength{\arraycolsep}{2pt}
+  \setlength{\arraycolsep}{4pt}
   \begin{array}[c]{r r r r}
     \toprule
     & \world{N} & \world{S} & \world{A} \\
     \midrule
-    \word{B scored} & #1 & #2 & #3 \\
-    \word{B aced}   & #4 & #5 & #6 \\
+    \word{B\,scored} & #1 & #2 & #3 \\
+    \word{B\,aced}   & #4 & #5 & #6 \\
     \nullmsg        & #7 & #8 & #9 \\
     \bottomrule
   \end{array}}
 
 \newcommand{\scalarspeaker}[9]{
-  \setlength{\arraycolsep}{2pt}
+  \setlength{\arraycolsep}{4pt}
   \begin{array}[c]{r r r r}
     \toprule
-    & \word{B scored} & \word{B aced} & \nullmsg \\
+    & \word{B\,scored} & \word{B\,aced} & \nullmsg \\
     \midrule
     \world{N}  & #1 & #2 & #3 \\
     \world{S}  & #4 & #5 & #6 \\
