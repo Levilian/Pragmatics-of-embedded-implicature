@@ -760,7 +760,7 @@ refinement throughout the lexicon.
   \caption{Interpreted grammar fragment. The left column defines a context-free grammar,
     and the right column gives its recursive interpretation in an intensional model
     $\tuple{\Domain, \Worlds, \sem{\cdot}}$, where $\Domain$ is a set of entities,
-    $\Worlds$ is a finite set of possible worlds, and $\sem{\cdot}$ is a semantic interpretation
+    $\Worlds$ is a set of possible worlds, and $\sem{\cdot}$ is a semantic interpretation
     function. Notational conventions: $x, y \in \Domain$, $w \in \Worlds$, and $X, Y \subseteq (\Worlds \times \Domain)$.}
   \label{tab:grammar}
 \end{table}
@@ -867,7 +867,7 @@ fragment $\tuple{\Grammar, \Domain, \Worlds, \sem{\cdot}}$ as in
 of entities $\Domain$, a set of worlds $\Worlds$, an interpretation
 function $\sem{\cdot}$ interpreting expressions of $\Grammar$ in these
 domains, and a refinement function $\Refine(\varphi)$ that is defined
-for all lexical items in $\Grammar$.
+for all lexical items in $\Grammar$. For convenience we also assume that $W$ is finite; this simplifies the definition of probability measures, but is not otherwise crucial. 
 %
 \begin{examples}
 \item\label{modobjects}
@@ -916,7 +916,7 @@ interpretation function $\sem{\cdot}$ and $\Refine$. It is the space
 opened up by these constructs that allows us to predict where and how
 embedded implicatures will be perceived as salient. It should be noted
 in this context that our decision to refine only lexical items, as in
-\subeg{modobjects}{lexset}, is made only for simplicity. We could
+\subeg{modobjects}{lexset}, is made only for simplicity. We could also
 allow arbitrary words and phrases to be refined, as \CFS\ in effect
 do.
 
