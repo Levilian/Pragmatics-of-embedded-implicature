@@ -760,7 +760,7 @@ refinement throughout the lexicon.
   \caption{Interpreted grammar fragment. The left column defines a context-free grammar,
     and the right column gives its recursive interpretation in an intensional model
     $\tuple{\Domain, \Worlds, \sem{\cdot}}$, where $\Domain$ is a set of entities,
-    $\Worlds$ is a set of possible worlds, and $\sem{\cdot}$ is a semantic interpretation
+    $\Worlds$ is a finite set of possible worlds, and $\sem{\cdot}$ is a semantic interpretation
     function. Notational conventions: $x, y \in \Domain$, $w \in \Worlds$, and $X, Y \subseteq (\Worlds \times \Domain)$.}
   \label{tab:grammar}
 \end{table}
@@ -880,7 +880,7 @@ for all lexical items in $\Grammar$.
   \item\label{lexset}% 
     $\LexSet = \Set{\Lex : \Lex(\nullmsg, w)=1 \text{ for all } \state \in \Worlds \text{ and } \set{\state : \Lex(\msg, \state)=1} \in \Refine(\msg)}$             
   
-  \item $\StatePrior : \Worlds \mapsto [0,1]$ is a prior probability
+  \item $\StatePrior : \wp(\Worlds) \mapsto [0,1]$ is a prior probability
     distribution over worlds.
 
   \item $\Costs : \Messages \mapsto \Reals$ is a cost function on
@@ -888,7 +888,7 @@ for all lexical items in $\Grammar$.
     nonterminal node $A$ with daughters $B_{1} \ldots B_{n}$,
     $\Costs(A) = \sum_{i=1}^{n}\Costs(B_{i})$.
 
-  \item $\LexPrior : \LexSet \mapsto [0,1]$ is a prior probability
+  \item $\LexPrior : \wp(\LexSet) \mapsto [0,1]$ is a prior probability
     distribution over lexica.
   \end{examples}
 \end{examples}
@@ -926,7 +926,9 @@ With this background in place, we now specify the core lexical
 uncertainty model. It consists of three inter-related agents, as
 defined in \eg{agents}. The agents are defined in terms of the cost
 function $\Costs$, the state prior $\StatePrior$, and the lexica in
-$\LexSet$. We assume throughout that $\msg$ is any message in
+$\LexSet$. 
+To save space, we abbreviate $f(\set{x})$ as $f(x)$ for all probability functions $f$.
+We assume throughout that $\msg$ is any message in
 $\Messages$, $\state$ is any state in $\States$, and $\Lex$ is any
 lexicon in the set $\LexSet$.\footnote{$P(a \given b) \propto F(a)$ is
   read `the value $P(a \given b)$ is proportional to the value
@@ -1703,7 +1705,7 @@ measuring participants' interpretations.\footnote{The only exception
   them. This likely created uncertainty about the intended meaning of
   the sentence, leading participants to disfavor it in general.}
 
-\begin{figure}[!ht]
+\begin{figure}[!t]
   \centering
   \includegraphics[width=0.85\textwidth]{fig/embeddedscalars-experiment-results-binary}
   \caption{Mean truth-value judgment responses by sentence with bootstrapped 95\% confidence intervals.}
