@@ -867,7 +867,9 @@ fragment $\tuple{\Grammar, \Domain, \Worlds, \sem{\cdot}}$ as in
 of entities $\Domain$, a set of worlds $\Worlds$, an interpretation
 function $\sem{\cdot}$ interpreting expressions of $\Grammar$ in these
 domains, and a refinement function $\Refine(\varphi)$ that is defined
-for all lexical items in $\Grammar$. For convenience we also assume that $W$ is finite; this simplifies the definition of probability measures, but is not otherwise crucial. 
+for all lexical items in $\Grammar$. For convenience we also assume
+that $W$ is countable (so that probability mass can be put on each
+world).
 %
 \begin{examples}
 \item\label{modobjects}
@@ -880,8 +882,10 @@ for all lexical items in $\Grammar$. For convenience we also assume that $W$ is 
   \item\label{lexset}% 
     $\LexSet = \Set{\Lex : \Lex(\nullmsg, w)=1 \text{ for all } \state \in \Worlds \text{ and } \set{\state : \Lex(\msg, \state)=1} \in \Refine(\msg)}$             
   
-  \item $\StatePrior : \wp(\Worlds) \mapsto [0,1]$ is a prior probability
-    distribution over worlds.
+  \item $\StatePrior : \wp(\Worlds) \mapsto [0,1]$ is a prior
+    probability distribution over sets of worlds.  (For notational
+    convenience we use $\StatePrior(\state)$ to mean
+    $\StatePrior(\{\state\})$.)
 
   \item $\Costs : \Messages \mapsto \Reals$ is a cost function on
     messages.  For lexical items, costs are specified. For a
@@ -889,7 +893,8 @@ for all lexical items in $\Grammar$. For convenience we also assume that $W$ is 
     $\Costs(A) = \sum_{i=1}^{n}\Costs(B_{i})$.
 
   \item $\LexPrior : \wp(\LexSet) \mapsto [0,1]$ is a prior probability
-    distribution over lexica.
+    distribution over sets of lexica.  (For notational convenience we use $\LexPrior(\Lex)$ to mean
+    $\LexPrior(\{\Lex\})$.)
   \end{examples}
 \end{examples}
 
@@ -927,7 +932,7 @@ uncertainty model. It consists of three inter-related agents, as
 defined in \eg{agents}. The agents are defined in terms of the cost
 function $\Costs$, the state prior $\StatePrior$, and the lexica in
 $\LexSet$. 
-To save space, we abbreviate $f(\set{x})$ as $f(x)$ for all probability functions $f$.
+% To save space, we abbreviate $f(\set{x})$ as $f(x)$ for all probability functions $f$.
 We assume throughout that $\msg$ is any message in
 $\Messages$, $\state$ is any state in $\States$, and $\Lex$ is any
 lexicon in the set $\LexSet$.\footnote{$P(a \given b) \propto F(a)$ is
