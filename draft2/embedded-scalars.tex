@@ -793,7 +793,9 @@ forestalled by speakers.
 The `lexical uncertainty' aspects of our model are designed to capture
 this variability. The core notion is that of lexical
 \tech{refinement}, as defined in \eg{refinement} following \citet{Bergen:Levy:Goodman:2014}:
-%
+
+\newpage
+
 \begin{examples}
 \item\label{refinement} 
   \begin{examples}
@@ -867,10 +869,12 @@ fragment $\tuple{\Grammar, \Domain, \Worlds, \sem{\cdot}}$ as in
 of entities $\Domain$, a set of worlds $\Worlds$, an interpretation
 function $\sem{\cdot}$ interpreting expressions of $\Grammar$ in these
 domains, and a refinement function $\Refine(\varphi)$ that is defined
-for all lexical items in $\Grammar$. For convenience we also assume
-that $W$ is countable (so that probability mass can be put on each
-world).
-%
+for all lexical items in $\Grammar$.  For convenience, we assume that
+$W$ is finite; this simplifies the definition of the probability
+measures but is not otherwise crucial.
+
+\newpage
+
 \begin{examples}
 \item\label{modobjects}
   \begin{examples}
@@ -884,17 +888,18 @@ world).
   
   \item $\StatePrior : \wp(\Worlds) \mapsto [0,1]$ is a prior
     probability distribution over sets of worlds.  (For notational
-    convenience we use $\StatePrior(\state)$ to mean
-    $\StatePrior(\{\state\})$.)
+    convenience, we abbreviate $\StatePrior(\set{\state})$ as
+    $\StatePrior(\state)$.)
 
   \item $\Costs : \Messages \mapsto \Reals$ is a cost function on
     messages.  For lexical items, costs are specified. For a
     nonterminal node $A$ with daughters $B_{1} \ldots B_{n}$,
     $\Costs(A) = \sum_{i=1}^{n}\Costs(B_{i})$.
 
-  \item $\LexPrior : \wp(\LexSet) \mapsto [0,1]$ is a prior probability
-    distribution over sets of lexica.  (For notational convenience we use $\LexPrior(\Lex)$ to mean
-    $\LexPrior(\{\Lex\})$.)
+  \item $\LexPrior : \wp(\LexSet) \mapsto [0,1]$ is a prior
+    probability distribution over sets of lexica.  (For notational
+    convenience, we abbreviate $\LexPrior(\set{\Lex})$ as 
+    $\LexPrior(\Lex)$.)
   \end{examples}
 \end{examples}
 
@@ -1281,9 +1286,9 @@ the code provided with this paper.% \footnote{There is one unnatural
     \toprule
     & \world{$\bullet$} & \world{c} & \world{s$_{1}$} & \world{s$_{2}$} & \world{s$_{1}$c} & \world{s$_{2}$c} & \world{s$_{1}$s$_{2}$} & \world{s$_{1}$s$_{2}$c}\\
     \midrule
-    \word{Player~A cheered} &    0 &   \graycell{.43} &    0 &    0 &   .23 &   .23 &    0 &    .1\\
+    \word{Player~A cheered} &    0 &   \graycell{.43} &    0 &    0 &   .23 &   .23 &    0 &    .10\\
     \word{Player~A hit every shot} &    0 &    0 &    0 &    0 &    0 &    0 &   \graycell{.72} &   .28\\
-    \word{Player~A hit some shot} &    0 &    0 &   \graycell{.33} &   \graycell{.33} &   .09 &   .09 &    .1 &   .04\\
+    \word{Player~A hit some shot} &    0 &    0 &   \graycell{.33} &   \graycell{.33} &   .09 &   .09 &    .10 &   .04\\
     \word{Player~A hit some shot or cheered} &    0 &   .15 &   \graycell{.28} &   \graycell{.28} &   .08 &   .08 &   .09 &   .03\\
     \word{Player~A hit some shot and cheered} &    0 &    0 &    0 &    0 &   \graycell{.41} &   \graycell{.41} &    0 &   .17\\
     \word{Player~A hit every shot or cheered} &    0 &   \graycell{.34} &    0 &    0 &   .19 &   .19 &    .20 &   .08\\
