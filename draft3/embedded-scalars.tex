@@ -93,15 +93,16 @@ weak scalar terms in a wide range of quantificational environments.
 They show that many of the attested listener inferences concerning
 such terms are amenable to Gricean treatments based on implicature
 calculation, with no need for such calculations to intrude on the
-semantics. However, they identify a class of examples that, if
-attested, would not admit of such a treatment: scalar terms in the
-scope of non-monotone quantifiers, as in \word{exactly one player hit
-  some of his shots}. In such cases, exhaustification of the embedded
-quantifier (\word{\ldots some but not all of his shots}) does not
-entail the literal meaning, whereas the Gricean implicature analysis
-of scalar terms can only strengthen literal
-meanings. \citeauthor{Geurts:Pouscoulous:2009}'s experiments fail to
-support enrichment in such contexts, whereas
+semantics (see especially \seccitealt{Geurts:Pouscoulous:2009}{8} and
+\pgcitealt{Chemla:Spector:2011}{361}).  However, they identify a class
+of examples that, if attested, would not admit of such a treatment:
+scalar terms in the scope of non-monotone quantifiers, as in
+\word{exactly one player hit some of his shots}. In such cases,
+exhaustification of the embedded quantifier (\word{\ldots some but not
+  all of his shots}) does not entail the literal meaning, whereas the
+Gricean implicature analysis of scalar terms can only strengthen
+literal meanings. \citeauthor{Geurts:Pouscoulous:2009}'s experiments
+fail to support enrichment in such contexts, whereas
 \citeauthor{Chemla:Spector:2011}'s suggest that it is possible. A
 number of recent papers have sought to make sense of these conflicting
 results
@@ -146,7 +147,7 @@ depends substantively on the fine details of semantic composition
 \emph{and} broader considerations of rational interaction. This is
 perhaps a departure from \posscitet{Grice75} particular conception of
 pragmatic meaning, but it is well-aligned with his general theory of
-meaning and intention \citep{Grice89}.  In view of our experimental
+meaning and intention \citep{Grice68,Grice89,sep-grice}. In view of our experimental
 results, the chief advantage of our model is that it makes
 quantitative predictions that are easily and rigorously linked with
 our human response patterns. In other words, the model makes
@@ -315,7 +316,7 @@ meaning. \citet{Geurts:Pouscoulous:2009} and
 \citet{Chemla:Spector:2011} home in on this common theme in scalar
 implicature calculation and use it to probe the scope and adequacy of
 the Gricean implicature framework. Examples like \eg{exactlyonesome}
-drive their discussions.  This is a minimal variant of \eg{everysome}
+are central to their discussions.  This is a minimal variant of \eg{everysome}
 with the subject universal determiner \word{every} replaced by
 \word{exactly one}.
 %
@@ -402,7 +403,7 @@ findings of \citeauthor{Chemla:Spector:2011}'s studies.
 
 This section briefly reviews the grammar-driven model of
 \citet{ChierchiaFoxSpector08} (henceforth \CFS).  The approach is
-inspired by those of \citet{Chierchia01}, \citet{Sauerland01},
+inspired by those of \citet{Chierchia01}, 
 \citet{Spector:2007}, and \citet{Fox:2007,Fox:2009}. There are two
 central pieces to the account: a generally available function $\ALT$
 that maps words and phrases to their alternatives, and a covert
@@ -454,15 +455,19 @@ are cautious about making direction connections between $O$ and these
 other phenomena (p.~2304), the correspondences are nonetheless
 noteworthy.
 
+\marginnote{Clarified the mix of pragmatic and grammatical restrictions that might govern $O$'s distribution for CFS.}
+
 Those are the technical pieces. The proposal can then be summarized
-easily: $O$ operators can optionally appear anywhere in the logical form of a
-sentence, perhaps subject to additional restrictions and general
-preferences (see \CFS: $\S$4.6). To see the effects that this could
-have, let's return to the examples involving \word{some} that we
+easily: $O$ operators can optionally appear anywhere in the logical
+form of a sentence, perhaps subject to additional restrictions
+relating both to the comparative strength of the resulting logical
+form and to general pragmatic assumptions about the current
+conversational goals (see \CFS: $\S$4.6). To see the effects that this
+could have, let's return to the examples involving \word{some} that we
 reviewed in \secref{sec:implicature}. Simplifying slightly, let's
-suppose that \word{some shot} denotes the set of sets  in \eg{someshot}
---- the set of all sets $Y$ that have a non-empty intersection with the
-set of shots.
+suppose that \word{some shot} denotes the set of sets in \eg{someshot}
+--- the set of all sets $Y$ that have a non-empty intersection with
+the set of shots.
 %
 \begin{examples}
 \item\label{someshot} $\sem{\word{some shot}} = \set{Y : \sem{\word{shot}} \cap Y \neq \emptyset}$
@@ -576,13 +581,15 @@ the interactional setting or try to model the speaker and
 hearer. Rather, we can just describe a specific class of logical
 forms.
 
+\marginnote{Purged the rest of this section of unnecessary references to Grice, since these offended R1.}
+
 This position is tempered by \CFS's pervasive appeals to
-Gricean reasoning, however.  The authors' specific examples are generally
+pragmatic reasoning, however.  The authors' specific examples are generally
 placed in contexts that support the target implicatures by ensuring
 that they are relevant, informative, and truthful.  They concede that
 ``aspects of the Gricean picture are sound and effective''
 (p.~2299). And, in summarizing their account, they make explicit the
-role that Gricean pragmatics must play in helping discourse
+role that pragmatics must play in helping discourse
 participants to coordinate on the right logical forms:
 %
 \begin{quote}
@@ -656,10 +663,13 @@ result is that \citeauthor{Bergen:Levy:Goodman:2014}'s model predicts
 embedded implicatures in non-monotone and downward-monotone contexts
 if it is combined with a full theory of semantic composition.
 
+\marginnote{Added lots of more references on lexical uncertainty.}
+
 The model's crucial feature is \tech{lexical uncertainty}.  In
 semantics, we like to imagine that word meanings are fixed across
 speakers and contexts, but in fact they are often idiosyncratic
-and adaptable \citep{clark-clark79,Clark97}. Thus, in our model, discourse
+and adaptable (\citealt{clark-clark79,Clark97,Lascarides:Copestake:1998,Glucksberg:2001}; for an overview and general discussion, see \citealt{Wilson:Carston:2007}). 
+Thus, in our model, discourse 
 participants are not presumed to share a single, fixed
 lexicon mapping word forms to meanings. Rather, they consider many such lexica, and their communicative
 behavior, in both production and interpretation, is guided by their
@@ -758,8 +768,6 @@ The `lexical uncertainty' aspects of our model are designed to capture
 this variability. The core notion is that of lexical
 \tech{refinement}, as defined in \eg{refinement} following \citet{Bergen:Levy:Goodman:2014}:
 
-\newpage
-
 \begin{examples}
 \item\label{refinement} 
   \begin{examples}
@@ -833,8 +841,6 @@ for all lexical items in $\Grammar$.  For convenience, we assume that
 $W$ is finite; this simplifies the definition of the probability
 measures but is not otherwise crucial.
 
-\newpage
-
 \begin{examples}
 \item\label{modobjects}
   \begin{examples}
@@ -879,25 +885,30 @@ be zero.\footnote{The model is mathematically invariant to
 `null message' $\nullmsg$, which is stipulated to be true in all
 worlds in all lexica.
 
-Our focus is on the space of lexica defined by
-\subeg{modobjects}{lexset} given a certain set of relevant messages,
-as in \subeg{modobjects}{messages}. Clause~\subeg{modobjects}{lexset}
+\marginnote{Expanded this to clarify the role of alternative messages.}
+
+In the context of our model, the set of messages $\Messages$ creates a
+space of alternative utterances that can drive complex pragmatic
+reasoning, as we will see in \secref{sec:illustrations}.  However,
+while these alternatives play a crucial role in capturing
+implicatures, they do not suffice for embedded ones. Thus, our focus
+is on the space of lexica defined by \subeg{modobjects}{lexset} given
+a certain set of relevant alternative messages, as in
+\subeg{modobjects}{messages}. Clause~\subeg{modobjects}{lexset}
 specifies all of the possible lexica $\Lex$ given the original
-interpretation function $\sem{\cdot}$ and $\Refine$. It is the space
+interpretation function $\sem{\cdot}$ and $\Refine$.  It is the space
 opened up by these constructs that allows us to predict where and how
-embedded implicatures will be perceived as salient. It should be noted
-in this context that our decision to refine only lexical items, as in
-\subeg{modobjects}{lexset}, is made only for simplicity. We could also
-allow arbitrary words and phrases to be refined, as \CFS\ in effect
-do.
+embedded implicatures will be perceived as salient.  It should be
+noted in this context that our decision to refine only lexical items,
+as in \subeg{modobjects}{lexset}, is made only for simplicity. We
+could also allow arbitrary words and phrases to be refined, as \CFS\
+in effect do.
 
 With this background in place, we now specify the core lexical
 uncertainty model. It consists of three inter-related agents, as
 defined in \eg{agents}. The agents are defined in terms of the cost
 function $\Costs$, the state prior $\StatePrior$, and the lexica in
-$\LexSet$. 
-% To save space, we abbreviate $f(\set{x})$ as $f(x)$ for all probability functions $f$.
-We assume throughout that $\msg$ is any message in
+$\LexSet$.  We assume throughout that $\msg$ is any message in
 $\Messages$, $\state$ is any state in $\States$, and $\Lex$ is any
 lexicon in the set $\LexSet$.\footnote{$P(a \given b) \propto F(a)$ is
   read `the value $P(a \given b)$ is proportional to the value
@@ -1080,7 +1091,7 @@ an SI.
     &
     \genericscalar{\False}{\False}{\True}{\False}{\False}{\True}{\True}{\True}{\True}
     \\
-    & \uparrow & \uparrow & \uparrow 
+    & \downarrow & \downarrow & \downarrow 
     \\                               
     \Lex
     & 
@@ -1154,14 +1165,17 @@ generating implicatures based on the principle that marked forms
 signal marked meanings and unmarked forms signal unmarked meanings
 \citep{McCawley78,Horn84,Blutner98,Levinson00}.
 
+\marginnote{Added new notes about the power of alternative messages.}
+
 The lexical uncertainty aspects of the model are a rich source of
 implicatures, and they are the key to achieving local implicatures of
 the sort reviewed in \secref{sec:implicature} above. However, as the
 fixed lexicon versions of the model make clear, the recursive nature
-of the agents suffices for many kinds of enrichment. Even with a
+of the agents suffices for many kinds of enrichment assuming the space
+of alternative messages $\Messages$ is chosen properly. Even with a
 single lexicon, we have a listener reasoning about a speaker reasoning
 about the literal interpretive semantics, which creates forces for
-removing semantic overlap among the available messages. One powerful
+removing semantic overlap among the alternative messages. One powerful
 illustration of this comes from \citet{Sauerland01,Sauerland04}, who
 studies the implicatures of sentences like \word{Player~A hit some of
   his shots or cheered}, in which the weak scalar term \word{some of
@@ -1230,14 +1244,17 @@ the code provided with this paper.
     the basic patterns seen here.)}\label{tab:sauerland}
 \end{table}
 
+\marginnote{Revised opening sentence to explicitly say that fixed-lexicon won't suffice here.}
+
 Let's now look at a larger and more complex scenario, one in which
 lexical uncertainty interacts with message competition to help reveal
-the potential of this model to predict embedded implicatures. In this
-scenario, there are two players. We resume our convention of referring
-to worlds using sequences like \world{NN} (`neither player
-scored'). The lexical items are \word{Player A}, \word{Player B},
-\word{some}, \word{every}, \word{no}, \word{scored}, and \word{aced}.
-To start, we assume that, for all lexical items $\varphi$,
+the potential of this model to capture embedded implicatures in ways
+that a fixed-lexicon version of the model cannot.  In this scenario,
+there are two players. We resume our convention of referring to worlds
+using sequences like \world{NN} (`neither player scored'). The lexical
+items are \word{Player A}, \word{Player B}, \word{some}, \word{every},
+\word{no}, \word{scored}, and \word{aced}.  To start, we assume that,
+for all lexical items $\varphi$,
 $\Refine(\varphi) = \wp(\sem{\varphi}){-}\emptyset$.  This creates an
 enormous space of lexica, and allows the full range of possible
 interactions between the refinements.
@@ -1275,7 +1292,7 @@ This worry is a touchstone for revisiting an assumption of the model
 underlying \tabref{tab:subjects}: that the lexical items can be
 refined in completely arbitrary ways. We take it to be one of the
 major lessons of neo-Gricean approaches that alternatives are
-contextually and lexically constrained. \CFS's treatment of $\OALT$
+contextually and lexically constrained. \CFS's treatment of $\ALT$
 reflects this insight, and our own handling of refinement and lexical
 uncertainty allows us to incorporate it as well. So it is worth seeing
 whether we can improve the picture in \tabref{tab:subjects} by
@@ -1403,8 +1420,8 @@ two responses that are most relevant for our purposes are those of
 rate of implicatures, and they sought to address this issue with a
 different experimental method.  In their experiment, one trial
 consisted of presenting the participant with a sentence together with
-a set of visual scenes.  The participant was instructed to choose the
-scene that he or she considered ``best described by the sentence''.
+a set of visual scenes.  The participant was instructed to choose 
+the scene or scenes, if any, that he or she considered ``best described by the sentence''.
 They found that participants tended to chose the scene consistent with
 local enrichment. This method is a natural choice given a pragmatic
 model like ours, since it places participants in a role comparable to
@@ -1905,17 +1922,18 @@ responses).
 
 \begin{table}[!t]
   \centering
-  \begin{tabular}[c]{r c c c}
+  \setlength{\tabcolsep}{12pt}
+  \begin{tabular}[c]{r c@{ \hspace{8pt} }c c@{ \hspace{8pt} }c c@{ \hspace{8pt} }c}
     \toprule
-    & Pearson & Spearman & MSE \\
+    & \multicolumn{2}{c}{Pearson} & \multicolumn{2}{c}{Spearman} &  \multicolumn{2}{c}{MSE} \\
     \midrule
-    Literal semantics         & .94 & .76 & .0065 \\
-    Fixed-lexicon pragmatics  & .92 & .76 & .0079 \\
-    Unconstrained uncertainty & .95 & .79 & .0038 \\
-    Neo-Gricean uncertainty   & \graycell{.96} & \graycell{.81} & \graycell{.0034}\\
+    Literal semantics         & .938            & \ci{.926}{.947} & .762            & \ci{.754}{.770} & .0065            & \ci{.0057}{.0075} \\
+    Fixed-lexicon pragmatics  & .924            & \ci{.911}{.932} & .757            & \ci{.749}{.766} & .0079            & \ci{.0072}{.0090} \\
+    Unconstrained uncertainty & .945            & \ci{.936}{.950} & .794            & \ci{.767}{.820} & .0038            & \ci{.0035}{.0044} \\
+    Neo-Gricean uncertainty   & \graycell{.959} & \ci{.950}{.962} & \graycell{.809} & \ci{.808}{.820} & \graycell{.0034} & \ci{.0031}{.0040} \\
     \bottomrule   
   \end{tabular}
-  \caption{Overall assessment.}
+  \caption{Overall assessment with 95\% confidence intervals obtained via by-subjects bootstrapping.}
   \label{tab:binary:overall}
 \end{table}
 
@@ -1954,14 +1972,17 @@ environments. In contrast, both uncertainty models capture the
 patterns. These tight fits are evident in \figref{fig:exp-analysis},
 and it is reassuring to see them reflected in our assessment measures.
 
+\marginnote{Revised paragraph in response to R1.}
+
 It is also striking that the literal model is competitive for
-\target{every}{some}. This probably traces to the experimentally
-inconvenient fact that the enriched meaning entails the literal one,
-making a literal semantics a generally safe bet. It should be noted
-also that the Spearman coefficient best reflects the ability of a
-model to capture the preference ordering in the human data, so the
-`Neo-Gricean uncertainty' model might still be the favored choice for
-this case.
+\target{every}{some}. This model does not distinguish among contexts
+in which the target sentence is true. Our participants only minimally
+distinguished among such readings, which makes sense in the context of
+a binary judgment task if we assume that the literal reading is
+accessible. It should be noted also that the Spearman coefficient best
+reflects the ability of a model to capture the preference ordering in
+the human data, so the `Neo-Gricean uncertainty' model might still be
+the favored choice for this case.
 
 Finally, it seems that neither uncertainty model is clearly superior
 to the other for these data: they are the top two models on all
@@ -2057,10 +2078,14 @@ significant impact on the final predictions. It would thus be
 worthwhile to further explore different notions of refinement, seeking
 better fits with our own experimental patterns and then validating
 those conclusions in follow-up experiments using our experimental
-items, or applying the resulting models in new domains.  We have made
-publicly available all the data and code associated with this paper in
-an effort to encourage these new strands of theory development and
-quantitative assessment.
+items, or applying the resulting models in new domains. Such
+investigations could engage not only the nature of lexical refinement,
+but also whether phrasal refinements are essential and need to be
+finely controlled, for example, to properly describe the complex
+distribution of what \citet{Sauerland:2012,Sauerland:2014} calls
+\tech{intermediate implicatures}.  We have made publicly available all
+the data and code associated with this paper in an effort to encourage
+these new strands of theory development and quantitative assessment.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2296,17 +2321,18 @@ the model. Neo-Gricean uncertainty again emerges as the best model.
 
 \begin{table}[t]
   \centering
-  \begin{tabular}[c]{r c c c}
+  \setlength{\tabcolsep}{12pt}
+  \begin{tabular}[c]{r c@{ \hspace{8pt} }c c@{ \hspace{8pt} }c c@{ \hspace{8pt} }c}
     \toprule
-    & Pearson & Spearman & MSE \\
+    & \multicolumn{2}{c}{Pearson} & \multicolumn{2}{c}{Spearman} & MSE \\
     \midrule
-    Literal semantics         & .94 & .76 & .0079\\
-    Fixed-lexicon pragmatics  & .92 & .75 & .0094\\
-    Unconstrained uncertainty & .93 & .79 & .0052\\
-    Neo-Gricean uncertainty   & \graycell{.95} & \graycell{.80} & \graycell{.0046}\\
+    Literal semantics         & .935            & \ci{.910}{.947} & .756            & \ci{.742}{.764}  & .0079            & \ci{.0065}{.0099} \\
+    Fixed-lexicon pragmatics  & .920            & \ci{.894}{.932} & .751            & \ci{.736}{.759}  & .0094            & \ci{.0080}{.0114} \\
+    Unconstrained uncertainty & .929            & \ci{.905}{.938} & .794            & \ci{.765}{.815}  & .0052            & \ci{.0045}{.0067} \\
+    Neo-Gricean uncertainty   & \graycell{.950} & \ci{.927}{.956} & \graycell{.805} & \ci{.795}{.812}  & \graycell{.0046} & \ci{.0038}{.0062} \\
     \bottomrule   
   \end{tabular}
-  \caption{Overall assessment of the Likert-scale experiment.}
+  \caption{Overall assessment of the Likert-scale experiment with 95\% confidence intervals obtained via by-subjects bootstrapping.}
   \label{tab:likert:overall}
 \end{table}
 
