@@ -1947,15 +1947,25 @@ responses).
     Neo-Gricean uncertainty   & \graycell{.959} & \ci{.950}{.962} & \graycell{.809} & \ci{.808}{.820} & \graycell{.0034} & \ci{.0031}{.0040} \\
     \bottomrule   
   \end{tabular}
-  \caption{Overall assessment with 95\% confidence intervals obtained via by-subjects bootstrapping.}
+  \caption{Overall assessment with 95\% confidence intervals obtained via non-parametric bootstrap over subjects.}
   \label{tab:binary:overall}
 \end{table}
 
 \Tabref{tab:binary:overall} summarizes our overall quantitative
 assessment. All of the correlations are extremely high, and the MSE
 values are extremely low. This is reassuring about the general utility
-of all of these models for predicting human judgments. Comparing the
-values is arguably more illuminating. Two patterns stand out.  First,
+of all of these models for predicting human judgments. 
+\marginnote{Added a bit of language about the confidence intervals.}
+In addition, the 
+confidence intervals on the estimates are tight. We computed confidence in 
+these estimates by a subject-wise non-parametric bootstrapping procedure, 
+recomputing correlations for the same set of conditions, but with different 
+simulated samples of participants. The resulting intervals reflect
+our confidence about estimates of these statistics for this particular set of 
+experimental conditions.
+
+Because of the high absolute values of all correlations, model comparison 
+is important for interpretation. Two patterns stand out.  First,
 `Fixed-lexicon pragmatics' performs the least well overall.  Since it
 has been shown to add substantial value in other areas of language and
 cognition, we conclude that its particular approach to enrichment is
